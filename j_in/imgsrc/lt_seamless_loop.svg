@@ -85,7 +85,7 @@
          y="876.10437"
          x="13.179688"
          id="tspan2075"
-         sodipodi:role="line">サウンドの先頭</tspan></text>
+         sodipodi:role="line">Start of sound</tspan></text>
     <text
        sodipodi:linespacing="100%"
        id="text2079"
@@ -96,7 +96,7 @@
          id="tspan2083"
          sodipodi:role="line"
          y="876.10437"
-         x="129.17969">ループの始点</tspan></text>
+         x="129.17969">Loop start point</tspan></text>
     <text
        sodipodi:linespacing="100%"
        id="text2087"
@@ -107,7 +107,7 @@
          id="tspan2091"
          sodipodi:role="line"
          y="877.10437"
-         x="244.12500">ループの終点</tspan></text>
+         x="244.12500">Loop end point</tspan></text>
     <text
        sodipodi:linespacing="100%"
        id="text2093"
@@ -118,7 +118,7 @@
          id="tspan2097"
          sodipodi:role="line"
          y="1061.0497"
-         x="72.125000">ループの終点に達した時点で、ループの始点に移る</tspan></text>
+         x="72.125000">When the loop end point is reached, jump to the loop start point</tspan></text>
     <path
        style="fill:none;fill-opacity:0.75000000;fill-rule:evenodd;stroke:#000000;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;marker-start:none;marker-end:url(#Arrow2Lend);stroke-opacity:1.0000000"
        d="M 24.912428,882.86218 L 7.5000000,904.60914"

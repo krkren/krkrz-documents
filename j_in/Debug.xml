@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>デバッグ</title>
+<title>Debugging</title>
 
 <para>
-<ptitle>アプリケーションのデバッグについて</ptitle>
-　デバッグとは、アプリケーション内にあるバグ(機能不全や想定しない動作の原因)を特定し、修正する作業です。<r/>
-　吉里吉里はいくつかのデバッグ支援機能を持っていますので、その機能を用い、アプリケーションをデバッグします。その方法について説明します。
+<ptitle>About Application Debugging</ptitle>
+ Debugging is the process of identifying and fixing bugs (causes of malfunctions or unintended behavior) within an application.<r/>
+ KiriKiri provides several debugging support features. This section explains how to use these features to debug your application.
 </para>
 
 <para>
-<ptitle>デバッグメッセージ出力</ptitle>
-吉里吉里はデバッグを支援するためのウィンドウをいくつか提供しています。詳しくは各リンクの説明を参照してください。<r/>
+<ptitle>Debug Message Output</ptitle>
+KiriKiri provides several windows to assist with debugging. Please refer to the descriptions in each link for details.<r/>
 <dl>
 <dt><link href="Console"/></dt>
-<dd>吉里吉里のシステムや、ユーザスクリプトが出力する様々なデバッグ用メッセージを表示することができます。</dd>
+<dd>Displays various debug messages output by the KiriKiri system and user scripts.</dd>
 </dl>
 <r/>
-　特にコンソールでは、<at href="f_Debug_message.html">Debug.message</at> によってユーザプログラムがプログラム中で出力したメッセージが表示されます。プログラムの任意の場所でメソッドを呼び出し、変数の内容をコンソールに表示させ、実行中の変数の内容を見ることができます。<r/>
-　コンソールへメッセージを表示する方法やログをファイルに記述する方法については、<link href="CommandLine" /> の 「デバッグ関連のオプション」や <at href="f_Debug.html">Debug クラス</at> を参照してください。<r/>
+ In the console specifically, messages output by the user program using <at href="f_Debug_message.html">Debug.message</at> are displayed. By calling this method at any point in the program, you can display variable contents in the console and inspect them during execution.<r/>
+ For information on how to display messages in the console or write logs to a file, refer to the "Debug-related options" in <link href="CommandLine" /> or the <at href="f_Debug.html">Debug class</at>.<r/>
 </para>
 
 
 <para>
-<ptitle>デバッグモード</ptitle>
-　<link href="CommandLine" /> で '-debug' を指定する (「デバッグモード」を'有効'にする) と、吉里吉里をデバッグモードで動作させることができます。<r/>
-　デバッグモードではTJS2の動作は低速になりますが、デバッグに便利ないくつかの機能が有効になります。<r/>
+<ptitle>Debug Mode</ptitle>
+ By specifying '-debug' in the <link href="CommandLine" /> (setting "Debug Mode" to 'enabled'), you can run KiriKiri in debug mode.<r/>
+ In debug mode, TJS2 execution becomes slower, but several features useful for debugging are enabled.<r/>
 <r/>
 <dl>
-<dt>型情報追跡機能</dt>
+<dt>Type Information Tracking</dt>
 <dd>
-　TJS2のオブジェクトに関する情報が強化されます。<r/>
-　デバッグモードではない場合は、たとえば KAG で kag.saveSystemVariables の情報を得ようとしても
+ Information regarding TJS2 objects is enhanced.<r/>
+ When not in debug mode, for example, if you try to get information for kag.saveSystemVariables in KAG:
 <bq>
-コンソール : kag.saveSystemVariables = (object)(object 0x0279E130:0x01EB0BD4)
+Console : kag.saveSystemVariables = (object)(object 0x0279E130:0x01EB0BD4)
 </bq>
-　が得られるだけですが、デバッグモードが有効の場合は
+ is all you get, but when debug mode is enabled:
 <bq>
-コンソール : kag.saveSystemVariables = (object)(object 0x0279E130[(function) KAGWindow.saveSystemVariables]:0x01EB0BD4[instance of class KAGWindow])
+Console : kag.saveSystemVariables = (object)(object 0x0279E130[(function) KAGWindow.saveSystemVariables]:0x01EB0BD4[instance of class KAGWindow])
 </bq>
-　のように型の情報が得られます。(':' で区切られた２つの部分のうち、前の部分はオブジェクトの型、後ろの部分はそのオブジェクトが動作するコンテキストです )。<r/>
-　デバッガで追う場合はほぼ必須のオプションです。<r/>
-　この機能は、(現バージョンでは)オブジェクトが文字列に変換される過程すべてで有効になります。<r/>
+ type information is obtained as shown above. (Of the two parts separated by ':', the first part is the object type, and the second part is the context in which the object operates).<r/>
+ This option is almost essential when tracing with a debugger.<r/>
+ This feature (in the current version) is active throughout the entire process of converting an object to a string.<r/>
 </dd>
-<dt>オブジェクトリーク検出機能</dt>
+<dt>Object Leak Detection</dt>
 <dd>
-　削除されていない(解放されていない)オブジェクトを終了時に警告する機能が有効になります。<r/>
-　TJS2は本来、ガベージコレクション機能により、作成されたオブジェクトは自動的に削除され、明示的な削除の指示は必要ありません。しかし、プラグインや吉里吉里本体のバグ、循環参照が原因で、オブジェクトが削除されないままになる(リークする)可能性があります。<r/>
-　デバッグモードでは、終了時になってもまだ解放されていないオブジェクトがコンソールのログファイルに書き出されます。<r/>
-　たった一個のオブジェクトが解放されなかっただけでも、そのオブジェクトに関連するオブジェクトが全て検出されるため、ログファイルが巨大になる可能性がありますので注意してください。<r/>
+ Enables a feature that warns about objects that have not been deleted (released) upon termination.<r/>
+ TJS2 normally deletes created objects automatically via garbage collection, so explicit deletion instructions are not required. However, objects may remain undeleted (leak) due to bugs in plugins or the KiriKiri core, or because of circular references.<r/>
+ In debug mode, objects that have not been released by the time the application terminates are written to the console log file.<r/>
+ Please note that even if only a single object is not released, all objects related to it will be detected, which may result in a very large log file.<r/>
 <r/>
-　<at href="f_System_exit.html">System.exit</at> メソッドは、アプリケーションを強制終了に近い形で終了させるもので、このメソッドでアプリケーションを終了させると多くのオブジェクトがリークし、大量のログが記録されますので注意してください。<r/>
+ The <at href="f_System_exit.html">System.exit</at> method terminates the application in a manner close to a forced shutdown. Please be aware that terminating the application with this method will cause many objects to leak and a large amount of logs to be recorded.<r/>
 <note>
-循環参照とは、A は B を参照している、B は A を参照しているという状況の事です。<r/>
-たとえば、以下のスクリプトは循環参照を生成します。
+A circular reference is a situation where A refers to B, and B refers to A.<r/>
+For example, the following script creates a circular reference:
 <bq>
 var a = %[], b = %[];<r/>
 a.b = b; b.a = a;
 </bq>
-このような状況では、オブジェクト a は b を必要とし、オブジェクト b は a を必要としています。TJS2が採用しているガベージコレクションの方法(参照カウンタ)はこのような状況を検出してオブジェクトを解放するのは困難であるため、TJS2ではこのような状況を検出しません。そのため、いつまで経ってもこれらのオブジェクトが削除されることはありません (明示的に invalidate 演算子でどちらかのオブジェクトを無効化すると循環参照を断ち切ることができます)。<r/>
+In this situation, object 'a' requires 'b', and object 'b' requires 'a'. Since the garbage collection method used by TJS2 (reference counting) has difficulty detecting such situations to release objects, TJS2 does not detect them. Therefore, these objects will never be deleted (you can break the circular reference by explicitly invalidating one of the objects using the 'invalidate' operator).<r/>
 <r/>
-プラグインでは、参照カウンタの扱いを誤るとオブジェクトがリークする可能性があります。プラグインを作成して、その中でTJS2オブジェクトを扱う場合は、参照カウンタの扱いに十分注意してください。<r/>
+In plugins, incorrect handling of reference counters can lead to object leaks. When creating a plugin and handling TJS2 objects within it, please pay close attention to reference counter management.<r/>
 </note>
 </dd>
-<dt>削除中のオブジェクトでのスクリプト実行の警告</dt>
+<dt>Warning for Script Execution on Objects Being Deleted</dt>
 <dd>
-　オブジェクトは、削除あるいは無効化されるときに finalize メソッドが呼ばれます。<r/>
-　オブジェクトが削除されるタイミングは、TJS2では「いつになるかわからない」ため、変なタイミングで finalize メソッドがよばれ、予期しない挙動を示す場合があります。デバッグモードでは、このような「不安定なタイミング」、つまり無効化されなかったオブジェクトがガベージコレクションによって削除され、finalizeメソッドが呼ばれたときに、警告がコンソールに表示されるようになります。<r/>
-　警告は以下のような物です。<r/>
+ The finalize method is called when an object is deleted or invalidated.<r/>
+ In TJS2, the timing of object deletion is non-deterministic, so the finalize method may be called at an unexpected time, potentially causing unintended behavior. In debug mode, a warning will be displayed in the console when the finalize method is called during such "unstable timing"-specifically, when an object that was not invalidated is deleted by garbage collection.<r/>
+ The warning looks like this:<r/>
 <bq>
-警告: anonymous@0x016DFA7C(9)[(function) finalize]: 削除中のオブジェクト 0x0167DD44[instance of class A] 上でコードが実行されています。このオブジェクトの作成時の呼び出し履歴は以下の通りです:<r/>
+Warning: anonymous@0x016DFA7C(9)[(function) finalize]: Code is being executed on object 0x0167DD44[instance of class A] which is being deleted. The call stack at the time of this object's creation is as follows:<r/>
                      anonymous@0x016DFA7C(13)[(top level script) global]
 </bq>
-　このような状況を防ぐため、new で作成したオブジェクトは、使用し終わったら明示的に invalidate 演算子で無効化することを推奨します。<r/>
-　ただし、Array や Dictionary、Date のように finalize メソッドがない、あるいは finalize メソッドでは特に問題を起こすような動作を起こさないクラスのオブジェクトについては、明示的な無効化は必要ない場合があります。<r/>
-　上記の警告は、明示的な無効化が無いままオブジェクトが削除されようとし、そのコンテキスト上でTJS2スクリプトが実行されようとした場合に表示されます。
+ To prevent such situations, it is recommended to explicitly invalidate objects created with 'new' using the 'invalidate' operator once they are no longer needed.<r/>
+ However, for objects of classes like Array, Dictionary, or Date, which either do not have a finalize method or do not perform problematic actions within it, explicit invalidation may not be necessary.<r/>
+ The above warning is displayed when an object is about to be deleted without explicit invalidation, and TJS2 script is about to be executed within that context.
 </dd>
 
-<dt>呼び出し履歴の取得機能</dt>
+<dt>Call Stack Retrieval Feature</dt>
 <dd>
-　TJS2 の関数/メソッド呼び出し履歴をスクリプトから取得できるようになります。<r/>
-　これには <at href="f_Scripts_getTraceString.html">Scripts.getTraceString</at> メソッドを用います。<r/>
-　プログラムの途中に何か問題があり、そのメソッドがどこから呼ばれたのか分からない場合に、このメソッドを使って、呼び出し履歴をコンソールに出力したりができるようになります。<r/>
+ Allows the TJS2 function/method call stack to be retrieved from a script.<r/>
+ This is done using the <at href="f_Scripts_getTraceString.html">Scripts.getTraceString</at> method.<r/>
+ If there is a problem in the middle of a program and you do not know where a method was called from, you can use this method to output the call stack to the console.<r/>
 </dd>
 
 

@@ -96,11 +96,11 @@
          id="tspan2105"
          sodipodi:role="line"
          y="496.51843"
-         x="567.04688">タイムライン・</tspan><tspan
+         x="567.04688">Timeline /</tspan><tspan
          id="tspan2107"
          sodipodi:role="line"
          y="510.51843"
-         x="567.04688">ラベル表示部分</tspan></text>
+         x="567.04688">Label Display Area</tspan></text>
     <text
        sodipodi:linespacing="100.00000%"
        id="text2099"
@@ -111,7 +111,7 @@
          id="tspan2103"
          sodipodi:role="line"
          y="555.72156"
-         x="566.07031">波形表示部分</tspan></text>
+         x="566.07031">Waveform Display Area</tspan></text>
     <text
        sodipodi:linespacing="100.00000%"
        id="text2109"
@@ -122,7 +122,7 @@
          id="tspan2113"
          sodipodi:role="line"
          y="601.72156"
-         x="565.80469">リンク表示部分</tspan></text>
+         x="565.80469">Link Display Area</tspan></text>
     <rect
        rx="7.9999933"
        ry="8.0000010"
@@ -142,6 +142,6 @@
          sodipodi:role="line"
          id="tspan2230"
          x="567.72266"
-         y="477.12000">縮小波形表示部分</tspan></text>
+         y="477.12000">Miniature Waveform Display Area</tspan></text>
   </g>
 </svg>

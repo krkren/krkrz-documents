@@ -2,35 +2,35 @@
 <doc>
 <title>AsyncTrigger</title>
 <desc>
-　AsyncTrigger クラスは、いったん吉里吉里に制御が戻った直後のイベント配信のタイミングにイベントを発生させるためのクラスです。この機能を<kw>非同期トリガ</kw> ( asynchronous trigger ) と呼びます。<r/>
-　吉里吉里のようにイベント駆動型のプログラミングモデルをとるスクリプトにおいて、イベントハンドラ内では実行できないような処理 ( たとえばイベントの発生元のオブジェクトをそのイベントハンドラ内で無効化しようとするなど ) を、そのイベントハンドラ外で行いたい時に便利です。<r/>
+ The AsyncTrigger class is used to fire an event at the timing of event delivery immediately after control returns to KiriKiri. This function is called an <kw>asynchronous trigger</kw>. <r/>
+ In scripts that use an event-driven programming model like KiriKiri, this is useful when you want to perform processing outside of an event handler that cannot be executed within it (for example, trying to invalidate the object that generated the event within that event handler). <r/>
 </desc>
 
 <member>
 	<name>AsyncTrigger</name>
 	<type>constructor</type>
-	<shortdesc>AsyncTriger オブジェクトの構築</shortdesc>
+	<shortdesc>Construction of AsyncTrigger object</shortdesc>
 	<arg>
 		<argitem>
 			<name>owner</name>
 			<default></default>
 			<desc>
-				　イベントの発生先を指定します。<r/>
+				 Specifies the target for the event. <r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>actionname</name>
 			<default>"action"</default>
 			<desc>
-				　owner で指定したイベントの発生先オブジェクトで、イベントを受け取るメソッド名を
-				指定します。空文字列を指定すると owner はメソッドとみなされ、イベントの発生ごとに
-				owner が直接呼ばれます。<r/>
+				 Specifies the name of the method to receive the event in the target object specified by owner. 
+				 If an empty string is specified, owner is treated as a method, and owner is called directly 
+				 for each event occurrence. <r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　AsyncTrigger クラスのオブジェクトを構築します。<r/>
+		 Constructs an AsyncTrigger class object. <r/>
 	</desc>
 </member>
 
@@ -38,11 +38,11 @@
 <member>
 	<name>onFire</name>
 	<type>event</type>
-	<shortdesc>発砲するとき</shortdesc>
+	<shortdesc>When fired</shortdesc>
 	<arg></arg>
 	<result></result>
 	<desc>
-		　<ref>AsyncTrigger.trigger</ref> メソッドでトリガを引いた後に発生します。<r/>
+		 Occurs after the trigger is pulled with the <ref>AsyncTrigger.trigger</ref> method. <r/>
 	</desc>
 </member>
 
@@ -50,27 +50,27 @@
 <member>
 	<name>trigger</name>
 	<type>method</type>
-	<shortdesc>トリガを引く</shortdesc>
+	<shortdesc>Pull the trigger</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　イベントを発生させます。<r/>
-		　このメソッドを呼んだ後、吉里吉里本体に制御が戻り、吉里吉里本体がたまった非同期イベントを配信する
-		段階になると <ref>AsyncTrigger.onFire</ref> イベントが発生します。<r/>
+		 Generates an event. <r/>
+		 After calling this method, control returns to the KiriKiri core, and the <ref>AsyncTrigger.onFire</ref> 
+		 event occurs when the KiriKiri core reaches the stage of delivering accumulated asynchronous events. <r/>
 	</desc>
 </member>
 
 <member>
 	<name>cancel</name>
 	<type>method</type>
-	<shortdesc>トリガのキャンセル</shortdesc>
+	<shortdesc>Cancel the trigger</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　<ref>AsyncTrigger.trigger</ref> メソッドで引いたトリガをキャンセルします。<r/>
-		　発砲前であればいつでもキャンセルできます。<r/>
+		 Cancels the trigger pulled with the <ref>AsyncTrigger.trigger</ref> method. <r/>
+		 It can be canceled at any time before firing. <r/>
 	</desc>
 </member>
 
@@ -78,29 +78,29 @@
 <member>
 	<name>cached</name>
 	<type>property</type>
-	<shortdesc>イベントをキャッシュするかどうか</shortdesc>
+	<shortdesc>Whether to cache events</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　イベントをキャッシュするかどうかを表します。値を設定することもできます。<r/>
-		　真を指定すると、発砲までに何度 <ref>AsyncTrigger.trigger</ref> メソッドを呼んでも
-		発砲は１回だけとなります。<r/>
-		　偽を指定すると、発砲までに呼んだ回数分、発砲されます。<r/>
+		 Indicates whether to cache events. You can also set the value. <r/>
+		 If true is specified, the event will fire only once no matter how many times the 
+		 <ref>AsyncTrigger.trigger</ref> method is called before firing. <r/>
+		 If false is specified, it will fire as many times as it was called before firing. <r/>
 	</desc>
 </member>
 
 <member>
 	<name>mode</name>
 	<type>property</type>
-	<shortdesc>モード</shortdesc>
+	<shortdesc>Mode</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　動作のモードを表します。値を設定することもできます。<r/>
-		　以下の値のいずれかを指定します。<r/>
-		<tt><kw>atmNormal</kw>    : </tt> 通常のイベント配信の段階で発砲されます。<r/>
-		<tt><kw>atmExclusive</kw> : </tt> 他の非同期イベントよりも優先されて発砲されます<r/>
-		<tt><kw>atmAtIdle</kw>    : </tt> アイドル状態 ( 他に配信するイベントが無くなったとき ) に発砲されます。<r/>
-		　同時にトリガを引いたときに発砲される順序は atmExclusive, atmNormal, atmIdle の順になります。<r/>
-		　同じモードのトリガが複数引かれている場合は、トリガが引かれた順に発砲します。<r/>
+		 Indicates the operation mode. You can also set the value. <r/>
+		 Specify one of the following values: <r/>
+		<tt><kw>atmNormal</kw>    : </tt> Fired during the normal event delivery stage. <r/>
+		<tt><kw>atmExclusive</kw> : </tt> Fired with priority over other asynchronous events. <r/>
+		<tt><kw>atmAtIdle</kw>    : </tt> Fired in the idle state (when there are no other events to deliver). <r/>
+		 When triggers are pulled at the same time, the firing order is atmExclusive, atmNormal, then atmIdle. <r/>
+		 If multiple triggers of the same mode are pulled, they fire in the order they were pulled. <r/>
 	</desc>
 	<ref>Timer.mode</ref>
 </member>

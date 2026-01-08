@@ -2,7 +2,7 @@
 <doc>
 <title>Font</title>
 <desc>
-　Font クラスは、<kw>フォント</kw>を管理するためのクラスです。<r/>
+ The Font class is a class for managing <kw>fonts</kw>.<r/>
 </desc>
 
 
@@ -10,20 +10,20 @@
 <member>
 	<name>getTextWidth</name>
 	<type>method</type>
-	<shortdesc>文字列の横幅を得る</shortdesc>
+	<shortdesc>Get the width of a string</shortdesc>
 	<arg>
 		<argitem>
 			<name>text</name>
 			<default></default>
 			<desc>
-				　横幅を得たい文字列を指定します。<r/>
+				 Specifies the string for which you want to get the width.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>指定された文字列の横幅がピクセル単位で戻ります</result>
+	<result>Returns the width of the specified string in pixels</result>
 	<desc>
-		　このメソッドでは、現在のフォントの設定で指定の文字列を描画したときに必要な
-		横幅を得ることができます。<r/>
+		 This method allows you to get the width required when drawing the specified string 
+		 with the current font settings.<r/>
 	</desc>
 	<ref>Font.getTextHeight</ref>
 </member>
@@ -31,19 +31,19 @@
 <member>
 	<name>getTextHeight</name>
 	<type>method</type>
-	<shortdesc>文字列の縦幅を得る</shortdesc>
+	<shortdesc>Get the height of a string</shortdesc>
 	<arg>
 		<argitem>
 			<name>text</name>
 			<default></default>
 			<desc>
-				　縦幅を得たい文字列を指定します。<r/>
+				 Specifies the string for which you want to get the height.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>指定された文字列の縦幅がピクセル単位で戻ります</result>
+	<result>Returns the height of the specified string in pixels</result>
 	<desc>
-		　このメソッドでは、このフォントで指定の文字列を描画したときに必要な縦幅を得ることができます。<r/>
+		 This method allows you to get the height required when drawing the specified string with this font.<r/>
 	</desc>
 	<ref>Font.getTextWidth</ref>
 </member>
@@ -51,22 +51,22 @@
 <member>
 	<name>getEscWidthX</name>
 	<type>method</type>
-	<shortdesc>文字の横方向への X 座標の移動量</shortdesc>
+	<shortdesc>X-coordinate movement amount in the horizontal direction of the character</shortdesc>
 	<arg>
 		<argitem>
 			<name>text</name>
 			<default></default>
 			<desc>
-				　文字の横方向への X 座標の移動量を得たい文字列を指定します。<r/>
+				 Specifies the string for which you want to get the X-coordinate movement amount in the horizontal direction.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>文字の横方向への X 座標の移動量がピクセル単位で戻ります</result>
+	<result>Returns the X-coordinate movement amount in the horizontal direction in pixels</result>
 	<desc>
-		　現在のフォントの設定で指定された文字を描画したときに必要な文字描画位置の移動量を
-		得ることができます。<r/>
-		　このメソッドでは、文字の描画方向に対して横 ( 左 ) に進んだときの X 座標上での移動量を
-		得ることができます。<r/>
+		 You can get the movement amount of the character drawing position required when drawing 
+		 the specified character with the current font settings.<r/>
+		 This method allows you to get the movement amount on the X-coordinate when moving 
+		 horizontally (left) relative to the character drawing direction.<r/>
 	</desc>
 	<ref>Font.getEscWidthY</ref>
 	<ref>Font.getEscHeightX</ref>
@@ -76,22 +76,22 @@
 <member>
 	<name>getEscWidthY</name>
 	<type>method</type>
-	<shortdesc>文字の横方向への Y 座標の移動量</shortdesc>
+	<shortdesc>Y-coordinate movement amount in the horizontal direction of the character</shortdesc>
 	<arg>
 		<argitem>
 			<name>text</name>
 			<default></default>
 			<desc>
-				　文字の横方向への Y 座標の移動量を得たい文字列を指定します。<r/>
+				 Specifies the string for which you want to get the Y-coordinate movement amount in the horizontal direction.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>文字の横方向への Y 座標の移動量がピクセル単位で戻ります</result>
+	<result>Returns the Y-coordinate movement amount in the horizontal direction in pixels</result>
 	<desc>
-		　現在のフォントの設定で指定された文字を描画したときに必要な文字描画位置の移動量を
-		得ることができます。<r/>
-		　このメソッドでは、文字の描画方向に対して横 ( 左 ) に進んだときの Y 座標上での移動量を
-		得ることができます。<r/>
+		 You can get the movement amount of the character drawing position required when drawing 
+		 the specified character with the current font settings.<r/>
+		 This method allows you to get the movement amount on the Y-coordinate when moving 
+		 horizontally (left) relative to the character drawing direction.<r/>
 	</desc>
 	<ref>Font.getEscWidthX</ref>
 	<ref>Font.getEscHeightX</ref>
@@ -101,22 +101,22 @@
 <member>
 	<name>getEscHeightX</name>
 	<type>method</type>
-	<shortdesc>文字の縦方向への X 座標の移動量</shortdesc>
+	<shortdesc>X-coordinate movement amount in the vertical direction of the character</shortdesc>
 	<arg>
 		<argitem>
 			<name>text</name>
 			<default></default>
 			<desc>
-				　文字の縦方向への X 座標の移動量を得たい文字列を指定します。<r/>
+				 Specifies the string for which you want to get the X-coordinate movement amount in the vertical direction.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>文字の縦方向への X 座標の移動量がピクセル単位で戻ります</result>
+	<result>Returns the X-coordinate movement amount in the vertical direction in pixels</result>
 	<desc>
-		　現在のフォントの設定で指定された文字を描画したときに必要な文字描画位置の移動量を
-		得ることができます。<r/>
-		　このメソッドでは、文字の描画方向に対して縦 ( 下 ) に進んだときの X 座標上での移動量を
-		得ることができます。<r/>
+		 You can get the movement amount of the character drawing position required when drawing 
+		 the specified character with the current font settings.<r/>
+		 This method allows you to get the movement amount on the X-coordinate when moving 
+		 vertically (down) relative to the character drawing direction.<r/>
 	</desc>
 	<ref>Font.getEscWidthX</ref>
 	<ref>Font.getEscWidthY</ref>
@@ -126,22 +126,22 @@
 <member>
 	<name>getEscHeightY</name>
 	<type>method</type>
-	<shortdesc>文字の縦方向への Y 座標の移動量</shortdesc>
+	<shortdesc>Y-coordinate movement amount in the vertical direction of the character</shortdesc>
 	<arg>
 		<argitem>
 			<name>text</name>
 			<default></default>
 			<desc>
-				　文字の縦方向への Y 座標の移動量を得たい文字列を指定します。<r/>
+				 Specifies the string for which you want to get the Y-coordinate movement amount in the vertical direction.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>文字の縦方向への Y 座標の移動量がピクセル単位で戻ります</result>
+	<result>Returns the Y-coordinate movement amount in the vertical direction in pixels</result>
 	<desc>
-		　現在のフォントの設定で指定された文字を描画したときに必要な文字描画位置の移動量を
-		得ることができます。<r/>
-		　このメソッドでは、文字の描画方向に対して縦 ( 下 ) に進んだときの Y 座標上での移動量を
-		得ることができます。<r/>
+		 You can get the movement amount of the character drawing position required when drawing 
+		 the specified character with the current font settings.<r/>
+		 This method allows you to get the movement amount on the Y-coordinate when moving 
+		 vertically (down) relative to the character drawing direction.<r/>
 	</desc>
 	<ref>Font.getEscWidthX</ref>
 	<ref>Font.getEscWidthY</ref>
@@ -151,21 +151,21 @@
 <member>
 	<name>getGlyphDrawRect</name>
 	<type>method</type>
-	<shortdesc>文字列の実描画範囲</shortdesc>
+	<shortdesc>Actual drawing range of the string</shortdesc>
 	<arg>
 		<argitem>
 			<name>text</name>
 			<default></default>
 			<desc>
-				　範囲を得たい文字列を指定します。<r/>
+				 Specifies the string for which you want to get the range.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>文字列の実描画範囲</result>
+	<result>Actual drawing range of the string</result>
 	<desc>
-		　現在のフォントの設定で指定された文字を描画したときに、グリフ画像が描かれる範囲を得ることができます。<r/>
-		　得られる範囲は 0,0 座標を基準にした Rect クラスのオブジェクトです。<r/>
-		　横向きのみ対応しています。<r/>
+		 You can get the range where the glyph image is drawn when drawing the specified character with the current font settings.<r/>
+		 The obtained range is a Rect class object based on the 0,0 coordinates.<r/>
+		 Only horizontal orientation is supported.<r/>
 	</desc>
 	<ref>Rect</ref>
 </member>
@@ -173,48 +173,48 @@
 <member>
 	<name>getList</name>
 	<type>method</type>
-	<shortdesc>フォント名の列挙</shortdesc>
+	<shortdesc>Enumeration of font names</shortdesc>
 	<arg>
 		<argitem>
 			<name>flags</name>
 			<default></default>
 			<desc>
-				　フォントをどのように列挙するかを指定します。<r/>
-				　次の値のビット論理和による組み合わせ指定します。<r/>
-				<tt><kw>fsfFixedPitch</kw>    </tt> : 固定ピッチフォントのみ列挙します<r/>
-				<tt><kw>fsfSameCharSet</kw>   </tt> : 同じキャラクタセットのフォントのみ列挙します<r/>
-				<tt><kw>fsfNoVertical</kw>    </tt> : 縦書き用フォントを列挙しません<r/>
-				<tt><kw>fsfTrueTypeOnly</kw>  </tt> : TrueType フォントのみ列挙します<r/>
-				<tt><kw>fsfIgnoreSymbol</kw>  </tt> : シンボルキャラセットを除外します<r/>
-				　fsfSameCharSet を指定した場合は、現在選択されているフォントと同じキャラクタセットの
-				フォントが列挙されます。<r/>
+				 Specifies how to enumerate fonts.<r/>
+				 Specify a combination of the following values using bitwise OR.<r/>
+				<tt><kw>fsfFixedPitch</kw>    </tt> : Enumerates only fixed-pitch fonts<r/>
+				<tt><kw>fsfSameCharSet</kw>   </tt> : Enumerates only fonts with the same character set<r/>
+				<tt><kw>fsfNoVertical</kw>    </tt> : Does not enumerate vertical writing fonts<r/>
+				<tt><kw>fsfTrueTypeOnly</kw>  </tt> : Enumerates only TrueType fonts<r/>
+				<tt><kw>fsfIgnoreSymbol</kw>  </tt> : Excludes symbol character sets<r/>
+				 If fsfSameCharSet is specified, fonts with the same character set as the 
+				 currently selected font will be enumerated.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>フォント名(文字列)が各要素として格納されている配列</result>
+	<result>An array where each element is a font name (string)</result>
 	<desc>
-		フォント名を列挙し、配列として返します。
+		Enumerates font names and returns them as an array.
 	</desc>
 </member>
 
 <member>
 	<name>mapPrerenderedFont</name>
 	<type>method</type>
-	<shortdesc>レンダリング済みフォントの割り当て</shortdesc>
+	<shortdesc>Mapping of pre-rendered fonts</shortdesc>
 	<arg>
 		<argitem>
 			<name>fontstorage</name>
 			<default></default>
 			<desc>
-				　レンダリング済みフォントストレージを指定します。<r/>
+				 Specifies the pre-rendered font storage.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　現在選択されているフォント名に対して<kw>レンダリング済みフォント</kw>の割り当てを行います。<r/>
-		　以降、同じ設定のフォントに対しては指定されたレンダリング済みフォントが代わりに使われます。<r/>
-		　すべてのレイヤに対して設定が有効になります。<r/>
+		 Maps a <kw>pre-rendered font</kw> to the currently selected font name.<r/>
+		 From then on, the specified pre-rendered font will be used instead for fonts with the same settings.<r/>
+		 The setting becomes effective for all layers.<r/>
 	</desc>
 	<ref>Font.unmapPrerenderedFont</ref>
 </member>
@@ -222,12 +222,12 @@
 <member>
 	<name>unmapPrerenderedFont</name>
 	<type>method</type>
-	<shortdesc>レンダリング済みフォントの割り当て解除</shortdesc>
+	<shortdesc>Unmapping of pre-rendered fonts</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　現在選択されているフォント名に対する<kw>レンダリング済みフォント</kw>の割り当てを解除します。<r/>
+		 Unmaps the <kw>pre-rendered font</kw> for the currently selected font name.<r/>
 	</desc>
 	<ref>Font.mapPrerenderedFont</ref>
 </member>
@@ -236,94 +236,94 @@
 <member>
 	<name>face</name>
 	<type>property</type>
-	<shortdesc>フォント名</shortdesc>
+	<shortdesc>Font name</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　フォント名を表します。値を設定することもできます。<r/>
-		　カンマで区切って複数の候補を指定することができます。この場合は、実際に存在するフォントが使用され、先頭に書いたものほど優先されます。実際に存在するフォントかどうかは OS のフォントのリストを参照することにより行われます。どの候補にも合致しなかった場合は、デフォルトのフォントが使用されます (現バージョンでは "ＭＳ Ｐゴシック" 固定)。<r/>
-		　先頭をカンマにし、直後にフォント名を書くと、実際にそのフォントをOSが列挙しなくても、OSにそのフォントを指定しようとします (たとえば ",My Original Font" )。これにより AddFontResource Win32 API 等で登録した列挙不可能なフォントを使用することができます。<r/>
+		 Represents the font name. You can also set a value.<r/>
+		 Multiple candidates can be specified separated by commas. In this case, an actually existing font is used, with priority given to those listed first. Whether a font actually exists is determined by referring to the OS font list. If none of the candidates match, the default font is used (fixed to "MS PGothic" in the current version).<r/>
+		 If you start with a comma followed by a font name, it will attempt to specify that font to the OS even if the OS does not enumerate it (e.g., ",My Original Font"). This allows the use of non-enumerable fonts registered with the AddFontResource Win32 API, etc.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>height</name>
 	<type>property</type>
-	<shortdesc>フォント高さ</shortdesc>
+	<shortdesc>Font height</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　描画される文字の高さをピクセル単位で表します。値を設定することもできます。<r/>
+		 Represents the height of the drawn characters in pixels. You can also set a value.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>bold</name>
 	<type>property</type>
-	<shortdesc>ボールド</shortdesc>
+	<shortdesc>Bold</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　ボールド ( 太字 ) であるかどうかを表します。値を設定することもできます。<r/>
-		　真を指定するとボールドになります。<r/>
+		 Indicates whether the font is bold. You can also set a value.<r/>
+		 If true is specified, it becomes bold.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>italic</name>
 	<type>property</type>
-	<shortdesc>イタリック</shortdesc>
+	<shortdesc>Italic</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　イタリック ( 斜体 ) であるかどうかを表します。値を設定することもできます。<r/>
-		　真を指定するとイタリックになります。<r/>
+		 Indicates whether the font is italic. You can also set a value.<r/>
+		 If true is specified, it becomes italic.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>strikeout</name>
 	<type>property</type>
-	<shortdesc>取消線</shortdesc>
+	<shortdesc>Strikeout</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　取消線を描画するかどうか表します。値を設定することもできます。<r/>
-		　真を指定すると文字の上に取消線を描画します。<r/>
+		 Indicates whether to draw a strikeout line. You can also set a value.<r/>
+		 If true is specified, a strikeout line is drawn over the characters.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>underline</name>
 	<type>property</type>
-	<shortdesc>アンダーライン</shortdesc>
+	<shortdesc>Underline</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　アンダーライン ( 下線または傍線 ) を描画するかどうか表します。値を設定することもできます。<r/>
-		　真を指定するとアンダーラインを描画します。<r/>
+		 Indicates whether to draw an underline. You can also set a value.<r/>
+		 If true is specified, an underline is drawn.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>angle</name>
 	<type>property</type>
-	<shortdesc>文字描画角度</shortdesc>
+	<shortdesc>Character drawing angle</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　文字描画角度を表します。値を設定することもできます。<r/>
-		　単位は角度 ( degree ) の 10 倍の値です。0 ～ 3600 の値をとります。<r/>
-		　縦書きを行う場合はフォント名に縦書き用のフォント名を指定した上で、このプロパティ
-		に 2700 を指定します。<r/>
+		 Represents the character drawing angle. You can also set a value.<r/>
+		 The unit is 10 times the value in degrees. It takes a value from 0 to 3600.<r/>
+		 When performing vertical writing, specify a vertical writing font name for the font name 
+		 and set this property to 2700.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>rasterizer</name>
 	<type>property</type>
-	<shortdesc>文字列描画方式</shortdesc>
+	<shortdesc>String rendering method</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　文字列描画方式を表します。値を設定することもできます。<r/>
-		　値は以下のどちらかを指定します。<r/>
-		<tt><kw>frGDI</kw>      </tt> : GDI を使って文字を描画します<r/>
-		<tt><kw>frFreeType</kw> </tt> : FreeType を使って文字を描画します<r/>
-		FreeType を指定した場合、横書きにのみ対応しています。その他は未対応です。<r/>
-		このプロパティはスタティックです。Font.rasterizer を用いて値を設定してください。<r/>
+		 Represents the string rendering method. You can also set a value.<r/>
+		 Specify one of the following values.<r/>
+		<tt><kw>frGDI</kw>      </tt> : Draws characters using GDI<r/>
+		<tt><kw>frFreeType</kw> </tt> : Draws characters using FreeType<r/>
+		If FreeType is specified, only horizontal writing is supported. Others are not supported.<r/>
+		This property is static. Set the value using Font.rasterizer.<r/>
 	</desc>
 </member>
 

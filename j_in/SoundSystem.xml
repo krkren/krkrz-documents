@@ -1,43 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>サウンドシステム</title>
+<title>Sound System</title>
 
 <para>
-<ptitle>サウンドシステムについて</ptitle>
-　吉里吉里のサウンドシステムは Wave (PCM) を再生できます。<r/>
-　Wave 再生は複数を同時再生でき、ストリーミング再生 (長いサウンドを少しずつ読み込みながら再生) をすることができるほか、サウンドループ情報ファイル (.sli ファイル) を用いて、つぎめを感じさせないシームレスなループ再生を実現できます (サウンドループ情報ファイルはループチューナで作成します)。<r/>
+<ptitle>About the Sound System</ptitle>
+ KiriKiri's sound system can play Wave (PCM) audio.<r/>
+ Multiple Wave sounds can be played simultaneously. In addition to streaming playback (playing long sounds while loading them bit by bit), seamless loop playback without noticeable gaps can be achieved using sound loop information files (.sli files). (Sound loop information files are created with the Loop Tuner).<r/>
 </para>
 
 
 <para>
-<ptitle>WaveSoundBuffer で再生可能な形式</ptitle>
-　<at href="f_WaveSoundBuffer.html">WaveSoundBuffer</at> では、標準で無圧縮の RIFF Wave 形式 ( 拡張は .wav で、Windows 標準形式 ) を再生することができます。受け付けられる形式は以下の通りです。<r/>
+<ptitle>Formats Playable by WaveSoundBuffer</ptitle>
+ <at href="f_WaveSoundBuffer.html">WaveSoundBuffer</at> can play uncompressed RIFF Wave format (extension .wav, the standard Windows format) by default. The supported formats are as follows:<r/>
 <r/>
 <ul>
-<li>WAVE_FORMAT_PCM 形式で、8bit 以上 32bit 以下の整数 PCM、かつチャンネル数が 1(モノラル)、2(ステレオ), 4(quadraphonic)、6(5.1ch) のもの</li>
-<li>WAVE_FORMAT_IEEE_FLOAT 形式で、32bit の浮動小数点数 PCM、かつチャンネル数が 1(モノラル)、2(ステレオ), 4(quadraphonic)、6(5.1ch) のもの</li>
-<li>WAVE_FORMAT_EXTENSIBLE 形式で、サブタイプが KSDATAFORMAT_SUBTYPE_PCM 形式で8bit 以上 32bit 以下の整数 PCM</li>
-<li>WAVE_FORMAT_EXTENSIBLE 形式で、サブタイプが KSDATAFORMAT_SUBTYPE_IEEE_FLOAT 形式の 32bit 浮動小数点数 PCM</li>
+<li>WAVE_FORMAT_PCM format: Integer PCM between 8-bit and 32-bit, with 1 (mono), 2 (stereo), 4 (quadraphonic), or 6 (5.1ch) channels.</li>
+<li>WAVE_FORMAT_IEEE_FLOAT format: 32-bit floating-point PCM, with 1 (mono), 2 (stereo), 4 (quadraphonic), or 6 (5.1ch) channels.</li>
+<li>WAVE_FORMAT_EXTENSIBLE format: Subtype KSDATAFORMAT_SUBTYPE_PCM, integer PCM between 8-bit and 32-bit.</li>
+<li>WAVE_FORMAT_EXTENSIBLE format: Subtype KSDATAFORMAT_SUBTYPE_IEEE_FLOAT, 32-bit floating-point PCM.</li>
 </ul>
 <r/>
-　WaveSoundBuffer で再生可能な形式は、プラグインによって拡張することができます。<r/>
+ The formats playable by WaveSoundBuffer can be extended via plugins.<r/>
 </para>
 
 <para>
-<ptitle>WaveSoundBuffer での 4ch および 6ch の扱い</ptitle>
-　WAVE_FORMAT_EXTENSIBLE は、データ内に「どのチャンネルがどのスピーカーに割り当てられているか」の情報を持っていますが、WAVE_FORMAT_PCM や WAVE_FORMAT_IEEE_FLOAT の場合はその情報を持っていません。吉里吉里が WAVE_FORMAT_PCM や WAVE_FORMAT_IEEE_FLOAT で 4ch や 6ch のデータを扱うときは次のように解釈します。<r/>
+<ptitle>Handling of 4ch and 6ch in WaveSoundBuffer</ptitle>
+ WAVE_FORMAT_EXTENSIBLE contains information within the data regarding "which channel is assigned to which speaker," but WAVE_FORMAT_PCM and WAVE_FORMAT_IEEE_FLOAT do not contain this information. When KiriKiri handles 4ch or 6ch data in WAVE_FORMAT_PCM or WAVE_FORMAT_IEEE_FLOAT, it interprets them as follows:<r/>
 <r/>
 <dl>
-<dt>4chのとき</dt>
-<dd>チャンネルの先頭から、それぞれ、前左、前右、後左、後右のスピーカー用データであると見なされます</dd>
-<dt>6chのとき</dt>
-<dd>チャンネルの先頭から、それぞれ、前左、前中央、前右、後左、後右、低周波のスピーカー用データであると見なされます</dd>
+<dt>For 4ch</dt>
+<dd>From the beginning of the channels, they are treated as data for the Front Left, Front Right, Rear Left, and Rear Right speakers, respectively.</dd>
+<dt>For 6ch</dt>
+<dd>From the beginning of the channels, they are treated as data for the Front Left, Front Center, Front Right, Rear Left, Rear Right, and Low Frequency (LFE) speakers, respectively.</dd>
 </dl>
 <r/>
-また、OggVorbis で 4ch や 6ch のサウンドを再生するときにもこれと同じルールが適用されます。<r/>
+ The same rules apply when playing 4ch or 6ch sound with OggVorbis.<r/>
 
 </para>
 
 </doc>
-
-

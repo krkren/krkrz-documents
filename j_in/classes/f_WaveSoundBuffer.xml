@@ -2,29 +2,29 @@
 <doc>
 <title>WaveSoundBuffer</title>
 <desc>
-　WaveSoundBuffer クラスは、<wave>PCMの再生</wave>を管理するクラスです。<r/>
+ The WaveSoundBuffer class is a class that manages <wave>PCM playback</wave>.<r/>
 <wave>
-　WaveSoundBuffer クラスでは、<link href="LoopTuner" /> で作成した .sli ファイルを読み込み、処理することができます。詳しくはループチューナの説明をご覧ください。<r/>
+ The WaveSoundBuffer class can load and process .sli files created with the <link href="LoopTuner" />. For details, please refer to the Loop Tuner documentation.<r/>
 </wave>
 </desc>
 
 <member>
 	<name>WaveSoundBuffer</name>
 	<type>constructor</type>
-	<shortdesc>WaveSoundBuffer オブジェクトの構築</shortdesc>
+	<shortdesc>Constructs a WaveSoundBuffer object</shortdesc>
 	<arg>
 		<argitem>
 			<name>owner</name>
 			<default></default>
 			<desc>
-				　イベントの発生先を指定します。<r/>
+				 Specifies the destination for events.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　WaveSoundBuffer クラスのオブジェクトを構築します。<r/>
-		　イベントが発生すると owner で指定したオブジェクトの action メソッドを呼び出します。owner に null を指定すると action メソッドは呼ばれません。通常は <ref>Window</ref> クラスのオブジェクトを owner に指定します。<r/>
+		 Constructs an object of the WaveSoundBuffer class.<r/>
+		 When an event occurs, it calls the action method of the object specified by owner. If null is specified for owner, the action method is not called. Usually, a <ref>Window</ref> class object is specified as the owner.<r/>
 	</desc>
 </member>
 
@@ -32,20 +32,20 @@
 <member>
 	<name>onStatusChanged</name>
 	<type>event</type>
-	<shortdesc>ステータスが変更された</shortdesc>
+	<shortdesc>Status changed</shortdesc>
 	<arg>
 		<argitem>
 			<name>status</name>
 			<default></default>
 			<desc>
-				　新しいステータスです。<r/>
-				　<ref>WaveSoundBuffer.status</ref> プロパティを参照してください。<r/>
+				 The new status.<r/>
+				 Refer to the <ref>WaveSoundBuffer.status</ref> property.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　再生のステータス ( 状態 ) が変わった時に発生します。<r/>
+		 Occurs when the playback status (state) changes.<r/>
 	</desc>
 </member>
 
@@ -53,19 +53,19 @@
 <member>
 	<name>onLabel</name>
 	<type>event</type>
-	<shortdesc>ラベルを通過した</shortdesc>
+	<shortdesc>Passed a label</shortdesc>
 	<arg>
 		<argitem>
 			<name>name</name>
 			<default></default>
 			<desc>
-				　通過したラベル名です。<r/>
+				 The name of the label passed.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　再生位置がラベルを通過した際に発生します。<r/>
+		 Occurs when the playback position passes a label.<r/>
 	</desc>
 </member>
 </wave>
@@ -73,12 +73,12 @@
 <member>
 	<name>onFadeCompleted</name>
 	<type>event</type>
-	<shortdesc>フェードが終了した</shortdesc>
+	<shortdesc>Fade completed</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　<ref>WaveSoundBuffer.fade</ref> メソッドで開始したフェードが終了したときに発生します。<r/>
+		 Occurs when a fade started with the <ref>WaveSoundBuffer.fade</ref> method finishes.<r/>
 	</desc>
 </member>
 
@@ -86,94 +86,93 @@
 <member>
 	<name>open</name>
 	<type>method</type>
-	<shortdesc>メディアを開く</shortdesc>
+	<shortdesc>Open media</shortdesc>
 	<arg>
 		<argitem>
 			<name>storage</name>
 			<default></default>
 			<desc>
 				
-				<wave>　再生したいストレージを指定します。<r/></wave>
+				<wave> Specifies the storage to play.<r/></wave>
 				
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　指定されたメディアを開きます。このメソッドは再生を開始しません。<r/>
-		<wave>　指定されたストレージ名に .sli を付加したファイル名があれば、サウンドループ情報として読み込みます。<r/></wave>
+		 Opens the specified media. This method does not start playback.<r/>
+		<wave> If there is a file name with .sli appended to the specified storage name, it is loaded as sound loop information.<r/></wave>
 	</desc>
 </member>
 
 <member>
 	<name>play</name>
 	<type>method</type>
-	<shortdesc>メディアを再生する</shortdesc>
+	<shortdesc>Play media</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　メディアの再生を開始します。<r/>
+		 Starts playback of the media.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>stop</name>
 	<type>method</type>
-	<shortdesc>メディアを停止する</shortdesc>
+	<shortdesc>Stop media</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　メディアを停止します。<r/>
+		 Stops the media.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>fade</name>
 	<type>method</type>
-	<shortdesc>フェードを開始する</shortdesc>
+	<shortdesc>Start fade</shortdesc>
 	<arg>
 		<argitem>
 			<name>to</name>
 			<default></default>
 			<desc>
-				　到達させる音量を指定します。<r/>
-				　音量の指定については <ref>WaveSoundBuffer.volume</ref> プロパティを参照して
-				ください。<r/>
+				 Specifies the target volume.<r/>
+				 Refer to the <ref>WaveSoundBuffer.volume</ref> property for volume specification.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>time</name>
 			<default></default>
 			<desc>
-				　フェードにかける時間を ms 単位で指定します。<r/>
+				 Specifies the time for the fade in ms.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>delay</name>
 			<default>0</default>
 			<desc>
-				　フェード開始までの待ち時間を ms 単位で指定します。<r/>
+				 Specifies the wait time until the fade starts in ms.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　フェード ( 連続的な音量の変化 ) を開始します。<r/>
+		 Starts a fade (continuous volume change).<r/>
 	</desc>
 </member>
 
 <member>
 	<name>stopFade</name>
 	<type>method</type>
-	<shortdesc>フェードを停止する</shortdesc>
+	<shortdesc>Stop fade</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　<ref>WaveSoundBuffer.fade</ref> メソッドで開始したフェードを強制的に停止します。<r/>
-		　音量は停止させた時点のままになります。<r/>
+		 Forcibly stops the fade started with the <ref>WaveSoundBuffer.fade</ref> method.<r/>
+		 The volume remains as it was at the time of stopping.<r/>
 	</desc>
 </member>
 
@@ -181,16 +180,14 @@
 <member>
 	<name>freeDirectSound</name>
 	<type>method</type>
-	<shortdesc>DirectSound の解放</shortdesc>
+	<shortdesc>Release DirectSound</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　DirectSound を解放します。すべての WaveSoundBuffer クラスのオブジェクトは停止状態に
-		なります。<r/>
-		　DirectSound と WaveMapper ( MCI 等 ) による再生を同時に行えない環境などで DirectSound を
-		解放するためにこのメソッドを使います。<r/>
-		　このメソッドは WaveSoundBuffer クラス上にしか存在しません (WaveSoundBufferから作られたオブジェクト上にこのメソッドはありません)。使用する際は WaveSoundBuffer.freeDirectSound(); としてください。<r/>
+		 Releases DirectSound. All WaveSoundBuffer class objects will enter a stopped state.<r/>
+		 Use this method to release DirectSound in environments where playback via DirectSound and WaveMapper (MCI, etc.) cannot be performed simultaneously.<r/>
+		 This method exists only on the WaveSoundBuffer class (it is not available on objects created from WaveSoundBuffer). Use it as WaveSoundBuffer.freeDirectSound();.<r/>
 	</desc>
 </member>
 </wave>
@@ -201,59 +198,51 @@
 <member>
 	<name>getVisBuffer</name>
 	<type>method</type>
-	<shortdesc>視覚化用データの取得</shortdesc>
+	<shortdesc>Get visualization data</shortdesc>
 	<arg>
 		<argitem>
 			<name>buffer</name>
 			<default></default>
 			<desc>
-				　出力データを書き込むバッファを指定します。<r/>
-				　バッファは 16bit 符号付き整数の配列で、numsamples 引数および channels 引数
-				で指定したサンプルが書き込まれるのに十分な個数 ( numsamples * channels 以上 )
-				である必要があります。<r/>
-				　channels に 1 以外を指定した場合は、各チャネルのサンプルはインターリーブされて
-				( ステレオならば 右 左 右 左 ・・・・の順に ) 格納されます。<r/>
-				　配列の先頭要素へのポインタを指定する必要がありますが、整数型にキャストして
-				渡してください。<r/>
+				 Specifies the buffer to write the output data to.<r/>
+				 The buffer must be an array of 16-bit signed integers, with enough elements (numsamples * channels or more) to hold the samples specified by the numsamples and channels arguments.<r/>
+				 If a value other than 1 is specified for channels, the samples for each channel are stored interleaved (e.g., Right Left Right Left... for stereo).<r/>
+				 A pointer to the first element of the array must be specified, but please pass it cast to an integer type.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>numsamples</name>
 			<default></default>
 			<desc>
-				　取得するサンプル数を指定します。<r/>
+				 Specifies the number of samples to retrieve.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>channel</name>
 			<default></default>
 			<desc>
-				　取得するチャンネル数を指定します。<r/>
-				　1 を指定すると、モノラルの場合はそのまま、そうでない場合は 1チャンネルにダウンミックス
-				されたデータを得ることができます。<r/>
-				　1 以外の数値を指定する場合は、再生中のサウンドと同じチャンネル数を指定する必要がありま
-				す。このばあいは、そのままのデータを得ることができます。<r/>
+				 Specifies the number of channels to retrieve.<r/>
+				 If 1 is specified, you get the data as-is for mono, or downmixed to 1 channel otherwise.<r/>
+				 If a value other than 1 is specified, you must specify the same number of channels as the sound currently playing. In this case, you get the data as-is.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>ahead</name>
 			<default>0</default>
 			<desc>
-				　先読みするサンプル数を指定します。<r/>
-				　現在の再生位置から、この引数で指定したサンプル数だけ先にあるサンプルから取得することができます。<r/>
-				　0 を指定するか、この引数を省略すると、現在の再生位置からの取得になります。<r/>
+				 Specifies the number of samples to read ahead.<r/>
+				 Retrieves samples starting from the position specified by this argument ahead of the current playback position.<r/>
+				 If 0 is specified or this argument is omitted, retrieval starts from the current playback position.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>取得できたサンプル数が戻ります。</result>
+	<result>Returns the number of samples successfully retrieved.</result>
 	<desc>
-		　視覚化用に PCM データを取得します。<r/>
-		　現在の再生位置から PCM データを読み込み、buffer 引数で指定した配列に書き込みます。<r/>
-		　ただし、バッファの状態や再生形式によっては正常にデータを読み込めない可能性もあります。<r/>
-		　このメソッドは C や C++ 等で書かれたプラグインから利用されることを想定してますので、たとえば
-		buffer 引数に TJS の配列を指定する、などのようなことはできません。<r/>
-		　このメソッドを使用するには  <ref>WaveSoundBuffer.useVisBuffer</ref> プロパティを真に指定する
-		必要があります。<r/>
+		 Retrieves PCM data for visualization.<r/>
+		 Reads PCM data from the current playback position and writes it to the array specified by the buffer argument.<r/>
+		 However, depending on the buffer state or playback format, data may not be read correctly.<r/>
+		 This method is intended for use from plugins written in C, C++, etc., so you cannot, for example, specify a TJS array for the buffer argument.<r/>
+		 To use this method, the <ref>WaveSoundBuffer.useVisBuffer</ref> property must be set to true.<r/>
 	</desc>
 </member>
 </wave>
@@ -261,10 +250,10 @@
 <member>
 	<name>position</name>
 	<type>property</type>
-	<shortdesc>再生位置</shortdesc>
+	<shortdesc>Playback position</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　再生位置を ms 単位で表します。値を設定するとその位置に移動します。<r/>
+		 Represents the playback position in ms. Setting a value moves to that position.<r/>
 		
 		
 	</desc>
@@ -274,21 +263,21 @@
 <member>
 	<name>samplePosition</name>
 	<type>property</type>
-	<shortdesc>再生位置</shortdesc>
+	<shortdesc>Playback position</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　再生位置をサンプル数単位で表します。値を設定するとその位置に移動します。<r/>
+		 Represents the playback position in number of samples. Setting a value moves to that position.<r/>
 	</desc>
 </member>
 </wave>
 <member>
 	<name>paused</name>
 	<type>property</type>
-	<shortdesc>一時停止状態かどうか</shortdesc>
+	<shortdesc>Whether it is paused</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　一時停止状態かどうかを表します。値を設定することもできます。<r/>
-		　真の場合は一時停止状態です。<r/>
+		 Represents whether it is in a paused state. A value can also be set.<r/>
+		 If true, it is in a paused state.<r/>
 		
 		
 	</desc>
@@ -297,10 +286,10 @@
 <member>
 	<name>totalTime</name>
 	<type>property</type>
-	<shortdesc>メディアの再生時間</shortdesc>
+	<shortdesc>Media playback time</shortdesc>
 	<access>r</access>
 	<desc>
-		　メディアの総再生時間を ms 単位で表します。<r/>
+		 Represents the total playback time of the media in ms.<r/>
 		
 		
 	</desc>
@@ -309,53 +298,49 @@
 <member>
 	<name>looping</name>
 	<type>property</type>
-	<shortdesc>ループ再生を行うかどうか</shortdesc>
+	<shortdesc>Whether to perform loop playback</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　ループ再生を行うかどうかを表します。値を設定することもできます。<r/>
-		　真を指定するとループ再生がされます。<r/>
-		<wave>　偽を指定しても、再生しているメディアにループ情報があれば、ループ情報が利用されます。<r/></wave>
+		 Represents whether to perform loop playback. A value can also be set.<r/>
+		 If true is specified, loop playback is performed.<r/>
+		<wave> Even if false is specified, if the media being played has loop information, that information will be used.<r/></wave>
 	</desc>
 </member>
 
 <member>
 	<name>volume</name>
 	<type>property</type>
-	<shortdesc>音量</shortdesc>
+	<shortdesc>Volume</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　再生する音量を表します。値を設定することもできます。<r/>
-		0 ～ 100000 の数値で指定し、 0 が完全ミュート、100000 が 100% の音量となります。<r/>
+		 Represents the playback volume. A value can also be set.<r/>
+		Specified as a value from 0 to 100000, where 0 is complete mute and 100000 is 100% volume.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>volume2</name>
 	<type>property</type>
-	<shortdesc>第２音量</shortdesc>
+	<shortdesc>Secondary volume</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　再生する音量を表します。値を設定することができます。<r/>
-		　<ref>WaveSoundBuffer.volume</ref> プロパティと違うのは、このプロパティは
-		<ref>WaveSoundBuffer.fade</ref> メソッドでも変化しないということです。<r/>
-		　最終的な音量は、volume プロパティとこのプロパティの積で決定されます。volume プロパティが
-		100000 ( 100% ) で volume2 プロパティも 100000 ( 100% ) ならば 100% × 100% = 100% で
-		100% の音量で再生されます。volume プロパティが 50000 ( 50% ) で volume2 プロパティが 75000 ( 75% ) ならば
-		50% × 75% = 37.5% で 37.5 % の音量で再生されます。<r/>
+		 Represents the playback volume. A value can be set.<r/>
+		 Unlike the <ref>WaveSoundBuffer.volume</ref> property, this property does not change even with the <ref>WaveSoundBuffer.fade</ref> method.<r/>
+		 The final volume is determined by the product of the volume property and this property. If the volume property is 100000 (100%) and the volume2 property is also 100000 (100%), it plays at 100% x 100% = 100% volume. If the volume property is 50000 (50%) and the volume2 property is 75000 (75%), it plays at 50% x 75% = 37.5% volume.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>status</name>
 	<type>property</type>
-	<shortdesc>ステータス</shortdesc>
+	<shortdesc>Status</shortdesc>
 	<access>r</access>
 	<desc>
-		　現在の状態を表します。<r/>
-		　状態は文字列で表され、以下の値をとります。<r/>
-		<tt>"<kw>unload</kw>"   : </tt> メディアが開かれてない<r/>
-		<tt>"<kw>play</kw>"     : </tt> メディアは再生中である<r/>
-		<tt>"<kw>stop</kw>"     : </tt> メディアは停止中である<r/>
+		 Represents the current state.<r/>
+		 The state is represented by a string and takes the following values:<r/>
+		<tt>"<kw>unload</kw>"   : </tt> Media is not open<r/>
+		<tt>"<kw>play</kw>"     : </tt> Media is playing<r/>
+		<tt>"<kw>stop</kw>"     : </tt> Media is stopped<r/>
 	</desc>
 </member>
 
@@ -363,14 +348,12 @@
 <member>
 	<name>useVisBuffer</name>
 	<type>property</type>
-	<shortdesc>視覚化用バッファを使用するかどうか</shortdesc>
+	<shortdesc>Whether to use the visualization buffer</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　視覚化用バッファを使用するかどうか表します。値を設定することもできます。<r/>
-		　真を指定すると視覚化用バッファが利用可能になり、<ref>WaveSoundBuffer.getVisBuffer</ref> メソッドが
-		利用可能になります。<r/>
-		　デフォルトでは偽になっています。真を指定すると偽を指定したときよりも多くのメモリと CPU 時間を
-		消費するようになるので注意してください。<r/>
+		 Represents whether to use the visualization buffer. A value can also be set.<r/>
+		 If true is specified, the visualization buffer becomes available, and the <ref>WaveSoundBuffer.getVisBuffer</ref> method can be used.<r/>
+		 It is false by default. Note that specifying true will consume more memory and CPU time than specifying false.<r/>
 	</desc>
 </member>
 </wave>
@@ -379,12 +362,12 @@
 <member>
 	<name>channels</name>
 	<type>property</type>
-	<shortdesc>チャンネル数</shortdesc>
+	<shortdesc>Number of channels</shortdesc>
 	<access>r</access>
 	<desc>
-		　現在再生中のサウンドのチャンネル数を表します。<r/>
-		　モノラルの場合は 1、ステレオの場合は 2 になります。<r/>
-		　メディアが開かれていない状態では正常な値を返さない可能性があります。<r/>
+		 Represents the number of channels of the sound currently playing.<r/>
+		 It is 1 for mono and 2 for stereo.<r/>
+		 It may not return a valid value if no media is open.<r/>
 	</desc>
 </member>
 </wave>
@@ -393,13 +376,13 @@
 <member>
 	<name>frequency</name>
 	<type>property</type>
-	<shortdesc>サンプリング周波数</shortdesc>
+	<shortdesc>Sampling frequency</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　現在再生中のサウンドのサンプリング周波数を表します。値を設定することもできます。<r/>
-		　CD と同じサンプリング周波数の場合は 44100 になります。<r/>
-		　メディアが開かれていない状態では正常な値を返さない可能性があります。<r/>
-		　値を設定すると、その周波数で再生します。<r/>
+		 Represents the sampling frequency of the sound currently playing. A value can also be set.<r/>
+		 It is 44100 for the same sampling frequency as a CD.<r/>
+		 It may not return a valid value if no media is open.<r/>
+		 Setting a value plays at that frequency.<r/>
 	</desc>
 </member>
 </wave>
@@ -408,12 +391,12 @@
 <member>
 	<name>bits</name>
 	<type>property</type>
-	<shortdesc>量子化ビット数</shortdesc>
+	<shortdesc>Quantization bits</shortdesc>
 	<access>r</access>
 	<desc>
-		　現在再生中のサウンドの量子化ビット数を表します。<r/>
-		　CD と同じ量子化ビット数の場合は 16 になります。<r/>
-		　メディアが開かれていない状態では正常な値を返さない可能性があります。<r/>
+		 Represents the number of quantization bits of the sound currently playing.<r/>
+		 It is 16 for the same quantization bits as a CD.<r/>
+		 It may not return a valid value if no media is open.<r/>
 	</desc>
 </member>
 </wave>
@@ -422,22 +405,22 @@
 <member>
 	<name>flags</name>
 	<type>property</type>
-	<shortdesc>フラグ</shortdesc>
+	<shortdesc>Flags</shortdesc>
 	<access>r</access>
 	<desc>
-		　フラグを表すオブジェクトを得ることができます。<r/>
-		　このオブジェクトには 0 ～ 15 のプロパティがあり、それぞれ各フラグの値を表しています。プロパティには間接メンバ選択演算子 ('[ ]' 演算子) を用いてアクセスすることができます。これらのプロパティには値を設定することもできます。値は 0 ～ 9999 の範囲であり、これを下回ったり、上回ることはできません。<r/>
-		　このオブジェクトの count プロパティは常に 16 を返します。<r/>
-		　このオブジェクトには reset メソッドがあり、このメソッドを実行すると、全てのフラグが 0 にリセットされます。<r/>
-		　メディアを開いていない場合は、このオブジェクトのプロパティに値を設定しても無視されます。<r/>
-		　このオブジェクトは一見配列オブジェクトにも見えますが、いわゆるTJSの配列オブジェクト('Array' クラスのオブジェクト) ではありません。<r/>
-		　フラグは <ref>WaveSoundBuffer.open</ref> メソッドで全て 0 にリセットされます。<r/>
+		 Retrieves an object representing flags.<r/>
+		 This object has properties from 0 to 15, each representing the value of a flag. Properties can be accessed using the indirect member selection operator ('[ ]' operator). Values can also be set for these properties. The value range is 0 to 9999, and cannot be lower or higher.<r/>
+		 The count property of this object always returns 16.<r/>
+		 This object has a reset method; executing it resets all flags to 0.<r/>
+		 If no media is open, setting values to this object's properties will be ignored.<r/>
+		 This object may look like an array object at first glance, but it is not a so-called TJS array object (an object of the 'Array' class).<r/>
+		 Flags are all reset to 0 by the <ref>WaveSoundBuffer.open</ref> method.<r/>
 <example>
 var buf = new WaveSoundBuffer(window);<r/>
-(略)<r/>
-buf.flags.reset(); // 全てのフラグを 0 にリセット<r/>
-var cnt = buf.flags.count; // cnt には 16 が入る<r/>
-buf.flags[4] = 34; // 4番のフラグに34を代入<r/>
+(omitted)<r/>
+buf.flags.reset(); // Reset all flags to 0<r/>
+var cnt = buf.flags.count; // cnt will be 16<r/>
+buf.flags[4] = 34; // Assign 34 to flag number 4<r/>
 </example>
 	</desc>
 </member>
@@ -447,17 +430,17 @@ buf.flags[4] = 34; // 4番のフラグに34を代入<r/>
 <member>
 	<name>labels</name>
 	<type>property</type>
-	<shortdesc>ラベル</shortdesc>
+	<shortdesc>Labels</shortdesc>
 	<access>r</access>
 	<desc>
-		　ラベルを表すオブジェクトを得ることができます。<r/>
-		　このオブジェクトは辞書配列で、それぞれ、ループ情報中のラベルの名前をメンバ名とした要素が入っています。それぞれの要素も辞書配列で、name メンバはラベルの名前を表し、position メンバはミリ秒単位でのラベルの位置を表し、samplePosition はサンプル数単位でのラベルの位置を表しています。<r/>
-		　この辞書配列は読み出し専用であると考えてください。値を代入したり、新しいメンバを作成しても反映されることはありません。<r/>
+		 Retrieves an object representing labels.<r/>
+		 This object is a dictionary array containing elements whose member names are the label names in the loop information. Each element is also a dictionary array, where the name member represents the label name, the position member represents the label position in milliseconds, and samplePosition represents the label position in number of samples.<r/>
+		 Consider this dictionary array to be read-only. Assigning values or creating new members will not be reflected.<r/>
 <example>
 var buf = new WaveSoundBuffer(window);<r/>
-(略)<r/>
-debug.message(buf.labels['start'].position); // 'start' というラベル名の位置をミリ秒単位で<r/>
-debug.message(buf.labels['start'].samplePosition); // 'start' というラベル名の位置をサンプル数単位で<r/>
+(omitted)<r/>
+debug.message(buf.labels['start'].position); // Position of the label named 'start' in milliseconds<r/>
+debug.message(buf.labels['start'].samplePosition); // Position of the label named 'start' in number of samples<r/>
 </example>
 	</desc>
 </member>
@@ -467,12 +450,12 @@ debug.message(buf.labels['start'].samplePosition); // 'start' というラベル
 <member>
 	<name>pan</name>
 	<type>property</type>
-	<shortdesc>パン</shortdesc>
+	<shortdesc>Pan</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　パン (音像位置) を表します。値を設定することもできます。<r/>
-		　音の聞こえる左右の位置を指定することができます。<r/>
-		　-100000 ～ 0 ～ 100000 の数値で指定し、 -100000 が 完全に左、0 が中央、100000 が完全に右になります。<r/>
+		 Represents the pan (sound image position). A value can also be set.<r/>
+		 Specifies the left/right position where the sound is heard.<r/>
+		 Specified as a value from -100000 to 0 to 100000, where -100000 is completely left, 0 is center, and 100000 is completely right.<r/>
 	</desc>
 </member>
 </wave>
@@ -481,13 +464,13 @@ debug.message(buf.labels['start'].samplePosition); // 'start' というラベル
 <member>
 	<name>globalVolume</name>
 	<type>property</type>
-	<shortdesc>大域音量</shortdesc>
+	<shortdesc>Global volume</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　大域音量 (マスターボリューム)を表します。値を設定することもできます。<r/>
-		　この音量は、すべての WaveSoundBuffer に影響します。<r/>
-		　0 ～ 100000 の数値で指定し、 0 が完全ミュート、100000 が 100% の音量となります。デフォルトの値は 100000 です。<r/>
-		　このプロパティは WaveSoundBuffer クラス上にしか存在しません (WaveSoundBufferから作られたオブジェクト上にこのプロパティはありません)。使用する際は WaveSoundBuffer.globalVolume としてください。<r/>
+		 Represents the global volume (master volume). A value can also be set.<r/>
+		 This volume affects all WaveSoundBuffers.<r/>
+		 Specified as a value from 0 to 100000, where 0 is complete mute and 100000 is 100% volume. The default value is 100000.<r/>
+		 This property exists only on the WaveSoundBuffer class (it is not available on objects created from WaveSoundBuffer). Use it as WaveSoundBuffer.globalVolume.<r/>
 	</desc>
 </member>
 </wave>
@@ -496,16 +479,16 @@ debug.message(buf.labels['start'].samplePosition); // 'start' というラベル
 <member>
 	<name>globalFocusMode</name>
 	<type>property</type>
-	<shortdesc>フォーカスモード</shortdesc>
+	<shortdesc>Focus mode</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　フォーカスモードを表します。値を設定することもできます。<r/>
-		　フォーカスモードは、アプリケーションが最小化したときや非アクティブになったときにミュートするモードです。<r/>
-		　<tt><kw>sgfmNeverMute</kw></tt>を指定すると、アプリケーションがどのような状態でもミュートはしません。<r/>
-		　<tt><kw>sgfmMuteOnMinimize</kw></tt>を指定すると、アプリケーションが最小化時にミュートします。<r/>
-		　<tt><kw>sgfmMuteOnDeactivate</kw></tt>を指定すると、アプリケーションが非アクティブ化したときにミュートします。<r/>
-		　このプロパティは WaveSoundBuffer クラス上にしか存在しません (WaveSoundBufferから作られたオブジェクト上にこのプロパティはありません)。使用する際は WaveSoundBuffer.globalFocusMode としてください。<r/>
-		　このプロパティの設定よりも、コマンドラインオプションで指定した '-wsmute' (DirectSound ミュート) の設定が優先されます。<r/>
+		 Represents the focus mode. A value can also be set.<r/>
+		 Focus mode is a mode that mutes when the application is minimized or becomes inactive.<r/>
+		 Specifying <tt><kw>sgfmNeverMute</kw></tt> will not mute regardless of the application state.<r/>
+		 Specifying <tt><kw>sgfmMuteOnMinimize</kw></tt> will mute when the application is minimized.<r/>
+		 Specifying <tt><kw>sgfmMuteOnDeactivate</kw></tt> will mute when the application is deactivated.<r/>
+		 This property exists only on the WaveSoundBuffer class (it is not available on objects created from WaveSoundBuffer). Use it as WaveSoundBuffer.globalFocusMode.<r/>
+		 The '-wsmute' (DirectSound mute) setting specified in the command line options takes precedence over this property setting.<r/>
 	</desc>
 </member>
 </wave>
@@ -514,20 +497,18 @@ debug.message(buf.labels['start'].samplePosition); // 'start' というラベル
 <member>
 	<name>filters</name>
 	<type>property</type>
-	<shortdesc>フィルタ配列</shortdesc>
+	<shortdesc>Filter array</shortdesc>
 	<access>r</access>
 	<desc>
-		　インサーションフィルタオブジェクトを保持している配列(Arrayクラスのインスタンス)です。<r/>
-		　この配列にフィルタオブジェクトを登録することにより、再生中にリアルタイムで音声に対して
-		様々な効果をかけることができます。<r/>
-		　フィルタ配列への変更が反映されるのは、<ref>WaveSoundBuffer.open</ref>メソッドが実行された
-		時だけです。それまでは、この配列への変更を行っても反映はされません。<r/>
+		 An array (instance of the Array class) holding insertion filter objects.<r/>
+		 By registering filter objects in this array, various effects can be applied to the audio in real-time during playback.<r/>
+		 Changes to the filter array are only reflected when the <ref>WaveSoundBuffer.open</ref> method is executed. Until then, changes to this array will not take effect.<r/>
 <example>
 var buf = new WaveSoundBuffer(window);<r/>
-(略)<r/>
-buf.filters.clear(); // フィルタ配列をクリア<r/>
-buf.filters.add(new WaveSoundBuffer.PhaseVocoder()); // PhaseVocoderフィルタを追加<r/>
-buf.filters[0].time = 0.5; // 倍速再生<r/>
+(omitted)<r/>
+buf.filters.clear(); // Clear the filter array<r/>
+buf.filters.add(new WaveSoundBuffer.PhaseVocoder()); // Add PhaseVocoder filter<r/>
+buf.filters[0].time = 0.5; // Double speed playback<r/>
 </example>
 	</desc>
 </member>

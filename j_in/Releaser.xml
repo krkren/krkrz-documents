@@ -3,124 +3,124 @@
 <title>Releaser</title>
 
 <para>
-<ptitle>Releaserについて</ptitle>
-　Releaser は、フォルダをアーカイブファイルにまとめるためのツールです。<r/>
-　また、吉里吉里のプロジェクトフォルダを指定し、そのプロジェクトフォルダを内部に持った単一の実行可能ファイルを作成することができます。<r/>
+<ptitle>About Releaser</ptitle>
+ Releaser is a tool for bundling folders into archive files.<r/>
+ Additionally, by specifying a KiriKiri project folder, you can create a single executable file that contains the project folder internally.<r/>
 </para>
 
 <para>
-<ptitle>Releaser の使い方</ptitle>
+<ptitle>How to use Releaser</ptitle>
 <img src="ReleaserSelect.png"/><r/><r/>
-　Releaser ( tools フォルダにある krkrrel.exe ) を実行すると、最初にフォルダを指定するように求められますのでフォルダを指定してください。<r/>
-　ここで指定したフォルダの中にあるファイルを対象にします。<r/>
+ When you run Releaser (krkrrel.exe in the tools folder), you will first be asked to specify a folder. Please select the folder.<r/>
+ The files inside the specified folder will be targeted.<r/>
 <r/>
 <note>
-　Releaser は、最終的なアーカイブを作成する過程で内容が全く同一のファイルを見つけると、たとえファイル名が異なっていても一つにまとめて、一つ分のファイルの容量しか使用しないという機能があります。
+ Releaser has a feature where, during the process of creating the final archive, if it finds files with identical content, it will bundle them together even if the filenames are different, using only the capacity of a single file.
 </note>
 <note>
-　Releaser は、CVS メタ情報ディレクトリ("CVS"という名前で、中に"Repository"という名前のファイルが存在するディレクトリ)を自動的に無視します。また、名前の先頭が . (ドット)で始まるファイルやディレクトリ(UNIX風の隠しファイルや Subversion メタ情報ディレクトリなど)を無視します。
+ Releaser automatically ignores CVS meta-information directories (directories named "CVS" containing a file named "Repository"). It also ignores files and directories whose names start with a . (dot) (such as UNIX-style hidden files or Subversion meta-information directories).
 </note>
 <note>
-　Releaser は、アーカイブを作成すると、アーカイブを作成したディレクトリに <kw>default.rpf</kw> というファイルを作成します。この中にはアーカイブを作成する際のオプションが記述されており、次回アーカイブを作成するときに同じ設定で簡単に作成することができます。
+ When Releaser creates an archive, it creates a file named <kw>default.rpf</kw> in the directory where the archive was created. This file contains the options used during archive creation, allowing you to easily create archives with the same settings next time.
 </note>
 </para>
 
 <para>
-<ptitle>Releaser の設定画面</ptitle>
-　フォルダを選択した後は設定画面になります。<r/>
+<ptitle>Releaser Settings Screen</ptitle>
+ After selecting a folder, the settings screen will appear.<r/>
 <dl>
-<dt>「フォルダ選択に戻る」ボタン</dt>
+<dt>"Return to Folder Selection" button</dt>
 <dd>
-　フォルダ選択をやり直す事ができます。
+ Allows you to restart the folder selection process.
 </dd>
 
-<dt>「プロファイル : 保存」ボタン</dt>
+<dt>"Profile: Save" button</dt>
 <dd>
-　現在の設定をファイルに保存します。
+ Saves the current settings to a file.
 </dd>
 
-<dt>「プロファイル : 読み込み」ボタン</dt>
+<dt>"Profile: Load" button</dt>
 <dd>
-　設定をファイルから読み込みます。
+ Loads settings from a file.
 </dd>
 
-<dt>「作成」ボタン</dt>
+<dt>"Create" button</dt>
 <dd>
-　現在の設定に基づき、アーカイブファイルや EXE 形式の実行可能ファイルを出力します。
+ Outputs an archive file or an EXE format executable based on the current settings.
 </dd>
 
-<dt>「キャンセル」(または終了) ボタン</dt>
+<dt>"Cancel" (or Exit) button</dt>
 <dd>
-　Releaser を終了します。
+ Exits Releaser.
 </dd>
 
-<dt>「出力」タブ</dt>
+<dt>"Output" tab</dt>
 <dd>
 <img src="ReleaserOutput.png"/><r/><r/>
 <dl>
-<dt>「出力形式」</dt>
+<dt>"Output Format"</dt>
 <dd>
-　「.XP3 アーカイブ」を選ぶと、xp3 形式 ( 吉里吉里標準のアーカイブ形式 ) のファイルを出力します。「.EXE 形式実行可能ファイル」を選ぶと、実行可能ファイルを出力します。「.EXE 形式実行可能ファイル」を選んだ場合は、Releaser ( krkrrel.exe ) と同じフォルダか、その親のフォルダにおいてある krkr.eXe が使用されます。
+ Selecting ".XP3 Archive" outputs a file in xp3 format (the standard KiriKiri archive format). Selecting ".EXE Executable" outputs an executable file. If ".EXE Executable" is selected, the krkr.eXe located in the same folder as Releaser (krkrrel.exe) or its parent folder will be used.
 </dd>
 
-<dt>「出力ファイル」</dt>
+<dt>"Output File"</dt>
 <dd>
-　出力するファイルを指定してください。「参照」ボタンをクリックするとファイルをダイアログボックスで指定することができます。
+ Specify the file to be output. Clicking the "Browse" button allows you to specify the file via a dialog box.
 </dd>
 </dl>
 </dd>
 
-<dt>「ファイル」タブ</dt>
+<dt>"Files" tab</dt>
 <dd>
 <img src="ReleaserFiles.png"/><r/><r/>
-　拡張子ごとに、「圧縮するもの」「アーカイブには含めるが圧縮しないもの」「アーカイブには含めないもの」を選ぶ事ができます。通常、デフォルトの分類のままでかまいません。<r/>
-　「圧縮するもの」にファイルを分類すると圧縮が行われるため、ファイルサイズが小さくなります。また、テキストエディタやバイナリエディタで中を覗いても簡単には解読できない状態になります。しかし、圧縮を行うと展開時に時間がかかるというデメリットもあります。PNG や JPEG や ERI などは既に圧縮されていて、「圧縮する」に分類しても効果が薄い上に、展開に余計に時間がかかるようになるので、圧縮することはお勧めできません。
+ For each extension, you can choose "Compress", "Include in archive but do not compress", or "Do not include in archive". Usually, the default classification is fine.<r/>
+ Classifying files as "Compress" will perform compression, reducing the file size. Additionally, it makes the content difficult to decipher when viewed with a text or binary editor. However, compression has the disadvantage of taking time during extraction. Since formats like PNG, JPEG, and ERI are already compressed, classifying them as "Compress" yields little benefit and increases extraction time, so compression is not recommended for them.
 </dd>
 
-<dt>「オプション」タブ</dt>
+<dt>"Options" tab</dt>
 <dd>
 <img src="ReleaserSettings.png"/><r/><r/>
 <dl>
-<dt>「大きなファイルを圧縮しない」</dt>
+<dt>"Do not compress large files"</dt>
 <dd>
-　もし該当するファイルが「圧縮するもの」に分類されていても、指定されたサイズ以上であれば圧縮を行わない、という設定です。吉里吉里の構造上、圧縮されたファイルはメモリ上に展開しなければならないため、大きなファイルを圧縮するのは実行時のコストが高くなります。
+ Even if a file is classified as "Compress", this setting prevents compression if the file exceeds the specified size. Due to KiriKiri's structure, compressed files must be expanded in memory, so compressing large files results in high runtime costs.
 </dd>
 
-<dt>「展開プロテクト」</dt>
+<dt>"Extraction Protect"</dt>
 <dd>
-　チェックすると、アーカイブ内部のインデックス ( 格納されているファイルのリスト ) に「展開プロテクト」の属性を付加します。これによりアーカイブ展開ツールに対し「著作者はファイルが展開されることを望んでいない」という意思表示をすることができます。
+ When checked, the "Extraction Protect" attribute is added to the index (the list of stored files) inside the archive. This allows you to signal to archive extraction tools that "the author does not wish for the files to be extracted".
 </dd>
 
-<dt>「OggVorbisコードブック共有化」</dt>
+<dt>"OggVorbis Codebook Sharing"</dt>
 <dd>
-　チェックすると、OggVorbis ファイル ( .ogg ファイル ) のベクトル量子化用コードブックを共有させます。OggVorbisファイルは複数のファイル間で共通のコードブックをファイルごとに持っている場合が多いので、それらを一つにまとめてサイズの節約を行うことができます。
+ When checked, the vector quantization codebooks for OggVorbis files (.ogg files) are shared. Since OggVorbis files often contain common codebooks across multiple files, bundling them into one can save space.
 </dd>
 
-<dt>「インデックスを圧縮する」</dt>
+<dt>"Compress Index"</dt>
 <dd>
-　チェックすると、アーカイブ内部のインデックス ( 格納されているファイルのリスト ) を圧縮し、サイズの節約をすることができます。
+ When checked, the index inside the archive (the list of stored files) is compressed to save space.
 </dd>
 </dl>
 <note>
-「オプション」タブの「展開プロテクト」をチェックしても<b>実際に展開ができないように暗号化をしたりする訳ではありません</b>。意思表示を行うことができるだけです。また、アーカイブ展開ツールを作成される方は ( もしいるとして ) この展開プロテクトフラグの存在を考慮してください ( このフラグがたっていれば展開を拒否したり、展開する前に警告をするなど )。<r/>
+Checking "Extraction Protect" in the "Options" tab <b>does not actually perform encryption to prevent extraction</b>. It only serves as a declaration of intent. Also, those who create archive extraction tools (if any) should take the existence of this extraction protect flag into account (e.g., by refusing extraction or showing a warning before extracting if this flag is set).<r/>
 </note>
 </dd>
 
-<dt>「実行可能ファイル設定」タブ</dt>
+<dt>"Executable Settings" tab</dt>
 <dd>
-　出力形式に実行可能ファイルを指定した場合にのみ表示されます。<r/>
-　ここの設定画面は <link href="Configure"/> と同じです。<r/>
+ This is displayed only when an executable file is specified as the output format.<r/>
+ The settings screen here is the same as in <link href="Configure"/>.<r/>
 <r/>
 <img src="ReleaserExeSettings.png"/><r/><r/>
 <dl>
-<dt>「オプション」</dt>
+<dt>"Options"</dt>
 <dd>
-　実行可能ファイルに対するデフォルトのオプションを設定できます。
+ You can set the default options for the executable file.
 </dd>
 
-<dt>「アイコン」</dt>
+<dt>"Icon"</dt>
 <dd>
-　実行可能ファイルのアイコンを指定することができます。
+ You can specify the icon for the executable file.
 </dd>
 </dl>
 </dd>
@@ -128,29 +128,29 @@
 </para>
 
 <para>
-<ptitle>コマンドラインオプション</ptitle>
-Releaser は以下のコマンドラインオプションを受け付けます。
+<ptitle>Command Line Options</ptitle>
+Releaser accepts the following command line options.
 
 <dl>
 
-<dt>フォルダ名</dt>
-<dd>ターゲットのフォルダを指定します。</dd>
+<dt>Folder name</dt>
+<dd>Specifies the target folder.</dd>
 
 <dt>-<kw>go</kw></dt>
-<dd>すぐにアーカイブを作成し、そのまま終了します。バッチ処理などで用いてください。オプションなどはあらかじめ、ターゲットのフォルダに default.rpf という名前で保存しておいてください (これなくても -nowriterpf -out オプションと組み合わせてアーカイブを作ることは可能です )。</dd>
+<dd>Creates the archive immediately and then exits. Use this for batch processing, etc. Please save the options in advance as default.rpf in the target folder (even without this, it is possible to create an archive by combining it with the -nowriterpf and -out options).</dd>
 
 <dt>-nowriterpf</dt>
-<dd>終了時に default.rpf を書き出しません。</dd>
+<dd>Does not write default.rpf upon exit.</dd>
 
-<dt>-out ファイル名</dt>
-<dd>出力ファイル名を指定します。</dd>
+<dt>-out filename</dt>
+<dd>Specifies the output filename.</dd>
 
-<dt>-rpf ファイル名</dt>
-<dd>読み込むプロファイルを指定します。</dd>
+<dt>-rpf filename</dt>
+<dd>Specifies the profile to load.</dd>
 
 </dl>
 <r/>
-たとえば、以下のように指定します。<r/>
+For example, specify as follows.<r/>
 <bq>
 krkrrel project -out ..\release\data.xp3 -nowriterpf -go
 </bq>
@@ -158,5 +158,3 @@ krkrrel project -out ..\release\data.xp3 -nowriterpf -go
 </para>
 
 </doc>
-
-

@@ -16,47 +16,47 @@
 <body>
 <h1><a id="id92" name="id92">About Application Debugging</a>
 </h1><div class="para"><div>
-　Debugging is the process of identifying and fixing bugs (causes of malfunctions or unintended behavior) within an application.<br />
-　Kirikiri provides several debugging support features. Use these features to debug your application. This section explains how to use them.</div></div>
+ Debugging is the process of identifying and fixing bugs (causes of malfunctions or unintended behavior) within an application.<br />
+ Kirikiri provides several debugging support features. Use these features to debug your application. This section explains how to use them.</div></div>
 <h1><a id="id93" name="id93">Debug Message Output</a>
 </h1><div class="para"><div>
 Kirikiri provides several windows to support debugging. Please refer to the descriptions in each link for details.<br />
 <dl>
 <dt><a target="main" class="jump" href="Console.html">Console</a></dt>
 <dd>Displays various debug messages output by the Kirikiri system or user scripts.</dd></dl><br />
-　Specifically, the console displays messages output by user programs using <a target="main" class="jump" href="f_Debug_message.html">Debug.message</a>. You can call this method anywhere in your program to display variable contents in the console and inspect them during execution.<br />
-　For information on how to display messages in the console or write logs to a file, refer to "Debug-related options" in <a target="main" class="jump" href="CommandLine.html">Command Line Options</a> or the <a target="main" class="jump" href="f_Debug.html">Debug class</a>.<br />
+ Specifically, the console displays messages output by user programs using <a target="main" class="jump" href="f_Debug_message.html">Debug.message</a>. You can call this method anywhere in your program to display variable contents in the console and inspect them during execution.<br />
+ For information on how to display messages in the console or write logs to a file, refer to "Debug-related options" in <a target="main" class="jump" href="CommandLine.html">Command Line Options</a> or the <a target="main" class="jump" href="f_Debug.html">Debug class</a>.<br />
 </div></div>
 
 <h1><a id="id94" name="id94">Debug Mode</a>
 </h1><div class="para"><div>
-　By specifying '-debug' in the <a target="main" class="jump" href="CommandLine.html">Command Line Options</a> (enabling "Debug Mode"), you can run Kirikiri in debug mode.<br />
-　In debug mode, TJS2 performance decreases, but several features useful for debugging are enabled.<br />
+ By specifying '-debug' in the <a target="main" class="jump" href="CommandLine.html">Command Line Options</a> (enabling "Debug Mode"), you can run Kirikiri in debug mode.<br />
+ In debug mode, TJS2 performance decreases, but several features useful for debugging are enabled.<br />
 <br />
 <dl>
 <dt>Type Information Tracking</dt>
-<dd>　Information regarding TJS2 objects is enhanced.<br />
-　When not in debug mode, for example, if you try to get information about kag.saveSystemVariables in KAG:
+<dd> Information regarding TJS2 objects is enhanced.<br />
+ When not in debug mode, for example, if you try to get information about kag.saveSystemVariables in KAG:
 <br />
 <code class="bq">Console&nbsp;:&nbsp;kag.saveSystemVariables&nbsp;=&nbsp;(object)(object&nbsp;0x0279E130:0x01EB0BD4)</code>
 <br />
 
-　is all you get, but when debug mode is enabled:
+ is all you get, but when debug mode is enabled:
 <br />
 <code class="bq">Console&nbsp;:&nbsp;kag.saveSystemVariables&nbsp;=&nbsp;(object)(object&nbsp;0x0279E130[(function)&nbsp;KAGWindow.saveSystemVariables]:0x01EB0BD4[instance&nbsp;of&nbsp;class&nbsp;KAGWindow])</code>
 <br />
 
-　type information is obtained like this. (Of the two parts separated by ':', the first part is the object type, and the second part is the context in which the object operates).<br />
-　This is an almost essential option when tracking with a debugger.<br />
-　This feature (in the current version) is enabled throughout the process of converting objects to strings.<br />
+ type information is obtained like this. (Of the two parts separated by ':', the first part is the object type, and the second part is the context in which the object operates).<br />
+ This is an almost essential option when tracking with a debugger.<br />
+ This feature (in the current version) is enabled throughout the process of converting objects to strings.<br />
 </dd>
 <dt>Object Leak Detection</dt>
-<dd>　Enables a feature that warns about objects that have not been deleted (released) upon exit.<br />
-　TJS2 normally deletes created objects automatically via garbage collection, so explicit deletion instructions are not required. However, objects may remain undeleted (leak) due to bugs in plugins or Kirikiri itself, or due to circular references.<br />
-　In debug mode, objects that have not been released by the time the application exits are written to the console log file.<br />
-　Note that even if only a single object is not released, all objects related to it will be detected, which may result in a huge log file.<br />
+<dd> Enables a feature that warns about objects that have not been deleted (released) upon exit.<br />
+ TJS2 normally deletes created objects automatically via garbage collection, so explicit deletion instructions are not required. However, objects may remain undeleted (leak) due to bugs in plugins or Kirikiri itself, or due to circular references.<br />
+ In debug mode, objects that have not been released by the time the application exits are written to the console log file.<br />
+ Note that even if only a single object is not released, all objects related to it will be detected, which may result in a huge log file.<br />
 <br />
-　The <a target="main" class="jump" href="f_System_exit.html">System.exit</a> method terminates the application in a manner close to a forced termination. Note that terminating the application with this method will cause many objects to leak and a large amount of logs to be recorded.<br />
+ The <a target="main" class="jump" href="f_System_exit.html">System.exit</a> method terminates the application in a manner close to a forced termination. Note that terminating the application with this method will cause many objects to leak and a large amount of logs to be recorded.<br />
 <br /><div class="note"><div class="notehead"><span class="noteheadspan">Note</span></div>
 A circular reference is a situation where A refers to B, and B refers to A.<br />
 For example, the following script creates a circular reference.
@@ -71,22 +71,22 @@ In plugins, objects may leak if reference counting is handled incorrectly. When 
 </div><br />
 </dd>
 <dt>Warning for Script Execution on Objects Being Deleted</dt>
-<dd>　The finalize method is called when an object is deleted or invalidated.<br />
-　Since the timing of object deletion in TJS2 is "unpredictable", the finalize method may be called at an odd time, leading to unexpected behavior. In debug mode, a warning is displayed in the console when the finalize method is called at such an "unstable timing"—specifically, when an object that was not invalidated is deleted by garbage collection and the finalize method is called.<br />
-　The warning looks like this:<br />
+<dd> The finalize method is called when an object is deleted or invalidated.<br />
+ Since the timing of object deletion in TJS2 is "unpredictable", the finalize method may be called at an odd time, leading to unexpected behavior. In debug mode, a warning is displayed in the console when the finalize method is called at such an "unstable timing"—specifically, when an object that was not invalidated is deleted by garbage collection and the finalize method is called.<br />
+ The warning looks like this:<br />
 
 <br />
 <code class="bq">Warning:&nbsp;anonymous@0x016DFA7C(9)[(function)&nbsp;finalize]:&nbsp;Code&nbsp;is&nbsp;being&nbsp;executed&nbsp;on&nbsp;object&nbsp;0x0167DD44[instance&nbsp;of&nbsp;class&nbsp;A]&nbsp;which&nbsp;is&nbsp;being&nbsp;deleted.&nbsp;The&nbsp;call&nbsp;stack&nbsp;at&nbsp;the&nbsp;time&nbsp;of&nbsp;this&nbsp;object's&nbsp;creation&nbsp;is&nbsp;as&nbsp;follows:<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;anonymous@0x016DFA7C(13)[(top&nbsp;level&nbsp;script)&nbsp;global]</code>
 <br />
 
-　To prevent such situations, it is recommended to explicitly invalidate objects created with new using the invalidate operator once you are finished with them.<br />
-　However, for objects of classes like Array, Dictionary, or Date that do not have a finalize method, or whose finalize method does not perform actions that cause problems, explicit invalidation may not be necessary.<br />
-　The above warning is displayed when an object is about to be deleted without explicit invalidation, and a TJS2 script attempts to execute within that context.</dd>
+ To prevent such situations, it is recommended to explicitly invalidate objects created with new using the invalidate operator once you are finished with them.<br />
+ However, for objects of classes like Array, Dictionary, or Date that do not have a finalize method, or whose finalize method does not perform actions that cause problems, explicit invalidation may not be necessary.<br />
+ The above warning is displayed when an object is about to be deleted without explicit invalidation, and a TJS2 script attempts to execute within that context.</dd>
 <dt>Call Stack Retrieval Feature</dt>
-<dd>　Allows the TJS2 function/method call stack to be retrieved from a script.<br />
-　This is done using the <a target="main" class="jump" href="f_Scripts_getTraceString.html">Scripts.getTraceString</a> method.<br />
-　If there is a problem in the middle of a program and you don't know where a method was called from, you can use this method to output the call stack to the console.<br />
+<dd> Allows the TJS2 function/method call stack to be retrieved from a script.<br />
+ This is done using the <a target="main" class="jump" href="f_Scripts_getTraceString.html">Scripts.getTraceString</a> method.<br />
+ If there is a problem in the middle of a program and you don't know where a method was called from, you can use this method to output the call stack to the console.<br />
 </dd>
 </dl></div></div>
 	<script type="text/javascript" charset="UTF-8" src="documentid.js" ></script>

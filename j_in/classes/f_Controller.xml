@@ -2,18 +2,18 @@
 <doc>
 <title>Controller</title>
 <desc>
-　Controller クラスは、<kw>コントローラ</kw>に関する管理を行うクラスです。このクラスからオブジェクトを作成することはできません ( このクラスにはアクセスできません )。このクラスのオブジェクトには <ref>Debug.controller</ref> でアクセスできます。<r/>
+ The Controller class is a class that manages the <kw>controller</kw>. You cannot create objects from this class (this class cannot be accessed directly). You can access the object of this class via <ref>Debug.controller</ref>.<r/>
 </desc>
 
 
 <member>
 	<name>visible</name>
 	<type>property</type>
-	<shortdesc>表示されているかどうか</shortdesc>
+	<shortdesc>Whether it is visible or not</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　コントロールが表示されているかどうかを表します。値を設定することもできます。<r/>
-		　真を指定すると表示されます。<r/>
+		 Represents whether the control is visible. You can also set the value.<r/>
+		 If set to true, it will be displayed.<r/>
 	</desc>
 </member>
 

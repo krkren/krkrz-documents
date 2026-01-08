@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>画像フォーマットコンバータ</title>
+<title>Image Format Converter</title>
 
 <para>
-<ptitle>画像フォーマットコンバータについて</ptitle>
-　画像フォーマットコンバータ ( tools フォルダにある krkrtpc.exe ) は、吉里吉里の画像の相互変換を行うためのツールです。<r/>
-　様々な画像の用意に使えます。<r/>
+<ptitle>About the Image Format Converter</ptitle>
+ The Image Format Converter (krkrtpc.exe in the tools folder) is a tool for converting KiriKiri images between various formats.<r/>
+ It can be used to prepare various types of images.<r/>
 <r/>
-　入力ファイルフォーマットとしては BMP, PNG, JPEG, PSD、出力ファイルフォーマットとしては BMP, PNG, TLG5, TLG6, JPEG のいずれかを選択できます。<r/>
-　吉里吉里が用いるようなメイン/マスク分離形式の透過画像を読み込んだり、出力する事もできます。ここで用いている「マスク」という用語はアルファチャネルと同義です。<r/>
+ For input file formats, you can choose from BMP, PNG, JPEG, and PSD. For output file formats, you can choose from BMP, PNG, TLG5, TLG6, or JPEG.<r/>
+ It can also read and output transparent images in the main/mask separation format used by KiriKiri. The term "mask" used here is synonymous with the alpha channel.<r/>
 <r/>
-　基本的には画像フォーマットを変換するだけなので、これで出力した画像は、他のソフトやツールにも使えると思います。<r/>
+ Since it basically just converts image formats, the images output by this tool can likely be used in other software and tools as well.<r/>
 <r/>
-　なお、このツールに限ったことではありませんが、<b>バックアップはお忘れなく！</b><r/>
+ Also, while this is not limited to this tool, <b>don't forget to make backups!</b><r/>
 </para>
 
 <para>
-<ptitle>入力画像フォーマット</ptitle>
-　入力ファイルフォーマットとしては、以下の形式を用いることができます。<r/>
+<ptitle>Input Image Formats</ptitle>
+ The following formats can be used as input file formats.<r/>
 <r/>
 <dl>
 <dt>BMP</dt>
 <dd>
-　Windows 標準ビットマップ形式です。32 bit (bpp) 形式の BMP はアルファチャンネル付き BMP であると見なされます。<r/>
-　その他の形式の BMP は、不透明な画像(透過情報を持たない画像)であると見なされます (後述のメイン/マスク分離形式に用いた場合を除く)。
+ Standard Windows bitmap format. 32-bit (bpp) BMPs are treated as BMPs with an alpha channel.<r/>
+ BMPs in other formats are treated as opaque images (images without transparency information), except when used in the main/mask separation format described later.
 </dd>
 
 <dt>PNG</dt>
 <dd>
-　Portable Network Graphic 形式です。透明部分のある(アルファチャネルや透過情報を持った) PNG も読み込むことができます。
+ Portable Network Graphic format. PNGs with transparent parts (containing an alpha channel or transparency information) can also be read.
 </dd>
 
 <dt>PSD</dt>
 <dd>
-　Adobe Photoshop 3 以降で用いられる形式です。ただし、このツールで読み込める PSD には大きな以下の制限があります。<r/>
+ The format used by Adobe Photoshop 3 and later. However, there are significant limitations to the PSD files that can be read by this tool:<r/>
 <r/>
 <ul>
-<li>カラーモードが RGB のもの以外を読み込めない</li>
-<li>16bit/チャンネルのものを読み込めない</li>
-<li>無圧縮とRLE圧縮のみ対応 ( Photoshop3.0 形式の場合は RLE圧縮のみ対応 )</li>
+<li>Cannot read color modes other than RGB</li>
+<li>Cannot read 16-bit/channel images</li>
+<li>Only supports Uncompressed and RLE compression (Photoshop 3.0 format supports RLE compression only)</li>
 </ul>
 <r/>
-　この形式はメイン/マスク分離形式としては読み込むことができません。
-　大体のデータは読み込めますが、読み込めないデータもあります。<r/>
-　カラーモードに RGB 以外(CMYKなど)を使用している場合は RGB に変換してください。16bit/チャンネルを使用している場合は 8bit/チャンネルに変換してください。<r/>
-　「通常」以外のブレンドモードのレイヤーを含む場合は、このツールに入力する前に「表示部分の統合」を行っておけば大丈夫です。<r/>
+ This format cannot be read as a main/mask separation format.
+ Most data can be read, but some data may not be readable.<r/>
+ If you are using a color mode other than RGB (such as CMYK), please convert it to RGB. If you are using 16-bit/channel, please convert it to 8-bit/channel.<r/>
+ If the file contains layers with blend modes other than "Normal", it should be fine if you "Merge Visible" before inputting it into this tool.<r/>
 <r/>
-　PSD ファイルの読み込み機能は、出力形式にて「ltAddAlpha形式で出力する」が選択されるか、しないかによって大きく変わります。<r/>
+ The PSD file reading functionality changes significantly depending on whether "Output in ltAddAlpha format" is selected in the output settings.<r/>
 <r/>
-　「ltAddAlpha形式で出力する」が選択されている場合は、「通常」「覆い焼き(リニア)」「焼き込み(リニア)」「乗算」「スクリーン」「オーバーレイ」「ハードライト」「ソフトライト」「覆い焼きカラー」「焼き込みカラー」「比較(明)」「比較(暗)」「差の絶対値」「除外」のレイヤーが含まれた PSD ファイルを読み込むことができます。また、「通常」のみで構成された画像であれば、複数枚のレイヤーが重なっていても対応できます (他のモードでは、複数枚のレイヤーが重なっていると対応できません)。<r/>
+ If "Output in ltAddAlpha format" is NOT selected, you can read PSD files containing layers with "Normal", "Linear Dodge", "Linear Burn", "Multiply", "Screen", "Overlay", "Hard Light", "Soft Light", "Color Dodge", "Color Burn", "Lighten", "Darken", "Difference", and "Exclusion". Also, if the image consists only of "Normal" layers, it can handle multiple overlapping layers (for other modes, it cannot handle multiple overlapping layers).<r/>
 <r/>
-　「ltAddAlpha形式で出力する」が選択されている場合は、「通常」のレイヤーと「覆い焼き(リニア)」のレイヤーにのみ対応できます。この場合は、レイヤーが下から(奥から)順に、「任意の数の『通常』レイヤー」「任意の数の『覆い焼き(リニア)』レイヤー」の順になっていなければなりません。「任意の数」とは、0枚、つまりレイヤーが全くないか、あるいは1枚以上のレイヤーです。<r/>
+ If "Output in ltAddAlpha format" IS selected, it only supports "Normal" layers and "Linear Dodge" layers. In this case, the layers must be ordered from bottom (back) to top as: "any number of 'Normal' layers" followed by "any number of 'Linear Dodge' layers". "Any number" means 0 (no layers at all) or 1 or more layers.<r/>
 <dl>
-<dt>「ltAddAlpha形式で出力する」が選択されている場合に読み込み可能な例</dt>
+<dt>Examples of readable configurations when "Output in ltAddAlpha format" is selected</dt>
 <dd>
     <ul>
-        <li>「通常」レイヤー1枚の上に「覆い焼き(リニア)」レイヤー1枚</li>
-        <li>「通常」レイヤーがなくて、「覆い焼き(リニア)」レイヤーが1枚だけ</li>
-        <li>「通常」レイヤー1枚のみ</li>
-        <li>「通常」レイヤー3枚の上に「覆い焼き(リニア)」レイヤー2枚</li>
+        <li>One "Linear Dodge" layer on top of one "Normal" layer</li>
+        <li>No "Normal" layer, and only one "Linear Dodge" layer</li>
+        <li>One "Normal" layer only</li>
+        <li>Two "Linear Dodge" layers on top of three "Normal" layers</li>
     </ul>
 </dd>
-<dt>「ltAddAlpha形式で出力する」が選択されている場合に読み込めない例</dt>
+<dt>Examples of unreadable configurations when "Output in ltAddAlpha format" is selected</dt>
 <dd>
     <ul>
-        <li>「通常」レイヤー1枚の上に「覆い焼き(リニア)」レイヤー1枚、その上にさらに「通常」レイヤー1枚<r/>(覆い焼きリニアのレイヤーは通常レイヤーの間に挟むことはできません)</li>
-        <li>「覆い焼き(リニア)」レイヤー1枚の上に「通常」レイヤー1枚、さらにその上に「覆い焼き(リニア)」レイヤー1枚<r/>(通常のレイヤーは覆い焼きリニアのレイヤーの間に挟むことはできません)</li>
-        <li>「覆い焼き」レイヤー1枚のみ<r/>(覆い焼きは覆い焼きでも、扱えるのは「覆い焼きリニア」のレイヤーだけです)</li>
+        <li>One "Normal" layer on top of one "Linear Dodge" layer, with another "Normal" layer on top of that<r/>(Linear Dodge layers cannot be sandwiched between Normal layers)</li>
+        <li>One "Linear Dodge" layer on top of one "Normal" layer, with another "Linear Dodge" layer on top of that<r/>(Normal layers cannot be sandwiched between Linear Dodge layers)</li>
+        <li>One "Dodge" layer only<r/>(Even if it's a dodge mode, only "Linear Dodge" layers can be handled)</li>
     </ul>
 </dd>
 </dl>
-Photoshopの「通常」は吉里吉里のアルファ合成、「覆い焼き(リニア)」は吉里吉里の加算合成に相当します。ltAdditiveAlpha(加算アルファ合成)ではアルファ合成と加算合成の両方を同時に表現できるため、このようなレイヤー構成のPhotoshopデータを読み込むことができます。<r/>
+Photoshop's "Normal" corresponds to KiriKiri's alpha blending, and "Linear Dodge" corresponds to KiriKiri's additive blending. Since ltAdditiveAlpha (additive alpha blending) can represent both alpha blending and additive blending simultaneously, Photoshop data with such layer configurations can be read.<r/>
 <r/>
 
 
@@ -78,76 +78,76 @@ Photoshopの「通常」は吉里吉里のアルファ合成、「覆い焼き(�
 
 <dt>JPEG</dt>
 <dd>
-　フルカラーとグレイスケールの一般的な JPEG 形式を読み込めます。後述のメイン/マスク分離形式の入力として使うこともできます。</dd>
+ General full-color and grayscale JPEG formats can be read. They can also be used as input for the main/mask separation format described later.</dd>
 
-<dt>メイン/マスク分離形式</dt>
+<dt>Main/Mask Separation Format</dt>
 <dd>
-　メイン/マスク分離形式は、メイン(色情報)の画像とマスク(透過情報)の画像が別々のファイルになっているものです。<r/>
-　マスク画像は、メイン画像のファイル名の最後に _m のついたファイル名になります ( たとえば test.jpg に対して test_m.jpg )。<r/>
-　メイン/マスク分離形式として有効な入力画像フォーマットは、それぞれ BMP, JPEG, PNG です。メインとマスクのフォーマットが異なっていてもかまいません。
+ The main/mask separation format is one where the main (color information) image and the mask (transparency information) image are in separate files.<r/>
+ The mask image file name is the main image file name with _m appended to the end (for example, test_m.jpg for test.jpg).<r/>
+ Valid input image formats for the main/mask separation format are BMP, JPEG, and PNG. The formats for the main and mask images do not have to be the same.
 </dd>
 </dl>
 <note>
-　TLG5 や TLG6 形式は入力として用いることができません。ERI 形式は現時点では未対応です。
+ TLG5 and TLG6 formats cannot be used as input. ERI format is currently not supported.
 </note>
 </para>
 
 <para>
-<ptitle>出力画像フォーマット</ptitle>
-　出力画像フォーマットとしては以下の形式を用いることができます。<r/>
+<ptitle>Output Image Formats</ptitle>
+ The following formats can be used as output image formats.<r/>
 <r/>
 <dl>
-<dt>24bit/32bit BMP</dt>
+<dt>24-bit/32-bit BMP</dt>
 <dd>
-　24bit BMP はアルファチャンネルを持たない BMP です。<r/>
-　32bit BMP はアルファチャネルを持った BMP で、一つのファイル内に メインとマスクを持っている BMP です。
+ 24-bit BMP is a BMP without an alpha channel.<r/>
+ 32-bit BMP is a BMP with an alpha channel, containing both main and mask information within a single file.
 </dd>
 
 <dt>PNG</dt>
 <dd>
-　フルカラーの PNG、あるいはアルファチャンネル付きの PNG です。<r/>
+ Full-color PNG or PNG with an alpha channel.<r/>
 </dd>
 
 <dt>TLG5</dt>
 <dd>
-　フルカラーの TLG5、あるいはアルファチャンネル付きの TLG5 です。<r/>
+ Full-color TLG5 or TLG5 with an alpha channel.<r/>
 <note>
-　TLG5 形式は圧縮に結構時間がかかります。プログラムが止まってしまったように見えるかも知れません。
+ TLG5 format takes a considerable amount of time to compress. It may look like the program has stopped responding.
 </note>
 </dd>
 
 <dt>TLG6</dt>
 <dd>
-　フルカラーの TLG6、あるいはアルファチャンネル付きの TLG6 です。<r/>
+ Full-color TLG6 or TLG6 with an alpha channel.<r/>
 <note>
-　TLG6 形式は TLG5 形式と同じく、圧縮に結構時間がかかります。プログラムが止まってしまったように見えるかも知れません。
+ Like TLG5, TLG6 format takes a considerable amount of time to compress. It may look like the program has stopped responding.
 </note>
-TLG6画像についてはTLG5画像と同じく、タグ情報を書き出します。<r/>
+For TLG6 images, tag information is written out just like with TLG5 images.<r/>
 </dd>
 
-<dt>メイン/マスク分離形式</dt>
+<dt>Main/Mask Separation Format</dt>
 <dd>
-　透明部分のある画像において、メイン/マスクを別々のファイルに記録する方式です。それぞれ、BMP, JPEG, PNG を選択できます。<r/>
-　マスク画像は、メイン画像のファイル名の最後に _m のついたファイル名になります ( たとえば test.jpg に対して test_m.jpg )。<r/>
-　メインとマスクを別々の画像形式にすることができますが、BMP と BMP 、PNG と PNG の組み合わせはほとんど意味がないので、上記の 32bit BMP か アルファチャネル付き PNG を選択した方が良いでしょう。<r/>
-　どちらか、あるいは両方に JPEG を用いればファイルサイズは節約できますが、画質は悪くなります。<r/>
-　メイン/マスク分離形式に TLG5 や TLG6 形式を指定することはできません。
+ For images with transparent parts, this method records the main and mask in separate files. You can select BMP, JPEG, or PNG for each.<r/>
+ The mask image file name is the main image file name with _m appended to the end (for example, test_m.jpg for test.jpg).<r/>
+ While you can use different image formats for the main and mask, combinations like BMP and BMP or PNG and PNG make little sense, so it is better to select 32-bit BMP or PNG with an alpha channel as mentioned above.<r/>
+ Using JPEG for one or both can save file size, but the image quality will decrease.<r/>
+ TLG5 and TLG6 formats cannot be specified for the main/mask separation format.
 </dd>
 </dl>
 </para>
 
 <para>
-<ptitle>タグ情報</ptitle>
-画像フォーマットコンバータは、TLG画像やPNG画像に「タグ情報」を書き出します。「タグ情報」は、画像どのように表示されるべきかなどを含む情報です。このタグ情報は<at href="f_Layer_loadImages.html">Layer.loadImages</at>メソッドの戻り値として得ることができます。<r/><r/>
-以下のタグ情報が書き出されます。<r/>
+<ptitle>Tag Information</ptitle>
+The Image Format Converter writes "tag information" to TLG and PNG images. "Tag information" includes data such as how the image should be displayed. This tag information can be obtained as the return value of the <at href="f_Layer_loadImages.html">Layer.loadImages</at> method.<r/><r/>
+The following tag information is written out:<r/>
 <dl>
-<dt><kw>mode</kw> (TLGのみ)</dt>
+<dt><kw>mode</kw> (TLG only)</dt>
 <dd>
-画像の表示モードです。「不透明な画像」の場合はmode=opaqueで、出力形式がltAddAlphaならばmode=addalphaという情報を書き出します。<r/>
-「透明部分のある画像」で出力形式がltAddAlphaでない場合は、PSD ファイル以外や、「通常」のレイヤーのみを含む PSD ファイルを読み込んだ場合は mode=alpha になります。PSD ファイルで、「通常」以外のレイヤーを読み込んだ場合は、それぞれのブレンドモードに対応する情報が書き出されます。<r/>
-KAGの場合、これはimageタグのmode属性にそのまま対応し、imageタグでmode属性を省略したときの初期値になります。つまり、KAGではmode属性を指定しなくても、自動的にその画像に適したmode属性が設定されると言うことになります。<r/>
+The display mode of the image. For "opaque images", mode=opaque is written, and if the output format is ltAddAlpha, mode=addalpha is written.<r/>
+For "images with transparent parts", if the output format is not ltAddAlpha, it will be mode=alpha if a non-PSD file or a PSD file containing only "Normal" layers is read. If a PSD file with layers other than "Normal" is read, information corresponding to each blend mode will be written.<r/>
+In KAG, this corresponds directly to the mode attribute of the image tag and becomes the default value when the mode attribute is omitted in the image tag. In other words, in KAG, the appropriate mode attribute is automatically set for the image even if you don't specify it.<r/>
 <r/>
-　吉里吉里は、TJSのグローバルオブジェクトに imageTagLayerType という辞書配列を持ち、TLG画像の持つタグ情報の mode とレイヤのタイプがどう対応づけられるかを表しており、以下のように定義されています。<r/>
+ KiriKiri has a dictionary array called imageTagLayerType in the TJS global object, which represents how the mode in the TLG image tag information corresponds to the layer type, defined as follows:<r/>
 <bq>
 global.imageTagLayerType = %[<r/>
     opaque      :%[type:ltOpaque            ],<r/>
@@ -180,26 +180,26 @@ global.imageTagLayerType = %[<r/>
     psexcl      :%[type:ltPsExclusion       ],<r/>
 ]<r/>
 </bq>
-　それぞれのレイヤのタイプについては <link href="GraphicSystem" /> を参照してください。
+ Please refer to <link href="GraphicSystem" /> for each layer type.
 </dd>
 
 <dt><kw>offs_x</kw> <kw>offs_y</kw> <kw>offs_unit</kw> (TLG, PNG)</dt>
 <dd>
-　これらは、変換元がPNGで、そのPNGがその画像の左上隅からのオフセット(oFFsチャンク)の情報を含んでいる場合のみに出力されます。<r/>
-　offs_x は横位置の左端からの距離、offs_y は縦位置の上端からの距離です。offs_unit は <kw>pixel</kw> か <kw>micrometer</kw> のどちらかになり、距離の単位を示します。<r/>
+ These are output only if the source is a PNG and that PNG contains offset information (oFFs chunk) from the top-left corner of the image.<r/>
+ offs_x is the distance from the left edge, and offs_y is the distance from the top edge. offs_unit will be either <kw>pixel</kw> or <kw>micrometer</kw>, indicating the unit of distance.<r/>
 </dd>
 
 <dt><kw>vpag_w</kw> <kw>vpag_h</kw> <kw>vpag_unit</kw> (TLG, PNG)</dt>
 <dd>
-　これらは、変換元がPNGで、そのPNGが Virtual PAGe、つまり画像全体のサイズ(vpAgチャンク)の情報を含んでいる場合のみに出力されます。<r/>
-　この情報を PNG に出力するソフトウェアとして <at target="_top"  href="http://www.imagemagick.org/">ImageMagick</at>ユーティリティがありますが、この <kw>ImageMagick</kw> で trim (トリム)を行った際に、トリム前の画像サイズとしてこの情報が出力されます。<r/>
-　vpag_w は画像全体の横のサイズ、vpag_h は画像全体の縦のサイズ、offs_unit は <kw>pixel</kw> か <kw>micrometer</kw> のどちらかになり、サイズの単位を示します。<r/>
+ These are output only if the source is a PNG and that PNG contains Virtual PAGe information, i.e., the size of the entire image (vpAg chunk).<r/>
+ One software that outputs this information to PNG is the <at target="_top"  href="http://www.imagemagick.org/">ImageMagick</at> utility; when a trim is performed with <kw>ImageMagick</kw>, this information is output as the image size before trimming.<r/>
+ vpag_w is the width of the entire image, vpag_h is the height of the entire image, and offs_unit will be either <kw>pixel</kw> or <kw>micrometer</kw>, indicating the unit of size.<r/>
 </dd>
 
 <dt><kw>reso_x</kw> <kw>reso_y</kw> <kw>reso_unit</kw> (TLG, PNG)</dt>
 <dd>
-　これらは、変換元がPNGで、そのPNGがその画像の解像度(pHYsチャンク)の情報を含んでいる場合のみに出力されます。<r/>
-　reso_x は横方向の解像度、reso_y は縦方向の解像度です。reso_unit は <kw>meter</kw> になり、解像度の単位を示します。<r/>
+ These are output only if the source is a PNG and that PNG contains resolution information (pHYs chunk) for the image.<r/>
+ reso_x is the horizontal resolution, and reso_y is the vertical resolution. reso_unit will be <kw>meter</kw>, indicating the unit of resolution.<r/>
 </dd>
 
 </dl>
@@ -207,162 +207,160 @@ global.imageTagLayerType = %[<r/>
 </para>
 
 <para>
-<ptitle>画像フォーマットコンバータの使い方</ptitle>
+<ptitle>How to Use the Image Format Converter</ptitle>
 <r/>
-　変換は、変換したいファイルを画像フォーマットコンバータのウィンドウの上にドロップすることで行うことができます。複数のファイルをドロップする事もできます。<r/>
+ Conversion can be performed by dropping the files you want to convert onto the Image Format Converter window. You can also drop multiple files.<r/>
 <r/>
-　不透明な画像、透明部分を持った画像にそれぞれ別の形式を指定することができます。<r/>
+ You can specify different formats for opaque images and images with transparent parts.<r/>
 <r/>
-　ここで言う「不透明な画像」とは、画像全域が完全に不透明な画像(たとえば、KAGで使うような背景画像)を言います。「透明部分を持った画像」とは、透明になる部分がある画像(たとえばKAGで使うような前景画像)を言います。<r/>
-　なお、画像形式として等価情報を持っている形式でも、結果的に画像のすべてのピクセルが完全不透明であれば、「不透明な画像」として扱われます。<r/>
+ An "opaque image" here refers to an image where the entire area is completely opaque (for example, background images used in KAG). An "image with transparent parts" refers to an image that has parts that become transparent (for example, foreground images used in KAG).<r/>
+ Note that even if an image format supports transparency, if all pixels in the resulting image are completely opaque, it will be treated as an "opaque image".<r/>
 <r/>
-　変換終了後、各ファイルの変換が成功したか、エラーになったかを確認できるログが表示されますので確認してください。<r/>
+ After conversion is finished, a log will be displayed where you can check whether the conversion of each file was successful or if an error occurred.<r/>
 <r/>
-　以下は、画面の説明です。<r/>
+ Below is a description of the screen.<r/>
 <r/>
 <img src="TPC.png"/><r/><r/>
-　実行すると、上の画面が表示されます。<r/>
+ When executed, the screen above is displayed.<r/>
 <r/>
 <dl>
-<dt>「オプションを表示」</dt>
+<dt>"Show Options"</dt>
 <dd>
-　チェックされている状態では、下の設定部分が表示されます。チェックをはずすと、ウィンドウは上部部分だけとなり、横に細長くなります。オプション設定が必要ない場合にウィンドウをコンパクトにすることができます。
+ When checked, the settings section below is displayed. When unchecked, the window consists only of the top part and becomes horizontally narrow. You can make the window compact when option settings are not needed.
 </dd>
 
-<dt>「不透明な画像 - 24bit BMP」</dt>
+<dt>"Opaque Image - 24bit BMP"</dt>
 <dd>
-　不透明な画像の出力形式として 24bit BMP を選択します。
+ Selects 24-bit BMP as the output format for opaque images.
 </dd>
 
-<dt>「不透明な画像 - PNG」</dt>
+<dt>"Opaque Image - PNG"</dt>
 <dd>
-　不透明な画像の出力形式として PNG を選択します。
+ Selects PNG as the output format for opaque images.
 </dd>
 
-<dt>「不透明な画像 - TLG5」</dt>
+<dt>"Opaque Image - TLG5"</dt>
 <dd>
-　不透明な画像の出力形式として TLG5 を選択します。
+ Selects TLG5 as the output format for opaque images.
 </dd>
 
-<dt>「不透明な画像 - TLG6」</dt>
+<dt>"Opaque Image - TLG6"</dt>
 <dd>
-　不透明な画像の出力形式として TLG6 を選択します。
+ Selects TLG6 as the output format for opaque images.
 </dd>
 
-<dt>「不透明な画像 - JPEG」</dt>
+<dt>"Opaque Image - JPEG"</dt>
 <dd>
-　不透明な画像の出力形式として JPEG を選択します。
+ Selects JPEG as the output format for opaque images.
 </dd>
 
-<dt>「不透明な画像 - JPEG オプション...」</dt>
+<dt>"Opaque Image - JPEG Options..."</dt>
 <dd>
-　不透明な画像の出力形式として JPEG を選択した場合の、JPEG の圧縮クオリティを選択します。
-</dd>
-
-
-<dt>「透明部分のある画像 - 32bit BMP (メイン+マスク)」</dt>
-<dd>
-　透過情報を持った画像の出力形式として 32bit BMP を選択します。
-</dd>
-
-<dt>「透明部分のある画像 - αチャネル付き PNG (メイン+マスク)」</dt>
-<dd>
-　透過情報を持った画像の出力形式として アルファチャネル付き PNG を選択します。
-</dd>
-
-<dt>「透明部分のある画像 - αチャネル付き TLG5 (メイン+マスク)」</dt>
-<dd>
-　透過情報を持った画像の出力形式として アルファチャネル付き TLG5 を選択します。
-</dd>
-
-<dt>「透明部分のある画像 - αチャネル付き TLG6 (メイン+マスク)」</dt>
-<dd>
-　透過情報を持った画像の出力形式として アルファチャネル付き TLG6 を選択します。
-</dd>
-
-<dt>「透明部分のある画像 - メイン/マスク分離形式」</dt>
-<dd>
-　透過情報を持った画像の出力形式としてメイン/マスク分離形式を指定します。メイン/マスクに何を用いるかを下で選択します。また、JPEG の場合、「JPEG オプション」ボタンをクリックすることによって、JPEG の圧縮クオリティを選択することができます。
-</dd>
-
-<dt>「透明部分のある画像 - 入力画像をltAddAlpha形式であるとみなす」</dt>
-<dd>
-　このオプションがチェックされていると、入力画像をltAddAlpha形式、つまり吉里吉里の<at href="f_Layer_type.html">Layer.type</at>プロパティでltAddAlphaを指定して表示するに適した、加算アルファ合成形式であると見なします。このオプションに影響される入力画像形式はBMP、PNG、メイン/マスク分離形式で、PSD形式は影響されません。<r/>
-　このオプションがチェックされていないと、入力画像はltAlpha形式であると見なされます。ほとんどのグラフィックソフトの出力形式やPNGの仕様はltAlpha形式である為、通常はこのオプションはチェックしないでください。<r/>
-　このオプションのチェックされていない状態で、かつ後述の「ltAddAlpha形式で出力する」がチェックされていると、画像フォーマットコンバータはltAlpha形式からltAddAlpha形式への変換を行います。<r/>
-　このオプションをチェックすると、「ltAddAlpha形式で出力する」のオプションは自動的にチェックされます。また、「完全透明部分の色情報」のオプションは使用不可になります(アルファ情報も色情報も画像フォーマットコンバータでは加工されなくなります)。<r/>
+ Selects the JPEG compression quality when JPEG is selected as the output format for opaque images.
 </dd>
 
 
-<dt>「透明部分のある画像 - ltAddAlpha形式で出力する」</dt>
+<dt>"Image with Transparent Parts - 32bit BMP (Main+Mask)"</dt>
 <dd>
-　このオプションがチェックされていると、出力画像をltAddAlpha形式で出力します。<r/>
-　このオプションがチェックされていないと、出力画像の形式はltAlpha形式、あるいは PSD ファイルからの入力の場合はそのファイルに含まれているレイヤーのブレンドモードに対応した形式になります。<r/>
-　様々なグラフィックソフトや、PNGの仕様ではltAlpha形式の画像のみを受け付けますので、出力画像を吉里吉里に使用する訳ではない場合は、通常はチェックしないでください。<r/>
-　このオプションがチェックされていると、「完全透明部分の色情報」のオプションは使用不可になります(アルファ情報も色情報も画像フォーマットコンバータでは加工されなくなります)。<r/>
+ Selects 32-bit BMP as the output format for images with transparency information.
+</dd>
+
+<dt>"Image with Transparent Parts - PNG with Alpha Channel (Main+Mask)"</dt>
+<dd>
+ Selects PNG with an alpha channel as the output format for images with transparency information.
+</dd>
+
+<dt>"Image with Transparent Parts - TLG5 with Alpha Channel (Main+Mask)"</dt>
+<dd>
+ Selects TLG5 with an alpha channel as the output format for images with transparency information.
+</dd>
+
+<dt>"Image with Transparent Parts - TLG6 with Alpha Channel (Main+Mask)"</dt>
+<dd>
+ Selects TLG6 with an alpha channel as the output format for images with transparency information.
+</dd>
+
+<dt>"Image with Transparent Parts - Main/Mask Separation Format"</dt>
+<dd>
+ Specifies the main/mask separation format as the output format for images with transparency information. Select what to use for the main/mask below. Also, for JPEG, you can select the JPEG compression quality by clicking the "JPEG Options" button.
+</dd>
+
+<dt>"Image with Transparent Parts - Treat input image as ltAddAlpha format"</dt>
+<dd>
+ If this option is checked, the input image is treated as being in ltAddAlpha format, i.e., an additive alpha blending format suitable for display by specifying ltAddAlpha in KiriKiri's <at href="f_Layer_type.html">Layer.type</at> property. The input image formats affected by this option are BMP, PNG, and main/mask separation format; PSD format is not affected.<r/>
+ If this option is not checked, the input image is treated as being in ltAlpha format. Since the output format of most graphics software and the PNG specification are in ltAlpha format, this option should normally not be checked.<r/>
+ If this option is not checked and "Output in ltAddAlpha format" described below is checked, the Image Format Converter will perform conversion from ltAlpha format to ltAddAlpha format.<r/>
+ Checking this option automatically checks the "Output in ltAddAlpha format" option. Also, the "Color info for fully transparent areas" option becomes unavailable (neither alpha nor color information will be processed by the Image Format Converter).<r/>
 </dd>
 
 
-<dt>「透明部分のある画像 - 完全透明部分の色情報」</dt>
+<dt>"Image with Transparent Parts - Output in ltAddAlpha format"</dt>
 <dd>
-　画像の完全に透明な部分の処理を指定します。<r/>
-　通常、ltAlpha 形式の画像の場合、完全に透明な部分でも色の情報を持っています。その部分は完全に透明なので表示するときは単に無視されるのですが、画像の加工 ( JPEG等による圧縮も含む ) を行うときは無視されません。<r/>
-　この完全に透明な部分の処理の方式を指定します。<r/>
+ If this option is checked, the output image will be in ltAddAlpha format.<r/>
+ If this option is not checked, the output image format will be ltAlpha format, or in the case of input from a PSD file, a format corresponding to the blend mode of the layers contained in that file.<r/>
+ Since various graphics software and the PNG specification only accept images in ltAlpha format, do not check this normally unless you are using the output image specifically for KiriKiri.<r/>
+ If this option is checked, the "Color info for fully transparent areas" option becomes unavailable (neither alpha nor color information will be processed by the Image Format Converter).<r/>
+</dd>
+
+
+<dt>"Image with Transparent Parts - Color info for fully transparent areas"</dt>
+<dd>
+ Specifies the processing for completely transparent parts of the image.<r/>
+ Normally, in the case of an ltAlpha format image, even completely transparent parts have color information. Those parts are simply ignored when displaying because they are completely transparent, but they are not ignored when processing the image (including compression by JPEG, etc.).<r/>
+ Specifies the processing method for these completely transparent parts.<r/>
 <r/>
 <dl>
-<dt>除去</dt>
+<dt>Remove</dt>
 <dd>
-　除去を指定すると、完全に透明な部分の色情報は除去されます ( 正確には真っ黒で塗りつぶされる )。<r/>
-　通常はこの指定でOKです。
+ If Remove is specified, color information in completely transparent parts is removed (more accurately, filled with solid black).<r/>
+ Normally, this setting is fine.
 </dd>
 
-<dt>そのまま</dt>
+<dt>Keep</dt>
 <dd>
-　処理を行いません。元の画像そのままになります。<r/>
-　完全透明部分にゴミがある場合、そのゴミまで圧縮することになるので圧縮率が悪くなります。
+ No processing is performed. It remains as the original image.<r/>
+ If there is noise in the completely transparent parts, that noise will also be compressed, resulting in poor compression ratios.
 </dd>
 
-<dt>合成</dt>
+<dt>Synthesize</dt>
 <dd>
-　完全透明部分の色を、その周りにある不透明な部分の色から推測し、合成します。<r/>
-　合成の強度を 1, 2, 3, 5, 8 pixel から選べます。ここでピクセル単位で指定された距離内にある不透明な部分のピクセルの色から、完全透明部分の色を合成します。値が大きいほど処理に時間がかかります。ここで指定した距離外にある完全透明な部分の色は除去されます。<r/>
-　たとえば JPEG でメイン画像を圧縮する場合、JPEG の特性上、急激な色の変化がある場所ではモスキートノイズが発生します。これは前景画像の場合、もし「合成」処理をおこなわず、完全不透明部分と不透明部分の境界で急激な色の変化がある場合、その部分に発生しやすくなります。「合成」処理を行うと、完全透明部分の色を不透明部分の色から合成するため、色の変化の差を抑え、モスキートノイズの発生を抑えることができます。また、一般的な JPEG では 色の情報が隣のピクセルと混ざりますが、これも「合成」処理を行うことで、(合成しなかった場合の) 意図しない完全透明部分の色と不透明部分の色が混ざる事を抑えることができます。<r/>
-　通常は「除去」を選んでください。完全に透明な部分には色の情報は必要ありません。また除去を行えば画像の圧縮後のファイルサイズも小さくすることができます。
+ The color of completely transparent parts is estimated and synthesized from the colors of the surrounding opaque parts.<r/>
+ You can choose the synthesis strength from 1, 2, 3, 5, or 8 pixels. The color of completely transparent parts is synthesized from the colors of opaque pixels within the distance specified here in pixels. Larger values take more time to process. Colors in completely transparent parts outside the distance specified here are removed.<r/>
+ For example, when compressing a main image with JPEG, mosquito noise occurs in places with sudden color changes due to the characteristics of JPEG. In the case of a foreground image, if "Synthesize" processing is not performed and there is a sudden color change at the boundary between completely transparent and opaque parts, noise is likely to occur in that area. By performing "Synthesize" processing, the color of the completely transparent part is synthesized from the color of the opaque part, suppressing the difference in color change and reducing the occurrence of mosquito noise. Also, in general JPEG, color information mixes with adjacent pixels, but by performing "Synthesize" processing, you can suppress the unintended mixing of colors between completely transparent and opaque parts (which would happen if not synthesized).<r/>
+ Normally, please select "Remove". Color information is not needed in completely transparent parts. Also, removing it can reduce the file size after image compression.
 </dd>
 </dl>
-　「ltAddAlpha形式で出力する」がチェックされている場合はこのオプションは使用不可になります。ltAddAlpha形式での「完全透明」は、不透明度0、色は真っ黒以外にあり得ないからです。<r/>
+ This option is unavailable if "Output in ltAddAlpha format" is checked. This is because "completely transparent" in ltAddAlpha format cannot be anything other than opacity 0 and color solid black.<r/>
 </dd>
 
-<dt>「出力フォルダ - 入力ファイルと同じフォルダ」</dt>
+<dt>"Output Folder - Same folder as input file"</dt>
 <dd>
-　出力するファイルを、入力ファイルとおなじフォルダに出力するようにします。
+ Outputs the file to the same folder as the input file.
 </dd>
 
-<dt>「出力フォルダ - 指定フォルダ」</dt>
+<dt>"Output Folder - Specified folder"</dt>
 <dd>
-　出力ファイルを、下の入力欄に指定したフォルダに出力します。<r/>
-　「参照 ...」ボタンをクリックすると、出力フォルダを選択するダイアログボックスを表示することができます。<r/>
-　入力欄に相対フォルダを指定した場合は、入力ファイルのあるフォルダからの相対位置で指定することができます。
+ Outputs the file to the folder specified in the input field below.<r/>
+ Clicking the "Browse..." button allows you to display a dialog box to select the output folder.<r/>
+ If a relative folder is specified in the input field, it can be specified as a relative position from the folder where the input file is located.
 </dd>
 
-<dt>「出力フォルダ - 同名のファイルがあった場合に上書きする」</dt>
+<dt>"Output Folder - Overwrite if a file with the same name exists"</dt>
 <dd>
-　このチェックボックスをチェックすると、同名のファイルがあった場合、上書きします。
+ If this checkbox is checked, it will overwrite if a file with the same name exists.
 </dd>
 
-<dt>「エラーが発生しなかった場合はログを表示しない」</dt>
+<dt>"Do not show log if no errors occurred"</dt>
 <dd>
-　このチェックボックスをチェックすると、変換が終わって、変換中にエラーが発生しなかった場合は、ログを確認するためのウィンドウを表示しません。
+ If this checkbox is checked, the window for checking the log will not be displayed if the conversion finishes and no errors occurred during conversion.
 </dd>
 
-<dt>「閉じる」</dt>
+<dt>"Close"</dt>
 <dd>
-　このツールを終了します。
+ Exits this tool.
 </dd>
 </dl>
 </para>
 
 
 </doc>
-
-

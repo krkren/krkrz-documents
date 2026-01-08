@@ -1,145 +1,145 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>コマンドラインオプション</title>
+<title>Command Line Options</title>
 
 <para>
-<ptitle>コマンドラインオプション</ptitle>
-　吉里吉里のコマンドラインオプションは通常のコマンドラインから指定するほかに、<link href="Releaser" /> ( krkrrel.exe ) または <link href="Configure" /> ( -userconf ) で設定ファイルに保存することができます。<r/>
-オプションが読み込まれる順序は
+<ptitle>Command Line Options</ptitle>
+KiriKiri's command line options can be specified from a normal command line, or saved to a configuration file using the <link href="Releaser" /> ( krkrrel.exe ) or <link href="Configure" /> ( -userconf ).<r/>
+The order in which options are loaded is as follows:
 <ol>
-  <li>吉里吉里本体に埋め込まれたオプション</li>
-  <li>吉里吉里コアと同じディレクトリにある .cf ファイル (ファイル名は吉里吉里コアと同じ)</li>
-  <li>「エンジン設定」(-userconf)が出力した、データ保存場所にある .cfu ファイル (ファイル名は吉里吉里コアと同じ)</li>
-  <li>コマンドラインに指定されたオプション</li>
+  <li>Options embedded in the KiriKiri core itself</li>
+  <li>The .cf file located in the same directory as the KiriKiri core (filename is the same as the KiriKiri core)</li>
+  <li>The .cfu file located in the data storage location, output by "Engine Configuration" (-userconf) (filename is the same as the KiriKiri core)</li>
+  <li>Options specified on the command line</li>
 </ol>
-となります。.cf ファイルや .cfu ファイルについては、存在しない場合は単に無視されます。後に読み込んだ指定ほど優先されます。<r/>
+If the .cf or .cfu files do not exist, they are simply ignored. Options loaded later take higher priority.<r/>
 <r/>
-　コマンドラインのオプションは基本的に '-' (ハイフン) に引き続き、オプションの名前が来ます。そのあとそれに引き続き '=' を書き、オプションの値を書きます。<r/>
-　たとえば -cdvol というオプションの値が direct ならば、-cdvol=direct と指定します。<r/>
+Command line options basically consist of a '-' (hyphen) followed by the option name. This is followed by an '=' and then the value of the option.<r/>
+For example, if the value of the -cdvol option is direct, you specify it as -cdvol=direct.<r/>
 <r/>
-　「起動オプション」や「デバッグ関連のオプション」や「システム互換性関連のオプション」を除けば、ほとんどは環境依存の問題を解決するための微調整を行うオプションです。<r/>
-　環境依存の問題の解決については<link href="ComputerDependentProblems" />も参照してください。<r/>
+Except for "Startup Options," "Debug-related Options," and "System Compatibility Options," most are options for fine-tuning to resolve environment-dependent issues.<r/>
+For resolving environment-dependent issues, please also refer to <link href="ComputerDependentProblems" />.<r/>
 <r/>
 <note>
-Releaser や -userconf では、吉里吉里の実行可能ファイルや外部の設定ファイルを書き換えてこれらのオプションを変更できますが、通常はデフォルトのままで問題ありません。<b>作品を制作する側固有の環境で問題があるということで、これらのオプションをデフォルトの物でないものに変えたままの実行可能ファイルや設定ファイルを一般に配布することはおすすめできません</b> (もちろん -datapath のように配布形態や使用形態にしたがって設定すべきオプションもあります)。
+With Releaser or -userconf, you can change these options by modifying the KiriKiri executable or external configuration files, but normally the defaults are fine. <b>It is not recommended to distribute executables or configuration files with these options changed from their defaults just because there is an issue in the developer's specific environment</b> (of course, there are options like -datapath that should be set according to the distribution or usage format).
 </note>
 <r/>
-下のリストの中で「動的に変更可能」という表記がある物は、<a href="f_System_setArgument.html">System.setArgument</a> メソッドで変更が可能な物です。それ以外のオプションは動的に変更を行うことは出来ません。<r/>
+Items in the list below marked as "Dynamically changeable" can be modified using the <a href="f_System_setArgument.html">System.setArgument</a> method. Other options cannot be changed dynamically.<r/>
 </para>
 
 
 
 <para>
-<ptitle>起動オプション</ptitle>
-　吉里吉里の特定の機能のみを呼び出して使うために以下のオプションがあります。<r/>
+<ptitle>Startup Options</ptitle>
+The following options are available for calling and using specific functions of KiriKiri.<r/>
 <dl>
-<dt>-<kw>userconf</kw> (エンドユーザ向け設定ツールの起動)</dt>
+<dt>-<kw>userconf</kw> (Launch end-user configuration tool)</dt>
 <dd>
-　本体に内蔵されているエンドユーザ向け設定ツールを起動します。<r/>
+Launches the built-in configuration tool for end users.<r/>
 </dd>
-<dt>-<kw>about</kw> (著作権情報ダイアログボックスの表示)</dt>
+<dt>-<kw>about</kw> (Display copyright information dialog box)</dt>
 <dd>
-　「バージョン・著作権・環境情報」のダイアログボックスを表示します。
+Displays the "Version, Copyright, and Environment Information" dialog box.
 </dd>
-<dt>-<kw>sel</kw> (「フォルダ/アーカイブの選択」ダイアログボックスの表示)</dt>
+<dt>-<kw>sel</kw> (Display "Select Folder/Archive" dialog box)</dt>
 <dd>
-　「フォルダ/アーカイブの選択」ダイアログボックスを表示します。data.xp3 などのデータは自動検出されません。<r/>
-　コマンドラインパラメータとして(先頭にハイフンをつけずに)フォルダを指定すると、そのフォルダが初期状態で選択された状態で「フォルダ/アーカイブの選択」ダイアログボックスを開くことができます。
+Displays the "Select Folder/Archive" dialog box. Data such as data.xp3 will not be automatically detected.<r/>
+If you specify a folder as a command line parameter (without a hyphen at the beginning), you can open the "Select Folder/Archive" dialog box with that folder selected by default.
 </dd>
-<dt>-<kw>printdatapath</kw> (データ保存場所の出力)</dt>
+<dt>-<kw>printdatapath</kw> (Output data storage location)</dt>
 <dd>
-　データ保存場所 (-datapathオプション) の設定内容と改行を標準出力に出力し、終了します。このオプションは、吉里吉里本体と連携してセーブデータの管理を行う外部アプリケーションなどが利用するためにあります。<r/>
-　データ保存場所のうち、$(exepath) などの特殊な文字列は、置き換えられた後の状態で出力されます。<r/>
-　吉里吉里本体は GUI アプリケーションのため、コマンドプロンプトから単に吉里吉里実行可能ファイルに -printdatapath オプションを指定して起動しても何も表示されません。出力内容を取り込むにはパイプやリダイレクトを用いてください。<r/>
+Outputs the settings of the data storage location (-datapath option) followed by a newline to standard output, then exits. This option is intended for use by external applications that manage save data in cooperation with KiriKiri.<r/>
+Special strings like $(exepath) in the data storage location will be output after being replaced.<r/>
+Since KiriKiri is a GUI application, nothing will be displayed if you simply run the KiriKiri executable from a command prompt with the -printdatapath option. Use pipes or redirection to capture the output.<r/>
 </dd>
-<dt>-<kw>startup</kw> (起動スクリプトの指定)</dt>
+<dt>-<kw>startup</kw> (Specify startup script)</dt>
 <dd>
-　最初に実行するスクリプトファイル名を指定します。<r/>
-　指定がない場合は、startup.tjs が実行されます。<r/>
+Specifies the filename of the script to be executed first.<r/>
+If not specified, startup.tjs is executed.<r/>
 </dd>
 </dl>
 </para>
 
 <para>
-<ptitle>システム全般のオプション</ptitle>
+<ptitle>General System Options</ptitle>
 <dl>
-<dt>-<kw>datapath</kw> (データ保存場所)</dt>
+<dt>-<kw>datapath</kw> (Data storage location)</dt>
 <dd>
-　吉里吉里が様々なデータを保存する場所(フォルダ)の設定です。<r/>
-　設定可能な値は文字列で指定します。<r/>
-　単純にフォルダ名をフルパスで指定することもできますが、通常は以下の特殊な文字列を埋め込んで使います。<r/>
+Sets the location (folder) where KiriKiri saves various data.<r/>
+The value is specified as a string.<r/>
+You can simply specify the folder name as a full path, but usually, the following special strings are embedded and used.<r/>
 <r/>
 <dl>
- <dt>$(exepath)</dt> <dd>System.exePath(吉里吉里コアのあるフォルダ名)に置き換えられます。</dd>
- <dt>$(appdatapath)</dt> <dd>System.appDataPath(ユーザのホームフォルダ)に置き換えられます。このフォルダは通常、隠しフォルダになっています。</dd>
- <dt>$(personalpath)</dt> <dd>System.personalPath(マイドキュメントフォルダ)に置き換えられます。</dd>
- <dt>$(vistapath)</dt> <dd>OSがVista以降の場合に$(appdatapath)に、Vista未満の場合に$(exepath)に置き置き換えられます。</dd>
- <dt>$(savedgamespath)</dt> <dd>System.savedGamesPath(ゲームのセーブデータ用フォルダ)に置き換えられます。(1.1.0以降)</dd>
+ <dt>$(exepath)</dt> <dd>Replaced by System.exePath (the folder where the KiriKiri core is located).</dd>
+ <dt>$(appdatapath)</dt> <dd>Replaced by System.appDataPath (the user's home folder). This folder is usually a hidden folder.</dd>
+ <dt>$(personalpath)</dt> <dd>Replaced by System.personalPath (the My Documents folder).</dd>
+ <dt>$(vistapath)</dt> <dd>Replaced by $(appdatapath) if the OS is Vista or later, and by $(exepath) if it is earlier than Vista.</dd>
+ <dt>$(savedgamespath)</dt> <dd>Replaced by System.savedGamesPath (the folder for game save data). (Since 1.1.0)</dd>
 </dl>
 <r/>
-デフォルトでは「$(exepath)\savedata」となっています。この設定は、インストーラなどを特に用いずにプログラムを zip 等で圧縮・アーカイブして配布し、ユーザにそれを展開して頂いてすぐにプログラム実行、という配布形態に適した設定です。<r/>
-しかし、このデフォルトの設定では、Program Files 以下にプログラムを配置した場合、Program Files 以下に書き込む権限がない、Windows XP 等の「制限ユーザ」等でプログラムを起動した場合に、ファイルを書き込むことができずにエラーになる可能性があります。<r/>
-「$(appdatapath)\アプリケーション名」や「$(personalpath)\アプリケーション名」のような名称にすれば、ユーザごとのフォルダに書き込まれることになりますのでこういう問題は発生しにくくなりますが、セーブデータ保存場所の見通しが悪くなるのでユーザがとまどうかもしれません。<r/>
+The default is "$(exepath)\savedata". This setting is suitable for distribution formats where the program is compressed/archived in zip format without using an installer, and the user executes the program immediately after extracting it.<r/>
+However, with this default setting, if the program is placed under Program Files, there may be no permission to write under Program Files. If the program is launched by a "Limited User" on Windows XP, etc., an error may occur because files cannot be written.<r/>
+If you use a name like "$(appdatapath)\ApplicationName" or "$(personalpath)\ApplicationName", files will be written to a folder for each user, making such problems less likely to occur. However, this may confuse users as the save data location becomes less obvious.<r/>
 <r/>
-このオプションで指定されたデータ保存場所は、吉里吉里起動時に、もし存在していなければ作成が試みられます。作成が失敗してもそこで終了とはならずに処理が続行しますので、エラー処理はユーザのスクリプト内で(データが保存できないなどの例外を捕捉することにより)行ってください。<r/>
+The data storage location specified by this option will be attempted to be created if it does not exist when KiriKiri starts. Even if creation fails, processing continues without exiting, so please handle errors within the user's script (by catching exceptions such as data being unable to be saved).<r/>
 <r/>
-「エンジン設定」で行った設定は、このデータ保存場所で指定したフォルダの中に作成されます。そのほか、各種ログも、標準ではこのフォルダの中に作成されます。<r/>
+Settings made in "Engine Configuration" are created inside the folder specified by this data storage location. In addition, various logs are also created in this folder by default.<r/>
 </dd>
 
-<dt>-<kw>contfreq</kw> (処理ウェイト)</dt>
+<dt>-<kw>contfreq</kw> (Processing weight)</dt>
 <dd>
-　トランジション時などの処理をウェイトをかけながら指定の周期で呼び出すことにより、CPU使用率を低減させるかどうかの設定です。<r/>
-　設定可能な値は <b>'0' (ウェイトをかけない)</b> あるいは正の整数で、このオプションを指定しないと '0' が指定されたものと見なされます。正の整数を指定した場合は Hz 単位の周期を指定することができます。<r/>
-　このオプションの影響を受けるのはトランジションや System.addContinuousHandler で登録した Continuous ハンドラです。<r/>
-　'0' にすると、トランジションを実行中などにCPUを使い切って処理を行います。<r/>
-　数値を指定すると、その周期で処理を行うようになり、余った時間はCPUを休ませることになります。これにより、他のアプリケーションへの影響や、CPU温度の上昇、コンピュータの消費電力を抑えることができます。低い数値を指定すればするほどこの効果は高まります。ただし、低い数値を指定するとトランジションなどがなめらかでなくなる可能性があります。<r/>
-　waitvsync オプションで垂直同期待ちを行うと、Continuous ハンドラが垂直同期のタイミングに合わせて駆動されるようになり、contfreq オプションの設定内容は無視されます。<r/>
-　このオプションは動的に変更することが可能ですが、変更が反映されるのは次にトランジションや Continuous ハンドラの動作がとぎれた時です。<r/>
+Sets whether to reduce CPU usage by calling processes such as transitions at a specified cycle while applying weights.<r/>
+Possible values are <b>'0' (no weight)</b> or a positive integer. If this option is not specified, '0' is assumed. If a positive integer is specified, you can specify the cycle in Hz.<r/>
+This option affects transitions and Continuous handlers registered with System.addContinuousHandler.<r/>
+If set to '0', the CPU will be fully utilized during transitions and other processes.<r/>
+If a numerical value is specified, processing will occur at that cycle, and the CPU will rest during the remaining time. This can reduce the impact on other applications, CPU temperature rise, and computer power consumption. The lower the value specified, the higher this effect. However, specifying a low value may cause transitions to become less smooth.<r/>
+If vertical sync waiting is performed with the waitvsync option, the Continuous handler will be driven according to the vertical sync timing, and the setting of the contfreq option will be ignored.<r/>
+This option can be changed dynamically, but the change will be reflected the next time the transition or Continuous handler operation pauses.<r/>
 </dd>
 
 
 
 
-<dt>-<kw>memusage</kw> (メモリ使用量)</dt>
+<dt>-<kw>memusage</kw> (Memory usage)</dt>
 <dd>
-　メモリ使用量の設定です。<r/>
-　設定可能な値は <b>'normal' (通常)</b> あるいは <b>'low' (低い)</b> で、このオプションを指定しないと 'normal' が指定されたものと見なされます。<r/>
-　「低い」を選択すると「通常」を選択したときよりもメモリを節約して使用するようになります。しかし「低い」を選択すると、吉里吉里内部の様々なキャッシュ機構が制限されたり、 TJS2 のハッシュ表のサイズが制限されるため、パフォーマンスは低下します。また、「低い」を選択すると、「グラフィック-画像キャッシュ制限」は強制的に「キャッシュを行わない」の設定であると見なされます。
+Sets the memory usage.<r/>
+Possible values are <b>'normal' (Normal)</b> or <b>'low' (Low)</b>. If this option is not specified, 'normal' is assumed.<r/>
+Selecting "Low" will save more memory than selecting "Normal". However, selecting "Low" will decrease performance because various internal cache mechanisms in KiriKiri are restricted and the size of TJS2 hash tables is limited. Also, if "Low" is selected, "Graphics - Image Cache Limit" is forcibly considered to be set to "Do not cache".
 </dd>
-<dt>-<kw>timerprec</kw> (タイマの精度)</dt>
+<dt>-<kw>timerprec</kw> (Timer precision)</dt>
 <dd>
-　タイマの精度の高さの設定です。<r/>
-　設定可能な値は <b>'normal' (通常)</b> あるいは <b>'higher' (やや高い)</b> あるいは <b>'high' (高い)</b> で、このオプションを指定しないと 'normal' が指定されたものと見なされます。<r/>
-　'higher' や 'high' を指定すると全体的にタイマ ( 時間やタイミングに関する物のほとんども含む ) の精度が高くなり、KAG での文字表示のもたつき感や MIDI 再生のもたつき感が解消される可能性がありますが、パフォーマンスが低下する可能性もあります。
-</dd>
-
-<dt>-<kw>laxtimer</kw> (タイマイベント許容量制限)</dt>
-<dd>
-　一度にシステムに蓄えられるタイマイベントの数 ( 最大発生許容量 ) を制限し、タイマイベントが溜まりすぎて処理できなくなる状況を回避するかどうかの設定です。<r/>
-　設定可能な値は <b>'no' (しない)</b> あるいは <b>'yes' (する)</b> で、このオプションを指定しないと 'no' が指定されたものと見なされます。<r/>
-　処理の非常に遅いコンピュータや、非常に重たい処理をタイマで駆動するような場面などでは、タイマによって発生したイベントに対応しきれず、操作などに吉里吉里が応答しづらくなる場合があります。このオプションで 'yes' を指定すると、システムに蓄えられるタイマイベントの最大発生許容量を常に 1 ( Timer クラスの capacity プロパティが 1 の状態 ) に固定します。これによりシステムが処理しきれないようなタイマイベントの発生を抑えることができますが、通常、タイマの精度や正確性は失われます。<r/>
+Sets the level of timer precision.<r/>
+Possible values are <b>'normal' (Normal)</b>, <b>'higher' (Slightly high)</b>, or <b>'high' (High)</b>. If this option is not specified, 'normal' is assumed.<r/>
+Specifying 'higher' or 'high' increases the overall precision of timers (including most things related to time and timing), which may resolve sluggishness in KAG character display or MIDI playback, but may also decrease performance.
 </dd>
 
-<dt>-<kw>lowpri</kw> (低優先度)</dt>
+<dt>-<kw>laxtimer</kw> (Timer event capacity limit)</dt>
 <dd>
-　優先度を、トランジション時などに低くするかどうかの設定です。<r/>
-　設定可能な値は <b>'no' (しない)</b> あるいは <b>'yes' (する)</b> で、このオプションを指定しないと 'no' が指定されたものと見なされます。<r/>
-　'yes' にすると、トランジションを実行中など、吉里吉里のメインスレッドが連続して CPU を使用する場面になると、メインスレッドの実行優先度を下げるようになります。これにより、トランジション中の音飛びや、トランジション中に他のアプリケーションが操作しづらくなるなどの症状が改善される場合があります。
+Sets whether to limit the number of timer events that can be stored in the system at once (maximum capacity) to avoid situations where too many timer events accumulate and cannot be processed.<r/>
+Possible values are <b>'no' (do not limit)</b> or <b>'yes' (limit)</b>. If this option is not specified, 'no' is assumed.<r/>
+On very slow computers or in situations where very heavy processes are driven by timers, KiriKiri may become unresponsive to operations because it cannot keep up with events generated by timers. If 'yes' is specified for this option, the maximum capacity of timer events stored in the system is always fixed to 1 (the state where the capacity property of the Timer class is 1). This can suppress the generation of timer events that the system cannot process, but normally, timer precision and accuracy will be lost.<r/>
 </dd>
 
-<dt>-<kw>exceptionexe</kw> (例外時起動エディタ)</dt>
+<dt>-<kw>lowpri</kw> (Low priority)</dt>
 <dd>
-　例外発生時に起動するエディタを指定します。<r/>
+Sets whether to lower the priority during transitions and other processes.<r/>
+Possible values are <b>'no' (do not lower)</b> or <b>'yes' (lower)</b>. If this option is not specified, 'no' is assumed.<r/>
+If set to 'yes', the execution priority of the main thread will be lowered when the main thread of KiriKiri uses the CPU continuously, such as during transitions. This may improve symptoms such as sound skipping during transitions or other applications becoming difficult to operate during transitions.
 </dd>
 
-<dt>-<kw>exceptionarg</kw> (例外時起動エディタオプション)</dt>
+<dt>-<kw>exceptionexe</kw> (Editor to launch on exception)</dt>
 <dd>
-　例外発生時にエディタを起動する時に指定するオプションを指定します。<r/>
-　単純に引数を指定することもできますが、通常は以下の特殊な文字列を埋め込んで使います。<r/>
+Specifies the editor to launch when an exception occurs.<r/>
+</dd>
+
+<dt>-<kw>exceptionarg</kw> (Options for editor on exception)</dt>
+<dd>
+Specifies the options to be used when launching the editor upon an exception.<r/>
+You can simply specify arguments, but usually, the following special strings are embedded and used.<r/>
 <r/>
 <dl>
- <dt>%filepath%</dt> <dd>例外の発生したスクリプトのファイルパスに置き換えられます。</dd>
- <dt>%line%</dt> <dd>例外の発生した行番号に置き換えられます。</dd>
+ <dt>%filepath%</dt> <dd>Replaced by the file path of the script where the exception occurred.</dd>
+ <dt>%line%</dt> <dd>Replaced by the line number where the exception occurred.</dd>
 </dl>
 <r/>
 </dd>
@@ -154,44 +154,44 @@ Releaser や -userconf では、吉里吉里の実行可能ファイルや外部
 </para>
 
 <para>
-<ptitle>入力関連のオプション</ptitle>
+<ptitle>Input Related Options</ptitle>
 <dl>
 
-<dt>-<kw>wheel</kw> (マウスホイール回転検出方法)</dt>
+<dt>-<kw>wheel</kw> (Mouse wheel rotation detection method)</dt>
 <dd>
-　マウスホイールの回転をどのように検出するかの設定です。<r/>
-　設定可能な値は <b>'no' (使わない)</b> あるいは <b>'dinput' (DierctInput)</b> あるいは <b>'message' (ウィンドウメッセージ)</b> で、このオプションを指定しないと 'dinput' が指定されたものと見なされます。<r/>
-　「使わない」を選択するとマウスホイールは使用不可能になります。「DirectInput」を選択するとDirectInputを使用するようになります。「ウィンドウメッセージ」を選択するとDirectInputを使用せずにマウスホイールの回転を検出するようになります。設定を変えると、マウスホイール関連の不具合が改善される可能性があります。
+Sets how to detect mouse wheel rotation.<r/>
+Possible values are <b>'no' (do not use)</b>, <b>'dinput' (DirectInput)</b>, or <b>'message' (window message)</b>. If this option is not specified, 'dinput' is assumed.<r/>
+Selecting "Do not use" makes the mouse wheel unusable. Selecting "DirectInput" uses DirectInput. Selecting "Window message" detects mouse wheel rotation without using DirectInput. Changing this setting may resolve issues related to the mouse wheel.
 </dd>
 
-<dt>-<kw>joypad</kw> (パッド使用可否)</dt>
+<dt>-<kw>joypad</kw> (Gamepad availability)</dt>
 <dd>
-ゲームパッド(ジョイスティック)を使用するかどうかの設定です。<r/>
-　設定可能な値は <b>'no' (使わない)</b> あるいは <b>'dinput' (使う)</b> で、このオプションを指定しないと 'dinput' が指定されたものと見なされます。<r/>
-　「使わない」を選択するとパッドは使用不可能になります。パッドを正常に検出できない場合、あるいはパッドを正常に使用できない場合に「使わない」の設定にしてください。</dd>
+Sets whether to use a gamepad (joystick).<r/>
+Possible values are <b>'no' (do not use)</b> or <b>'dinput' (use)</b>. If this option is not specified, 'dinput' is assumed.<r/>
+Selecting "Do not use" makes the pad unusable. Set this to "Do not use" if the pad cannot be detected normally or cannot be used normally.</dd>
 
 
-<dt>-<kw>paddelay</kw> (パッドキーリピートディレイ)</dt>
+<dt>-<kw>paddelay</kw> (Pad key repeat delay)</dt>
 <dd>
-ゲームパッド(ジョイスティック)のキーリピートまでの時間をミリ秒単位で指定します。<r/>
-　設定可能な値は正の数あるいは-1で、-1を指定するとキーリピートを行わなくなります。このオプションを指定しないと 500 が指定されたものと見なされます。<r/>
-　このオプションは動的に変更可能です。
-</dd>
-
-
-<dt>-<kw>padinterval</kw> (パッドキーリピート間隔)</dt>
-<dd>
-パッド(ジョイスティック)のキーリピートの間隔をミリ秒単位で指定します。値が小さいほどリピートが高速になります。<r/>
-　設定可能な値は正の数で、このオプションを指定しないと 30 が指定されたものと見なされます<r/>
-　このオプションは動的に変更可能です。
+Specifies the time until key repeat for the gamepad (joystick) in milliseconds.<r/>
+Possible values are a positive number or -1. Specifying -1 disables key repeat. If this option is not specified, 500 is assumed.<r/>
+This option is dynamically changeable.
 </dd>
 
 
-<dt>-<kw>controlime</kw> (IME状態制御)</dt>
+<dt>-<kw>padinterval</kw> (Pad key repeat interval)</dt>
 <dd>
-　IME(日本語などの変換入力ソフト)の状態制御(有効か無効かなどの制御)を行うかどうかの設定です。<r/>
-　設定可能な値は <b>'yes' (行う)</b> あるいは <b>'no' (行わない)</b> で、このオプションを指定しないと 'yes' が指定されたものと見なされます。<r/>
-　「行わない」を選択すると、「IMEを通じて入力を行う日本語などの言語の入力ができない」といった不具合を回避できる可能性があります。<r/>
+Specifies the interval for key repeat for the pad (joystick) in milliseconds. Smaller values result in faster repeats.<r/>
+Possible values are positive numbers. If this option is not specified, 30 is assumed.<r/>
+This option is dynamically changeable.
+</dd>
+
+
+<dt>-<kw>controlime</kw> (IME state control)</dt>
+<dd>
+Sets whether to perform state control (enable/disable, etc.) of the IME (Input Method Editor for Japanese, etc.).<r/>
+Possible values are <b>'yes' (perform)</b> or <b>'no' (do not perform)</b>. If this option is not specified, 'yes' is assumed.<r/>
+Selecting "Do not perform" may resolve issues such as "unable to input languages like Japanese through the IME."<r/>
 </dd>
 
 </dl>
@@ -199,125 +199,125 @@ Releaser や -userconf では、吉里吉里の実行可能ファイルや外部
 </para>
 
 <para>
-<ptitle>サウンド関連のオプション</ptitle>
+<ptitle>Sound Related Options</ptitle>
 <dl>
-<dt>-<kw>wsdecpri</kw> (PCM デコードスレッド優先順位)</dt>
+<dt>-<kw>wsdecpri</kw> (PCM decoding thread priority)</dt>
 <dd>
-　PCM のデコードを行うスレッドの優先順位です。<r/>
-　設定可能な値は <b>'0' (アイドル(最低))</b>, <b>'1' (低い)</b>, <b>'2' (通常以下)</b>, <b>'3' (通常)</b>, <b>'4' (通常以上)</b>, <b>'5' (高い)</b> のいずれかで、このオプションを指定しないと '1' が指定されたものと見なされます。<r/>
-　優先順位を高くすると PCM ( 無圧縮 wave や OggVorbis 等 ) の再生中の音飛びが軽減される場合がありますが、トランジションがなめらかでなくなったり、操作への応答性が悪くなる可能性があります。<r/>
-　ちなみにここで指定するのは通常時のデコードの優先順位で、緊急時 ( バッファにたまっている残りデータが短くなってきたとき ) は自動的に必要な優先順位を確保します。
+The priority of the thread that performs PCM decoding.<r/>
+Possible values are <b>'0' (Idle (lowest))</b>, <b>'1' (Low)</b>, <b>'2' (Below normal)</b>, <b>'3' (Normal)</b>, <b>'4' (Above normal)</b>, or <b>'5' (High)</b>. If this option is not specified, '1' is assumed.<r/>
+Increasing the priority may reduce sound skipping during playback of PCM (uncompressed wave, OggVorbis, etc.), but transitions may become less smooth and responsiveness to operations may worsen.<r/>
+Note that what is specified here is the decoding priority during normal times; in emergencies (when the remaining data in the buffer becomes short), the necessary priority is automatically secured.
 </dd>
 
-<dt>-<kw>wssoft</kw> (DirectSound ソフトウェアミキシング)</dt>
+<dt>-<kw>wssoft</kw> (DirectSound software mixing)</dt>
 <dd>
-　DirectSoundでソフトウェアを使ってミキシングを行うかどうかの設定です。<r/>
-　設定可能な値は <b>'yes' (ソフトウェアミキシングを行う)</b>, <b>'no' (ソフトウェアミキシングを行わない)</b> のいずれかで、このオプションを指定しないと 'yes' が指定されたものと見なされます。<r/>
-　標準の設定では、ソフトウェアでミキシングを行うので、CPUの負荷が高くなりますが、ハードウェア固有の不具合を回避できる可能性が高くなります。このオプションで 'no' を指定しても(ハードエアでミキシングを行っても) 問題がないならば、CPU 負荷を低くすることができる場合があります。USB オーディオや安価なサウンドカードでは、ミキシングは常に CPU で行う場合があるので、このオプションを変更しても影響が無い場合があります。
+Sets whether to perform mixing using software in DirectSound.<r/>
+Possible values are <b>'yes' (perform software mixing)</b> or <b>'no' (do not perform software mixing)</b>. If this option is not specified, 'yes' is assumed.<r/>
+In the default setting, mixing is performed by software, so the CPU load is higher, but the possibility of avoiding hardware-specific bugs is higher. If there are no problems even if 'no' is specified (mixing is performed by hardware), the CPU load may be reduced. With USB audio or inexpensive sound cards, mixing may always be performed by the CPU, so changing this option may have no effect.
 </dd>
 
-<dt>-<kw>wsrecreate</kw> (DirectSound セカンダリバッファ再生成)</dt>
+<dt>-<kw>wsrecreate</kw> (DirectSound secondary buffer recreation)</dt>
 <dd>
-　DirectSoundでセカンダリバッファを常に再生成を行うかどうかの設定です。<r/>
-　設定可能な値は <b>'yes' (常に再生成)</b>, <b>'no' (必要に応じて再生成)</b> のいずれかで、このオプションを指定しないと 'no' が指定されたものと見なされます。<r/>
-　吉里吉里ではいったん作成したセカンダリバッファは、チャネル数やサンプリング周波数などの条件が同一であれば再利用しますが、'yes' を指定すると再利用をせずに常に再生成するようになります。環境によっては再生開始時の音飛びや音切れなどの不安定性が改善される可能性があります。
+Sets whether to always recreate the secondary buffer in DirectSound.<r/>
+Possible values are <b>'yes' (always recreate)</b> or <b>'no' (recreate as needed)</b>. If this option is not specified, 'no' is assumed.<r/>
+In KiriKiri, a secondary buffer once created is reused if conditions such as the number of channels and sampling frequency are the same, but if 'yes' is specified, it will always be recreated without being reused. Depending on the environment, instabilities such as sound skipping or cutting at the start of playback may be improved.
 </dd>
 
-<dt>-<kw>wsl1len</kw> (DirectSound セカンダリバッファ長さ)</dt>
+<dt>-<kw>wsl1len</kw> (DirectSound secondary buffer length)</dt>
 <dd>
-　DirectSound セカンダリバッファの長さの設定です。<r/>
-　設定可能な値は 整数で、ミリ秒単位で指定します。最低 250ms 必要です。このオプションを指定しないと 1000 が指定されたものと見なされます。<r/>
-　ここで指定するのは実際に DirectSound のセカンダリバッファとして確保されるバッファの長さです。<r/>
-　一般に、長くとると再生は安定しますが、メモリを消費します。
+Sets the length of the DirectSound secondary buffer.<r/>
+The value is an integer, specified in milliseconds. At least 250ms is required. If this option is not specified, 1000 is assumed.<r/>
+What is specified here is the length of the buffer actually secured as the DirectSound secondary buffer.<r/>
+Generally, a longer length makes playback more stable but consumes more memory.
 </dd>
 
-<dt>-<kw>wsl2len</kw> (DirectSound セカンダリ補助バッファ長さ)</dt>
+<dt>-<kw>wsl2len</kw> (DirectSound secondary auxiliary buffer length)</dt>
 <dd>
-　DirectSound セカンダリバッファ用の２次バッファの長さの設定です。<r/>
-　設定可能な値は 整数で、ミリ秒単位で指定します。最低 250ms 必要です。このオプションを指定しないと 1000 が指定されたものと見なされます。<r/>
-　吉里吉里は、DirectSound のセカンダリバッファごとに補助バッファを作成し、いったんデコードしたデータをこの補助バッファに蓄積してからセカンダリバッファに転送します。ここで指定するバッファの長さはその補助バッファの長さです。<r/>
-　通常、デコード処理と補助バッファへの蓄積は優先度の低いスレッドで行われますが、補助バッファからセカンダリバッファへの転送は高い優先度を持ったスレッドで行われます。<r/>
-　一般に、長くとると再生は安定しますが、メモリを消費します。また、デコード処理に変化を加えるような制御をした場合、それが実際に発音されるまでのディレイが長くなります。
+Sets the length of the secondary auxiliary buffer for the DirectSound secondary buffer.<r/>
+The value is an integer, specified in milliseconds. At least 250ms is required. If this option is not specified, 1000 is assumed.<r/>
+KiriKiri creates an auxiliary buffer for each DirectSound secondary buffer, stores decoded data in this auxiliary buffer once, and then transfers it to the secondary buffer. The buffer length specified here is the length of that auxiliary buffer.<r/>
+Normally, decoding and storage in the auxiliary buffer are performed in a low-priority thread, but the transfer from the auxiliary buffer to the secondary buffer is performed in a high-priority thread.<r/>
+Generally, a longer length makes playback more stable but consumes more memory. Also, if control that changes the decoding process is applied, the delay until it is actually sounded will be longer.
 </dd>
 
-<dt>-<kw>wsmute</kw> (DirectSound ミュート)</dt>
+<dt>-<kw>wsmute</kw> (DirectSound mute)</dt>
 <dd>
-　DirectSoundでアプリケーションが非アクティブあるいは最小化した際にミュートするか(音量を下げるか)の設定です。<r/>
-　設定可能な値は <b>'never' (ミュートしない)</b>, <b>'minimize' (最小化時)</b>, <b>'deactive' (非アクティブ時)</b> のいずれかで、このオプションを指定しないと 'never' が指定されたものと見なされます。<r/>
-　'never' を選択するとミュートは行われません。'minimize' や 'deactive' では、それぞれアプリケーションが最小化したとき、非アクティブになったときにミュートされます。<r/>
-　ミュートされるのは WaveSoundBuffer で再生される物 ( KAGの場合は BGM に 'Wave' を使っている場合と、効果音 ) だけで、MIDI や CDDA 再生はミュートされません。
+Sets whether to mute (lower the volume) when the application is inactive or minimized in DirectSound.<r/>
+Possible values are <b>'never' (do not mute)</b>, <b>'minimize' (when minimized)</b>, or <b>'deactive' (when inactive)</b>. If this option is not specified, 'never' is assumed.<r/>
+If 'never' is selected, muting is not performed. With 'minimize' or 'deactive', the sound is muted when the application is minimized or becomes inactive, respectively.<r/>
+Only things played with WaveSoundBuffer (in KAG, when 'Wave' is used for BGM, and sound effects) are muted; MIDI and CDDA playback are not muted.
 </dd>
 
-<dt>-<kw>wsmutevol</kw> (DirectSound ミュート音量)</dt>
+<dt>-<kw>wsmutevol</kw> (DirectSound mute volume)</dt>
 <dd>
-　-wsmute (DirectSound ミュート) でのミュート時の音量の設定です。<r/>
-　設定可能な値は 整数で、% 単位で指定します。<r/>
-　「0%」を指定すると完全に無音となり、「50%」を指定すると半分の音量(約-6dB)となります。<r/>
-</dd>
-
-
-<dt>-<kw>wsforcecnv</kw> (DirectSound 強制フォーマット変換)</dt>
-<dd>
-　DirectSoundに再生させるPCMデータを、指定の形式に強制的に変換するかどうかの設定です。<r/>
-　設定可能な値は <b>'none' (変換しない)</b>, <b>'i16' (16bit整数に変換)</b> , <b>'i16m' (16bit整数モノラルに変換)</b> のいずれかで、このオプションを指定しないと 'none' が指定されたものと見なされます。<r/>
-　設定を変更すると再生時の障害が改善する場合があります。'i16m' を選択すると -wsexpandquad オプション ( DirectSound 強制4ch再生 ) の設定は無視されます。
-</dd>
-
-<dt>-<kw>wsuse3d</kw> (DirectSound 3D制御)</dt>
-<dd>
-　DirectSoundで3D制御を行うかどうかの設定です。<r/>
-　設定可能な値は <b>'no' (しない)</b>, <b>'yes' (する)</b> のいずれかで、このオプションを指定しないと 'no' が指定されたものと見なされます。<r/>
-　'yes' を選択すると、サウンドの 3D制御が有効になり、WaveSoundBuffer.posX, WaveSoundBuffer.posY, WaveSoundBuffer.posZ プロパティが有効になります (これらのプロパティは現バージョンでは既に実装されていますが、サポート外です)。<r/>
-　また、多くの環境では、'yes' を選択すると、DirectSound3D により、ステレオやモノラルのサウンドが、サラウンドスピーカーに拡張されて再生されるようになります (たとえば、フロントのスピーカーでしか再生されなかったサウンドが、5.1ch環境の全てのスピーカーで再生されるようになります)。<r/>
-　'yes' を選択すると -wsexpandquad オプション ( DirectSound 強制4ch再生 ) の設定は無視されます。
+Sets the volume when muted with -wsmute (DirectSound mute).<r/>
+The value is an integer, specified in %.<r/>
+Specifying "0%" results in complete silence, and specifying "50%" results in half volume (approx. -6dB).<r/>
 </dd>
 
 
-
-<dt>-<kw>wsexpandquad</kw> (DirectSound 強制4ch再生)</dt>
+<dt>-<kw>wsforcecnv</kw> (DirectSound forced format conversion)</dt>
 <dd>
-　DirectSoundでステレオやモノラルのサウンドを再生する場合に、強制的にリアスピーカーを含む4chで再生させるかどうかの設定です。<r/>
-　設定可能な値は <b>'no' (しない)</b>, <b>'yes' (する)</b> のいずれかで、このオプションを指定しないと 'no' が指定されたものと見なされます。<r/>
-　'yes'を設定すると、ステレオやモノラルのサウンドがフロントスピーカーでしか再生されない環境でも、フロントスピーカーとリアスピーカーの両方でサウンドを再生させることができます。
+Sets whether to forcibly convert PCM data to be played by DirectSound into a specified format.<r/>
+Possible values are <b>'none' (do not convert)</b>, <b>'i16' (convert to 16-bit integer)</b>, or <b>'i16m' (convert to 16-bit integer mono)</b>. If this option is not specified, 'none' is assumed.<r/>
+Changing the setting may resolve playback issues. If 'i16m' is selected, the -wsexpandquad option (DirectSound forced 4ch playback) setting is ignored.
 </dd>
 
-<dt>-<kw>wsfreq</kw> (DirectSound プライマリバッファ周波数)</dt>
+<dt>-<kw>wsuse3d</kw> (DirectSound 3D control)</dt>
 <dd>
-　DirectSoundのプライマリバッファの再生周波数の設定です。<r/>
-　設定可能な値は 正の自然数で周波数を Hz 単位で表し、このオプションを指定しないと '44100' が指定されたものと見なされます。<r/>
-　とくに WDM 系サウンドドライバを用いる環境 (Windows2000, XP以降 など) では、設定を変更しても再生状態に変化がない場合もあります。
+Sets whether to perform 3D control in DirectSound.<r/>
+Possible values are <b>'no' (do not perform)</b> or <b>'yes' (perform)</b>. If this option is not specified, 'no' is assumed.<r/>
+If 'yes' is selected, 3D control of sound is enabled, and WaveSoundBuffer.posX, WaveSoundBuffer.posY, and WaveSoundBuffer.posZ properties become effective (these properties are already implemented in the current version but are unsupported).<r/>
+Also, in many environments, selecting 'yes' will cause DirectSound3D to expand stereo or mono sounds to surround speakers for playback (for example, sound that was only played on the front speakers will be played on all speakers in a 5.1ch environment).<r/>
+If 'yes' is selected, the -wsexpandquad option (DirectSound forced 4ch playback) setting is ignored.
 </dd>
 
-<dt>-<kw>wsbits</kw> (DirectSound プライマリバッファビット数)</dt>
+
+
+<dt>-<kw>wsexpandquad</kw> (DirectSound forced 4ch playback)</dt>
 <dd>
-　DirectSoundのプライマリバッファの再生ビット数の設定です。<r/>
-　設定可能な値は <b>'i8' (8bit整数)</b>, <b>'i16' (16bit整数)</b>, <b>'i24' (24bit整数)</b>, <b>'i32' (32bit整数)</b>, <b>'f32' (32bit浮動小数点数)</b> で、このオプションを指定しないと 'i16' が指定されたものと見なされます。<r/>
-　とくに WDM 系サウンドドライバを用いる環境 (Windows2000, XP以降 など) では、設定を変更しても再生状態に変化がない場合もあります。
+Sets whether to forcibly play stereo or mono sounds using 4 channels including rear speakers in DirectSound.<r/>
+Possible values are <b>'no' (do not perform)</b> or <b>'yes' (perform)</b>. If this option is not specified, 'no' is assumed.<r/>
+If 'yes' is set, sound can be played on both front and rear speakers even in environments where stereo or mono sound is only played on front speakers.
 </dd>
 
-<dt>-<kw>wscontrolpri</kw> (DirectSound プライマリバッファ再生制御)</dt>
+<dt>-<kw>wsfreq</kw> (DirectSound primary buffer frequency)</dt>
 <dd>
-　DirectSoundのプライマリバッファに対して再生/停止の制御を行うかどうかの設定です。<r/>
-　設定可能な値は <b>'yes' (行う)</b>, <b>'no' (行わない)</b> のいずれかで、このオプションを指定しないと 'yes' が指定されたものと見なされます。<r/>
-　まれに設定を変えると音飛びや音切れが改善される環境があるようです。
+Sets the playback frequency of the DirectSound primary buffer.<r/>
+Possible values are positive natural numbers representing the frequency in Hz. If this option is not specified, '44100' is assumed.<r/>
+Especially in environments using WDM-based sound drivers (Windows 2000, XP and later, etc.), changing the setting may not result in any change in the playback state.
 </dd>
 
-<dt>-<kw>wspritry</kw> (DirectSound プライマリバッファ設定試行レベル)</dt>
+<dt>-<kw>wsbits</kw> (DirectSound primary buffer bit depth)</dt>
 <dd>
-　DirectSoundプライマリバッファのフォーマットを指定する際にどれほど多くの設定を試すかの設定です。<r/>
-　設定可能な値は <b>'0' 縲鰀 '2' (レベル0 縲鰀 レベル2)</b>, <b>'all' (すべて)</b> のいずれかで、このオプションを指定しないと 'all' が指定されたものと見なされます。<r/>
-　レベル 0 を指定すると、ステレオ 16bit整数のフォーマットの設定を試行します。<r/>
-　レベル 1 を指定すると レベル 0 を試行する前に、システムのスピーカー設定に従ったチャンネル数、16bit整数でのフォーマットの設定を試行します。<r/>
-　レベル 2 を指定すると レベル 1 を試行する前に、「DirectSound プライマリバッファビット数」で指定されたビット数、システムのスピーカー設定に従ったチャンネル数、WAVEFORMATEX 構造体によるフォーマットの設定を試行します。<r/>
-　「すべて」を指定すると レベル 2 を試行する前に、レベル 2 と同様の設定で WAVEFORMATEXTENSIBLE 構造体によるフォーマットの指定を試行します。
+Sets the playback bit depth of the DirectSound primary buffer.<r/>
+Possible values are <b>'i8' (8-bit integer)</b>, <b>'i16' (16-bit integer)</b>, <b>'i24' (24-bit integer)</b>, <b>'i32' (32-bit integer)</b>, or <b>'f32' (32-bit floating point)</b>. If this option is not specified, 'i16' is assumed.<r/>
+Especially in environments using WDM-based sound drivers (Windows 2000, XP and later, etc.), changing the setting may not result in any change in the playback state.
+</dd>
+
+<dt>-<kw>wscontrolpri</kw> (DirectSound primary buffer playback control)</dt>
+<dd>
+Sets whether to perform play/stop control on the DirectSound primary buffer.<r/>
+Possible values are <b>'yes' (perform)</b> or <b>'no' (do not perform)</b>. If this option is not specified, 'yes' is assumed.<r/>
+Rarely, there seem to be environments where changing the setting improves sound skipping or cutting.
+</dd>
+
+<dt>-<kw>wspritry</kw> (DirectSound primary buffer setting retry level)</dt>
+<dd>
+Sets how many settings to try when specifying the format of the DirectSound primary buffer.<r/>
+Possible values are <b>'0' to '2' (Level 0 to Level 2)</b> or <b>'all' (All)</b>. If this option is not specified, 'all' is assumed.<r/>
+Specifying Level 0 attempts to set the format to stereo 16-bit integer.<r/>
+Specifying Level 1 attempts to set the format with the number of channels according to the system speaker settings and 16-bit integer before trying Level 0.<r/>
+Specifying Level 2 attempts to set the format using the WAVEFORMATEX structure with the bit depth specified in "DirectSound primary buffer bit depth" and the number of channels according to the system speaker settings before trying Level 1.<r/>
+Specifying "All" attempts to specify the format using the WAVEFORMATEXTENSIBLE structure with the same settings as Level 2 before trying Level 2.
 </dd>
 <!-- 
 <dt>-<kw>_inmm</kw> (_inmm.dll)</dt>
 <dd>
-　irori 氏の _inmm.dll を使用するかどうかの設定です。<r/>
-　設定可能な値は <b>'yes' (使用する)</b>, <b>'no' (使用しない)</b> のいずれかで、このオプションを指定しないと 'no' が指定されたものと見なされます。<r/>
-　irori 氏の _inmm.dll は便利ですが、吉里吉里はその本体の構造ゆえ _inmm.dll のパッチプログラムではパッチを当てることができません。そのため吉里吉里本体側で対応しています。<r/>
-　'yes' を指定するとパッチを当てたのと同様の動作をする事ができます。
+Sets whether to use irori's _inmm.dll.<r/>
+Possible values are <b>'yes' (use)</b> or <b>'no' (do not use)</b>. If this option is not specified, 'no' is assumed.<r/>
+irori's _inmm.dll is convenient, but KiriKiri cannot be patched with the _inmm.dll patch program due to its internal structure. Therefore, KiriKiri supports it natively.<r/>
+Specifying 'yes' allows it to operate as if it were patched.
 </dd>
 -->
 
@@ -325,115 +325,115 @@ Releaser や -userconf では、吉里吉里の実行可能ファイルや外部
 </para>
 
 <para>
-<ptitle>グラフィック関連のオプション</ptitle>
+<ptitle>Graphics Related Options</ptitle>
 <dl>
-<dt>-<kw>gclim</kw> (画像キャッシュ制限)</dt>
+<dt>-<kw>gclim</kw> (Image cache limit)</dt>
 <dd>
-　画像キャッシュに使用するメモリの最大値の設定です。<r/>
-　設定可能な値は <b>'auto' (自動)</b> または整数の値で、整数の値を指定する場合は画像キャッシュに使用するメモリを MB 単位で指定します。このオプションを指定しないと 'auto' が指定されたものと見なされます。<r/>
-　吉里吉里はいったん読み込んだ画像を素早くアクセスできるように画像をキャッシュする機構を持っています。それに使用するメモリの制限値を指定します。<r/>
-　'auto' を指定すると、コンピュータに実装されている物理メモリの量によって自動的に値が決定されます。<r/>
-　'0' を指定するとキャッシュは行いません。<r/>
-　吉里吉里実行中にスワップが頻繁に発生するようであれば、この値を小さく指定するか、'0' を指定すると改善される可能性があります。
+Sets the maximum amount of memory used for image caching.<r/>
+Possible values are <b>'auto' (Automatic)</b> or an integer value. If an integer value is specified, the memory used for image caching is specified in MB. If this option is not specified, 'auto' is assumed.<r/>
+KiriKiri has a mechanism to cache images so that once loaded images can be accessed quickly. This specifies the limit for the memory used for that.<r/>
+If 'auto' is specified, the value is automatically determined by the amount of physical memory installed in the computer.<r/>
+If '0' is specified, caching is not performed.<r/>
+If swapping occurs frequently while KiriKiri is running, specifying a smaller value or '0' may improve the situation.
 </dd>
 
-<dt>-<kw>fsbpp</kw> (フルスクリーン時のカラーモード)</dt>
+<dt>-<kw>fsbpp</kw> (Fullscreen color mode)</dt>
 <dd>
-　フルスクリーン時のカラーモードの設定です。<r/>
-　設定可能な値は  <b>'nochange' (変えない)</b>, <b>'16' (16bitカラー)</b>, <b>'24' (24bitカラー)</b>, <b>'32' (32bitカラー)</b> のいずれかで、このオプションを指定しないと 'nochange' が指定されたものと見なされます。<r/>
-　'nochange' を指定すると、非フルスクリーン時のカラーモードと同じカラーモードになります。<r/>
-　このオプションは動的に変更することが可能ですが、値が反映されるのは次回フルスクリーンにしようとしたときです。<r/>
+Sets the color mode for fullscreen.<r/>
+Possible values are <b>'nochange' (do not change)</b>, <b>'16' (16-bit color)</b>, <b>'24' (24-bit color)</b>, or <b>'32' (32-bit color)</b>. If this option is not specified, 'nochange' is assumed.<r/>
+If 'nochange' is specified, the color mode will be the same as the non-fullscreen color mode.<r/>
+This option can be changed dynamically, but the value will be reflected the next time you try to go fullscreen.<r/>
 </dd>
 
-<dt>-<kw>fsres</kw> (フルスクリーン時の画面解像度)</dt>
+<dt>-<kw>fsres</kw> (Fullscreen screen resolution)</dt>
 <dd>
-　フルスクリーン時の画面解像度の設定です。<r/>
-　設定可能な値は  <b>'auto' (自動)</b>, <b>'proportional' (縦横比が同じ解像度)</b> , <b>'nearest' (最も近い解像度)</b> , <b>'nochange' (解像度を変えない)</b> のいずれかで、このオプションを指定しないと 'auto' が指定されたものと見なされます。<r/>
-　'auto' を選択すると、最も適している画面解像度を自動的に選択して使用します。この場合は、縦横比が同じ解像度のうち、プログラム内で指定されている解像度にフィットする解像度があればそれを選択しますが、そのような解像度がない場合は解像度を変えずにエンジン側で拡大表示をします。この設定の場合は、-fszoom (フルスクリーン時のエンジンによる拡大表示) オプションに 'no' (しない) が指定されていても、常に 'outer' (モニタ内にフィットさせる) であるとみなされます。<r/>
-　'proportional' を選択すると、画面の縦横比が非フルスクリーン時と同じ解像度のうち、プログラム内で指定されている解像度と同じかそれよりも大きく、もっとも近い解像度が選択されます。<r/>
-　'nearest' を選択すると、プログラム内で指定されている解像度と同じかそれよりも大きく、最も近い解像度が選択されますが、非フルスクリーン時と同じ縦横比の解像度が選択される保証はありません。ブラウン管モニタや、画面のアスペクト比を保ったままでの拡大表示に対応している液晶モニタなどでは、この設定が適している場合があります。<r/>
-　'nochange' を選択すると、非フルスクリーン時の解像度のまま、解像度を変更しなくなります。<r/>
-　このオプションは動的に変更することが可能ですが、値が反映されるのは次回フルスクリーンにしようとしたときです。<r/>
+Sets the screen resolution for fullscreen.<r/>
+Possible values are <b>'auto' (Automatic)</b>, <b>'proportional' (Resolution with same aspect ratio)</b>, <b>'nearest' (Nearest resolution)</b>, or <b>'nochange' (Do not change resolution)</b>. If this option is not specified, 'auto' is assumed.<r/>
+Selecting 'auto' automatically selects and uses the most suitable screen resolution. In this case, if there is a resolution among those with the same aspect ratio that fits the resolution specified in the program, it is selected. If no such resolution exists, the engine performs scaled display without changing the resolution. In this setting, even if 'no' (do not) is specified for the -fszoom (engine scaling in fullscreen) option, it is always considered to be 'outer' (fit within monitor).<r/>
+Selecting 'proportional' selects the resolution that is the same as or larger than the resolution specified in the program and is the closest among those with the same aspect ratio as the non-fullscreen mode.<r/>
+Selecting 'nearest' selects the resolution that is the same as or larger than the resolution specified in the program and is the closest, but there is no guarantee that a resolution with the same aspect ratio as the non-fullscreen mode will be selected. This setting may be suitable for CRT monitors or LCD monitors that support scaled display while maintaining the screen aspect ratio.<r/>
+Selecting 'nochange' does not change the resolution, keeping the non-fullscreen resolution.<r/>
+This option can be changed dynamically, but the value will be reflected the next time you try to go fullscreen.<r/>
 </dd>
 
-<dt>-<kw>fszoom</kw> (フルスクリーン時のエンジンによる拡大表示)</dt>
+<dt>-<kw>fszoom</kw> (Engine scaling in fullscreen)</dt>
 <dd>
-　フルスクリーン時に、エンジンによる画面の拡大をどのように行うかどうかを指定します。<r/>
-　設定可能な値は  <b>'inner' (モニタ内にフィットさせる)</b>, <b>'outer' (モニタいっぱいに拡大する)</b>, <b>'no' (しない)</b> のいずれかで、このオプションを指定しないと 'inner' が指定されたものと見なされます。<r/>
-　'inner' を選択すると、必要であれば、エンジンによる拡大を行います。必要な場合とは、画面解像度がプログラム内で指定された解像度と異なる場合です (もし画面解像度がプログラム内で指定された解像度よりも低い場合は縮小処理になります)。この際、プログラム内で指定されている解像度の縦横比を維持した状態での拡大を行いますが、モニタの縦横比とこの縦横比が異なる場合、上下、または左右に隙間ができる可能性があります。この隙間は常に真っ黒な状態で表示されます。<r/>
-　'outer' を指定すると、'inner' を指定したときと同じく、必要であればエンジンによる拡大を行います。しかし、'inner' と違い、モニタの縦横比とプログラム内で指定されている縦横比が異なる場合、上下や左右の隙間ができないようにめいいっぱいまで拡大を行います。このため、隙間はできませんが、モニタ外に画面がはみ出す可能性があります。この設定では、たとえば 16:10 のモニタに 16:9 のコンテンツを表示する際などに、隙間をださずに、めいいっぱいまで拡大させて表示することが可能になります。もちろんこれにより、左右にはみ出す領域が発生しますので、このような表示を想定したコンテンツを制作するのならば、はみ出す部分には重要な UI や文字を表示しない、といった対策が必要になります。<r/>
-　'no' を選択すると、必要であっても、エンジンによる拡大は行いません。この場合は、画面解像度がプログラム内で指定された解像度と異なっていても、エンジン側による拡大は行われません (その結果、画面中央に画像が小さく表示される可能性があります)。<r/>
-　モニタの本来の解像度とグラフィックカードの出力する信号の解像度が異なる場合、液晶モニタなどではモニタ側で拡大表示を行う場合がありますが、モニタ側で拡大処理をした上で、さらにエンジン側でも拡大表示を行うと二重に拡大が行われることになり、画像が汚くなる場合がありますので注意してください (-fsres の「自動」オプションは、このような二重の拡大表示を防ぐ組み合わせを自動的に選択します)。<r/>
-　このオプションは動的に変更することが可能ですが、値が反映されるのは次回フルスクリーンにしようとしたときです。<r/>
+Specifies how the engine should perform screen scaling in fullscreen.<r/>
+Possible values are <b>'inner' (fit within monitor)</b>, <b>'outer' (expand to fill monitor)</b>, or <b>'no' (do not)</b>. If this option is not specified, 'inner' is assumed.<r/>
+Selecting 'inner' performs engine scaling if necessary. "If necessary" means when the screen resolution differs from the resolution specified in the program (if the screen resolution is lower than the resolution specified in the program, it will be a shrinking process). At this time, scaling is performed while maintaining the aspect ratio of the resolution specified in the program, but if the monitor's aspect ratio differs from this aspect ratio, gaps may appear at the top and bottom or left and right. These gaps are always displayed in solid black.<r/>
+Specifying 'outer' performs engine scaling if necessary, just like 'inner'. However, unlike 'inner', if the monitor's aspect ratio differs from the aspect ratio specified in the program, scaling is performed to the maximum extent so that no gaps appear at the top and bottom or left and right. For this reason, no gaps are created, but the screen may protrude outside the monitor. With this setting, for example, when displaying 16:9 content on a 16:10 monitor, it is possible to display it scaled to the maximum extent without showing gaps. Of course, this will result in areas protruding to the left and right, so if you are creating content assuming such a display, you need to take measures such as not displaying important UI or text in the protruding parts.<r/>
+Selecting 'no' does not perform engine scaling even if necessary. In this case, even if the screen resolution differs from the resolution specified in the program, scaling by the engine is not performed (as a result, the image may be displayed small in the center of the screen).<r/>
+Note that if the monitor's native resolution differs from the resolution of the signal output by the graphics card, LCD monitors may perform scaling on the monitor side. If scaling is performed on the monitor side and then further scaling is performed on the engine side, scaling will be performed twice, which may result in a degraded image (the "auto" option for -fsres automatically selects a combination that prevents such double scaling).<r/>
+This option can be changed dynamically, but the value will be reflected the next time you try to go fullscreen.<r/>
 </dd>
 
 
 <!-- obsoleted
-<dt>-<kw>dither</kw> (ディザリング)</dt>
+<dt>-<kw>dither</kw> (Dithering)</dt>
 <dd>
-　16bitカラーモードの画面モード時に画像のディザリングを行うかどうかの設定です。<r/>
-　設定可能な値は <b>'no' (使用しない)</b>, <b>'yes' (使用する)</b> のいずれかで、このオプションを指定しないと 'no' が指定されたものと見なされます。<r/>
-　吉里吉里は 16bitカラーの画面モード用に、画像をディザリングを行いながら減色し、表示する機能があります。これにより画像の色むらは軽減できますが、描画のパフォーマンスが低下する可能性があります。
+Sets whether to perform image dithering in 16-bit color mode.<r/>
+Possible values are <b>'no' (do not use)</b> or <b>'yes' (use)</b>. If this option is not specified, 'no' is assumed.<r/>
+KiriKiri has a function to reduce colors while dithering images for 16-bit color screen modes. This can reduce color banding in images, but drawing performance may decrease.
 </dd>
 -->
 
-<dt>-<kw>gsplit</kw> (画像演算の分割処理)</dt>
+<dt>-<kw>gsplit</kw> (Split processing of image operations)</dt>
 <dd>
-　画像演算を細かく分割して行うかどうかの設定です。<r/>
-　設定可能な値は <b>'yes' (行う)</b>, <b>'int' (インターレース分割)</b>, <b>'bidi' (双方向分割)</b>, <b>'no' (行わない)</b> のいずれかで、このオプションを指定しないと 'yes' が指定されたものと見なされます。<r/>
-　吉里吉里は CPU のメモリキャッシュを有効的に使用するために、画像を描画するときに細かい領域に分割しながら演算を行います。環境によってはこれが画面のちらつきにつながるようです。そのような環境では 'no' を指定することによりちらつきを抑えることができる可能性がありますが、描画のパフォーマンスが低下する可能性もあります。ダブルバッファリングを有効にした場合は、分割処理を行わないことの意味が薄いため、分割処理を行う設定にすることをお勧めします。<r/>
-　'int' を指定すると画像の演算の単位を一つおきに処理しますが、画面更新時に縞模様が見える事があります。'bidi' を選択すると画像の演算の順番において、上→下、下→上 を繰り返すようになります ( 'yes' の場合はつねに上→下 )。
+Sets whether to perform image operations by dividing them into fine segments.<r/>
+Possible values are <b>'yes' (perform)</b>, <b>'int' (interlace split)</b>, <b>'bidi' (bidirectional split)</b>, or <b>'no' (do not perform)</b>. If this option is not specified, 'yes' is assumed.<r/>
+KiriKiri performs operations while dividing the drawing area into small regions when drawing images in order to use the CPU's memory cache effectively. Depending on the environment, this seems to lead to screen flickering. In such environments, specifying 'no' may suppress flickering, but drawing performance may also decrease. If double buffering is enabled, the meaning of not performing split processing is diminished, so it is recommended to set it to perform split processing.<r/>
+Specifying 'int' processes image operation units every other unit, but stripes may be visible during screen updates. Selecting 'bidi' repeats top-to-bottom and bottom-to-top in the order of image operations (in the case of 'yes', it is always top-to-bottom).
 </dd>
 
-<dt>-<kw>smoothzoom</kw> (拡大表示時のスムージング)</dt>
+<dt>-<kw>smoothzoom</kw> (Smoothing during scaled display)</dt>
 <dd>
-　Window.setZoom などで表示内容の拡大表示を行う場合や、-fsres オプションで吉里吉里が画面の拡大(縮小)表示を行う場合に、スムージング(拡大時の補間)を行うかどうかの設定です (Layer.affineCopy 等での拡大縮小とは関係ありません )。<r/>
-　設定可能な値は <b>'no' (行わない)</b>, <b>'yes' (行う)</b> のいずれかで、このオプションを指定しないと 'yes' が指定されたものと見なされます。<r/>
-　スムージングを行うと、画像がなめらかになりますが、若干ぼけた感じになります。スムージングを行わないと、画像はシャープになりますが、ギザギザが目立つようになります。<r/>
-　環境によっては、スムージングを行わない方がパフォーマンスが低下する可能性があります。また、スムージングが効かない環境がある可能性があります。<r/>
-　サードパーティー製の描画デバイス ( Window.drawDevice プロパティで設定するデバイス ) によってはこのオプションの影響を受けない物もあるかもしれません。<r/>
-　このオプションは動的に変更することが可能ですが、すぐに値が反映される保証はありません。<r/>
+Sets whether to perform smoothing (interpolation during scaling) when performing scaled display of content with Window.setZoom, etc., or when KiriKiri performs scaled (shrunk) display of the screen with the -fsres option (this is unrelated to scaling with Layer.affineCopy, etc.).<r/>
+Possible values are <b>'no' (do not perform)</b> or <b>'yes' (perform)</b>. If this option is not specified, 'yes' is assumed.<r/>
+Smoothing makes the image smoother but gives it a slightly blurred feel. Without smoothing, the image is sharp but jaggedness becomes noticeable.<r/>
+Depending on the environment, performance may decrease if smoothing is not performed. Also, there may be environments where smoothing does not work.<r/>
+Some third-party drawing devices (devices set with the Window.drawDevice property) may not be affected by this option.<r/>
+This option can be changed dynamically, but there is no guarantee that the value will be reflected immediately.<r/>
 </dd>
 
 
-<dt>-<kw>aamethod</kw> (アンチエイリアス文字描画方式)</dt>
+<dt>-<kw>aamethod</kw> (Anti-aliased character drawing method)</dt>
 <dd>
-　アンチエイリアス文字描画方法の設定です。<r/>
-　設定可能な値は <b>'auto' (自動)</b>, <b>'res4' (リサンプリング4×4)</b>,  <b>'res8' (リサンプリング8×8)</b>, <b>'api' (Windows API)</b> のいずれかで、このオプションを指定しないと 'auto' が指定されたものと見なされます。<r/>
-　'auto' の場合は現バージョンでは 'api' を自動的に選択します。<r/>
-　'res4' または 'res8' では、数倍の大きさ (4×4 または 8×8) で文字を描画し、それを縮小することでアンチエイリアスを実現します。res4 の方が res8 よりも高速ですが、精度は低くなります。<r/>
-　'api' では GetGlyphOutline API を用いてアンチエイリアス文字を描画しますが、いろいろと不都合の多い API のようで環境によっては正常に描画できない可能性があります。
+Sets the anti-aliased character drawing method.<r/>
+Possible values are <b>'auto' (Automatic)</b>, <b>'res4' (Resampling 4x4)</b>, <b>'res8' (Resampling 8x8)</b>, or <b>'api' (Windows API)</b>. If this option is not specified, 'auto' is assumed.<r/>
+In the case of 'auto', 'api' is automatically selected in the current version.<r/>
+With 'res4' or 'res8', characters are drawn at several times the size (4x4 or 8x8) and then reduced to achieve anti-aliasing. res4 is faster than res8, but precision is lower.<r/>
+With 'api', anti-aliased characters are drawn using the GetGlyphOutline API, but this API seems to have many inconveniences and may not draw correctly depending on the environment.
 </dd>
 
-<dt>-<kw>jpegdec</kw> (JPEG画像デコード精度)</dt>
+<dt>-<kw>jpegdec</kw> (JPEG image decoding precision)</dt>
 <dd>
-　JPEG画像のデコード(展開)の精度の設定です。<r/>
-　設定可能な値は <b>'high' (高い)</b>, <b>'normal' (標準)</b>, <b>'low' (低い)</b> のいずれかで、このオプションを指定しないと 'normal' が指定されたものと見なされます。<r/>
-　'high' を指定するとデコードは低速になりますが、画質は高くなります。'low' を指定するとデコードは高速になりますが画質は低くなります。しかし、見た目ではほとんど違いはありません。
+Sets the precision of JPEG image decoding (expansion).<r/>
+Possible values are <b>'high' (High)</b>, <b>'normal' (Standard)</b>, or <b>'low' (Low)</b>. If this option is not specified, 'normal' is assumed.<r/>
+Specifying 'high' makes decoding slower but image quality higher. Specifying 'low' makes decoding faster but image quality lower. However, there is almost no difference in appearance.
 </dd>
 
-<dt>-<kw>drawthread</kw> (描画スレッド数)</dt>
+<dt>-<kw>drawthread</kw> (Number of drawing threads)</dt>
 <dd>
-　描画処理時に、使用するスレッドの数の設定です。<r/>
-　設定可能な値は<b>任意の数値</b>もしくは<b>'auto' (自動)</b>のいずれかで、このオプションを指定しないと '1'が指定されたものと見なされます。<r/>
-　'auto'を指定すると、OSの認識するプロセッサ数と同数のスレッドが自動的に割り当てられます。<r/>
-　描画スレッドを複数設定することで、マルチコア環境での描画パフォーマンスを向上させられる可能性がありますが、逆にパフォーマンスが低下する場合もあります。<r/>
-　描画面積が大きい処理、Affine系の高負荷な処理、演算の重いレイヤ合成処理などに適用することで、良好な結果を得られる可能性があります。<r/>
-　マルチスレッドを使用するように設定しても、描画処理の負荷が軽くマルチスレッド化の効果が得られないとシステムが判断した場合は、マルチスレッドで実行されない場合があります。<r/>
+Sets the number of threads to use during drawing processing.<r/>
+Possible values are <b>any numerical value</b> or <b>'auto' (Automatic)</b>. If this option is not specified, '1' is assumed.<r/>
+Specifying 'auto' automatically assigns the same number of threads as the number of processors recognized by the OS.<r/>
+Setting multiple drawing threads may improve drawing performance in multi-core environments, but conversely, performance may decrease.<r/>
+Good results may be obtained by applying this to processes with large drawing areas, high-load Affine-related processes, or heavy layer synthesis operations.<r/>
+Even if set to use multi-threading, if the system determines that the drawing load is light and the effect of multi-threading cannot be obtained, it may not be executed in multi-threaded mode.<r/>
 </dd>
 
-<dt>-<kw>bitmapallocator</kw> (ビットマップメモリ確保方式 Ver 1.1 以降)</dt>
+<dt>-<kw>bitmapallocator</kw> (Bitmap memory allocation method Ver 1.1 and later)</dt>
 <dd>
-　ビットマップ用のメモリをどのようにして確保するかを指定します。<r/>
-　設定可能な値は <b>'globalalloc' (GlobalAllocで確保)</b>, <b>'separateheap' (分割ヒープを使用)</b>,  <b>'malloc' (mallocを使用)</b>のいずれかで、このオプションを指定しないと 'globalalloc' が指定されたものと見なされます。<r/>
-　separateheap を使用することでメモリのフラグメンテーションを軽減し、メモリ不足エラーの問題を回避できる可能性があります。
+Specifies how to allocate memory for bitmaps.<r/>
+Possible values are <b>'globalalloc' (Allocate with GlobalAlloc)</b>, <b>'separateheap' (Use separate heap)</b>, or <b>'malloc' (Use malloc)</b>. If this option is not specified, 'globalalloc' is assumed.<r/>
+Using separateheap may reduce memory fragmentation and avoid out-of-memory error problems.
 </dd>
 
-<dt>-<kw>bitmapheapsize</kw> (初期分割ヒープサイズ Ver 1.1 以降)</dt>
+<dt>-<kw>bitmapheapsize</kw> (Initial separate heap size Ver 1.1 and later)</dt>
 <dd>
-　ビットマップメモリ確保方式で分割ヒープを使用を選んだ場合の初期サイズを指定します。<r/>
-　設定可能な値は <b>'auto' (自動(推奨))</b>, <b>'0' (自動的に拡大)</b>,  <b>'64' (64MB)</b>,  <b>'128' (128MB)</b>,  <b>'256' (256MB)</b>,  <b>'512' (512MB)</b>,  <b>'1024' (1024MB)</b>,  <b>'2048' (2048MB)</b>のいずれかで、このオプションを指定しないと 'auto' が指定されたものと見なされます。<r/>
-　通常 auto で問題ありませんが、初期値を調整することでメモリのフラグメンテーションを軽減し、メモリ不足エラーの問題を回避できる可能性があります。
+Specifies the initial size when "Use separate heap" is chosen for the bitmap memory allocation method.<r/>
+Possible values are <b>'auto' (Automatic (Recommended))</b>, <b>'0' (Automatically expand)</b>, <b>'64' (64MB)</b>, <b>'128' (128MB)</b>, <b>'256' (256MB)</b>, <b>'512' (512MB)</b>, <b>'1024' (1024MB)</b>, or <b>'2048' (2048MB)</b>. If this option is not specified, 'auto' is assumed.<r/>
+Normally auto is fine, but adjusting the initial value may reduce memory fragmentation and avoid out-of-memory error problems.
 </dd>
 
 </dl>
@@ -441,11 +441,11 @@ Releaser や -userconf では、吉里吉里の実行可能ファイルや外部
 
 
 <para>
-<ptitle>CPU 機能関連のオプション</ptitle>
-　以下のオプションはすべて設定可能な値は <b>'yes' (使用可能であれば使用する)</b>, <b>'no' (使用可能であっても使用しない)</b>, <b>'force' (強制的に使用する)</b> のいずれかで、オプションを指定しないと 'yes' が指定されたものと見なされます。<r/>
-　CPU の認識トラブルが起こった場合に 'no' に設定するとその機能を用いません。<r/>
-　'force' は、その CPU 機能を検出しなくても強制的に使用するようになりますが、CPU にその機能がついていない場合はもちろん正常に動作しません。<r/>
-　吉里吉里本体には -cpummx -cpucmov -cpusse -cpuemmx のオプションのみが影響を与えます。OggVorbis デコーダ (wuvorbis.dll) には -cpusse と -cpummx と -cpu3dn のオプションが影響を与えます。そのほかの(サードパーティーの)プラグインの中にも CPU 機能の設定の影響を受けるものがあるかも知れません。<r/>
+<ptitle>CPU Feature Related Options</ptitle>
+For all the following options, possible values are <b>'yes' (use if available)</b>, <b>'no' (do not use even if available)</b>, or <b>'force' (forcibly use)</b>. If an option is not specified, 'yes' is assumed.<r/>
+If CPU recognition trouble occurs, setting it to 'no' will disable that feature.<r/>
+'force' will forcibly use the CPU feature even if it is not detected, but of course, it will not work correctly if the CPU does not have that feature.<r/>
+Only the -cpummx, -cpucmov, -cpusse, and -cpuemmx options affect the KiriKiri core itself. The -cpusse, -cpummx, and -cpu3dn options affect the OggVorbis decoder (wuvorbis.dll). Other (third-party) plugins may also be affected by CPU feature settings.<r/>
 <r/>
 <ul>
 <li>-<kw>cpummx</kw> (MMX)</li>
@@ -470,28 +470,28 @@ Releaser や -userconf では、吉里吉里の実行可能ファイルや外部
 
 
 <para>
-<ptitle>デバッグ関連のオプション</ptitle>
+<ptitle>Debug Related Options</ptitle>
 <dl>
 
-<dt>-<kw>debug</kw> (デバッグモード)</dt>
+<dt>-<kw>debug</kw> (Debug mode)</dt>
 <dd>
-　吉里吉里をデバッグモード <comlink href="Debug" /> で動作させるかどうかの設定です。<r/>
-　設定可能な値は <b>'no' (無効)</b>, <b>'yes' (有効)</b>のいずれかで、このオプションを指定しないと 'no' が指定されたものと見なされます。<r/>
-　有効にすると、吉里吉里はデバッグモードで動作し、いくつかのデバッグ支援機能が有効になりますが、通常のモードよりも実行速度は低下します。
+Sets whether to operate KiriKiri in debug mode <comlink href="Debug" />.<r/>
+Possible values are <b>'no' (Disabled)</b> or <b>'yes' (Enabled)</b>. If this option is not specified, 'no' is assumed.<r/>
+If enabled, KiriKiri operates in debug mode and several debug support functions are enabled, but execution speed will be lower than in normal mode.
 </dd>
 
 
-<dt>-<kw>forcelog</kw> (ファイルへのログ)</dt>
+<dt>-<kw>forcelog</kw> (Log to file)</dt>
 <dd>
-　コンソールのログをファイルに出力するかどうかの設定です。<r/>
-　設定可能な値は <b>'no' (出力しない)</b>, <b>'yes' (既存のファイルに追加して出力する)</b>, <b>'clear' (既存のファイルをクリアしてから出力する)</b> のいずれかで、このオプションを指定しないと 'no' が指定されたものと見なされます。
+Sets whether to output console logs to a file.<r/>
+Possible values are <b>'no' (do not output)</b>, <b>'yes' (append to existing file)</b>, or <b>'clear' (clear existing file before outputting)</b>. If this option is not specified, 'no' is assumed.
 
 </dd>
 
-<dt>-<kw>logerror</kw> (エラー時のファイルへのログ)</dt>
+<dt>-<kw>logerror</kw> (Log to file on error)</dt>
 <dd>
-　エラー時にコンソールのログをファイルに出力するかどうかの設定です。<r/>
-　設定可能な値は <b>'no' (出力しない)</b>, <b>'yes' (既存のファイルに追加して出力する)</b>, <b>'clear' (既存のファイルをクリアしてから出力する)</b> のいずれかで、このオプションを指定しないと 'yes' が指定されたものと見なされます。
+Sets whether to output console logs to a file when an error occurs.<r/>
+Possible values are <b>'no' (do not output)</b>, <b>'yes' (append to existing file)</b>, or <b>'clear' (clear existing file before outputting)</b>. If this option is not specified, 'yes' is assumed.
 
 </dd>
 </dl>
@@ -502,62 +502,62 @@ Releaser や -userconf では、吉里吉里の実行可能ファイルや外部
 
 
 <para>
-<ptitle>システム互換性関連のオプション</ptitle>
+<ptitle>System Compatibility Options</ptitle>
 
 <dl>
-<dt>-<kw>arcdelim</kw> (アーカイブデリミタ)</dt>
+<dt>-<kw>arcdelim</kw> (Archive delimiter)</dt>
 <dd>
-　アーカイブデリミタ (アーカイブストレージ名と、アーカイブ内ストレージ名の間を区切る文字) を指定します。<r/>
-　設定可能な値は <b>'&gt;' ('&gt;'を使う)</b>, <b>'#' ('#'を使う)</b> のいずれかで、このオプションを指定しないと '&gt;' が指定されたものと見なされます。<r/>
-　アーカイブデリミタは、吉里吉里２ 2.19 beta 14 で、従来の '#' から '>' に変更されました。<r/>
-　2.19 beta 14 未満で動作していたアプリケーションはこの変更のため動作しなくなる可能性がありますが、このオプションでデリミタを '#' に変更することで動作させることができます。<r/>
+Specifies the archive delimiter (the character that separates the archive storage name and the in-archive storage name).<r/>
+Possible values are <b>'&gt;' (use '&gt;')</b> or <b>'#' (use '#')</b>. If this option is not specified, '&gt;' is assumed.<r/>
+The archive delimiter was changed from the traditional '#' to '>' in KiriKiri 2 2.19 beta 14.<r/>
+Applications that operated on versions earlier than 2.19 beta 14 may stop working due to this change, but they can be made to work by changing the delimiter to '#' with this option.<r/>
 </dd>
 
 
-<dt>-<kw>evalcontext</kw> (後置'!'演算子の動作)</dt>
+<dt>-<kw>evalcontext</kw> (Behavior of postfix '!' operator)</dt>
 <dd>
-　TJS2の後置'!'演算子の動作を指定します。<r/>
-　設定可能な値は <b>'this' (this上で式を評価)</b>, <b>'global' (global上で式を評価)</b> のいずれかで、このオプションを指定しないと 'this' が指定されたものと見なされます。<r/>
-　TJS2の後置'!'演算子は式をglobalコンテキスト上で実行していましたが、2.21 beta 9 より、this コンテキスト上で実行するようになりました。<r/>
-2.21 beta 9 未満を想定しているアプリケーションでは、この設定を「global上で式を評価」にしないと動作しない可能性があります。
+Specifies the behavior of the TJS2 postfix '!' operator.<r/>
+Possible values are <b>'this' (evaluate expression on this)</b> or <b>'global' (evaluate expression on global)</b>. If this option is not specified, 'this' is assumed.<r/>
+The TJS2 postfix '!' operator used to execute expressions on the global context, but from 2.21 beta 9, it executes on the this context.<r/>
+Applications assuming versions earlier than 2.21 beta 9 may not work unless this setting is set to "evaluate expression on global".
 </dd>
 
 
-<dt>-<kw>holdalpha</kw> (Layer.holdAlpha プロパティのデフォルトの値)</dt>
+<dt>-<kw>holdalpha</kw> (Default value of Layer.holdAlpha property)</dt>
 <dd>
-　<at href="f_Layer_holdAlpha.html">Layer.holdAlpha</at> プロパティのデフォルト値を指定します。<r/>
-　設定可能な値は <b>'false' (偽)</b>, <b>'true' (真)</b> のいずれかで、このオプションを指定しないと 'false' が指定されたものと見なされます。<r/>
-　吉里吉里２ 2.23 beta 4 で、各種演算関数に指定していた hda (アルファチャンネルを保護するか) オプションがなくなり、代わりに Layer.holdAlpha プロパティが作られました。この時点では Layer.holdAlpha のデフォルト値は真でした。Layer.holdAlpha が真の場合は過去のアプリケーションの動作に影響を与えません。<r/>
-　吉里吉里２ 2.23 beta 5 で、このデフォルト値が偽になりました。吉里吉里２ 2.23 beta 5 未満を想定しているアプリケーションを動作させたい場合は、このオプションに「真」を指定しないと正常に動作しない可能性があります。
+Specifies the default value of the <at href="f_Layer_holdAlpha.html">Layer.holdAlpha</at> property.<r/>
+Possible values are <b>'false' (False)</b> or <b>'true' (True)</b>. If this option is not specified, 'false' is assumed.<r/>
+In KiriKiri 2 2.23 beta 4, the hda (whether to protect the alpha channel) option specified in various operation functions was removed, and the Layer.holdAlpha property was created instead. At that point, the default value of Layer.holdAlpha was true. If Layer.holdAlpha is true, it does not affect the behavior of past applications.<r/>
+In KiriKiri 2 2.23 beta 5, this default value became false. If you want to run an application assuming a version earlier than KiriKiri 2 2.23 beta 5, it may not work correctly unless "True" is specified for this option.
 </dd>
 
 
-<dt>-<kw>unaryaster</kw> (前置'*'演算子の動作)</dt>
+<dt>-<kw>unaryaster</kw> (Behavior of prefix '*' operator)</dt>
 <dd>
-　TJS2の前置'*'演算子の動作を指定します。<r/>
-　設定可能な値は <b>'default' (2.25以降の動作)</b>, <b>'compat' (2.25未満の動作)</b> のいずれかで、このオプションを指定しないと 'default' が指定されたものと見なされます。<r/>
-　TJS2の前置'*'演算子は、プロパティオブジェクトそのものを、プロパティハンドラを介さずに取り出す演算子でしたが、2.25 beta 1 より、この機能を持つ演算子は前置の'&amp;'となり、前置'*'演算子はプロパティオブジェクトのプロパティハンドラを動作させるための演算子となりました。2.25 beta 1 未満を想定しているアプリケーションでは、この設定を「2.25未満と互換」にしないと正常に動作しない可能性があります。
+Specifies the behavior of the TJS2 prefix '*' operator.<r/>
+Possible values are <b>'default' (behavior of 2.25 and later)</b> or <b>'compat' (behavior of versions earlier than 2.25)</b>. If this option is not specified, 'default' is assumed.<r/>
+The TJS2 prefix '*' operator was an operator to retrieve the property object itself without going through the property handler, but from 2.25 beta 1, the operator with this function became the prefix '&amp;', and the prefix '*' operator became an operator to operate the property handler of the property object. Applications assuming versions earlier than 2.25 beta 1 may not work correctly unless this setting is set to "compatible with versions earlier than 2.25".
 </dd>
 
 
-<dt>-<kw>wsvolfactor</kw> (DirectSoundのボリュームカーブ)</dt>
+<dt>-<kw>wsvolfactor</kw> (DirectSound volume curve)</dt>
 <dd>
-　設定可能な値は <b>'3322' (2.31 2011/6/14以降の動作)</b>, <b>'5000' (2.31 2011/6/14未満の動作)</b> のいずれかで、このオプションを指定しないと '3322' が指定されたものと見なされます。<r/>
-　DirectSoundのボリュームカーブは、2.31 2011/6/14 より、より直感的なカーブになりました。<r/>
+Possible values are <b>'3322' (behavior of 2.31 2011/6/14 and later)</b> or <b>'5000' (behavior of versions earlier than 2.31 2011/6/14)</b>. If this option is not specified, '3322' is assumed.<r/>
+The DirectSound volume curve became a more intuitive curve from 2.31 2011/6/14.<r/>
 </dd>
 
 
-<dt>-<kw>readencoding</kw> (スクリプト読込み文字コード)</dt>
+<dt>-<kw>readencoding</kw> (Script reading character code)</dt>
 <dd>
-　設定可能な値は <b>'Shift_JIS' (吉里吉里2互換の動作)</b>, <b>'UTF-8' (吉里吉里Zの動作)</b> のいずれかで、このオプションを指定しないと 'UTF-8' が指定されたものと見なされます。<r/>
-　スクリプトを読み込むのに使用する文字コードです。<r/>
+Possible values are <b>'Shift_JIS' (KiriKiri 2 compatible behavior)</b> or <b>'UTF-8' (KiriKiri Z behavior)</b>. If this option is not specified, 'UTF-8' is assumed.<r/>
+The character code used to read scripts.<r/>
 </dd>
 
 
-<dt>-<kw>ignoretouch</kw> (タッチイベントの無効化 1.3.0以降)</dt>
+<dt>-<kw>ignoretouch</kw> (Disable touch events 1.3.0 and later)</dt>
 <dd>
-　設定可能な値は <b>'false' (偽)</b>, <b>'true' (真)</b> のいずれかで、このオプションを指定しないと 'false' が指定されたものと見なされます。<r/>
-　'true'を指定するとタッチイベントを無効化して、代わりにマウスイベントを発生させます。<r/>
+Possible values are <b>'false' (False)</b> or <b>'true' (True)</b>. If this option is not specified, 'false' is assumed.<r/>
+If 'true' is specified, touch events are disabled and mouse events are generated instead.<r/>
 </dd>
 
 

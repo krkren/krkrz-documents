@@ -2,70 +2,68 @@
 <doc>
 <title>Debug</title>
 <desc>
-　Debug クラスは 吉里吉里のデバッグに関する機能を提供するクラスです。このクラスからオブジェクトを作成することはできません。<r/>
-　吉里吉里のコンソールのログの名前は krkr.console.log になります。また、ハードウェア例外が発生したときに作成されるファイルは hwexcept.log となります。<r/>
-　これらのログファイルは、デフォルトではプロジェクトディレクトリになります。ただし、プロジェクトディレクトリがアーカイブなど、書き込みができないディレクトリの場合は出力されません。<r/>
-　ログファイルの出力先は logLocation プロパティで変更することができます (KAGの場合は栞データの保存先に設定されます)。<r/>
+ The Debug class provides features related to KiriKiri debugging. You cannot create objects from this class.<r/>
+ The KiriKiri console log name is krkr.console.log. Additionally, the file created when a hardware exception occurs is hwexcept.log.<r/>
+ These log files are located in the project directory by default. However, they will not be output if the project directory is read-only, such as when it is an archive.<r/>
+ The log file output destination can be changed with the logLocation property (in KAG, it is set to the save data location).<r/>
 </desc>
 
 <member>
 	<name>message</name>
 	<type>method</type>
-	<shortdesc>コンソールへメッセージを出力</shortdesc>
+	<shortdesc>Outputs a message to the console</shortdesc>
 	<arg>
 		<argitem>
 			<name>message</name>
 			<default></default>
 			<desc>
-				　出力するメッセージを指定します。<r/>
+				 Specifies the message to output.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　<kw>コンソール</kw>へメッセージを出力します。<r/>
+		 Outputs a message to the <kw>console</kw>.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>notice</name>
 	<type>method</type>
-	<shortdesc>コンソールへ重要なメッセージを出力</shortdesc>
+	<shortdesc>Outputs an important message to the console</shortdesc>
 	<arg>
 		<argitem>
 			<name>message</name>
 			<default></default>
 			<desc>
-				　出力するメッセージを指定します。<r/>
+				 Specifies the message to output.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　<kw>コンソール</kw>へメッセージを出力します。<r/>
-		<ref>Debug.message</ref> と違い、ここで出力したメッセージは ログファイルへの書き出しを途中から開始したとしても、
-		必ずログファイルに書き出されます ( Debug.message で出力したメッセージは、ある程度さかのぼってまでしか
-		書き込まれません )。ログファイルを回収したときに有用になるような重要な情報を出力するために使います。<r/>
+		 Outputs a message to the <kw>console</kw>.<r/>
+		Unlike <ref>Debug.message</ref>, messages output here will always be written to the log file, even if log file writing starts later (messages output with Debug.message are only written back to a certain point). Use this to output important information that would be useful when collecting log files.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>startLogToFile</name>
 	<type>method</type>
-	<shortdesc>コンソールのログの出力開始</shortdesc>
+	<shortdesc>Starts console log output to a file</shortdesc>
 	<arg>
 		<argitem>
 			<name>clear</name>
 			<default>false</default>
 			<desc>
-				　真を指定するとログファイルはクリアされます。<r/>
-				　偽を指定すると既存のファイルに追加されます。<r/>
+				 If true is specified, the log file is cleared.<r/>
+				 If false is specified, it is appended to the existing file.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　コンソールのログのファイルへの出力を開始します。<r/>
+		 Starts outputting the console log to a file.<r/>
 	</desc>
 	<ref>Debug.logToFileOnError</ref>
 	<ref>Debug.clearLogFileOnError</ref>
@@ -74,18 +72,15 @@
 <member>
 	<name>logAsError</name>
 	<type>method</type>
-	<shortdesc>エラー時と同じようにログをファイルに出力開始する</shortdesc>
+	<shortdesc>Starts log output to a file in the same way as when an error occurs</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　エラーログファイルに関し、吉里吉里がエラーが発生したときと同じ動作をさせます。
-		つまり、
-		<ref>Debug.logToFileOnError</ref> が真ならばファイルにコンソールのログの出力を
-		開始します。その際、<ref>Debug.clearLogFileOnError</ref> が真ならばファイルを
-		クリアします。<r/>
-		　これに対し、<ref>Debug.startLogToFile</ref> は無条件でコンソールのログの
-		ファイルへの出力を開始します。<r/>
+		 Performs the same action as when KiriKiri encounters an error regarding the error log file.
+		That is, if <ref>Debug.logToFileOnError</ref> is true, it starts outputting the console log to a file.
+		At that time, if <ref>Debug.clearLogFileOnError</ref> is true, the file is cleared.<r/>
+		In contrast, <ref>Debug.startLogToFile</ref> unconditionally starts outputting the console log to a file.<r/>
 	</desc>
 	<ref>Debug.startLogToFile</ref>
 	<ref>Debug.logToFileOnError</ref>
@@ -95,76 +90,75 @@
 <member>
 	<name>addLoggingHandler</name>
 	<type>method</type>
-	<shortdesc>ログハンドラを追加します</shortdesc>
+	<shortdesc>Adds a logging handler</shortdesc>
 	<arg>
 		<argitem>
 			<name>handler</name>
 			<default></default>
 			<desc>
-				　ログハンドラを指定します。<r/>
+				 Specifies the logging handler.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　エラーログが出力されるごとに呼び出されるハンドラを登録します。<r/>
-		　ハンドラはログメッセージを引数に与えられて呼び出されます。<r/>
-		　登録メソッド内でログを出力しても、再帰的な呼び出しは行われず無視されます。<r/>
+		 Registers a handler to be called every time an error log is output.<r/>
+		 The handler is called with the log message as an argument.<r/>
+		 Even if a log is output within the registered method, recursive calls are not made and are ignored.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>removeLoggingHandler</name>
 	<type>method</type>
-	<shortdesc>ログハンドラを削除します</shortdesc>
+	<shortdesc>Removes a logging handler</shortdesc>
 	<arg>
 		<argitem>
 			<name>handler</name>
 			<default></default>
 			<desc>
-				　ログハンドラを指定します。<r/>
+				 Specifies the logging handler.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　登録したログハンドラを削除します。<r/>
+		 Removes the registered logging handler.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>getLastLog</name>
 	<type>method</type>
-	<shortdesc>未出力のログを取得します</shortdesc>
+	<shortdesc>Retrieves un-output logs</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　出力していないログを取得します。<r/>
+		 Retrieves logs that have not been output.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>logLocation</name>
 	<type>property</type>
-	<shortdesc>ログファイルの出力先</shortdesc>
+	<shortdesc>Log file output destination</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　ログファイルの出力先ディレクトリを表します。値を書き込むこともできます。<r/>
-		　デフォルトではデータ保存場所 (コマンドラインオプションの -datapath) に設定されています。<r/>
-		　この値を変更すると、以降のログはそのディレクトリ下の *.console.log として出力されるようになります。<r/>
+		 Represents the output destination directory for log files. You can also write a value to it.<r/>
+		 By default, it is set to the data storage location (command line option -datapath).<r/>
+		 Changing this value will cause subsequent logs to be output as *.console.log under that directory.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>logToFileOnError</name>
 	<type>property</type>
-	<shortdesc>エラー発生時にコンソールのログをファイルに出力するか</shortdesc>
+	<shortdesc>Whether to output the console log to a file when an error occurs</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　真の場合、エラーが発生したときにコンソールのログのファイルへの出力を開始するように
-		なります。<r/>
-		　偽の場合はエラーが発生してもログのファイルへの出力は開始されません。<r/>
+		 If true, console log output to a file will start when an error occurs.<r/>
+		 If false, log output to a file will not start even if an error occurs.<r/>
 	</desc>
 	<ref>Debug.startLogToFile</ref>
 	<ref>Debug.clearLogFileOnError</ref>
@@ -173,11 +167,11 @@
 <member>
 	<name>clearLogFileOnError</name>
 	<type>property</type>
-	<shortdesc>エラー発生時にコンソールのログファイルをクリアするかどうか</shortdesc>
+	<shortdesc>Whether to clear the console log file when an error occurs</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　真の場合、エラーが発生したときにコンソールのログを自動的にクリアするようになります。<r/>
-		　偽の場合はクリアはされず、既存のログファイルに追加されます。<r/>
+		 If true, the console log will be automatically cleared when an error occurs.<r/>
+		 If false, it will not be cleared and will be appended to the existing log file.<r/>
 	</desc>
 	<ref>Debug.startLogToFile</ref>
 	<ref>Debug.logToFileOnError</ref>

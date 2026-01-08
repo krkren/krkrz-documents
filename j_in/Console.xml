@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>コンソール</title>
+<title>Console</title>
 
 <para>
-<ptitle>コンソールについて</ptitle>
-　コマンドラインから起動すると、コマンドライン上にメッセージが表示されます。<r/>
-　コンソールでは、吉里吉里のシステムや、ユーザスクリプトが <at href="f_Debug_message.html">Debug.message</at> メソッドで出力する様々なデバッグ用メッセージを表示することができます。<r/>
+<ptitle>About the Console</ptitle>
+ When launched from the command line, messages will be displayed on the command line.<r/>
+ The console can display various debugging messages output by the KiriKiri system or user scripts using the <at href="f_Debug_message.html">Debug.message</at> method.<r/>
 </para>
 
 <para>
-<ptitle>画面の説明</ptitle>
+<ptitle>Screen Description</ptitle>
 <img src="Console.png"/><r/><r/>
-コマンドラインそのものです。<r/>
+It is the command line itself.<r/>
 </para>
 
 </doc>

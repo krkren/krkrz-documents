@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>色定数一覧</title>
+<title>Color Constant List</title>
 
 <para>
-<ptitle>色定数一覧</ptitle>
+<ptitle>Color Constant List</ptitle>
 <r/>
-　これらの定数を様々な色指定の場面で使うことができます。これらの値は Windows の設定によって実際の色が変わる可能性があるものです。<r/>
+ These constants can be used in various color specification scenarios. These values may change depending on Windows settings.<r/>
 <r/>
 <bq>
-<colorbox color="Scrollbar"			/>clScrollBar           : スクロールバーの色<r/>
-<colorbox color="Background"		/>clBackground          : デスクトップの背景色<r/>
-<colorbox color="ActiveCaption"		/>clActiveCaption       : アクティブなウィンドウのタイトルバーの色<r/>
-<colorbox color="InactiveCaption"	/>clInactiveCaption     : アクティブでないウィンドウのタイトルバーの色<r/>
-<colorbox color="Menu"				/>clMenu                : メニューの背景色<r/>
-<colorbox color="Window"			/>clWindow              : ウィンドウの背景色<r/>
-<colorbox color="WindowFrame"		/>clWindowFrame         : ウィンドウの枠の色<r/>
-<colorbox color="MenuText"			/>clMenuText            : メニューの文字の色<r/>
-<colorbox color="WindowText"		/>clWindowText          : ウィンドウ内の文字の色<r/>
-<colorbox color="CaptionText"		/>clCaptionText         : アクティブなウィンドウのタイトルバーの文字の色<r/>
-<colorbox color="ActiveBorder"		/>clActiveBorder        : アクティブなウィンドウの境界線の色<r/>
-<colorbox color="InactiveBorder"	/>clInactiveBorder      : アクティブでないウィンドウの境界線の色<r/>
-<colorbox color="AppWorkspace"		/>clAppWorkSpace        : アプリケーションの作業領域の色<r/>
-<colorbox color="Highlight"			/>clHighlight           : 選択文字の背景色<r/>
-<colorbox color="HighlightText"		/>clHighlightText       : 選択文字の色<r/>
-<colorbox color="ButtonFace"		/>clBtnFace             : 3D オブジェクトの面の色<r/>
-<colorbox color="ButtonShadow"		/>clBtnShadow           : 3D オブジェクトの影の色<r/>
-<colorbox color="GrayText"			/>clGrayText            : 淡色表示されている文字の色<r/>
-<colorbox color="ButtonText"		/>clBtnText             : 3D オブジェクトのテキストの色<r/>
-<colorbox color="InactiveCaption"	/>clInactiveCaptionText : アクティブでないウィンドウのタイトルバーの文字の色<r/>
-<colorbox color="ButtonHighlight"	/>clBtnHighlight        : ボタンの強調表示の色<r/>
-<colorbox color="ThreeDDarkShadow"	/>cl3DDkShadow          : 3D オブジェクトの暗い方の影<r/>
-<colorbox color="ThreeDHighlight"	/>cl3DLight             : 3D オブジェクトの明るい面の縁の色<r/>
-<colorbox color="InfoText"			/>clInfoText            : ツールチップのテキスト色<r/>
-<colorbox color="InfoBackground"	/>clInfoBk              : ツールチップの背景色<r/>
+<colorbox color="Scrollbar"			/>clScrollBar           : Scroll bar color<r/>
+<colorbox color="Background"		/>clBackground          : Desktop background color<r/>
+<colorbox color="ActiveCaption"		/>clActiveCaption       : Active window title bar color<r/>
+<colorbox color="InactiveCaption"	/>clInactiveCaption     : Inactive window title bar color<r/>
+<colorbox color="Menu"				/>clMenu                : Menu background color<r/>
+<colorbox color="Window"			/>clWindow              : Window background color<r/>
+<colorbox color="WindowFrame"		/>clWindowFrame         : Window frame color<r/>
+<colorbox color="MenuText"			/>clMenuText            : Menu text color<r/>
+<colorbox color="WindowText"		/>clWindowText          : Window text color<r/>
+<colorbox color="CaptionText"		/>clCaptionText         : Active window title bar text color<r/>
+<colorbox color="ActiveBorder"		/>clActiveBorder        : Active window border color<r/>
+<colorbox color="InactiveBorder"	/>clInactiveBorder      : Inactive window border color<r/>
+<colorbox color="AppWorkspace"		/>clAppWorkSpace        : Application workspace color<r/>
+<colorbox color="Highlight"			/>clHighlight           : Selected text background color<r/>
+<colorbox color="HighlightText"		/>clHighlightText       : Selected text color<r/>
+<colorbox color="ButtonFace"		/>clBtnFace             : 3D object face color<r/>
+<colorbox color="ButtonShadow"		/>clBtnShadow           : 3D object shadow color<r/>
+<colorbox color="GrayText"			/>clGrayText            : Grayed out text color<r/>
+<colorbox color="ButtonText"		/>clBtnText             : 3D object text color<r/>
+<colorbox color="InactiveCaption"	/>clInactiveCaptionText : Inactive window title bar text color<r/>
+<colorbox color="ButtonHighlight"	/>clBtnHighlight        : Button highlight color<r/>
+<colorbox color="ThreeDDarkShadow"	/>cl3DDkShadow          : 3D object dark shadow color<r/>
+<colorbox color="ThreeDHighlight"	/>cl3DLight             : 3D object light edge color<r/>
+<colorbox color="InfoText"			/>clInfoText            : Tooltip text color<r/>
+<colorbox color="InfoBackground"	/>clInfoBk              : Tooltip background color<r/>
 </bq>
-<note>上記の色見本 ( 各色の左の <colorbox color="red" /> のような表示 ) は、ブラウザによっては正常に表示されません。</note>
+<note>The color samples above (the display like <colorbox color="red" /> to the left of each color) may not display correctly depending on the browser.</note>
 </para>
 
 </doc>

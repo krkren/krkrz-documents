@@ -2,18 +2,18 @@
 <doc>
 <title>Console</title>
 <desc>
-　Console クラスは、<kw>コンソール</kw>に関する管理を行うクラスです。このクラスからオブジェクトを作成することはできません ( このクラスにはアクセスできません )。このクラスのオブジェクトには <ref>Debug.console</ref> でアクセスできます。<r/>
+ The Console class is a class that manages the <kw>console</kw>. You cannot create objects from this class (this class cannot be accessed directly). You can access the object of this class via <ref>Debug.console</ref>.<r/>
 </desc>
 
 
 <member>
 	<name>visible</name>
 	<type>property</type>
-	<shortdesc>表示されているかどうか</shortdesc>
+	<shortdesc>Whether it is displayed or not</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　コンソールが表示されているかどうかを表します。値を設定することもできます。<r/>
-		　真を指定すると表示されます。<r/>
+		 Indicates whether the console is displayed. You can also set the value.<r/>
+		 If set to true, it will be displayed.<r/>
 	</desc>
 </member>
 

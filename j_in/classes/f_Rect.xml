@@ -2,243 +2,243 @@
 <doc>
 <title>Rect</title>
 <desc>
-　Rect クラスは、矩形情報を保持するクラスです。<r/>
+ The Rect class is a class that holds rectangle information.<r/>
 </desc>
 
 <member>
 	<name>Rect</name>
 	<type>constructor</type>
-	<shortdesc>Rect オブジェクトの構築</shortdesc>
+	<shortdesc>Construction of Rect object</shortdesc>
 	<arg></arg>
 	<result></result>
 	<desc>
-		　Rect クラスのオブジェクトを構築します。<r/>
+		 Constructs an object of the Rect class.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>Rect</name>
 	<type>constructor</type>
-	<shortdesc>Rect オブジェクトの構築</shortdesc>
+	<shortdesc>Construction of Rect object</shortdesc>
 	<arg>
 		<argitem>
 			<name>left</name>
 			<default></default>
 			<desc>
-				　左端を指定します。<r/>
+				 Specifies the left edge.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>top</name>
 			<default></default>
 			<desc>
-				　上端を指定します。<r/>
+				 Specifies the top edge.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>right</name>
 			<default></default>
 			<desc>
-				　右端を指定します。<r/>
+				 Specifies the right edge.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>bottom</name>
 			<default></default>
 			<desc>
-				　下端を指定します。<r/>
+				 Specifies the bottom edge.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　Rect クラスのオブジェクトを指定の大きさで構築します。<r/>
+		 Constructs a Rect class object with the specified size.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>Rect</name>
 	<type>constructor</type>
-	<shortdesc>Rect オブジェクトの構築</shortdesc>
+	<shortdesc>Construction of Rect object</shortdesc>
 	<arg>
 		<argitem>
 			<name>src</name>
 			<default></default>
 			<desc>
-				　Rect オブジェトを指定します。<r/>
+				 Specifies a Rect object.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　Rect クラスのオブジェクトを Rect オブジェクトから構築します。<r/>
+		 Constructs a Rect class object from another Rect object.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>setSize</name>
 	<type>method</type>
-	<shortdesc>矩形サイズの設定</shortdesc>
+	<shortdesc>Setting the rectangle size</shortdesc>
 	<arg>
 		<argitem>
 			<name>width</name>
 			<default></default>
 			<desc>
-				　矩形の横幅を指定します。<r/>
-				　この値は <ref>Rect.width</ref> プロパティでも取得や設定ができます。<r/>
+				 Specifies the width of the rectangle.<r/>
+				 This value can also be retrieved or set via the <ref>Rect.width</ref> property.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>height</name>
 			<default></default>
 			<desc>
-				　矩形の縦幅を指定します。<r/>
-				　この値は <ref>Rect.height</ref> プロパティでも取得や設定ができます。<r/>
+				 Specifies the height of the rectangle.<r/>
+				 This value can also be retrieved or set via the <ref>Rect.height</ref> property.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　矩形サイズを指定します。<r/>
+		 Specifies the rectangle size.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>setOffset</name>
 	<type>method</type>
-	<shortdesc>矩形位置の設定</shortdesc>
+	<shortdesc>Setting the rectangle position</shortdesc>
 	<arg>
 		<argitem>
 			<name>x</name>
 			<default></default>
 			<desc>
-				　矩形の X 座標値を指定します。<r/>
-				　この値は <ref>Rect.left</ref> プロパティでも取得や設定ができます。<r/>
+				 Specifies the X coordinate of the rectangle.<r/>
+				 This value can also be retrieved or set via the <ref>Rect.left</ref> property.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>y</name>
 			<default></default>
 			<desc>
-				　矩形の Y 座標値を指定します。<r/>
-				　この値は <ref>Rect.topt</ref> プロパティでも取得や設定ができます。<r/>
+				 Specifies the Y coordinate of the rectangle.<r/>
+				 This value can also be retrieved or set via the <ref>Rect.topt</ref> property.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　矩形位置の設定を行います。<r/>
+		 Sets the rectangle position.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>addOffset</name>
 	<type>method</type>
-	<shortdesc>矩形位置の設定</shortdesc>
+	<shortdesc>Setting the rectangle position</shortdesc>
 	<arg>
 		<argitem>
 			<name>x</name>
 			<default></default>
 			<desc>
-				　矩形の横移動量を指定します。<r/>
+				 Specifies the horizontal movement amount of the rectangle.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>y</name>
 			<default></default>
 			<desc>
-				　矩形の縦移動量を指定します。<r/>
+				 Specifies the vertical movement amount of the rectangle.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　矩形位置を移動します。<r/>
-		　指定された x, y 値分矩形が移動します。<r/>
+		 Moves the rectangle position.<r/>
+		 The rectangle moves by the specified x and y values.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>clear</name>
 	<type>method</type>
-	<shortdesc>矩形情報をクリアします</shortdesc>
+	<shortdesc>Clears the rectangle information</shortdesc>
 	<arg></arg>
 	<result></result>
 	<desc>
-		　矩形の各位置情報をゼロクリアします。<r/>
+		 Clears each position information of the rectangle to zero.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>set</name>
 	<type>method</type>
-	<shortdesc>矩形座標の設定</shortdesc>
+	<shortdesc>Setting the rectangle coordinates</shortdesc>
 	<arg>
 		<argitem>
 			<name>left</name>
 			<default></default>
 			<desc>
-				　左端を指定します。<r/>
+				 Specifies the left edge.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>top</name>
 			<default></default>
 			<desc>
-				　上端を指定します。<r/>
+				 Specifies the top edge.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>right</name>
 			<default></default>
 			<desc>
-				　右端を指定します。<r/>
+				 Specifies the right edge.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>bottom</name>
 			<default></default>
 			<desc>
-				　下端を指定します。<r/>
+				 Specifies the bottom edge.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　指定の大きさに矩形を設定します。<r/>
+		 Sets the rectangle to the specified size.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>isEmpty</name>
 	<type>method</type>
-	<shortdesc>矩形内部があるかどうか</shortdesc>
+	<shortdesc>Whether the rectangle has an interior</shortdesc>
 	<arg></arg>
-	<result>領域の有無</result>
+	<result>Presence of area</result>
 	<desc>
-		　矩形が幅と高さを持っているかどうか確認します。<r/>
-		　どちらか一方でも0以下の場合 true が返ります。<r/>
+		 Checks whether the rectangle has width and height.<r/>
+		 Returns true if either is 0 or less.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>clip</name>
 	<type>method</type>
-	<shortdesc>矩形のクリッピング</shortdesc>
+	<shortdesc>Rectangle clipping</shortdesc>
 	<arg>
 		<argitem>
 			<name>r</name>
 			<default></default>
 			<desc>
-				　クリッピングする矩形オブジェクトを指定します。<r/>
+				 Specifies the rectangle object to clip with.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>クリッピング実施有無</result>
+	<result>Whether clipping was performed</result>
 	<desc>
-		　矩形のクリッピングを指定の矩形で行います。<r/>
-		　矩形が空にならない場合のみクリッピングは行われます。<r/>
-		　空になってしまう場合は false が返り、クリッピングは行われません。<r/>
+		 Performs clipping of the rectangle with the specified rectangle.<r/>
+		 Clipping is performed only if the rectangle does not become empty.<r/>
+		 If it would become empty, false is returned and clipping is not performed.<r/>
 	</desc>
 	<ref>Rect.isEmpty</ref>
 </member>
@@ -246,21 +246,21 @@
 <member>
 	<name>union</name>
 	<type>method</type>
-	<shortdesc>矩形の合成</shortdesc>
+	<shortdesc>Rectangle union</shortdesc>
 	<arg>
 		<argitem>
 			<name>r</name>
 			<default></default>
 			<desc>
-				　合成する矩形オブジェクトを指定します。<r/>
+				 Specifies the rectangle object to combine.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>合成実施有無</result>
+	<result>Whether union was performed</result>
 	<desc>
-		　指定の矩形オブジェクトで矩形を拡張します。<r/>
-		　指定の矩形オブジェクトの 4辺値で矩形サイズが広がる方向で大きい値が対象矩形の値となります。<r/>
-		　対象矩形が空でない場合のみ実行され、空の場合は行われず、false を返します。<r/>
+		 Expands the rectangle with the specified rectangle object.<r/>
+		 The values of the target rectangle will be the larger values in the direction that expands the rectangle size based on the four-side values of the specified rectangle object.<r/>
+		 Executed only if the target rectangle is not empty; if it is empty, it is not performed and returns false.<r/>
 	</desc>
 	<ref>Rect.isEmpty</ref>
 </member>
@@ -268,176 +268,83 @@
 <member>
 	<name>intersects</name>
 	<type>method</type>
-	<shortdesc>矩形の交差判定</shortdesc>
+	<shortdesc>Rectangle intersection test</shortdesc>
 	<arg>
 		<argitem>
 			<name>r</name>
 			<default></default>
 			<desc>
-				　交差判定する矩形オブジェクトを指定します。<r/>
+				 Specifies the rectangle object for intersection testing.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>交差有無</result>
+	<result>Whether they intersect</result>
 	<desc>
-		　指定の矩形オブジェクトと交差するか判定します。<r/>
-		　交差する場合 true が返ります。<r/>
+		 Determines whether it intersects with the specified rectangle object.<r/>
+		 Returns true if they intersect.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>included</name>
 	<type>method</type>
-	<shortdesc>矩形内包判定</shortdesc>
+	<shortdesc>Rectangle inclusion test</shortdesc>
 	<arg>
 		<argitem>
 			<name>r</name>
 			<default></default>
 			<desc>
-				　内包判定する矩形オブジェクトを指定します。<r/>
+				 Specifies the rectangle object for inclusion testing.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>内包有無</result>
+	<result>Whether it is included</result>
 	<desc>
-		　指定の矩形オブジェクトを内包するか判定します。<r/>
-		　内包する場合 true が返ります。<r/>
-		　1辺でも外に出ていると内包していないと判定されます。<r/>
+		 Determines whether it includes the specified rectangle object.<r/>
+		 Returns true if it includes it.<r/>
+		 If even one side is outside, it is determined not to be included.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>includedPos</name>
 	<type>method</type>
-	<shortdesc>矩形内包判定</shortdesc>
+	<shortdesc>Rectangle inclusion test</shortdesc>
 	<arg>
 		<argitem>
 			<name>x</name>
 			<default></default>
 			<desc>
-				　判定するX軸座標値を指定します。<r/>
+				 Specifies the X-axis coordinate value to test.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>y</name>
 			<default></default>
 			<desc>
-				　判定するY軸座標値を指定します。<r/>
+				 Specifies the Y-axis coordinate value to test.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>内包有無</result>
+	<result>Whether it is included</result>
 	<desc>
-		　指定の位置を内包するか判定します。<r/>
-		　内包する場合 true が返ります。<r/>
-		　right, bottom は含まない範囲で判定されます。<r/>
+		 Determines whether it includes the specified position.<r/>
+		 Returns true if it includes it.<r/>
+		 The range is determined excluding right and bottom.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>equal</name>
 	<type>method</type>
-	<shortdesc>同一判定</shortdesc>
+	<shortdesc>Equality test</shortdesc>
 	<arg>
 		<argitem>
 			<name>r</name>
 			<default></default>
 			<desc>
-				　判定する矩形オブジェクトを指定します。<r/>
+				 Specifies the rectangle object to test.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>同じかどうか</result>
-	<desc>
-		　矩形が同じかどうか判定します。<r/>
-		　同じ場合 true が返ります。<r/>
-		　比較は4辺の値で行われます。<r/>
-	</desc>
-</member>
-
-<member>
-	<name>width</name>
-	<type>property</type>
-	<shortdesc>矩形横幅</shortdesc>
-	<access>r/w</access>
-	<desc>
-		　矩形の横幅を指定します。<r/>
-		　値を設定することもできます。<r/>
-	</desc>
-	<ref>Rect.setSize</ref>
-</member>
-
-<member>
-	<name>height</name>
-	<type>property</type>
-	<shortdesc>矩形縦幅</shortdesc>
-	<access>r/w</access>
-	<desc>
-		　矩形の縦幅を指定します。<r/>
-		　値を設定することもできます。<r/>
-	</desc>
-	<ref>Rect.setSize</ref>
-</member>
-
-<member>
-	<name>left</name>
-	<type>property</type>
-	<shortdesc>矩形左端</shortdesc>
-	<access>r/w</access>
-	<desc>
-		　矩形の左端を指定します。<r/>
-		　値を設定することもできます。<r/>
-	</desc>
-	<ref>Rect.setOffset</ref>
-</member>
-
-<member>
-	<name>top</name>
-	<type>property</type>
-	<shortdesc>矩形上端</shortdesc>
-	<access>r/w</access>
-	<desc>
-		　矩形の上端を指定します。<r/>
-		　値を設定することもできます。<r/>
-	</desc>
-	<ref>Rect.setOffset</ref>
-</member>
-
-<member>
-	<name>right</name>
-	<type>property</type>
-	<shortdesc>矩形右端</shortdesc>
-	<access>r/w</access>
-	<desc>
-		　矩形の右端を指定します。<r/>
-		　値を設定することもできます。<r/>
-	</desc>
-</member>
-
-<member>
-	<name>bottom</name>
-	<type>property</type>
-	<shortdesc>矩形下端</shortdesc>
-	<access>r/w</access>
-	<desc>
-		　矩形の下端を指定します。<r/>
-		　値を設定することもできます。<r/>
-	</desc>
-</member>
-
-<member>
-	<name>nativeArray</name>
-	<type>property</type>
-	<shortdesc>矩形バッファポインタ</shortdesc>
-	<access>r</access>
-	<desc>
-		　矩形の座標配列へのポインタを表します。<r/>
-		　このプロパティは、プラグインなどのために座標配列バッファへの直接のアクセスの手段を提供する
-		ためにあります。<r/>
-		　整数型で返されますが、プラグインなどでは適切な型 ( int[4] 等 ) にキャストして使って
-		ください。<r/>
-	</desc>
-</member>
-
-
-</doc>
+	<result>Whether they are the

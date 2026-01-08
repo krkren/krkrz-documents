@@ -2,35 +2,35 @@
 <doc>
 <title>Timer</title>
 <desc>
-　Timer クラスは、一定時間ごとにイベントを発生するためのクラスです。<r/>
+ The Timer class is a class for generating events at regular intervals.<r/>
 </desc>
 
 <member>
 	<name>Timer</name>
 	<type>constructor</type>
-	<shortdesc>Timer オブジェクトの構築</shortdesc>
+	<shortdesc>Construction of a Timer object</shortdesc>
 	<arg>
 		<argitem>
 			<name>owner</name>
 			<default></default>
 			<desc>
-				　イベントの発生先を指定します。<r/>
+				 Specifies the target for event generation.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>actionname</name>
 			<default>"action"</default>
 			<desc>
-				　owner で指定したイベントの発生先オブジェクトで、イベントを受け取るメソッド名を
-				指定します。空文字列を指定すると owner はメソッドとみなされ、イベントの周期ごとに
-				owner が直接呼ばれます。<r/>
+				 Specifies the name of the method to receive events in the object specified by owner.
+				If an empty string is specified, owner is treated as a method, and owner is called
+				directly at each event interval.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　Timer クラスのオブジェクトを構築します。<r/>
-		　初期状態では interval プロパティは 1000、enabled プロパティは偽になっています。<r/>
+		 Constructs a Timer class object.<r/>
+		 In the initial state, the interval property is 1000 and the enabled property is false.<r/>
 	</desc>
 </member>
 
@@ -38,11 +38,11 @@
 <member>
 	<name>onTimer</name>
 	<type>event</type>
-	<shortdesc>タイマー周期が来た</shortdesc>
+	<shortdesc>Timer interval reached</shortdesc>
 	<arg></arg>
 	<result></result>
 	<desc>
-		　タイマーの周期ごとに呼ばれます。
+		 Called at each timer interval.
 	</desc>
 </member>
 
@@ -51,58 +51,64 @@
 <member>
 	<name>interval</name>
 	<type>property</type>
-	<shortdesc>イベントの発生周期</shortdesc>
+	<shortdesc>Event generation interval</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　イベントの発生<kw>周期</kw>を表します。値を設定することもできます。<r/>
-		　単位は ms ( ミリ秒 ) で、指定された時間ごとにイベントが発生します。<r/>
-		　実数で発生周期を指定することもできます。現バージョンでは、1/65536ミリ秒精度で
-		指定することができます (小数点以下の数値は、この精度に丸められます)。<r/>
-		　1/65536ミリ秒程度の精度があると言っても、実際にこの精度でイベントハンドラが呼び出される保証はありません。
-		実際には、イベントが呼び出されるタイミングには3～10ms程度のぶれがあります。
-		しかし、平均的・長期的にはこのプロパティで指定した周期でイベントが発生するように自動的に調整が行われます。
+		 Represents the event generation <kw>interval</kw>. You can also set the value.<r/>
+		 The unit is ms (milliseconds), and events occur at the specified time intervals.<r/>
+		 You can also specify the interval as a real number. In the current version, it can be
+		specified with a precision of 1/65536 milliseconds (values after the decimal point are
+		rounded to this precision).<r/>
+		 Even though it has a precision of about 1/65536 milliseconds, there is no guarantee that
+		the event handler will actually be called with this precision. In practice, there is a
+		fluctuation of about 3 to 10 ms in the timing of event calls. However, in the average and
+		long term, adjustments are automatically made so that events occur at the interval
+		specified by this property.
 	</desc>
 </member>
 
 <member>
 	<name>capacity</name>
 	<type>property</type>
-	<shortdesc>イベントの最大発生許容量</shortdesc>
+	<shortdesc>Maximum allowable event generation capacity</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　どれだけのイベントを、一時期に発生させることができるかを指定します。値を設定することもできます。<r/>
-		　タイマの周期よりも長い処理が行われた時など、タイマイベントを処理しきれない場合があります。
-		このとき、タイマはイベントをイベントキューには溜めますが、そのイベントキューに溜めるイベントの数には上限があります。
-		このプロパティはその最大数を指定します。<r/>
-		　イベントを処理する段階になった場合、吉里吉里はキューに溜まった数のイベントを一時期に処理しようとします。<r/>
-		　1を指定すると、イベントキューには最大1個までしかイベントが溜まりません。0 を指定するとイベントキューに溜まるイベントの数に
-		制限はなくなりますが、あまりにイベントが溜まりすぎると、フリーズしたようになる可能性があるので注意してください。<r/>
-		　デフォルトは 6 です。<r/>
+		 Specifies how many events can be generated at one time. You can also set the value.<r/>
+		 There may be cases where timer events cannot be fully processed, such as when processing
+		takes longer than the timer interval. In this case, the timer stores events in the event
+		queue, but there is an upper limit to the number of events that can be stored in that
+		event queue. This property specifies that maximum number.<r/>
+		 When it comes time to process events, Kirikiri attempts to process the number of events
+		accumulated in the queue at once.<r/>
+		 If 1 is specified, a maximum of only 1 event will accumulate in the event queue. If 0 is
+		specified, there is no limit to the number of events that can accumulate in the event queue,
+		but be careful as the system may appear to freeze if too many events accumulate.<r/>
+		 The default is 6.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>enabled</name>
 	<type>property</type>
-	<shortdesc>イベントを発生させるかどうか</shortdesc>
+	<shortdesc>Whether to generate events</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　イベントを発生させるかどうかを表します。値を設定することもできます。<r/>
-		　真ならばイベントが発生します。偽ならばイベントは発生しません。
+		 Indicates whether to generate events. You can also set the value.<r/>
+		 If true, events will occur. If false, events will not occur.
 	</desc>
 </member>
 
 <member>
 	<name>mode</name>
 	<type>property</type>
-	<shortdesc>モード</shortdesc>
+	<shortdesc>Mode</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　動作のモードを表します。値を設定することもできます。<r/>
-		　以下の値のいずれかを指定します。<r/>
-		<tt><kw>atmNormal</kw>    : </tt> 通常のイベント配信の優先度でイベントが配信されます。<r/>
-		<tt><kw>atmExclusive</kw> : </tt> 他の非同期イベントよりも優先されて配信されます<r/>
-		<tt><kw>atmAtIdle</kw>    : </tt> アイドル状態 ( 他に配信するイベントが無くなったとき ) に配信されます。<r/>
+		 Represents the operation mode. You can also set the value.<r/>
+		 Specify one of the following values.<r/>
+		<tt><kw>atmNormal</kw>    : </tt> Events are delivered with normal event delivery priority.<r/>
+		<tt><kw>atmExclusive</kw> : </tt> Delivered with priority over other asynchronous events.<r/>
+		<tt><kw>atmAtIdle</kw>    : </tt> Delivered in the idle state (when there are no other events to deliver).<r/>
 	</desc>
 	<ref>AsyncTrigger.mode</ref>
 </member>

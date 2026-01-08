@@ -1,246 +1,244 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>ループチューナ</title>
+<title>Loop Tuner</title>
 
 <para>
-<ptitle>ループチューナについて</ptitle>
-　ループチューナは、PCM形式 (.WAV や Ogg Vorbis など) のファイルに対し、<r/>
+<ptitle>About Loop Tuner</ptitle>
+ Loop Tuner is a tool for PCM format files (.WAV, Ogg Vorbis, etc.) to:<r/>
 <ul>
-<li>継ぎ目のない(シームレスな)ループを設定したり、条件によるジャンプ(再生位置の変更)を行う「<kw>リンク</kw>」</li>
-<li>再生が特定の位置に達したとき、吉里吉里上でイベントを発生させる「<kw>ラベル</kw>」</li>
+<li>Set up seamless loops or " <kw>Links</kw> " that perform jumps (change playback position) based on conditions.</li>
+<li>Set up " <kw>Labels</kw> " that trigger events in Kirikiri when playback reaches a specific position.</li>
 </ul>
-　といった情報を生成するツールです。<r/>
-<r/>
-　生成された情報は、PCM形式のファイル名の最後に .sli がついたファイル名 ( たとえば、se001.wav に対しては se001.wav.sli ) になり、<at href="f_WaveSoundBuffer.html">WaveSoundBuffer クラス</at> で PCM 形式のファイルを開くときに自動的に読み込まれるようになります。<r/>
+ This information is saved as a file with .sli appended to the PCM filename (for example, se001.wav becomes se001.wav.sli). These files are automatically loaded when opening PCM files with the <at href="f_WaveSoundBuffer.html">WaveSoundBuffer class</at>.<r/>
 </para>
 
 
 <para>
-<ptitle>シームレスなループとは</ptitle>
-　ループチューナを使わなくても、<at href="f_WaveSoundBuffer_looping.html">WaveSoundBuffer.looping</at> プロパティを使えば、ループ再生をすることができます。しかし、これでは、サウンドの先頭から再生し、最後まで再生すればまた先頭にもどって、といった、単純なループしか行うことができません。<r/>
-　ループチューナを使えば、下図のように、サウンドの任意の場所まで再生したら、任意の場所に戻るといったループを設定することができます。弱起の曲をループさせたり、エンジンの始動縲怎Gンジン音のループのように、サウンドの先頭から繰り返して再生することができない場合に使うことができます。<r/>
+<ptitle>What is a Seamless Loop?</ptitle>
+ Even without Loop Tuner, you can perform loop playback using the <at href="f_WaveSoundBuffer_looping.html">WaveSoundBuffer.looping</at> property. However, this only allows simple loops that play from the beginning of the sound and return to the beginning once the end is reached.<r/>
+ With Loop Tuner, as shown in the diagram below, you can set a loop that plays to an arbitrary point and then returns to another arbitrary point. This can be used for looping songs with an anacrusis (pickup notes), or for sounds that cannot be repeated from the very beginning, such as an engine starting followed by a continuous engine loop.<r/>
 <r/>
 <img src="lt_seamless_loop.png"/><r/>
 <r/>
-　この場合、繰り返しを行うタイミングを厳密に調整しないと、ループ位置で「プチッ」「ブツッ」といったクラックノイズが発生してしまいます。ループチューナでは、このタイミングの詳細な調整を支援する機能を持っているため、容易に調整を行うことができ、シームレスな(継ぎ目のない)ループを実現することができます。<r/>
-　また、希にいくら調整を行ってもこのノイズを取り除けない場合がありますが、ループチューナでは、リンクのすぐ付近で非常に短い(50ms程の)クロスフェードを行うことにより、このノイズを軽減する機能もあります。<r/>
+ In these cases, if the timing of the repetition is not strictly adjusted, crackling noises like "clicks" or "pops" will occur at the loop point. Loop Tuner provides features to assist in fine-tuning this timing, making it easy to achieve seamless loops.<r/>
+ Additionally, in rare cases where noise cannot be removed no matter how much you adjust, Loop Tuner also has a function to reduce this noise by performing a very short (approx. 50ms) crossfade near the link.<r/>
 </para>
 
 <para>
-<ptitle>条件付きリンク</ptitle>
-　「曲をループ再生しているが、とある条件に達したら、ループを抜けて次の旋律に進みたい」といった場合に、この条件付きリンクを使うことができます。<r/>
-　ループチューナでは、サウンドの再生位置を変更するための情報を「リンク」と呼んでいますが、このリンクに条件を付けることができます。<r/>
-　ループチューナでは16個の「フラグ」を管理することができ、これらのフラグは 0 縲鰀 9999 の値を持っています。これらの任意のリンクに対し、「○○番のフラグが○○である」「○○番のフラグが○○ではない」「○○番のフラグは○○以下である」などといった「条件」が合致すればリンクをたどる、といった設定を行うことができます。<r/>
-　フラグは、ループチューナ上でも値を変更してテストすることができるほか、<at href="f_WaveSoundBuffer_flags.html">WaveSoundBuffer.flags プロパティ</at> を用いて、スクリプトから操作することもできます。<r/>
+<ptitle>Conditional Links</ptitle>
+ Conditional links can be used for situations like "I want to loop a song, but when a certain condition is met, I want to exit the loop and proceed to the next melody."<r/>
+ In Loop Tuner, information for changing the playback position is called a "Link," and conditions can be attached to these links.<r/>
+ Loop Tuner can manage 16 "Flags," which hold values from 0 to 9999. You can set conditions for any link, such as "Flag #X is equal to Y," "Flag #X is not Y," or "Flag #X is less than or equal to Y." The link will only be followed if the condition is met.<r/>
+ Flags can be tested by changing their values within Loop Tuner, and they can also be manipulated via script using the <at href="f_WaveSoundBuffer_flags.html">WaveSoundBuffer.flags property</at>.<r/>
 </para>
 
 
 <para>
-<ptitle>ラベル</ptitle>
-　「再生位置が特定の場所に来たら、イベントを発生したい」といった用途のために、「ラベル」を設定することができます。<r/>
-　ラベルを通過すると、<at href="f_WaveSoundBuffer_onLabel.html">WaveSoundBuffer.onLabel</at> イベントが発生します。イベントのパラメータにはラベル名が渡されるため、どのラベルを通過したかを知ることができます。<r/>
+<ptitle>Labels</ptitle>
+ "Labels" can be set for purposes such as "I want to trigger an event when the playback position reaches a specific spot."<r/>
+ When a label is passed, a <at href="f_WaveSoundBuffer_onLabel.html">WaveSoundBuffer.onLabel</at> event occurs. Since the label name is passed as a parameter to the event, you can identify which label was passed.<r/>
 <r/>
-　また、ラベルに特別な「<kw>式</kw>」を設定することにより、ラベル通過時にフラグの値を増減したり、値を設定したりすることができます。<r/>
-　上記の「条件付きリンク」と組み合わせれば、特定区間を４回だけ再生、といった使い方ができます。<r/>
+ Furthermore, by setting a special " <kw>Expression</kw> " on a label, you can increase, decrease, or set flag values when the label is passed.<r/>
+ Combined with the "Conditional Links" mentioned above, you can achieve things like playing a specific section exactly four times.<r/>
 </para>
 
 <para>
-<ptitle>リンク、ラベルとバッファリング</ptitle>
-　吉里吉里の WaveSoundBuffer は、常にサウンドのバッファリングを行っています。デコード(ファイルからの読み出しや、圧縮音楽ファイルの展開) を行った後、すぐにそれを再生するのではなく、いったんバッファと呼ばれるメモリに蓄積してから再生します。<r/>
-　つまり、常に実際の再生位置に先駆けてデコードを行っており、標準の設定では最長で2秒間のズレがあります。<r/>
-　リンクの条件がテストされるのは、このデコードの時点であるため、フラグを操作しても、その効果が実際に得られるのは最長で２秒後となります。つまり、再生中に、リンクの直前、最長で２秒前までに条件を変更しても、そのリンクには影響しない可能性があり、注意が必要です。<r/>
-　「最長で２秒」と言うのは、場合によってはこれよりも短い場合がある、ということです。CPUに余力があり、デコードを十分行えれば、おおむね２秒をキープしますが、CPUが他の処理で奪われ、デコードが遅れると２秒を切ることがあります。<r/>
+<ptitle>Links, Labels, and Buffering</ptitle>
+ Kirikiri's WaveSoundBuffer always buffers sound. After decoding (reading from a file or expanding compressed audio), it does not play it immediately; instead, it stores it in memory called a buffer before playback.<r/>
+ This means decoding is always happening ahead of the actual playback position, with a maximum lead of 2 seconds by default.<r/>
+ Since link conditions are tested at the time of decoding, even if you manipulate a flag, the effect may not be seen for up to 2 seconds. Therefore, caution is needed as changing a condition right before a link during playback might not affect that link in time.<r/>
+ "Up to 2 seconds" means it may be shorter depending on the situation. If the CPU has spare capacity and decoding is sufficient, it generally maintains 2 seconds, but if the CPU is busy with other tasks and decoding is delayed, it may drop below 2 seconds.<r/>
 <r/>
-　また、ラベルに関しては、ラベルのイベントが発生するのは、実際の「再生位置」がその場所に達した場合ですが、これに対し、ラベルの「式」が実行されるのは、「デコード位置」がその場所に達した場合なので注意が必要です。<r/>
+ Regarding labels, please note that while the label event occurs when the actual "playback position" reaches that spot, the label "expression" is executed when the "decoding position" reaches that spot.<r/>
 </para>
 
 <para>
-<ptitle>読み込み可能な形式</ptitle>
-　ループチューナは、現時点で以下の PCM の形式のファイルを扱うことができます。<r/>
+<ptitle>Supported Formats</ptitle>
+ Loop Tuner currently supports the following PCM formats:<r/>
 <ul>
-<li>無圧縮 Wave ( 拡張子は .wav )</li>
-<li>MS-ADPCM ( 拡張子は .wav )</li>
-<!-- <li>TCWF ( 拡張子は .tcw )</li> -->
-<li>Ogg Vorbis ( 拡張子は .ogg )</li>
+<li>Uncompressed Wave (extension .wav)</li>
+<li>MS-ADPCM (extension .wav)</li>
+<!-- <li>TCWF (extension .tcw)</li> -->
+<li>Ogg Vorbis (extension .ogg)</li>
 </ul>
 <r/>
-ループチューナは、吉里吉里本体と同じプラグインを使用します。標準の配布構成では、各プラグインを自動的に検出しますので、特別な設定は必要有りません。<r/>
+Loop Tuner uses the same plugins as the Kirikiri main engine. In the standard distribution, each plugin is detected automatically, so no special configuration is required.<r/>
 </para>
 
 
 <para>
-<ptitle>メイン画面</ptitle>
-　ループチューナ (krkrlt.exe) を起動すると、以下の画面が表示されます (以下の画面は、実際にファイルを読み込んだところ)<r/>
+<ptitle>Main Screen</ptitle>
+ When you start Loop Tuner (krkrlt.exe), the following screen appears (the screen below shows a file actually loaded):<r/>
 <img src="lt_main_window.png" /><r/>
 <r/>
 
 <dl>
 
-<dt>縮小波形表示部分</dt>
+<dt>Reduced Waveform Display Area</dt>
 <dd>
-　ここには、サウンドの全体を縮小した波形が表示されます。赤い横線はリンク、緑の縦線はラベルを表しています。<r/>
-　クリックをすると、その付近を波形表示部分に表示することができます。ダブルクリックをすると、その位置から再生を開始することができます。<r/>
-　縮小波形の作成には時間がかかるため、サウンドを読み込んだ直後や、ウィンドウの横幅を変更した直後は全てが表示されないかもしれません (バックグラウンドで縮小波形を作成しますので、時間が経つにつれ表示されるようになります)。<r/>
+ This area displays a reduced waveform of the entire sound. Red horizontal lines represent links, and green vertical lines represent labels.<r/>
+ Clicking here allows you to display that vicinity in the main waveform display area. Double-clicking starts playback from that position.<r/>
+ Since creating the reduced waveform takes time, it may not be fully displayed immediately after loading a sound or changing the window width (it is created in the background, so it will appear over time).<r/>
 </dd>
 
 
 
-<dt>タイムライン・ラベル表示部分</dt>
+<dt>Timeline / Label Display Area</dt>
 <dd>
-　ここには、タイムラインが表示され、波形のどの位置が、サウンドの先頭からどれほどの時間が経過した位置にあるのかを知ることができます。<r/>
-　また、ラベルの情報もここに表示されます。逆三角形のマークはラベルを表しています。<r/>
-　ラベルをクリックするとラベルを選択することができます。<r/>
-　ラベルをダブルクリックすると、ラベル名を編集することができます。<r/>
+ The timeline is displayed here, allowing you to see how much time has elapsed from the start of the sound at any position.<r/>
+ Label information is also displayed here. Inverted triangle marks represent labels.<r/>
+ Clicking a label selects it.<r/>
+ Double-clicking a label allows you to edit the label name.<r/>
 </dd>
 
 
-<dt>波形表示部分</dt>
+<dt>Waveform Display Area</dt>
 <dd>
-　ここには、サウンドの波形が表示されます。<r/>
-　[表示|ズームイン]あるいは[表示|ズームアウト]で、波形の拡大や縮小を行うことができます。<r/>
-　波形をクリックすると、その位置に点滅する縦棒が表示されます(これをキャレットと呼びます)。[再生|現在位置から再生] ではこの場所から再生を開始することができます。また、[表示|ズームイン]あるいは[表示|ズームアウト]では、この位置を中心にして拡大や縮小が行われます。<r/>
-　波形上をダブルクリックすると、その位置から再生を開始することができます。<r/>
-　波形が画面に収まりきらない場合は、下部にスクロールバーが表示されます。<r/>
-　波形表示部分に表示される、縦の点線は、ラベルあるいはリンクの位置を表しています。この縦の点線はマウスでドラッグを行うことができ、位置の調整ができます。
+ The sound waveform is displayed here.<r/>
+ You can zoom in or out on the waveform using [View|Zoom In] or [View|Zoom Out].<r/>
+ Clicking the waveform displays a blinking vertical bar (called the caret). [Play|Play from Current Position] starts playback from this location. Also, [View|Zoom In] and [View|Zoom Out] center the zoom on this position.<r/>
+ Double-clicking the waveform starts playback from that position.<r/>
+ If the waveform does not fit on the screen, a scrollbar appears at the bottom.<r/>
+ Vertical dotted lines in the waveform display represent label or link positions. These dotted lines can be dragged with the mouse to adjust their positions.
 </dd>
 
-<dt>リンク表示部分</dt>
+<dt>Link Display Area</dt>
 <dd>
-　ここには、リンクの情報が表示されます。<r/>
-　リンクは矢印で表示され、矢印の元の部分に再生位置が達したときに、矢印の先の部分に移動する、という意味になります。<r/>
-　点線のリンクは、条件付きリンクを表しています。<r/>
-　リンクをクリックすると、リンクを選択することができます。<r/>
-　リンクをダブルクリックすると、リンクの編集画面を表示することができます。<r/>
-</dd>
-
-
-
-
-<dt>[ファイル(F)|開く(O) ...](<img src="lt_open.png" />) ショートカットキー: Ctrl+O</dt>
-<dd>
-　操作対象となるサウンドファイルを開きます。すでに開かれているファイルに変更が加わっていた場合、変更を保存するかどうかを尋ねるダイアログボックスが表示されます。
-</dd>
-
-<dt>[ファイル(F)|保存(S)](<img src="lt_save.png" />) ショートカットキー: Ctrl+S</dt>
-<dd>
-　現在の内容をファイルに保存します。ファイル名は、PCM形式のファイル名の最後に .sli がついたファイル名 ( たとえば、se001.wav に対しては se001.wav.sli ) になります。
-</dd>
-
-<dt>[ファイル(F)|終了(X)]</dt>
-<dd>
-　ループチューナを終了します。すでに開かれているファイルに変更が加わっていた場合、変更を保存するかどうかを尋ねるダイアログボックスが表示されます。
-</dd>
-
-<dt>[編集(V)|元に戻す(U)](<img src="lt_undo.png" />) ショートカットキー: Ctrl+Z</dt>
-<dd>
-　最後の編集を取り消し、直前の状態に戻します。
-</dd>
-
-<dt>[編集(V)|やり直し(R)](<img src="lt_redo.png" />)</dt>
-<dd>
-　「元に戻す」で元に戻した変更を、再度適用します。
-</dd>
-
-<dt>[編集(V)|削除(D)](<img src="lt_delete.png" />) ショートカットキー: Del</dt>
-<dd>
-　現在選択されているアイテムを削除します。
-</dd>
-
-<dt>[編集(V)|新規リンクを作成(J)](<img src="lt_new_link.png" />)</dt>
-<dd>
-　新しいリンクを作成します。リンクは、前回クリックした場所をリンクの先とし、前々回クリックした場所をリンクの元として作成されます。従って、リンクを作成したい場合は、まずリンクの元となる場所をクリックし、次にリンクの先となる場所をクリックし、最後にこのメニューを選択してください。<r/>
-</dd>
-
-<dt>[編集(V)|新規ラベルを作成(J)](<img src="lt_new_label.png" />)</dt>
-<dd>
-　新しいラベルを作成します。
-</dd>
-
-<dt>[編集(V)|リンクの編集(T) ...](<img src="lt_edit_link.png" />)</dt>
-<dd>
-　現在選択されているリンクを調整するための画面を開きます。
-</dd>
-
-<dt>[編集(V)|再生位置にラベルを作成(A)](<img src="lt_new_label_on_play.png" />) ショートカットキー: A または S</dt>
-<dd>
-　現在の再生位置にラベルを作成します。ラベルをキーパンチで作成することができます。A キーだけの連打が難しい場合には S キーも使うことができますので、A キーと S キーを交互に押すと楽です。
-</dd>
-
-<dt>[編集(V)|全てのラベルを削除(Q)](<img src="lt_clear_all_labels.png" />) ショートカットキー: Ctrl + Q</dt>
-<dd>
-　全てのラベルを削除します。
-</dd>
-
-<dt>[表示(V)|ズームイン(I)](<img src="lt_zoom_in.png" />) ショートカットキー: I</dt>
-<dd>
-　波形を拡大します。
-</dd>
-
-<dt>[表示(V)|ズームアウト(O)](<img src="lt_zoom_out.png" />) ショートカットキー: O</dt>
-<dd>
-　波形を縮小します。
-</dd>
-
-<dt>[表示(V)|再生位置に画面を追従(F)](<img src="lt_follow.png" />) ショートカットキー: F</dt>
-<dd>
-　再生位置に画面を追従します。
-</dd>
-
-<dt>[表示(V)|ツールバーの表示(T)]</dt>
-<dd>
-　ツールバーの表示/非表示を切り替えます。<r/>
+ Link information is displayed here.<r/>
+ Links are shown as arrows; when the playback position reaches the base of the arrow, it moves to the tip of the arrow.<r/>
+ Dotted links represent conditional links.<r/>
+ Clicking a link selects it.<r/>
+ Double-clicking a link opens the link editing screen.<r/>
 </dd>
 
 
 
-<dt>[表示(V)|フラグの表示(G)](<img src="lt_edit_flags.png" />)</dt>
+
+<dt>[File(F)|Open(O) ...](<img src="lt_open.png" />) Shortcut: Ctrl+O</dt>
 <dd>
-　フラグ編集バーを表示します。<r/>
-　フラグ編集バーには16個の編集欄があり、それぞれがフラグを表しています。値を変更することもできます。編集欄をダブルクリックすることにより、数値が 0 であれば 1 に、0 であれば 1 にする(トグルする)ことができます。<r/>
-　左端の[C]ボタンをクリックすると、全てのフラグを 0 にすることができます。<r/>
+ Opens a sound file to operate on. If the currently open file has been modified, a dialog box will ask if you want to save the changes.
 </dd>
 
-<dt>[表示(V)|縮小波形の表示(E)]</dt>
+<dt>[File(F)|Save(S)](<img src="lt_save.png" />) Shortcut: Ctrl+S</dt>
 <dd>
-　縮小波形の表示/非表示を切り替えます。<r/>
+ Saves the current content to a file. The filename will be the PCM filename with .sli appended (e.g., se001.wav becomes se001.wav.sli).
 </dd>
 
-<dt>[表示(V)|ステータスバーの表示(S)]</dt>
+<dt>[File(F)|Exit(X)]</dt>
 <dd>
-　ステータスバーの表示/非表示を切り替えます。<r/>
+ Exits Loop Tuner. If the currently open file has been modified, a dialog box will ask if you want to save the changes.
+</dd>
+
+<dt>[Edit(V)|Undo(U)](<img src="lt_undo.png" />) Shortcut: Ctrl+Z</dt>
+<dd>
+ Cancels the last edit and returns to the previous state.
+</dd>
+
+<dt>[Edit(V)|Redo(R)](<img src="lt_redo.png" />)</dt>
+<dd>
+ Re-applies a change that was undone with "Undo."
+</dd>
+
+<dt>[Edit(V)|Delete(D)](<img src="lt_delete.png" />) Shortcut: Del</dt>
+<dd>
+ Deletes the currently selected item.
+</dd>
+
+<dt>[Edit(V)|Create New Link(J)](<img src="lt_new_link.png" />)</dt>
+<dd>
+ Creates a new link. The link is created with the last clicked position as the destination and the second-to-last clicked position as the source. Therefore, to create a link, first click the source position, then click the destination position, and finally select this menu item.<r/>
+</dd>
+
+<dt>[Edit(V)|Create New Label(J)](<img src="lt_new_label.png" />)</dt>
+<dd>
+ Creates a new label.
+</dd>
+
+<dt>[Edit(V)|Edit Link(T) ...](<img src="lt_edit_link.png" />)</dt>
+<dd>
+ Opens a screen to adjust the currently selected link.
+</dd>
+
+<dt>[Edit(V)|Create Label at Playback Position(A)](<img src="lt_new_label_on_play.png" />) Shortcut: A or S</dt>
+<dd>
+ Creates a label at the current playback position. This allows you to create labels via keypress. If it is difficult to press the A key repeatedly, you can also use the S key; alternating between A and S is easier.
+</dd>
+
+<dt>[Edit(V)|Delete All Labels(Q)](<img src="lt_clear_all_labels.png" />) Shortcut: Ctrl + Q</dt>
+<dd>
+ Deletes all labels.
+</dd>
+
+<dt>[View(V)|Zoom In(I)](<img src="lt_zoom_in.png" />) Shortcut: I</dt>
+<dd>
+ Enlarges the waveform.
+</dd>
+
+<dt>[View(V)|Zoom Out(O)](<img src="lt_zoom_out.png" />) Shortcut: O</dt>
+<dd>
+ Shrinks the waveform.
+</dd>
+
+<dt>[View(V)|Follow Playback Position(F)](<img src="lt_follow.png" />) Shortcut: F</dt>
+<dd>
+ Makes the screen follow the playback position.
+</dd>
+
+<dt>[View(V)|Show Toolbar(T)]</dt>
+<dd>
+ Toggles the toolbar display.<r/>
 </dd>
 
 
 
-<dt>[再生(P)|停止(Q)](<img src="lt_stop.png" />) ショートカットキー: Q</dt>
+<dt>[View(V)|Show Flags(G)](<img src="lt_edit_flags.png" />)</dt>
 <dd>
-　再生を停止します。
+ Displays the flag editing bar.<r/>
+ The flag editing bar has 16 fields, each representing a flag. You can change their values. Double-clicking a field toggles the value between 0 and 1.<r/>
+ Clicking the [C] button on the far left resets all flags to 0.<r/>
 </dd>
 
-<dt>[再生(P)|初めから再生(P)](<img src="lt_play_from_first.png" />) ショートカットキー: P</dt>
+<dt>[View(V)|Show Reduced Waveform(E)]</dt>
 <dd>
-　サウンドの初めから再生を開始します。
+ Toggles the reduced waveform display.<r/>
 </dd>
 
-<dt>[再生(P)|現在位置から再生(C)](<img src="lt_play_from_current.png" />) ショートカットキー: Space</dt>
+<dt>[View(V)|Show Status Bar(S)]</dt>
 <dd>
-　キャレット位置からサウンドの再生を開始します。
-</dd>
-
-<dt>[再生(P)|リンクを無視して再生(G)](<img src="lt_ignore_links.png" />) ショートカットキー: G</dt>
-<dd>
-　この項目がチェックされている(押し込まれた表示になっている)状態では、全てのリンクを無視して再生します。再生位置がリンクの元の位置に達しても、リンクをたどりません。
-</dd>
-
-<dt>[ヘルプ(H)|ヘルプ(H)]</dt>
-<dd>
-　ヘルプを表示します。
+ Toggles the status bar display.<r/>
 </dd>
 
 
-<dt>[ヘルプ(H)|ループチューナについて(A)]</dt>
+
+<dt>[Play(P)|Stop(Q)](<img src="lt_stop.png" />) Shortcut: Q</dt>
 <dd>
-　ループチューナの著作権情報とバージョン情報を表示します。
+ Stops playback.
+</dd>
+
+<dt>[Play(P)|Play from Beginning(P)](<img src="lt_play_from_first.png" />) Shortcut: P</dt>
+<dd>
+ Starts playback from the beginning of the sound.
+</dd>
+
+<dt>[Play(P)|Play from Current Position(C)](<img src="lt_play_from_current.png" />) Shortcut: Space</dt>
+<dd>
+ Starts playback from the caret position.
+</dd>
+
+<dt>[Play(P)|Ignore Links and Play(G)](<img src="lt_ignore_links.png" />) Shortcut: G</dt>
+<dd>
+ When this item is checked (button appears pressed), all links are ignored during playback. Even if the playback position reaches a link source, the link will not be followed.
+</dd>
+
+<dt>[Help(H)|Help(H)]</dt>
+<dd>
+ Displays the help.
+</dd>
+
+
+<dt>[Help(H)|About Loop Tuner(A)]</dt>
+<dd>
+ Displays copyright and version information for Loop Tuner.
 </dd>
 
 </dl>
@@ -249,102 +247,102 @@
 
 
 <para>
-<ptitle>リンクの編集画面</ptitle>
-[編集|リンクの編集] を選択するか、あるいはリンクをダブルクリックすることによりこの画面を表示することができます。<r/>
-この画面で有効なショートカットキーについては、波形を右クリックした際に表示されるメニューを参照してください。<r/>
+<ptitle>Link Tuning Screen</ptitle>
+ You can display this screen by selecting [Edit|Edit Link] or by double-clicking a link.<r/>
+ For shortcut keys available on this screen, please refer to the menu that appears when right-clicking the waveform.<r/>
 <r/>
 <img src="lt_link_tuner.png" />
 <r/>
 <r/>
 <dl>
 
-<dt>リンク条件</dt>
+<dt>Link Condition</dt>
 <dd>
-　最上部は、リンクの条件を編集する部分です。<r/>
-　[条件付き] チェックボックスをチェックすることにより、このリンクを条件付きリンクとすることができます。条件は、右側の部分で指定します。<r/>
-　条件は、以下の形式で指定することができます。<r/>
+ The top section is for editing link conditions.<r/>
+ By checking the [Conditional] checkbox, you can make this link a conditional link. Specify the condition in the right-hand section.<r/>
+ Conditions can be specified in the following format:<r/>
 <r/>
-　<tt>[A]番のフラグが[B][条件]</tt><r/>
+ <tt>Flag #[A] is [Condition] [B]</tt><r/>
 <r/>
-　[A] には、比較対象となるフラグ番号 (0縲鰀15) を指定します。<r/>
-　[B] には、比較対象となる数値 (0縲鰀9999) を指定します。<r/>
-　[条件] には条件を指定します。条件は、「と同じとき」「でないとき」「より大きいとき」「以上のとき」「より小さいとき」「以下のとき」の６つです。<r/>
+ [A] specifies the flag number (0-15) to compare.<r/>
+ [B] specifies the numerical value (0-9999) to compare against.<r/>
+ [Condition] specifies the comparison. There are six options: "Equal to," "Not equal to," "Greater than," "Greater than or equal to," "Less than," and "Less than or equal to."<r/>
 <r/>
-　比較対象となる数値は 0 縲鰀 9999 までを使用できますが、特別な用途でない限り、0 か 1 を用いた方がよいでしょう (メイン画面の「フラグの表示」で表示されるフラグ編集欄でも、 0 や 1 はダブルクリックで簡単に入力することができます )。<r/>
+ While values from 0 to 9999 can be used, it is generally better to use 0 or 1 unless you have a special purpose (0 and 1 can be easily toggled by double-clicking in the flag editing bar on the main screen).<r/>
 </dd>
 
-<dt>波形表示部分</dt>
+<dt>Waveform Display Area</dt>
 <dd>
-　波形表示部分では、リンクの直前の波形とリンクの直後の波形を確認することができます。左側の青い波形がリンク前の波形、右側の赤い波形がリンク後の波形です。薄く見える波形は、それぞれリンク前に対するリンク後、リンク後に対するリンク前の波形で、重ね合わせて表示されます。<r/>
-　波形は、マウスでドラッグすることにより調整することができます。また、波形表示部分の下部に並んでいるリンク調整ボタンでも調整することができます。<r/>
+ In the waveform display area, you can check the waveform immediately before the link and immediately after the link. The blue waveform on the left is before the link, and the red waveform on the right is after the link. The faint waveforms shown are the "after" waveform overlaid on the "before" side, and vice versa.<r/>
+ The waveforms can be adjusted by dragging with the mouse. They can also be adjusted using the link adjustment buttons located below the waveform display.<r/>
 </dd>
 
-<dt>リンク調整ボタン</dt>
+<dt>Link Adjustment Buttons</dt>
 <dd>
-　リンク調整ボタンは12個ありますが、左側の6個はリンク前の位置を調整し、右側の6個はリンク後の位置を調整します。<r/>
+ There are 12 link adjustment buttons; the 6 on the left adjust the position before the link, and the 6 on the right adjust the position after the link.<r/>
 
 <dl>
-    <dt>前のクロッシング・ポイントへ(<img src="lt_left_cross_point.png" />)</dt>
-    <dd>直前のクロッシング・ポイント(波形が -Inf ラインと交差する点) を探し、そこに移動します。</dd>
+    <dt>To Previous Crossing Point(<img src="lt_left_cross_point.png" />)</dt>
+    <dd>Finds the previous crossing point (where the waveform crosses the -Inf line) and moves there.</dd>
 
-    <dt>前へ20ステップ(<img src="lt_20_step_left.png" />)</dt>
-    <dd>前へ20ステップ移動します。1ステップは、波形の倍率により、倍率が1/16ならば16サンプル、倍率が1/1ならば1サンプルです。</dd>
+    <dt>Back 20 Steps(<img src="lt_20_step_left.png" />)</dt>
+    <dd>Moves back 20 steps. One step depends on the waveform zoom; if the zoom is 1/16, it is 16 samples; if 1/1, it is 1 sample.</dd>
 
-    <dt>前へ1ステップ(<img src="lt_1_step_left.png" />)</dt>
-    <dd>前へ1ステップ移動します。</dd>
+    <dt>Back 1 Step(<img src="lt_1_step_left.png" />)</dt>
+    <dd>Moves back 1 step.</dd>
 
-    <dt>次へ1ステップ(<img src="lt_1_step_right.png" />)</dt>
-    <dd>次へ1ステップ移動します。</dd>
+    <dt>Forward 1 Step(<img src="lt_1_step_right.png" />)</dt>
+    <dd>Moves forward 1 step.</dd>
 
-    <dt>次へ20ステップ(<img src="lt_20_step_right.png" />)</dt>
-    <dd>次へ20ステップ移動します。</dd>
+    <dt>Forward 20 Steps(<img src="lt_20_step_right.png" />)</dt>
+    <dd>Moves forward 20 steps.</dd>
 
-    <dt>次のクロッシング・ポイントへ(<img src="lt_right_cross_point.png" />)</dt>
-    <dd>直後のクロッシング・ポイント(波形が -Inf ラインと交差する点) を探し、そこに移動します。</dd>
+    <dt>To Next Crossing Point(<img src="lt_right_cross_point.png" />)</dt>
+    <dd>Finds the next crossing point (where the waveform crosses the -Inf line) and moves there.</dd>
 </dl>
 
 </dd>
 
 
-<dt>倍率変更ボタン(<img src="lt_zoom_in.png" /><img src="lt_zoom_out.png" />)</dt>
+<dt>Zoom Buttons(<img src="lt_zoom_in.png" /><img src="lt_zoom_out.png" />)</dt>
 <dd>
-　倍率を変更します。倍率は、このボタンの横に /1 などとして表示されています。/1 は 1/1 (1ピクセルが1サンプル) を表します。/16 ならば 1/16 (1ピクセルが16サンプル) を表します。<r/>
+ Changes the zoom level. The zoom is displayed next to these buttons as /1, etc. /1 represents 1/1 (1 pixel per sample). /16 represents 1/16 (1 pixel per 16 samples).<r/>
 </dd>
 
-<dt>リンクをスムーズにする(<img src="lt_smooth.png" />)</dt>
+<dt>Smooth Link(<img src="lt_smooth.png" />)</dt>
 <dd>
-　リンクをスムーズにします。このボタンがチェックされている(押し込まれた表示になっている)状態では、ループチューナおよび吉里吉里は、リンク前の波形とリンク後の波形を、短いクロスフェード(50ms) でミックスして再生します。これにより、リンク前とリンク後の波形がうまくあわないために発生する「プチッ」「ブツッ」といったクラックノイズを軽減することができます。<r/>
+ Makes the link smooth. When this button is checked (pressed), Loop Tuner and Kirikiri will play the waveforms before and after the link mixed with a short crossfade (50ms). This can reduce "clicks" and "pops" caused by waveforms not matching perfectly at the link point.<r/>
 </dd>
 
-<dt>再生を停止(<img src="lt_stop.png" />)</dt>
+<dt>Stop Playback(<img src="lt_stop.png" />)</dt>
 <dd>
-　再生を停止します。<r/>
+ Stops playback.<r/>
 </dd>
 
-<dt>再生(<img src="lt_play_before.png" />)</dt>
+<dt>Play(<img src="lt_play_before.png" />)</dt>
 <dd>
-　リンク付近を再生します。0.5秒前、1秒前、2秒前、3秒前、5秒前のそれぞれから再生ができます。<r/>
-　再生のボタンをクリックすると、そのボタンがマークされます (色が変わります)。以降、スペースキーを押すと、そのボタンをクリックするのと同じ動作となります (最後にクリックしたボタンと同じ時間、リンク前から再生されます)。<r/>
+ Plays the vicinity of the link. You can play from 0.5s, 1s, 2s, 3s, or 5s before the link.<r/>
+ When a play button is clicked, it becomes marked (changes color). Subsequently, pressing the Space key will perform the same action as clicking that button (playing from the same duration before the link as the last clicked button).<r/>
 </dd>
 
-<dt>[OK] ボタン</dt>
+<dt>[OK] Button</dt>
 <dd>
-　変更を確定し、ウィンドウを閉じます。
+ Confirms changes and closes the window.
 </dd>
 
-<dt>[キャンセル] ボタン</dt>
+<dt>[Cancel] Button</dt>
 <dd>
-　変更を破棄し、ウィンドウを閉じます。
+ Discards changes and closes the window.
 </dd>
 
 </dl>
 
 
 <note>
-　無条件リンクと、一つ以上の条件付きリンクのリンク元が同じ位置にあった場合は、条件つきリンクの条件のテストが優先され、いずれの条件にも合致しなかった場合は無条件リンクとなります。<r/>
-　無条件リンクが複数あった場合はどのリンクが使用されるかは不定となります。<r/>
-　条件リンクが複数あった場合は、テストの順番は不定となります。<r/>
-　この場合の「同じ位置」とは、厳密に全く同じ位置、という意味です。1サンプルでも位置がずれていた場合は同じ位置とは見なされません。<r/>
+ If an unconditional link and one or more conditional links have the same source position, the conditional link tests take priority. If none of the conditions are met, the unconditional link is followed.<r/>
+ If there are multiple unconditional links, which one is used is undefined.<r/>
+ If there are multiple conditional links, the order of testing is undefined.<r/>
+ In this context, "same position" means strictly the exact same position. If the positions differ by even one sample, they are not considered the same.
 </note>
 
 
@@ -352,71 +350,71 @@
 
 
 <para>
-<ptitle>ラベルの式</ptitle>
-　ラベルは、特別な書式の「式」を設定することにより、そのラベルを通過する際に、フラグに対して特別な処理をさせることができます。<r/>
-　ラベルに「式」を記述する場合は、ラベル名の先頭を ':' (コロン) で始めなければなりません。<r/>
-　式は、操作対象のフラグと、その対象にどのような処理を行うかを表す「<kw>演算子</kw>(オペレータ)」、演算子のパラメータとなる「<kw>オペランド</kw>」が順に並びます (一部の演算子にはオペランドがありません)。<r/>
-　操作対象のフラグは、'[' ']' (大括弧) でフラグ番号(0縲鰀15)を囲って指定します。オペランドは、数値の場合は数値をそのまま記述し、他のフラグを指定したい場合は、'[' ']' (大括弧) でフラグ番号(0縲鰀15)を囲って指定します。<r/>
-　演算子には以下の種類があります。<r/>
+<ptitle>Label Expressions</ptitle>
+ Labels can perform special processing on flags when passed by setting an "Expression" with a special format.<r/>
+ To write an "Expression" in a label, the label name must start with a ':' (colon).<r/>
+ An expression consists of the target flag, an " <kw>Operator</kw> " representing the process, and an " <kw>Operand</kw> " serving as a parameter for the operator (some operators do not have operands).<r/>
+ The target flag is specified by enclosing the flag number (0-15) in '[' ']' (brackets). For operands, write the numerical value directly, or if you want to specify another flag, enclose its number (0-15) in '[' ']' (brackets).<r/>
+ The following operators are available:<r/>
 <dl>
 <dt>=</dt>
-<dd>フラグの値にオペランドの値を代入します</dd>
+<dd>Assigns the operand value to the flag.</dd>
 <dt>+=</dt>
-<dd>フラグの値にオペランドの値を加算します</dd>
+<dd>Adds the operand value to the flag.</dd>
 <dt>-=</dt>
-<dd>フラグの値からオペランドの値を減算します</dd>
+<dd>Subtracts the operand value from the flag.</dd>
 <dt>++</dt>
-<dd>フラグの値を1つ増やします</dd>
+<dd>Increments the flag value by 1.</dd>
 <dt>--</dt>
-<dd>フラグの値を1つ減らします</dd>
+<dd>Decrements the flag value by 1.</dd>
 </dl>
-　いずれの場合も、フラグの値の範囲は必ず 0 縲鰀 9999 となります。 0 を下回る場合は 0に、 9999 を上回る場合は 9999 に修正されます。<r/>
+ In all cases, the flag value range is strictly 0 to 9999. Values below 0 are corrected to 0, and values above 9999 are corrected to 9999.<r/>
 <r/>
-例:<r/>
-<tt>:[0]=1    </tt>0番のフラグの値に 1 を代入<r/>
-<tt>:[1]=[0]  </tt>1番のフラグの値に0番のフラグの値を代入<r/>
-<tt>:[1]+=3   </tt>1番のフラグの値に 3 を加算<r/>
-<tt>:[0]++    </tt>1番のフラグの値を1つ増やす<r/>
+Examples:<r/>
+<tt>:[0]=1    </tt>Assign 1 to flag #0.<r/>
+<tt>:[1]=[0]  </tt>Assign the value of flag #0 to flag #1.<r/>
+<tt>:[1]+=3   </tt>Add 3 to flag #1.<r/>
+<tt>:[0]++    </tt>Increment flag #0 by 1.<r/>
 <note>
-　複数のラベルが同じ位置にあった場合は、実行の順序は不定となります。
+ If multiple labels are at the same position, the order of execution is undefined.
 </note>
 </para>
 
 
 
 <para>
-<ptitle>ヒントとTips</ptitle>
+<ptitle>Hints and Tips</ptitle>
 <dl>
-<dt>リンクの調整</dt>
+<dt>Adjusting Links</dt>
 <dd>
-　リンクによるPCMの継ぎ目では、調整がよくないと、クラックノイズが発生してしまいます。「リンクをスムーズにする」(スムーズリンク)の機能を用いて、このクラックノイズを軽減することはできますが、まずはスムーズリンクなしで調整を行うことをおすすめします。<r/>
+ At PCM link points, crackling noise will occur if the adjustment is poor. While the "Smooth Link" feature can reduce this noise, it is recommended to try adjusting without Smooth Link first.<r/>
 <r/>
-　音源+シーケンサなどの電子環境で生成された音楽であれば、多くの場合、下図のように、リンクの前後でほぼ一致するポイントを見つけることができると思います。<r/>
+ For music generated in electronic environments like sound modules and sequencers, you can often find points where the waveforms before and after the link match almost perfectly, as shown below.<r/>
 <img src="lt_link_tuner_wave_match.png" /><r/>
 <r/>
-　そのほか、ノイズが入るのは仕方がないとしても、それを目立たなくする以下のようなポイントがあります。<r/>
+ Even if some noise is inevitable, the following points can help make it less noticeable:<r/>
 <ul>
-<li>継ぎ目にする位置は、スネアあるいはシンバル系のドラムの直前をループの継ぎ目にするとノイズが目立ちません。高い音、破裂音などの直前も好都合です</li>
-<li>継ぎ目にする位置は、クロッシングポイントにするとノイズが目立ちません</li>
+<li>Noise is less noticeable if the link point is placed immediately before a snare or cymbal drum hit. Points immediately before high-pitched sounds or percussive sounds are also advantageous.</li>
+<li>Noise is less noticeable if the link point is placed at a crossing point.</li>
 </ul>
 </dd>
 
 
-<dt>条件付きリンクによる曲進行の制御</dt>
+<dt>Controlling Song Progression with Conditional Links</dt>
 <dd>
-　イントロから始まってループし、ゲームなどの進行によって、とある条件でループを抜け、別のループに入る、といった、ゲームの進行・情景を反映した曲進行の制御を、条件付きリンクとフラグの操作によって実現することができます。<r/>
-　ただし、もちろん、リンクはループチューナであらかじめ指定した位置でしか動作しません。リンクの条件を変更しても、リンクの位置に達しなければ再生位置が変わらないと言うことです。<r/>
-　もしループが長い場合など、ループの終端に達しなければループを抜けられないのが問題であるならば、ループの途中でもループを抜けられるように曲の構成を工夫しなければなりません。<r/>
-　たとえば、下図のようにします。<r/>
+ You can control song progression to reflect game progress or scenes—such as starting with an intro, looping, and then exiting the loop to enter another section based on certain conditions—using conditional links and flag manipulation.<r/>
+ However, links only operate at the positions pre-specified in Loop Tuner. Even if you change a link condition, the playback position will not change until that link position is reached.<r/>
+ If a loop is long and waiting to reach the end to exit is a problem, you must design the song structure so that it can exit mid-loop.<r/>
+ For example, as shown below:<r/>
 <r/>
 <img src="lt_complex_loop.png" />
 <r/>
-　再生開始時は、フラグ0 は 0 です。「イントロ」が再生され、「ループ」部分が繰り返し再生されます。<r/>
-　ここで、ゲームなどが進行し、フラグ0 が 1 になると、(1)か(2)の時点でこの「ループ」から抜けることになります。<r/>
-　もし、(1)でループを抜けると、「(1)→(3)遷移」を経て(3)まで再生され、「残りの部分」が再生されます。<r/>
-　また、もし(2)でループを抜けると、「(2)→(3)遷移」を経た後、リンクによって(3)までジャンプし、「残りの部分」が再生されます。<r/>
+ At the start of playback, Flag 0 is 0. The "Intro" plays, and the "Loop" section repeats.<r/>
+ If the game progresses and Flag 0 becomes 1, the "Loop" will be exited at either point (1) or (2).<r/>
+ If it exits at (1), it plays through the "(1)->(3) Transition" to (3), and then the "Remaining Part" plays.<r/>
+ If it exits at (2), after playing the "(2)->(3) Transition," it jumps to (3) via a link, and the "Remaining Part" plays.<r/>
 <r/>
-　様々な応用が考えられると思います。<r/>
+ Many different applications are possible.
 </dd>
 
 
@@ -428,5 +426,3 @@
 
 
 </doc>
-
-

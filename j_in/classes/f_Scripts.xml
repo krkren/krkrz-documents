@@ -2,41 +2,40 @@
 <doc>
 <title>Scripts</title>
 <desc>
-　Scripts クラスは TJS2 に関するメソッドやプロパティを管理します。このクラスからオブジェクトを作成することはできません。<r/>
+ The Scripts class manages methods and properties related to TJS2. You cannot create objects from this class.<r/>
 </desc>
 
 <member>
 	<name>execStorage</name>
 	<type>method</type>
-	<shortdesc>ストレージ上のスクリプトの実行</shortdesc>
+	<shortdesc>Execution of a script on storage</shortdesc>
 	<arg>
 		<argitem>
 			<name>storage</name>
 			<default></default>
 			<desc>
-				　実行するストレージを指定します。<r/>
+				 Specifies the storage to execute.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>mode</name>
 			<default>''</default>
 			<desc>
-				　ファイルを読み込む際のモード文字列を指定します。"o" に続いてオフセットを10進で指定するとファイルのそのバイト位置からの読み込みになります。<r/>
+				 Specifies the mode string when reading the file. If "o" is followed by a decimal offset, reading starts from that byte position in the file.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>context</name>
 			<default>global</default>
 			<desc>
-				　実行コンテキストを指定します。<r/>
+				 Specifies the execution context.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>スクリプトを実行した結果が戻ります。</result>
+	<result>Returns the result of the script execution.</result>
 	<desc>
-		　指定されたストレージを読み込み、その内容を TJS2 スクリプトとして実行します。<r/>
-		　スクリプトを実行中に発生した例外はこのメソッド内では捕捉されませんので、このメソッドの
-		呼び出し側で捕捉することができます。<r/>
+		 Reads the specified storage and executes its content as a TJS2 script.<r/>
+		 Exceptions occurring during script execution are not caught within this method, so they can be caught by the caller of this method.<r/>
 	</desc>
 	<ref>Scripts.evalStorage</ref>
 </member>
@@ -44,35 +43,34 @@
 <member>
 	<name>evalStorage</name>
 	<type>method</type>
-	<shortdesc>ストレージ上の式の評価</shortdesc>
+	<shortdesc>Evaluation of an expression on storage</shortdesc>
 	<arg>
 		<argitem>
 			<name>storage</name>
 			<default></default>
 			<desc>
-				　評価するストレージを指定します。<r/>
+				 Specifies the storage to evaluate.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>mode</name>
 			<default>''</default>
 			<desc>
-				　ファイルを読み込む際のモード文字列を指定します。"o" に続いてオフセットを10進で指定するとファイルのそのバイト位置からの読み込みになります。<r/>
+				 Specifies the mode string when reading the file. If "o" is followed by a decimal offset, reading starts from that byte position in the file.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>context</name>
 			<default>global</default>
 			<desc>
-				　実行コンテキストを指定します。<r/>
+				 Specifies the execution context.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>式を評価した結果が戻ります。</result>
+	<result>Returns the result of the expression evaluation.</result>
 	<desc>
-		　指定されたストレージを読み込み、その内容を TJS2 式として評価します。<r/>
-		　スクリプトを実行中に発生した例外はこのメソッド内では捕捉されませんので、このメソッドの
-		呼び出し側で捕捉することができます。<r/>
+		 Reads the specified storage and evaluates its content as a TJS2 expression.<r/>
+		 Exceptions occurring during script execution are not caught within this method, so they can be caught by the caller of this method.<r/>
 	</desc>
 	<ref>Scripts.execStorage</ref>
 </member>
@@ -80,48 +78,48 @@
 <member>
 	<name>compileStorage</name>
 	<type>method</type>
-	<shortdesc>ストレージ上のスクリプトのコンパイル</shortdesc>
+	<shortdesc>Compilation of a script on storage</shortdesc>
 	<arg>
 		<argitem>
 			<name>inputfile</name>
 			<default></default>
 			<desc>
-				　コンパイル対象ストレージを指定します。<r/>
+				 Specifies the storage to be compiled.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>outputfile</name>
 			<default></default>
 			<desc>
-				　出力バイトコードストレージを指定します。<r/>
+				 Specifies the output bytecode storage.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>isresult</name>
 			<default>false</default>
 			<desc>
-				　戻り値が必要かどうかを指定します。<r/>
+				 Specifies whether a return value is required.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>outputdebug</name>
 			<default>false</default>
 			<desc>
-				　デバッグ情報を含めるかどうかを指定します。<r/>
+				 Specifies whether to include debug information.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>isexpression</name>
 			<default>false</default>
 			<desc>
-				　式かどうかを指定します。<r/>
+				 Specifies whether it is an expression.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　指定されたストレージを読み込み、その内容をコンパイルしてバイトコードファイルとして出力します。<r/>
-		　コンパイルされたバイトコードファイルは execStorage もしくは、evalStorage で通常のスクリプトと同じように実行できます。<r/>
+		 Reads the specified storage, compiles its content, and outputs it as a bytecode file.<r/>
+		 Compiled bytecode files can be executed with execStorage or evalStorage just like normal scripts.<r/>
 	</desc>
 	<ref>Scripts.execStorage</ref>
 	<ref>Scripts.evalStorage</ref>
@@ -130,42 +128,41 @@
 <member>
 	<name>exec</name>
 	<type>method</type>
-	<shortdesc>スクリプトの実行</shortdesc>
+	<shortdesc>Execution of a script</shortdesc>
 	<arg>
 		<argitem>
 			<name>script</name>
 			<default></default>
 			<desc>
-				　実行するスクリプトを文字列で指定します。<r/>
+				 Specifies the script to execute as a string.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>name</name>
 			<default>''</default>
 			<desc>
-				　エラーメッセージ用ファイル名の指定
+				 Specification of the filename for error messages
 			</desc>
 		</argitem>
 		<argitem>
 			<name>linesof</name>
 			<default>0</default>
 			<desc>
-				　エラーメッセージ用行番号の指定
+				 Specification of the line number for error messages
 			</desc>
 		</argitem>
 		<argitem>
 			<name>context</name>
 			<default>global</default>
 			<desc>
-				　実行コンテキストを指定します。<r/>
+				 Specifies the execution context.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>スクリプトを実行した結果が戻ります。</result>
+	<result>Returns the result of the script execution.</result>
 	<desc>
-		　script で指定された文字列を TJS2 スクリプトとして実行します。<r/>
-		　スクリプトを実行中に発生した例外はこのメソッド内では捕捉されませんので、このメソッドの
-		呼び出し側で捕捉することができます。<r/>
+		 Executes the string specified by script as a TJS2 script.<r/>
+		 Exceptions occurring during script execution are not caught within this method, so they can be caught by the caller of this method.<r/>
 	</desc>
 	<ref>Scripts.execStorage</ref>
 	<ref>Scripts.eval</ref>
@@ -174,42 +171,41 @@
 <member>
 	<name>eval</name>
 	<type>method</type>
-	<shortdesc>式の評価</shortdesc>
+	<shortdesc>Evaluation of an expression</shortdesc>
 	<arg>
 		<argitem>
 			<name>expression</name>
 			<default></default>
 			<desc>
-				　実行する式を文字列で指定します。<r/>
+				 Specifies the expression to execute as a string.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>name</name>
 			<default>''</default>
 			<desc>
-				　エラーメッセージ用ファイル名の指定
+				 Specification of the filename for error messages
 			</desc>
 		</argitem>
 		<argitem>
 			<name>linesof</name>
 			<default>0</default>
 			<desc>
-				　エラーメッセージ用行番号の指定
+				 Specification of the line number for error messages
 			</desc>
 		</argitem>
 		<argitem>
 			<name>context</name>
 			<default>global</default>
 			<desc>
-				　実行コンテキストを指定します。<r/>
+				 Specifies the execution context.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>式を評価した結果が戻ります。</result>
+	<result>Returns the result of the expression evaluation.</result>
 	<desc>
-		　expression で指定された文字列を TJS2 式として実行します。<r/>
-		　スクリプトを実行中に発生した例外はこのメソッド内では捕捉されませんので、このメソッドの
-		呼び出し側で捕捉することができます。<r/>
+		 Executes the string specified by expression as a TJS2 expression.<r/>
+		 Exceptions occurring during script execution are not caught within this method, so they can be caught by the caller of this method.<r/>
 	</desc>
 	<ref>Scripts.execStorage</ref>
 	<ref>Scripts.exec</ref>
@@ -218,84 +214,82 @@
 <member>
 	<name>dump</name>
 	<type>method</type>
-	<shortdesc>コンテキストのダンプ</shortdesc>
+	<shortdesc>Dump of contexts</shortdesc>
 	<arg></arg>
 	<result></result>
 	<desc>
-		　現時点で TJS2 に読み込まれているスクリプトブロック内の各コンテキストの内容の詳細を
-		ローカルファイルに出力します。主に VM コードの逆アセンブル結果が出力されます。<r/>
-		　出力ファイルは、吉里吉里の実行可能ファイルと同じフォルダに出力され、そのファイル名は
-		吉里吉里の実行可能ファイルに .dump.txt が付加されたものになります。<r/>
+		 Outputs details of each context within the script blocks currently loaded into TJS2 to a local file. Mainly, the disassembly results of VM code are output.<r/>
+		 The output file is created in the same folder as the KiriKiri executable, and its filename will be the KiriKiri executable name with .dump.txt appended.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>getTraceString</name>
 	<type>method</type>
-	<shortdesc>呼び出し履歴の取得</shortdesc>
+	<shortdesc>Acquisition of call history</shortdesc>
 	<arg>
 		<argitem>
 			<name>limit</name>
 			<default>0</default>
 			<desc>
-				　履歴を取得する最大呼び出し深さを指定します。この引数を省略するか 0 を指定すると、取得できる限りの履歴を取得します。<r/>
+				 Specifies the maximum call depth to retrieve history. If this argument is omitted or 0 is specified, it retrieves as much history as possible.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>呼び出し履歴を文字列化した物</result>
+	<result>The call history converted to a string</result>
 	<desc>
-		　メソッドの呼び出し履歴を文字列として取得します。このメソッドが呼ばれた時点での履歴を取得することができます。<r/>
-		　このメソッドを使用するには、コマンドラインオプションで -debug (デバッグモード) が有効になっていなければなりません。デバッグモードが無効の場合はこのメソッドは空文字列を返します。<r/>
-		　返される文字列はたとえば 'messagelayer.tjs(1561)[(function) addButton] &lt;-- mainwindow.tjs(4463)[(function expression) (anonymous)] &lt;-- conductor.tjs(427)[(function) onTag] &lt;-- conductor.tjs(95)[(function) timerCallback]' のような物です。
+		 Retrieves the method call history as a string. You can get the history at the point this method is called.<r/>
+		 To use this method, the -debug (debug mode) command line option must be enabled. If debug mode is disabled, this method returns an empty string.<r/>
+		 The returned string is something like 'messagelayer.tjs(1561)[(function) addButton] &lt;-- mainwindow.tjs(4463)[(function expression) (anonymous)] &lt;-- conductor.tjs(427)[(function) onTag] &lt;-- conductor.tjs(95)[(function) timerCallback]'.
 	</desc>
 </member>
 
 <member>
 	<name>setCallMissing</name>
 	<type>method</type>
-	<shortdesc>メンバが見つからない時に呼び出されるハンドラの登録</shortdesc>
+	<shortdesc>Registration of a handler called when a member is not found</shortdesc>
 	<arg>
 		<argitem>
 			<name>missing</name>
 			<default></default>
 			<desc>
-				　メンバが見つからない時に呼び出されるハンドラ。<r/>
+				 The handler called when a member is not found.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　メンバが見つからない時に呼び出されるハンドラを登録します。<r/>
+		 Registers a handler to be called when a member is not found.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>getClassNames</name>
 	<type>method</type>
-	<shortdesc>クラス名を取得</shortdesc>
+	<shortdesc>Get class names</shortdesc>
 	<arg>
 		<argitem>
 			<name>obect</name>
 			<default></default>
 			<desc>
-				　クラス名を取得するオブジェクト。<r/>
+				 The object to get class names from.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>クラス名の配列</result>
+	<result>Array of class names</result>
 	<desc>
-		　オブジェクトからクラス名を取得します。<r/>
+		 Gets class names from an object.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>textEncoding</name>
 	<type>property</type>
-	<shortdesc>スクリプトを読み込む時に使用するテキストエンコーディングを指定</shortdesc>
+	<shortdesc>Specifies the text encoding used when reading scripts</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　スクリプトを読み込む時に使用するテキストエンコーディングを指定します。<r/>
-		　現在指定できるのは"UTF-8"か"Shift_JIS"のどちらかです。<r/>
+		 Specifies the text encoding used when reading scripts.<r/>
+		 Currently, either "UTF-8" or "Shift_JIS" can be specified.<r/>
 	</desc>
 </member>
 

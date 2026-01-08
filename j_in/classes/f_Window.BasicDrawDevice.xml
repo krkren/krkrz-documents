@@ -2,31 +2,31 @@
 <doc>
 <title>Window.BasicDrawDevice</title>
 <desc>
-　Window.BasicDrawDevice クラスは、このインスタンスを <ref>Window.drawDevice</ref> に登録して使用するための DrawDevice で、標準的な描画機能を提供します。<r/>
+ The Window.BasicDrawDevice class is a DrawDevice used by registering this instance to <ref>Window.drawDevice</ref>, providing standard drawing functionality.<r/>
 </desc>
 
 <member>
 	<name>BasicDrawDevice</name>
 	<type>constructor</type>
-	<shortdesc>BasicDrawDevice オブジェクトの構築</shortdesc>
+	<shortdesc>Construction of BasicDrawDevice object</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　Window.BasicDrawDevice クラスのオブジェクトを構築します。<r/>
-		　初期状態で Window.drawDevice にはこのクラスのインスタンスが登録されているので、新たに登録する必要はありません。<r/>
+		 Constructs an object of the Window.BasicDrawDevice class.<r/>
+		 By default, an instance of this class is already registered to Window.drawDevice, so there is no need to register it anew.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>recreate</name>
 	<type>method</type>
-	<shortdesc>内部デバイス再生成</shortdesc>
+	<shortdesc>Internal device regeneration</shortdesc>
 	<arg></arg>
 	<result></result>
 	<desc>
-		　内部デバイスの再生成を行います。<r/>
-		　通常使用することはありません。<r/>
+		 Regenerates the internal device.<r/>
+		 This is not normally used.<r/>
 	</desc>
 </member>
 
@@ -34,53 +34,53 @@
 <member>
 	<name>onDisplayRotate</name>
 	<type>event</type>
-	<shortdesc>画面が回転されたとき(1.1.0以降)</shortdesc>
+	<shortdesc>When the screen is rotated (1.1.0 or later)</shortdesc>
 	<arg>
 		<argitem>
 			<name>orientation</name>
 			<default></default>
 			<desc>
-				　画面の向き( orientation ) です。<r/>
-				　以下のいずれかの値になります。<r/>
-				　oriUnknown (取得失敗/不明), oriPortrait(縦向き), oriLandscape(横向き)<r/>
+				 The screen orientation.<r/>
+				 It will be one of the following values:<r/>
+				 oriUnknown (failed to get/unknown), oriPortrait (portrait), oriLandscape (landscape)<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>angle</name>
 			<default></default>
 			<desc>
-				　角度です。<r/>
-				　角度 ( angle ) は、0、90、180、270、-1 のいずれかで、取得できなかった時は-1となります。<r/>
-				　角度は、そのデバイスデフォルトからの回転角なので、縦向きのデバイスでは縦向きで0となります。<r/>
-				　通常のデバイスだと、横向きで0が多ようです。<r/>
-				　縦向きが0になるのは最近の8インチタブレットなどで、縦向きが標準の向きとなっているものです。<r/>
+				 The angle.<r/>
+				 The angle is one of 0, 90, 180, 270, or -1; it is -1 if it could not be retrieved.<r/>
+				 The angle is the rotation angle from the device's default, so on a portrait device, portrait is 0.<r/>
+				 On typical devices, landscape is often 0.<r/>
+				 Portrait becomes 0 on recent 8-inch tablets and similar devices where portrait is the standard orientation.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>bpp</name>
 			<default></default>
 			<desc>
-				　 bits per pixel です。<r/>
+				  Bits per pixel.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>width</name>
 			<default></default>
 			<desc>
-				　画面の幅です。<r/>
+				 The width of the screen.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>height</name>
 			<default></default>
 			<desc>
-				　画面の高さです。<r/>
+				 The height of the screen.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　画面が回転されたときに呼び出されるイベント関数を表します。<r/>
+		 Represents the event function called when the screen is rotated.<r/>
 	</desc>
 	<ref>Window.onDisplayRotate</ref>
 	<ref>Window.displayOrientation</ref>
@@ -91,10 +91,10 @@
 <member>
 	<name>interface</name>
 	<type>property</type>
-	<shortdesc>インターフェースオブジェクトを取得</shortdesc>
+	<shortdesc>Get the interface object</shortdesc>
 	<access>r</access>
 	<desc>
-		　プラグインなどで DrawDevice オブジェクトを利用するためにあります。<r/>
+		 Exists for using the DrawDevice object in plugins and similar.<r/>
 	</desc>
 </member>
 

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>環境依存の不具合について</title>
+<title>About Environment-Dependent Issues</title>
 
 <para>
-<ptitle>環境依存の不具合</ptitle>
-エンドユーザ(二次ユーザ)の環境の不具合に起因する、吉里吉里の不具合とその対策です。<r/>
-吉里吉里の制作においては環境依存の不具合が出ないように尽力していますが、コンピュータの設定や構成は非常に多様である為、環境依存の不具合はどうしても発生してしまいます。<r/>
-個別の症状に対する対処で対応できる場合もありますが、全般的には、以下のような対策を講じていただいてください。<r/>
+<ptitle>Environment-Dependent Issues</ptitle>
+These are issues in KiriKiri caused by the end-user's (secondary user's) environment and their countermeasures.<r/>
+While we strive to prevent environment-dependent issues during KiriKiri's development, they are inevitable due to the vast diversity of computer settings and configurations.<r/>
+While some specific symptoms can be addressed individually, please generally advise users to take the following measures:<r/>
 <ul>
-<li>ドライバを最新の安定した物にしていただく</li>
-<li>常駐物(とくにウィルス対策ソフトウェアやメモリクリーナー系ソフト、ウィンドウ外見変更系ソフト、Windows互換シェルなど、他ソフトと競合を起こしやすい物)をはずしていただく</li>
-<li>各種チェックツール(「ディスクのチェック」(OS標準のディスクチェックツール)、<at  target="_top"  href="http://www.memtest86.com/">memtest86</at>など)でコンピュータをチェックしていただく</li>
-<li>HDDの残り容量は十分あるかをチェックして頂く</li>
-<li><at target="_top" href="http://homepage2.nifty.com/winfaq/">WinFAQ</at> (おだ氏のページ) などを参照して、似たような症状が起きてないかを探し、それに応じて対処して頂く</li>
-<li>いったんセーフモードで起動してから通常モードで起動し直して頂く</li>
-<li>CPUアクセラレータを使用している場合は、CPUの特定機能に制限がある場合がありますので、CPUアクセラレータのマニュアルをよく読んで頂き、場合によってはエンジン設定で個別のCPU機能を無効にする必要があります (例: <at target="_top" href="http://buffalo.melcoinc.co.jp/qa/cpu/b4590010.html">http://buffalo.melcoinc.co.jp/qa/cpu/b4590010.html</at> の場合はSSEを無効にしてください)</li>
-<li>OSを再インストールしていただく</li>
+<li>Update drivers to the latest stable versions</li>
+<li>Disable resident programs (especially those prone to conflicts like antivirus software, memory cleaners, window skinning tools, or Windows-compatible shells)</li>
+<li>Check the computer using various diagnostic tools (such as the OS standard "Check Disk" or <at  target="_top"  href="http://www.memtest86.com/">memtest86</at>)</li>
+<li>Check if there is sufficient free space on the HDD</li>
+<li>Refer to resources like <at target="_top" href="http://homepage2.nifty.com/winfaq/">WinFAQ</at> (Oda's page) to see if similar symptoms have been reported and follow the recommended actions</li>
+<li>Restart the computer in Safe Mode once, then restart normally</li>
+<li>If using a CPU accelerator, certain CPU features may be restricted. Please read the CPU accelerator manual carefully. In some cases, specific CPU features must be disabled in the engine settings (e.g., for <at target="_top" href="http://buffalo.melcoinc.co.jp/qa/cpu/b4590010.html">http://buffalo.melcoinc.co.jp/qa/cpu/b4590010.html</at>, please disable SSE)</li>
+<li>Reinstall the OS</li>
 </ul>
-吉里吉里のエンジンに対して設定できるオプションは、ほとんどが環境依存の不具合の対処の為にあります。<link href="CommandLine" />もご覧ください。<r/>
+Most options available for the KiriKiri engine exist to address environment-dependent issues. Please also refer to <link href="CommandLine" />.<r/>
 </para>
 
 
 <para>
-<ptitle>環境依存の症状</ptitle>
-下記において「エンジン設定」とは、エンドユーザ向け設定ツール (エンジン設定.exe)のことです。<r/>
+<ptitle>Environment-Dependent Symptoms</ptitle>
+In the following sections, "Engine Settings" refers to the end-user configuration tool (Engine Settings.exe).<r/>
 
 
 
@@ -32,84 +32,83 @@
 
 
 
-<dt>インストールしたデータが壊れている</dt>
-<dd>症状としては「読み込みエラーが発生しました」等の読み込みエラー系エラーの発生や「作品実行中にフリーズする」、「EAccessViolationエラーが出る」、そのほか予測不可能な動作をします。<r/>
-インストールしたデータが壊れている可能性があるので、「ファイル破損チェックツール」などを用いて、インストールしたデータが破損してないかを確認していただいてください。</dd>
+<dt>Installed data is corrupted</dt>
+<dd>Symptoms include loading errors such as "A loading error occurred," freezing during execution, "EAccessViolation" errors, or other unpredictable behavior.<r/>
+Since the installed data may be corrupted, please have the user check for corruption using a "File Corruption Check Tool" or similar.</dd>
 
 
-<dt>画面切り替え時やスキップ時にフリーズする</dt>
+<dt>Freezing during screen transitions or skipping</dt>
 <dd>
-画面切り替え(トランジション時)やKAGでのスキップ時など、画面描画が頻繁に起こる場面でフリーズする場合は、ディスプレイドライバに問題がある可能性があります。<r/>
-ディスプレイドライバのバージョンが最新の安定した物であるか確認し、古い場合は最新の安定したバージョンに変えて頂いてください。<r/>
-あるいは、「エンジン設定」にて「ダブルバッファリング方式」あるいは「垂直同期待ち」の設定を変えると改善する場合があります。<r/>
-nVIDIA製のグラフィックカードに付属してくるユーティリティである「nView Desktop Manager」をお使いの場合は、このユーティリティをアンインストールするか、無効にして頂いてください。<r/>
+If the application freezes during frequent screen updates, such as transitions or skipping in KAG, there may be an issue with the display driver.<r/>
+Ensure the display driver is the latest stable version. Alternatively, changing the "Double Buffering Method" or "Wait for Vertical Sync" in the "Engine Settings" may resolve the issue.<r/>
+If using the "nView Desktop Manager" utility bundled with nVIDIA graphics cards, please uninstall or disable it.<r/>
 </dd>
 
-<dt>画面描画が異常に遅い</dt>
+<dt>Abnormally slow screen rendering</dt>
 <dd>
-とくにフルスクリーン時に吉里吉里が画像を拡大して表示する場合や明示的にダブルバッファリングを有効にしている場合に、画面描画が異常に遅い場合は、「エンジン設定」にて「ダブルバッファリング方式」あるいは「垂直同期待ち」の設定を変えると改善する場合があります。<r/>
-また、モニタ側ではなくてエンジン側で拡大が行われている場合は、拡大に伴ってパフォーマンスが劣化する可能性があります。この場合はエンジン設定にて「フルスクリーン時の画面解像度」を「最も近い解像度」にすると、ディスプレイ側で拡大が行われるようになりますが、ディスプレイによっては正しいアスペクト比で画像を表示できない可能性があります。
+If screen rendering is abnormally slow, especially when KiriKiri scales images in full-screen mode or when double buffering is explicitly enabled, changing the "Double Buffering Method" or "Wait for Vertical Sync" in the "Engine Settings" may help.<r/>
+Additionally, if scaling is performed by the engine rather than the monitor, performance may degrade. In this case, setting "Screen Resolution in Full Screen" to "Nearest Resolution" in the engine settings will allow the display to handle scaling, though some displays may not maintain the correct aspect ratio.
 </dd>
 
-<dt>画面が真っ暗のままになる、あるいは画像が乱れる</dt>
+<dt>Screen remains black or graphics are distorted</dt>
 <dd>
-とくにフルスクリーン時に吉里吉里が画像を拡大して表示する場合などに画面が真っ暗のままになる、あるいは画像が乱れる、あるいはフリーズする場合は、「エンジン設定」にて「ダブルバッファリング方式」あるいは「垂直同期待ち」の設定を変えると改善する場合があります。<r/>
+If the screen remains black, graphics are distorted, or the application freezes-especially when KiriKiri scales images in full-screen mode-changing the "Double Buffering Method" or "Wait for Vertical Sync" in the "Engine Settings" may resolve the issue.<r/>
 </dd>
 
 
-<dt>ビデオ再生に失敗する</dt>
+<dt>Video playback fails</dt>
 <dd>
-オーバーレイによるビデオ再生に失敗する(エラーが表示される、フリーズする)場合、あるいはビデオ再生直後にフリーズする場合は、ハードウェアアクセラレーションを無効にすると改善する可能性があります。「画面のプロパティ」(デスクトップ上を右クリックして表示されるコンテキストメニューで「プロパティ」を選択して表示されるダイアログボックス)の「設定」タブで、「詳細設定」ボタンを押すと表示されるダイアログボックスの「トラブルシューティング」タブの「ハードウェアアクセラレータ」のツマミを、最大から順に「なし」の方向に動かしていって試行していただいてください。<r/>
-スクリプト側で、ビデオの再生をしないような設定を設けることもお勧めします。<r/>
-あるいは、「エンジン設定」にて「ダブルバッファリング方式」あるいは「垂直同期待ち」の設定を変えると改善する場合があります。<r/>
+If video playback via overlay fails (errors occur or the application freezes), or if it freezes immediately after playback, disabling hardware acceleration may help. In "Display Properties" (right-click desktop -> Properties), go to the "Settings" tab, click "Advanced," then in the "Troubleshoot" tab, move the "Hardware Acceleration" slider from "Full" toward "None" and test.<r/>
+We also recommend providing a script-side option to disable video playback.<r/>
+Alternatively, changing the "Double Buffering Method" or "Wait for Vertical Sync" in the "Engine Settings" may resolve the issue.<r/>
 </dd>
 
 <!--
- ###DirectDrawをロードしただけではドライバの情報を見ないようにしたのでこれは無くなった###
-<dt>フルスクリーンにしようとすると吉里吉里コアがネットワークに接続しようとする</dt>
-<dd>フルスクリーンにしようとすると、吉里吉里コアがインターネットに接続しようとするとして、セキュリティ対策ソフトウェア等から警告が出る場合があります。<r/>
-吉里吉里はフルスクリーンにする際になって初めてDirectDrawをロードしますが、その際にDirectDrawのドライバのバージョンを調べます。この時、ドライバ署名の有効性の確認の為に crl.microsoft.com に接続を行う場合があります。これは、インターネットオプション (Internet Explorerからは [ツール] - [インターネットオプション]) の「詳細設定」タブ内の「発行元証明書の取り消しを確認する」にチェックが入っていると行われます。<r/>
-この症状は、OSがそのドライバの電子署名の有効性を確認するために、インターネット上の情報を参照する際に発生する物です。実際に接続を行うとしているのはOSですが、吉里吉里のプログラム内でOSのその機能が動作するため、結果的に吉里吉里がインターネットに接続しようとしているように見えるかもしれません。これらはスパイウェアに類する処理ではありませんのでご安心ください。<r/>
-エンドユーザが気になさる場合は、前述の「発行元証明書の取り消しを確認する」のチェックをはずして頂くか、セキュリティ対策ソフトウェアなどで該当アドレスへの接続を禁止して頂いてください。吉里吉里自体の動作に影響はありません。<r/>
+ ### This is no longer applicable because driver information is no longer checked just by loading DirectDraw ###
+<dt>KiriKiri core attempts to connect to the network when switching to full screen</dt>
+<dd>When attempting to switch to full screen, security software may issue a warning that the KiriKiri core is trying to connect to the internet.<r/>
+KiriKiri loads DirectDraw only when switching to full screen, at which point it checks the DirectDraw driver version. During this process, it may connect to crl.microsoft.com to verify the validity of the driver signature. This occurs if "Check for publisher's certificate revocation" is checked in the "Advanced" tab of Internet Options (accessible via [Tools] - [Internet Options] in Internet Explorer).<r/>
+This symptom occurs when the OS refers to information on the internet to verify the validity of the driver's digital signature. Although it is the OS that is actually attempting the connection, it may appear as if KiriKiri is trying to connect because the OS function is triggered within the KiriKiri program. Please be assured that these are not spyware-related processes.<r/>
+If the end-user is concerned, please advise them to uncheck "Check for publisher's certificate revocation" or block the connection to that address using security software. This will not affect the operation of KiriKiri itself.<r/>
 </dd>
 -->
 
 <!--
- ###吉里吉里本体のフルスクリーン関連アルゴリズムが改善されたのでこの問題は起きなくなったと思いたい###
+ ### Hopefully this issue no longer occurs as the full-screen algorithms in the KiriKiri core have been improved ###
 
-<dt>フルスクリーンにすると画面が縦または横に伸びる</dt>
-<dd>フルスクリーンにすると、画面が縦あるいは横に伸び、正常な縦/横比(アスペクト比)で表示されない環境が、とくに液晶ディスプレイを使用している環境であります。たとえば 640x480や800x600の画面をワイド液晶パネルやSXVAの液晶パネルでフルスクリーン化しようとするとそうなる可能性があります。<r/>
-この場合は、ハードウェアのマニュアルを参照して頂き、アスペクト比を保ったままで拡大表示(フルスクリーン表示)できるように設定して頂いてください。<r/>
-液晶ディスプレイによっては、液晶ディスプレイ側でアスペクト比を保ったままで拡大表示する機能を有している物がありますので、マニュアルに従って設定して頂いてください。<r/>
-また、グラフィックカード(グラフィックチップ)によっては、ドライバでアスペクト比を保ったままでの拡大表示ができる物がありますので、マニュアルに従って設定して頂いてください。<r/>
-吉里吉里本体の機能でもアスペクト比を保ったままでのフルスクリーン化が可能です。エンジン設定で、「グラフィック-フルスクリーン時の画面解像度」を「画面解像度を変えない」に設定すると、アスペクト比を保ったままでのフルスクリーン化が可能になります。<r/>
+<dt>Screen stretches vertically or horizontally in full screen</dt>
+<dd>In some environments, particularly those using LCD displays, switching to full screen may cause the screen to stretch vertically or horizontally, failing to display at the correct aspect ratio. For example, this may happen when trying to display 640x480 or 800x600 screens on wide LCD panels or SXGA LCD panels.<r/>
+In this case, please refer to the hardware manual and configure the settings to allow scaled display (full-screen display) while maintaining the aspect ratio.<r/>
+Some LCD displays have a built-in function to scale images while maintaining the aspect ratio; please configure this according to the manual.<r/>
+Additionally, some graphics cards (graphics chips) allow scaling while maintaining the aspect ratio via the driver; please configure this according to the manual.<r/>
+KiriKiri itself also has a feature to enable full-screen mode while maintaining the aspect ratio. Setting "Graphics - Screen Resolution in Full Screen" to "Do not change screen resolution" in the engine settings will enable full-screen display while maintaining the aspect ratio.<r/>
 </dd>
 -->
 
 
 
-<dt>サウンドがとぎれたり、鳴らなくなったり、サウンド再生中にフリーズする</dt>
-<dd>サウンドカードや環境によっては、ブツブツと再生がとぎれとぎれになったり、ノイズが乗ったり、途中から音が聞こえなくなったりします。場合によってはサウンドの再生中に限ってフリーズするなどの症状が現れます。<r/>
-それがトランジション(画面切り替え)や重たいエフェクト中に発生するならば、エンジン設定で「システム全般-低優先度」を「する」に設定するか、「システム全般-CPU使用率低減」を「する」に設定することで改善する場合があります。<r/>
-そのほか、エンジン設定で、「サウンド-DirectSound ソフトウェアミキシング」の設定を変更しても改善する場合があります。<r/>
-あるいはコントロールパネルの「マルチメディア」(または「サウンドとマルチメディア」や「サウンドとオーディオ デバイスのプロパティ」)の「オーディオ」タブの「音の再生」の「詳細設定」を開き、「パフォーマンス」タブの「ハードウェア アクセラレータ」のスライダーを「なし」の方向に徐々に動かしつつ試行していただいてください。<r/>
+<dt>Sound stutters, stops, or causes freezing during playback</dt>
+<dd>Depending on the sound card or environment, audio may stutter, contain noise, or stop playing. In some cases, the application may freeze specifically during sound playback.<r/>
+If this occurs during transitions or heavy effects, setting "General System - Low Priority" to "Yes" or "General System - Reduce CPU Usage" to "Yes" in the engine settings may help.<r/>
+Additionally, changing the "Sound - DirectSound Software Mixing" setting in the engine settings might resolve it.<r/>
+Alternatively, in the Control Panel under "Multimedia" (or "Sound and Multimedia" / "Sounds and Audio Devices Properties"), go to the "Audio" tab, click "Advanced" under "Sound Playback," and try moving the "Hardware Acceleration" slider on the "Performance" tab toward "None".<r/>
 </dd>
 
-<dt>操作がうまくできない</dt>
-<dd>マウス移動支援やマウスジェスチャー実現ツールなどのソフトウェアが常駐していると、作品の操作をすることができない場合があります。このようなソフトの常駐を解除していただいてください。<r/>
-サードパーティの(OS標準ではない)マウスドライバを導入していると、操作系に不具合を生じる可能性があります。このような場合はサードパーティ製のドライバを無効にするかアンインストールし、OS標準のドライバを使っていただいてください。<r/>
-ゲームパッド対応ソフトウェアにおいてゲームパッド(ジョイスティック)がつながっている場合、パッドの不具合が原因で作品を操作できない場合があります。パッドの上に物が乗っている為にパッドのボタンが押された状態になってしまっていないかを、確認していただいてください。<r/>
-また、ゲームパッド(ジョイスティック)が接続されていないと、パッドのボタンが押されている状態として検知してしまう環境があります。このような場合は、パッドのドライバを無効にしていただいてください。<r/>
-ゲームパッドやジョイスティックの軸のセンターの調整が不十分のため操作に不具合がでる場合があります。この場合は、コントロールパネルの「ゲーム コントローラ」から、ゲームコントローラの調整をしていただいてください。<r/>
-どうしてもパッドのドライバを無効にできない場合は、吉里吉里側でパッドを使用しない設定にできます。エンジン設定で「パッド使用可否」を「使わない」に設定していただいてください。<r/>
-サードパーティ製のマウスドライバを使っている場合、ホイールでの入力できない可能性があります。この場合は、エンジン設定で「マウスホイール回転検出方法」を「ウィンドウメッセージ」に設定していただくと改善する可能性があります。<r/>
+<dt>Input/Operation issues</dt>
+<dd>Resident software such as mouse movement assistants or mouse gesture tools may prevent proper operation. Please disable such software.<r/>
+Third-party (non-OS standard) mouse drivers may also cause input issues; in such cases, disable or uninstall them and use the standard OS driver.<r/>
+If a gamepad (joystick) is connected, a malfunction in the pad may prevent operation. Check if an object is resting on the pad, causing buttons to be held down.<r/>
+Also, in some environments, if a gamepad is not connected, it may be detected as having buttons pressed; in this case, disable the gamepad driver.<r/>
+Improper calibration of the gamepad or joystick axes can also cause issues; please calibrate the controller via "Game Controllers" in the Control Panel.<r/>
+If the driver cannot be disabled, you can set KiriKiri to ignore the pad. Set "Enable Gamepad" to "No" in the engine settings.<r/>
+If using a third-party mouse driver, the scroll wheel might not work; setting "Mouse Wheel Detection Method" to "Window Message" in the engine settings may resolve this.<r/>
 </dd>
 
 
-<dt>スラッシングが頻繁に起こる</dt>
-<dd>メモリ不足が原因で、スラッシング(大量のスワップイン・スワップアウト)が頻繁に起こる場合があります。<r/>
-エンジン設定で「システム全般-メモリ使用量」を「低い」に設定すると改善する場合があります。<r/>
-ただし、パフォーマンスが低下しますので、「システム全般-メモリ使用量」のオプションは変更せずに、「グラフィック-画像キャッシュ制限」を「4MB」や「8MB」などの比較的低い値に設定することで、パフォーマンスをあまり低下させずにメモリ使用量を減らすことができる可能性があります。<r/>
+<dt>Frequent thrashing (disk swapping)</dt>
+<dd>Insufficient memory may cause frequent thrashing (excessive swapping).<r/>
+Setting "General System - Memory Usage" to "Low" in the engine settings may help.<r/>
+However, since this reduces performance, you might instead try keeping that setting as is and lowering the "Graphics - Image Cache Limit" to a value like "4MB" or "8MB" to reduce memory usage with less impact on performance.<r/>
 </dd>
 
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>仮想キーコード一覧</title>
+<title>Virtual Key Code List</title>
 
 <para>
-<ptitle>仮想キーコード一覧</ptitle>
+<ptitle>Virtual Key Code List</ptitle>
 <r/>
-Alt キーは <tt>VK_MENU</tt> です。<r/>
-VK_PAD???? はパッド(ジョイスティック)からの入力を、あたかもキーボードからの入力であるかのようにエミュレートするための仮想キーコードです。VK_PADANYは、<at href="f_System_getKeyState.html">System.getKeyState</at> メソッドでこのキーコードの状態を取得しようとすると、パッドのどれか一つでもキーが押されているかどうかを取得できます。<r/>
+The Alt key is <tt>VK_MENU</tt>.<r/>
+VK_PAD???? are virtual key codes used to emulate input from a pad (joystick) as if it were input from a keyboard. When using the <at href="f_System_getKeyState.html">System.getKeyState</at> method with VK_PADANY, you can determine whether any button on the pad is currently being pressed.<r/>
 <r/>
 <bq>
  VK_LBUTTON        =0x01;<r/>

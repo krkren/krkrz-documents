@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>グラフィックシステム</title>
+<title>Graphics System</title>
 
 <para>
-<ptitle>グラフィックシステムについて</ptitle>
-　吉里吉里は、レイヤによるグラフィックの表示機構を持っています。<r/>
-　各レイヤはアルファブレンドによる透過重ね合わせや階層構造管理機能を持っています。また、レイヤを GUI 部品 (ウィジット) として動作させることができるように、ユーザからの入力を受け取るための機構 ( フォーカス ) を持っています。<r/>
+<ptitle>About the Graphics System</ptitle>
+ KiriKiri has a graphic display mechanism based on layers.<r/>
+ Each layer has features for transparent overlaying via alpha blending and hierarchical structure management. Additionally, layers have a mechanism for receiving user input (focus) so they can function as GUI components (widgets).<r/>
 <r/>
-　重ね合わされたレイヤは、描画デバイスと呼ばれる機構にて、ウィンドウに描画されます。デフォルトでは BasicDrawDevice と呼ばれる、単純にレイヤの出力をウィンドウに描画するだけのデバイスが使用されます。描画デバイスは<at href="f_Window_drawDevice.html">Window.drawDevice</at>プロパティを操作することで自由に差し替えられるようになっており、用途に応じた演出効果などをユーザが独自に(プラグインの形式で)定義することとができますが、吉里吉里Zが内蔵しているのは前述の BasicDrawDevice のみです。
+ Overlayed layers are drawn to the window using a mechanism called a draw device. By default, a device called BasicDrawDevice is used, which simply draws the layer output to the window. The draw device can be freely replaced by manipulating the <at href="f_Window_drawDevice.html">Window.drawDevice</at> property, allowing users to define their own production effects (in the form of plugins) according to their needs, but KiriKiri Z only includes the aforementioned BasicDrawDevice.
 </para>
 
 <para>
-<ptitle>読み書き可能な画像形式</ptitle>
-　標準状態の吉里吉里で、<at href="f_Layer_loadImages.html">Layer.loadImages</at> でレイヤに読み込む、レイヤに書きこむことのできる形式は以下の通りです。<r/>
+<ptitle>Readable and Writable Image Formats</ptitle>
+ In the standard state of KiriKiri, the formats that can be loaded into or written from a layer using <at href="f_Layer_loadImages.html">Layer.loadImages</at> are as follows.<r/>
 <r/>
 <dl>
 <dt>BMP</dt>
 <dd>
-　Windows 標準のビットマップ形式です。32 bpp の BMP はアルファチャネル付きビットマップと見なされます。<r/>
-　RLE圧縮されたビットマップは読み込むことができません。
+ Windows standard bitmap format. 32 bpp BMPs are treated as bitmaps with an alpha channel.<r/>
+ RLE-compressed bitmaps cannot be loaded.
 </dd>
 
 <dt>PNG</dt>
 <dd>
-　Portable Network Graphic 形式を読み込むことができます。アルファチャネル付きビットマップ PNG も読み込むことができます。
+ Portable Network Graphic format can be loaded. Bitmaps with an alpha channel (PNG) can also be loaded.
 </dd>
 
 <dt>JPEG</dt>
 <dd>
-　JPEG 形式を読み込むことができます。算術圧縮されたものや可逆圧縮のものは読み込むことができませんが、そもそも滅多に見かけないのでかまわないかと思います。
+ JPEG format can be loaded. Arithmetically compressed or losslessly compressed ones cannot be loaded, but since they are rarely encountered anyway, it should not be a problem.
 </dd>
 
 <dt>TLG5</dt>
 <dd>
-　吉里吉里独自の可逆圧縮フォーマットです。拡張子は .tlg です。アルファチャネル付きのものも読み込むことができます。圧縮率はさほど高くありませんが、高速に展開できるのが特徴です。この形式は<b>マスク画像(_m) あるいは領域画像 (_p) に使用することはできません</b>。アルファチャンネル無しのフルカラー画像、あるいはアルファチャンネル付きのフルカラー画像のみを扱うことができます。
+ KiriKiri's original lossless compression format. The extension is .tlg. Those with an alpha channel can also be loaded. The compression ratio is not very high, but it features high-speed expansion. This format <b>cannot be used for mask images (_m) or province images (_p)</b>. It can only handle full-color images without an alpha channel or full-color images with an alpha channel.
 </dd>
 
 <dt>TLG6</dt>
 <dd>
-　吉里吉里独自の可逆圧縮フォーマットです。拡張子はTLG5と同じく .tlg です。TLG6は高い圧縮率が特徴です。展開速度はTLG5の２倍弱かかりますが、それでもPNGの２倍以上高速に展開でき、サイズもPNGより2縲鰀4割小さくなります。
+ KiriKiri's original lossless compression format. The extension is .tlg, the same as TLG5. TLG6 features a high compression ratio. The expansion speed takes slightly less than twice as long as TLG5, but it is still more than twice as fast as PNG, and the size is 20% to 40% smaller than PNG.
 </dd>
 
 <dt>JPEG XR</dt>
 <dd>
-　JPEG XR形式を読み込むことができます。不可逆ですが JPEG よりも高画質でアルファチャンネルもサポートされています。<r/>
-　画質を優先して圧縮すると可逆圧縮画像と見分けがつきづらく、ファイルサイズも小さいためサイズが重要な時は有用です。<r/>
-　Ver 1.1.0 からサポートされ、現在読み込みのみ対応しています。<r/>
-　Ver 1.3.0 から保存にも対応しました。<r/>
+ JPEG XR format can be loaded. It is lossy but has higher image quality than JPEG and supports an alpha channel.<r/>
+ If compressed with priority on image quality, it is difficult to distinguish from losslessly compressed images, and since the file size is small, it is useful when size is important.<r/>
+ Supported since Ver 1.1.0, currently only loading is supported.<r/>
+ Saving is also supported since Ver 1.3.0.<r/>
 </dd>
 
-<dt>メイン/マスク分離形式</dt>
+<dt>Main/Mask Separation Format</dt>
 <dd>
-　メイン/マスク分離形式は、色情報の画像(メイン) とアルファチャネル(マスク) の画像が分離している形式で、マスク画像は、メイン画像のファイル名に _m が付加されたものとなります ( たとえば、abc.jpeg に対して abc_m.jpeg )。<r/>
-　メイン/マスク画像の形式が異なっていてもかまいません。
+ The main/mask separation format is a format where the color information image (main) and the alpha channel (mask) image are separated. The mask image is the main image filename with _m appended (for example, abc_m.jpeg for abc.jpeg).<r/>
+ The formats of the main and mask images do not have to be the same.
 </dd>
 </dl>
 <r/>
-　その他、Susie Plug-in を使って読み込み可能な画像形式を増やすことができます。Susie plug-in は <at href="f_Plugins_link.html">Plugins.link</at> メソッドで読み込むことができます。<r/>
-　Susie Plug-in から 32bpp のビットマップが渡された場合は、アルファチャネル付きビットマップと見なされます。<r/>
+ Additionally, you can increase the number of loadable image formats using Susie Plug-ins. Susie Plug-ins can be loaded using the <at href="f_Plugins_link.html">Plugins.link</at> method.<r/>
+ If a 32bpp bitmap is passed from a Susie Plug-in, it is treated as a bitmap with an alpha channel.<r/>
 <r/>
 </para>
 
 <para>
-<ptitle>レイヤタイプ</ptitle>
-　吉里吉里のレイヤは様々な合成モード(レイヤタイプ)で表示することができます。<r/>
-　以下の合成モードがあり、lt で始まるレイヤタイプ定数を <at href="f_Layer_type.html">Layer.type</at> プロパティに指定することができます。<r/>
-　なお、式中の <i>result</i> は結果、<i>dest</i> は重ね合わせ先の画像の輝度、<i>src</i> は重ね合わせる画像の輝度、<i>α</i>は重ね合わせる画像のピクセルごとのアルファ値で、すべて値の範囲は 0.0 縲鰀 1.0 とします。<r/>
-　また、ここでは説明のために以下の関数を定義します。<r/>
+<ptitle>Layer Types</ptitle>
+ KiriKiri layers can be displayed in various composition modes (layer types).<r/>
+ The following composition modes are available, and layer type constants starting with lt can be specified in the <at href="f_Layer_type.html">Layer.type</at> property.<r/>
+ In the formulas, <i>result</i> is the result, <i>dest</i> is the brightness of the destination image, <i>src</i> is the brightness of the source image to be overlayed, and <i>alpha</i> is the alpha value for each pixel of the source image, with all values ranging from 0.0 to 1.0.<r/>
+ Also, the following functions are defined here for explanation purposes:<r/>
 <ul>
-<li>abs(<i>a</i>) : <i>a</i> の絶対値</li>
-<li>max(<i>a</i>, <i>b</i>) : <i>a</i> と <i>b</i> のどちらか大きい方</li>
-<li>min(<i>a</i>, <i>b</i>) : <i>a</i> と <i>b</i> のどちらか小さい方</li>
-<li>blend(<i>a</i>, <i>b</i>, <i>r</i>) = <i>a</i> × (1.0 - <i>r</i>) + <i>b</i> × <i>r</i></li>
+<li>abs(<i>a</i>) : Absolute value of <i>a</i></li>
+<li>max(<i>a</i>, <i>b</i>) : The larger of <i>a</i> or <i>b</i></li>
+<li>min(<i>a</i>, <i>b</i>) : The smaller of <i>a</i> or <i>b</i></li>
+<li>blend(<i>a</i>, <i>b</i>, <i>r</i>) = <i>a</i> * (1.0 - <i>r</i>) + <i>b</i> * <i>r</i></li>
 </ul>
 
 <r/>
@@ -80,230 +80,230 @@
 
 <dt><kw>ltOpaque</kw> (<kw>ltCoverRect</kw>)</dt>
 <dd>
-　ltOpaque は透過を伴わない表示です。常にレイヤの矩形全体が完全不透明な表示になります ( このレイヤタイプに限りませんが、<at href="f_Layer_opacity.html">Layer.opacity</at> で不透明度を下げている場合はそれに従います )。<r/>
+ ltOpaque is a display without transparency. The entire rectangle of the layer is always completely opaque (this is not limited to this layer type, but if the opacity is lowered with <at href="f_Layer_opacity.html">Layer.opacity</at>, it will follow that).<r/>
 <r/>
-式 : <i>result</i> = <i>src</i><r/>
+Formula : <i>result</i> = <i>src</i><r/>
 <note>
-ltCoverRect でも同じ意味になりますが、2.23 beta 2 未満における古い名称です。
+ltCoverRect has the same meaning, but it is an old name from before 2.23 beta 2.
 </note>
 </dd>
 
 <dt><kw>ltAlpha</kw> (<kw>ltTransparent</kw>)</dt>
 <dd>
-　ltAlpha はアルファ合成を行います。透過を行う際のもっとも基本的なタイプです。BMP や Susie plug-in からのアルファチャネルの入力においても下記の式が使われます。<r/>
+ ltAlpha performs alpha blending. This is the most basic type for transparency. The following formula is also used for alpha channel input from BMP or Susie plug-ins.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, <i>src</i>, <i>α</i>)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, <i>src</i>, <i>alpha</i>)<r/>
 <note>
-ltTransparent でも同じ意味になりますが、2.23 beta 2 未満における古い名称です。
+ltTransparent has the same meaning, but it is an old name from before 2.23 beta 2.
 </note>
 </dd>
 
 <dt><kw>ltAddAlpha</kw></dt>
 <dd>
-　ltAddAlpha は加算アルファ合成を行います。<r/>
-　<link href="TPC" />でこの形式に適した画像を出力できます。また、<at href="f_Layer_convertType.html">Layer.convertType</at> メソッドで ltAlpha からこの形式に変換することができます。<r/>
-　ltAddAlphaのレイヤは、ltAlpha のレイヤの直接の子になると正常に表示できません。<r/>
+ ltAddAlpha performs additive alpha blending.<r/>
+ You can output images suitable for this format using <link href="TPC" />. Also, you can convert from ltAlpha to this format using the <at href="f_Layer_convertType.html">Layer.convertType</at> method.<r/>
+ Layers of type ltAddAlpha cannot be displayed correctly if they are direct children of an ltAlpha layer.<r/>
 <r/>
-式 : <i>result</i> = min(1.0, <i>dest</i> × ( 1.0 - <i>α</i> ) + <i>src</i>)<r/>
+Formula : <i>result</i> = min(1.0, <i>dest</i> * ( 1.0 - <i>alpha</i> ) + <i>src</i>)<r/>
 </dd>
 
 <dt><kw>ltAdditive</kw></dt>
 <dd>
-　ltAdditive は加算合成を行います。光彩の表現に適しています。Photoshopにおける「覆い焼き(リニア)」ですが、Photoshopと同じ効果を得たい場合は後述の ltPsAdditive を使用してください。ltPsAdditive と違い、ltAdditive では <i>α</i>は無視されます。<r/>
-　中性色 (重ね合わせても変化のない色) は黒です。<r/>
+ ltAdditive performs additive composition. Suitable for expressing glows. It is "Linear Dodge" in Photoshop, but if you want the same effect as Photoshop, use ltPsAdditive described later. Unlike ltPsAdditive, <i>alpha</i> is ignored in ltAdditive.<r/>
+ The neutral color (the color that does not change when overlayed) is black.<r/>
 <r/>
-式 : <i>result</i> = min(1.0, <i>dest</i> + <i>src</i>)<r/>
+Formula : <i>result</i> = min(1.0, <i>dest</i> + <i>src</i>)<r/>
 </dd>
 
 <dt><kw>ltSubtractive</kw></dt>
 <dd>
-　ltSubtractive は減算合成を行います。<i>α</i>は無視されます。<r/>
-　中性色は白です。<r/>
+ ltSubtractive performs subtractive composition. <i>alpha</i> is ignored.<r/>
+ The neutral color is white.<r/>
 <r/>
-式 : <i>result</i> = max(0.0, <i>dest</i> + <i>src</i> - 1.0)<r/>
+Formula : <i>result</i> = max(0.0, <i>dest</i> + <i>src</i> - 1.0)<r/>
 <note>
-　<i>result</i> = <i>dest</i> - <i>src</i> と違うのは src が反転しないかするかの違いだけです。
+ The only difference from <i>result</i> = <i>dest</i> - <i>src</i> is whether src is inverted or not.
 </note>
 </dd>
 
 <dt><kw>ltMultiplicative</kw></dt>
 <dd>
-　ltMultiplicative は乗算合成を行います。<i>α</i>は無視されます。<r/>
-　中性色は白です。<r/>
+ ltMultiplicative performs multiplicative composition. <i>alpha</i> is ignored.<r/>
+ The neutral color is white.<r/>
 <r/>
-式 : <i>result</i> = <i>dest</i> × <i>src</i>
+Formula : <i>result</i> = <i>dest</i> * <i>src</i>
 </dd>
 
 <dt><kw>ltDodge</kw></dt>
 <dd>
-　ltDodge は「覆い焼き」合成を行います。光に照らされたものの表現に適しています。<i>α</i>は無視されます。<r/>
-　中性色は黒です。<r/>
+ ltDodge performs "Dodge" composition. Suitable for expressing things illuminated by light. <i>alpha</i> is ignored.<r/>
+ The neutral color is black.<r/>
 <r/>
-式 : <i>result</i> = min(1.0, <i>dest</i> ÷ ( 1.0 -  <i>src</i> ) )<r/>
+Formula : <i>result</i> = min(1.0, <i>dest</i> / ( 1.0 -  <i>src</i> ) )<r/>
 </dd>
 
 <dt><kw>ltLighten</kw></dt>
 <dd>
-　ltLighten は「比較(明)」合成を行います。<i>α</i>は無視されます。<r/>
-　中性色は黒です。<r/>
+ ltLighten performs "Lighten" composition. <i>alpha</i> is ignored.<r/>
+ The neutral color is black.<r/>
 <r/>
-式 : <i>result</i> = max(<i>dest</i>, <i>src</i>)<r/>
+Formula : <i>result</i> = max(<i>dest</i>, <i>src</i>)<r/>
 </dd>
 
 <dt><kw>ltDarken</kw></dt>
 <dd>
-　ltDarken は「比較(暗)」合成を行います。<i>α</i>は無視されます。<r/>
-　中性色は白です。<r/>
+ ltDarken performs "Darken" composition. <i>alpha</i> is ignored.<r/>
+ The neutral color is white.<r/>
 <r/>
-式 : <i>result</i> = min(<i>dest</i>, <i>src</i>)<r/>
+Formula : <i>result</i> = min(<i>dest</i>, <i>src</i>)<r/>
 </dd>
 
 <dt><kw>ltScreen</kw></dt>
 <dd>
-　ltLighten は「スクリーン乗算」合成を行います。<i>α</i>は無視されます。<r/>
-　中性色は黒です。<r/>
+ ltScreen performs "Screen" composition. <i>alpha</i> is ignored.<r/>
+ The neutral color is black.<r/>
 <r/>
-式 : <i>result</i> = 1.0 - ( 1.0 - <i>dest</i> ) × ( 1.0 - <i>src</i> )<r/>
+Formula : <i>result</i> = 1.0 - ( 1.0 - <i>dest</i> ) * ( 1.0 - <i>src</i> )<r/>
 </dd>
 
 
 
 <dt><kw>ltPsNormal</kw></dt>
 <dd>
-　ltPsNormal は ltAlpha と同じ効果を持ちます。歴史的な理由で ltAlpha とは別のルーチンや名称となっています。
+ ltPsNormal has the same effect as ltAlpha. It has a different routine and name from ltAlpha for historical reasons.
 </dd>
 
 
 <dt><kw>ltPsAdditive</kw></dt>
 <dd>
-　ltPsAdditive はPhotoshop互換の「覆い焼き(リニア)」合成(加算合成)を行います。ltAdditive と違い、<i>α</i>は無視されません。<r/>
-　中性色は黒です。<r/>
+ ltPsAdditive performs Photoshop-compatible "Linear Dodge" composition (additive composition). Unlike ltAdditive, <i>alpha</i> is not ignored.<r/>
+ The neutral color is black.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, min(1.0, <i>dest</i> + <i>src</i>), <i>α</i>)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, min(1.0, <i>dest</i> + <i>src</i>), <i>alpha</i>)<r/>
 </dd>
 
 <dt><kw>ltPsSubtractive</kw></dt>
 <dd>
-　ltPsSubtractive はPhotoshop互換の「焼き込み(リニア)」合成(減算合成)を行います。ltSubtractive と違い、<i>α</i>は無視されません。<r/>
-　中性色は白です。<r/>
+ ltPsSubtractive performs Photoshop-compatible "Linear Burn" composition (subtractive composition). Unlike ltSubtractive, <i>alpha</i> is not ignored.<r/>
+ The neutral color is white.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, max(0.0, <i>dest</i> + <i>src</i> - 1.0), <i>α</i>)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, max(0.0, <i>dest</i> + <i>src</i> - 1.0), <i>alpha</i>)<r/>
 </dd>
 
 <dt><kw>ltPsMultiplicative</kw></dt>
 <dd>
-　ltPsMultiplicative はPhotoshop互換の「乗算」合成を行います。ltMultiplicative と違い、<i>α</i>は無視されません。<r/>
-　中性色は白です。<r/>
+ ltPsMultiplicative performs Photoshop-compatible "Multiply" composition. Unlike ltMultiplicative, <i>alpha</i> is not ignored.<r/>
+ The neutral color is white.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, <i>dest</i> × <i>src</i>, <i>α</i>)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, <i>dest</i> * <i>src</i>, <i>alpha</i>)<r/>
 </dd>
 
 <dt><kw>ltPsScreen</kw></dt>
 <dd>
-　ltPsScreen はPhotoshop互換の「スクリーン」合成を行います。ltScreen と違い、<i>α</i>は無視されません。<r/>
-　中性色は黒です。<r/>
+ ltPsScreen performs Photoshop-compatible "Screen" composition. Unlike ltScreen, <i>alpha</i> is not ignored.<r/>
+ The neutral color is black.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, 1.0 - (1.0 - <i>dest</i>) × (1.0 - <i>src</i>), <i>α</i>)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, 1.0 - (1.0 - <i>dest</i>) * (1.0 - <i>src</i>), <i>alpha</i>)<r/>
 </dd>
 
 
 <dt><kw>ltPsOverlay</kw></dt>
 <dd>
-　ltPsOverlay はPhotoshop互換の「オーバーレイ」合成を行います。<r/>
-　中性色は50%灰色です。<r/>
+ ltPsOverlay performs Photoshop-compatible "Overlay" composition.<r/>
+ The neutral color is 50% gray.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, overlay(<i>dest</i>, <i>src</i>), <i>α</i>)<r/>
-ここで overlay(<i>a</i>, <i>b</i>) = <r/>
-　<i>a</i> × <i>b</i> × 2.0  ( <i>a</i> &lt; 0.5 のとき)<r/>
-　1.0 - (1.0 - <i>a</i>) × (1.0 - <i>b</i>) × 2.0 (それ以外のとき)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, overlay(<i>dest</i>, <i>src</i>), <i>alpha</i>)<r/>
+Where overlay(<i>a</i>, <i>b</i>) = <r/>
+ <i>a</i> * <i>b</i> * 2.0  (when <i>a</i> &lt; 0.5)<r/>
+ 1.0 - (1.0 - <i>a</i>) * (1.0 - <i>b</i>) * 2.0 (otherwise)<r/>
 </dd>
 
 <dt><kw>ltPsHardLight</kw></dt>
 <dd>
-　ltPsHardLight はPhotoshop互換の「ハードライト」合成を行います。<r/>
-　中性色は50%灰色です。<r/>
+ ltPsHardLight performs Photoshop-compatible "Hard Light" composition.<r/>
+ The neutral color is 50% gray.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, hardlight(<i>dest</i>, <i>src</i>), <i>α</i>)<r/>
-ここで hardlight(<i>a</i>, <i>b</i>) = <r/>
-　<i>a</i> × <i>b</i> × 2.0  (<i>b</i> &lt; 0.5 のとき)<r/>
-　1.0 - (1.0 - <i>a</i>) × (1.0 - <i>b</i>) × 2.0 (それ以外のとき)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, hardlight(<i>dest</i>, <i>src</i>), <i>alpha</i>)<r/>
+Where hardlight(<i>a</i>, <i>b</i>) = <r/>
+ <i>a</i> * <i>b</i> * 2.0  (when <i>b</i> &lt; 0.5)<r/>
+ 1.0 - (1.0 - <i>a</i>) * (1.0 - <i>b</i>) * 2.0 (otherwise)<r/>
 </dd>
 
 
 <dt><kw>ltPsSoftLight</kw></dt>
 <dd>
-　ltPsSoftLight はPhotoshop互換の「ソフトライト」合成を行います。<r/>
-　中性色は50%灰色です。<r/>
+ ltPsSoftLight performs Photoshop-compatible "Soft Light" composition.<r/>
+ The neutral color is 50% gray.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, softlight(<i>dest</i>, <i>src</i>), <i>α</i>)<r/>
-ここで softlight(<i>a</i>, <i>b</i>) = <r/>
-　<i>a</i><sup>(0.5 ÷ <i>b</i>)</sup>  (<i>b</i> &gt; 0.5 のとき)<r/>
-　<i>a</i><sup>((1.0 - <i>b</i>) × 2)</sup>  (それ以外のとき)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, softlight(<i>dest</i>, <i>src</i>), <i>alpha</i>)<r/>
+Where softlight(<i>a</i>, <i>b</i>) = <r/>
+ <i>a</i>^(0.5 / <i>b</i>)  (when <i>b</i> &gt; 0.5)<r/>
+ <i>a</i>^((1.0 - <i>b</i>) * 2)  (otherwise)<r/>
 </dd>
 
 
 <dt><kw>ltPsColorDodge</kw></dt>
 <dd>
-　ltPsColorDodge はPhotoshop互換の「覆い焼きカラー」合成を行います。ltDodge と違い、<i>α</i>は無視されません。<r/>
-　中性色は黒です。<r/>
+ ltPsColorDodge performs Photoshop-compatible "Color Dodge" composition. Unlike ltDodge, <i>alpha</i> is not ignored.<r/>
+ The neutral color is black.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, min(1.0, <i>dest</i> ÷ ( 1.0 -  <i>src</i> ) ), <i>α</i>)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, min(1.0, <i>dest</i> / ( 1.0 -  <i>src</i> ) ), <i>alpha</i>)<r/>
 </dd>
 
 <dt><kw>ltPsColorDodge5</kw></dt>
 <dd>
-　ltPsColorDodge はPhotoshopのバージョン 5.x 以下と互換の「覆い焼きカラー」合成を行います。ltPsColorDodge とは式が若干異なります。<r/>
-　中性色は黒です。<r/>
+ ltPsColorDodge5 performs "Color Dodge" composition compatible with Photoshop version 5.x and earlier. The formula is slightly different from ltPsColorDodge.<r/>
+ The neutral color is black.<r/>
 <r/>
-式 : <i>result</i> = min(1.0, <i>dest</i> ÷ ( 1.0 - <i>src</i> × <i>α</i>) )<r/>
+Formula : <i>result</i> = min(1.0, <i>dest</i> / ( 1.0 - <i>src</i> * <i>alpha</i>) )<r/>
 </dd>
 
 <dt><kw>ltPsColorBurn</kw></dt>
 <dd>
-　ltPsColorBurn はPhotoshop互換の「焼き込みカラー」合成を行います。<r/>
-　中性色は白です。<r/>
+ ltPsColorBurn performs Photoshop-compatible "Color Burn" composition.<r/>
+ The neutral color is white.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, max(0.0, 1.0 - (1.0 - <i>dest</i>) ÷ <i>src</i>), <i>α</i>)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, max(0.0, 1.0 - (1.0 - <i>dest</i>) / <i>src</i>), <i>alpha</i>)<r/>
 </dd>
 
 <dt><kw>ltPsLighten</kw></dt>
 <dd>
-　ltPsLighten はPhotoshop互換の「比較(明)」合成を行います。ltLighten と違い、<i>α</i>は無視されません。<r/>
-　中性色は黒です。<r/>
+ ltPsLighten performs Photoshop-compatible "Lighten" composition. Unlike ltLighten, <i>alpha</i> is not ignored.<r/>
+ The neutral color is black.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, max(<i>dest</i>, <i>src</i>), <i>α</i>)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, max(<i>dest</i>, <i>src</i>), <i>alpha</i>)<r/>
 </dd>
 
 <dt><kw>ltPsDarken</kw></dt>
 <dd>
-　ltPsDarken はPhotoshop互換の「比較(暗)」合成を行います。ltDarken と違い、<i>α</i>は無視されません。<r/>
-　中性色は白です。<r/>
+ ltPsDarken performs Photoshop-compatible "Darken" composition. Unlike ltDarken, <i>alpha</i> is not ignored.<r/>
+ The neutral color is white.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, min(<i>dest</i>, <i>src</i>), <i>α</i>)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, min(<i>dest</i>, <i>src</i>), <i>alpha</i>)<r/>
 </dd>
 
 <dt><kw>ltPsDifference</kw></dt>
 <dd>
-　ltPsDifference はPhotoshop互換の「差の絶対値」合成を行います。<r/>
-　中性色は黒です。<r/>
+ ltPsDifference performs Photoshop-compatible "Difference" composition.<r/>
+ The neutral color is black.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>, abs(<i>dest</i> - <i>src</i>), <i>α</i>)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>, abs(<i>dest</i> - <i>src</i>), <i>alpha</i>)<r/>
 </dd>
 
 <dt><kw>ltPsDifference5</kw></dt>
 <dd>
-　ltPsDifference5 はPhotoshopのバージョン 5.x 以下と互換の「差の絶対値」合成を行います。ltPsDifference とは式が若干異なります。<r/>
-　中性色は黒です。<r/>
+ ltPsDifference5 performs "Difference" composition compatible with Photoshop version 5.x and earlier. The formula is slightly different from ltPsDifference.<r/>
+ The neutral color is black.<r/>
 <r/>
-式 : <i>result</i> = abs(<i>dest</i> - <i>src</i> × <i>α</i>)<r/>
+Formula : <i>result</i> = abs(<i>dest</i> - <i>src</i> * <i>alpha</i>)<r/>
 </dd>
 
 <dt><kw>ltPsExclusion</kw></dt>
 <dd>
-　ltPsExclusion はPhotoshop互換の「除外」合成を行います。<r/>
-　中性色は黒です。<r/>
+ ltPsExclusion performs Photoshop-compatible "Exclusion" composition.<r/>
+ The neutral color is black.<r/>
 <r/>
-式 : <i>result</i> = blend(<i>dest</i>,  <i>dest</i> + <i>src</i> - 2.0 × <i>src</i> × <i>dest</i>, <i>α</i>)<r/>
+Formula : <i>result</i> = blend(<i>dest</i>,  <i>dest</i> + <i>src</i> - 2.0 * <i>src</i> * <i>dest</i>, <i>alpha</i>)<r/>
 </dd>
 
 
@@ -318,27 +318,27 @@ ltTransparent でも同じ意味になりますが、2.23 beta 2 未満におけ
 
 
 <para>
-<ptitle>アルファ合成と加算アルファ合成</ptitle>
-　吉里吉里は、二つのアルファ合成モードを持っています。<r/>
+<ptitle>Alpha Blending and Additive Alpha Blending</ptitle>
+ KiriKiri has two alpha blending modes.<r/>
 <dl>
-<dt>アルファ合成</dt>
+<dt>Alpha Blending</dt>
 <dd>
-<at href="f_Layer_type.html">Layer.type</at> プロパティで <kw>ltAlpha</kw> を指定するとこの表示タイプになります。<r/>
-ltAlphaは多くのグラフィックソフトが採用しているアルファ合成モードです。他のグラフィックソフトで出力したデータをそのまま読み込む場合はこのモードが適しています。<r/>
+ Specifying <kw>ltAlpha</kw> in the <at href="f_Layer_type.html">Layer.type</at> property results in this display type.<r/>
+ ltAlpha is the alpha blending mode adopted by many graphics software. This mode is suitable when loading data output from other graphics software as is.<r/>
 </dd>
 
-<dt>加算アルファ合成</dt>
+<dt>Additive Alpha Blending</dt>
 <dd>
-<at href="f_Layer_type.html">Layer.type</at> プロパティで <kw>ltAddAlpha</kw> を指定するとこの表示タイプになります。<r/>
-　この形式はアルファ合成に比べて以下のメリット・デメリットがあります。<r/>
+ Specifying <kw>ltAddAlpha</kw> in the <at href="f_Layer_type.html">Layer.type</at> property results in this display type.<r/>
+ This format has the following advantages and disadvantages compared to alpha blending:<r/>
 <ul>
-<li>式がアルファ合成よりも単純なため、表示が高速に行え、多くの描画メソッドでも高速な描画が可能です</li>
-<li>アルファ合成と一緒に加算合成も表現できます</li>
-<li>この形式に対応しているグラフィックソフトがほとんどありません</li>
+<li>The formula is simpler than alpha blending, so display can be performed at high speed, and high-speed drawing is possible with many drawing methods</li>
+<li>Additive composition can be expressed along with alpha blending</li>
+<li>There is almost no graphics software that supports this format</li>
 </ul>
 <r/>
-ltAddAlphaと同じ合成モードに対応しているグラフィックソフトはそうはないと思いますので、他ソフトの出力を吉里吉里でこの形式で扱うには、<link href="TPC" /> でこのタイプの画像を出力するか、<at href="f_Layer_convertType.html">Layer.convertType</at> メソッドで ltAlpha からこの形式に変換する必要があります。<r/>
-　画像フォーマットコンバータでは、Photoshop形式で、「通常」レイヤーと「覆い焼き(リニア)」レイヤーの組み合わさった入力を、加算アルファ合成用画像の入力として受け付けることができます。<r/>
+ Since there are likely not many graphics software programs that support the same composition mode as ltAddAlpha, to handle output from other software in this format in KiriKiri, you need to output this type of image with <link href="TPC" /> or convert from ltAlpha to this format using the <at href="f_Layer_convertType.html">Layer.convertType</at> method.<r/>
+ In the Image Format Converter, you can accept input that combines "Normal" layers and "Linear Dodge" layers in Photoshop format as input for additive alpha blending images.<r/>
 </dd>
 
 </dl>
@@ -351,26 +351,26 @@ ltAddAlphaと同じ合成モードに対応しているグラフィックソフ�
 
 
 <para>
-<ptitle>レイヤタイプと描画方式と演算モード</ptitle>
-　吉里吉里にはレイヤタイプ (ltで始まる定数で指定)と、描画方式 (dfで始まる定数で指定) と、演算モード (omで始まる定数で指定)があります。<r/>
-　それぞれ似たような名称を持っていますが、用途は以下のように分かれています。<r/>
+<ptitle>Layer Types, Drawing Methods, and Operation Modes</ptitle>
+ KiriKiri has layer types (specified by constants starting with lt), drawing methods (specified by constants starting with df), and operation modes (specified by constants starting with om).<r/>
+ Although they have similar names, their uses are divided as follows:<r/>
 <dl>
 
-<dt>レイヤタイプ</dt>
+<dt>Layer Type</dt>
 <dd>
-　レイヤタイプは <at href="f_Layer_type.html">Layer.type</at> プロパティで指定する値で、レイヤがどのように表示されるかを指定します。
+ The layer type is the value specified in the <at href="f_Layer_type.html">Layer.type</at> property and determines how the layer is displayed.
 </dd>
 
-<dt>描画方式</dt>
+<dt>Drawing Method</dt>
 <dd>
-　描画方式は <at href="f_Layer_face.html">Layer.face</at> プロパティで指定する値で、レイヤにどのように描画するかを指定します。dfAutoを指定すると、レイヤタイプに従って適切な描画方式が決定されます。レイヤタイプに最適な描画方法とは異なる描画方式で描画することもできます。<r/>
-　<at href="f_Layer_copyRect.html">Layer.copyRect</at> メソッドのようなレイヤ間のコピーを行うメソッドでは、どの情報をコピーするかの選択にも用いられます。dfBoth (あるいは dfAlpha あるいは dfAddAlpha の場合) は、メインとマスクの両方がコピーされます。dfMain (あるいは dfOpaque) の場合はメインのみがコピーされます。dfMask の場合はマスクのみ、dfProvince の場合は領域画像のみがコピーされます。<r/>
-　同様に、<at href="f_Layer_fillRect.html">Layer.fillRect</at> メソッドでは、どの情報を塗りつぶすかの選択に用いられます。dfBoth (あるいは dfAlpha あるいは dfAddAlpha の場合) は、メインとマスクの両方が塗りつぶされます。dfMain (あるいは dfOpaque) の場合はメインのみがコピー塗りつぶされます。dfMask の場合はマスクのみ、dfProvince の場合は領域画像のみが塗りつぶされます。<r/>
+ The drawing method is the value specified in the <at href="f_Layer_face.html">Layer.face</at> property and determines how to draw onto the layer. If dfAuto is specified, the appropriate drawing method is determined according to the layer type. You can also draw using a drawing method different from the one optimal for the layer type.<r/>
+ In methods that perform copying between layers, such as the <at href="f_Layer_copyRect.html">Layer.copyRect</at> method, it is also used to select which information to copy. In the case of dfBoth (or dfAlpha or dfAddAlpha), both the main and mask are copied. In the case of dfMain (or dfOpaque), only the main is copied. In the case of dfMask, only the mask is copied, and in the case of dfProvince, only the province image is copied.<r/>
+ Similarly, in the <at href="f_Layer_fillRect.html">Layer.fillRect</at> method, it is used to select which information to fill. In the case of dfBoth (or dfAlpha or dfAddAlpha), both the main and mask are filled. In the case of dfMain (or dfOpaque), only the main is filled. In the case of dfMask, only the mask is filled, and in the case of dfProvince, only the province image is filled.<r/>
 </dd>
 
-<dt>演算モード</dt>
+<dt>Operation Mode</dt>
 <dd>
-　演算モードは <at href="f_Layer_operateRect.html">Layer.operateRect</at> メソッドなどの引数で指定する値で、演算元(重ね合わせるレイヤ) をどのように扱うかを指定する値です。omAuto を指定すると、演算元のレイヤタイプに従って適切なモードが決定されます。
+ The operation mode is the value specified in arguments of methods such as <at href="f_Layer_operateRect.html">Layer.operateRect</at> and determines how to handle the operation source (the layer to be overlayed). If omAuto is specified, the appropriate mode is determined according to the layer type of the operation source.
 </dd>
 
 </dl>
@@ -378,11 +378,11 @@ ltAddAlphaと同じ合成モードに対応しているグラフィックソフ�
 
 
 <para>
-<ptitle>アルファチャンネルの保護</ptitle>
-　<at href="f_Layer_face.html">Layer.face</at> プロパティで指定する描画方式が <kw>dfOpaque</kw> の場合、<at href="f_Layer_holdAlpha.html">Layer.holdAlpha</at> プロパティで、描画先 (メソッドを実行しようとするレイヤ)のアルファチャンネルを保護するかどうかを指定できます。<r/>
-　アルファチャンネルを保護すると、アルファチャンネル (不透明度) は保護され、透明な部分は透明なままになります。<r/>
-　アルファチャンネルを保護しないと、アルファチャンネル (不透明度) は破壊されます。破壊されるとは、どのような状態になるか分からなくなると言うことです。<r/>
-　しかし、<at href="f_Layer_type.html">Layer.type</at> プロパティが <kw>ltAlpha</kw> でも <kw>ltAddAlpha</kw> でも無い場合は、レイヤのアルファチャンネルは使われませんから、Layer.holdAlpha プロパティを偽にしても、通常は問題はありません。また、偽にすれば、多くのメソッドにおいて真の時よりも高速に描画できます。<r/>
+<ptitle>Alpha Channel Protection</ptitle>
+ When the drawing method specified in the <at href="f_Layer_face.html">Layer.face</at> property is <kw>dfOpaque</kw>, you can specify whether to protect the alpha channel of the drawing destination (the layer on which you are trying to execute the method) using the <at href="f_Layer_holdAlpha.html">Layer.holdAlpha</at> property.<r/>
+ If the alpha channel is protected, the alpha channel (opacity) is preserved, and transparent parts remain transparent.<r/>
+ If the alpha channel is not protected, the alpha channel (opacity) is destroyed. To be destroyed means that the state becomes unpredictable.<r/>
+ However, if the <at href="f_Layer_type.html">Layer.type</at> property is neither <kw>ltAlpha</kw> nor <kw>ltAddAlpha</kw>, the layer's alpha channel is not used, so there is usually no problem even if the Layer.holdAlpha property is set to false. Also, if set to false, drawing can be performed faster in many methods than when set to true.<r/>
 </para>
 
 

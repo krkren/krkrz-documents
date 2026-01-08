@@ -2,45 +2,45 @@
 <doc>
 <title>Plugins</title>
 <desc>
-　Plugins クラスは <kw>プラグイン</kw>に関する管理を行うクラスです。このクラスからオブジェクトを作成することはできません。<r/>
+ The Plugins class is a class that manages <kw>plugins</kw>. Objects cannot be created from this class.<r/>
 </desc>
 
 <member>
 	<name>link</name>
 	<type>method</type>
-	<shortdesc>プラグインの接続</shortdesc>
+	<shortdesc>Link a plugin</shortdesc>
 	<arg>
 		<argitem>
 			<name>name</name>
 			<default></default>
 			<desc>
-				　接続するプラグインを指定します。<r/>
+				 Specifies the plugin to link.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　指定されたプラグインを吉里吉里本体に接続します ( 読み込みます )。<r/>
+		 Links (loads) the specified plugin to the KiriKiri core.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>unlink</name>
 	<type>method</type>
-	<shortdesc>プラグインの切り離し</shortdesc>
+	<shortdesc>Unlink a plugin</shortdesc>
 	<arg>
 		<argitem>
 			<name>name</name>
 			<default></default>
 			<desc>
-				　切り離すプラグインを指定します。<r/>
+				 Specifies the plugin to unlink.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>　切り離しに成功すれば真、失敗すれば偽</result>
+	<result>True if unlinking succeeded, false if it failed</result>
 	<desc>
-		　指定されたプラグインを切り離します。<r/>
-		　プラグインの中には、解放に応じない物もあります ( オブジェクトが使用中の時など )。解放に応じず、失敗すれば偽が返ります。<r/>
+		 Unlinks the specified plugin.<r/>
+		 Some plugins may not respond to release requests (e.g., when objects are in use). If the plugin does not release and fails, false is returned.<r/>
 	</desc>
 </member>
 
@@ -48,12 +48,12 @@
 <member>
 	<name>getList</name>
 	<type>method</type>
-	<shortdesc>リストの取得</shortdesc>
+	<shortdesc>Get list</shortdesc>
 	<arg>
 	</arg>
-	<result>リンクされているプラグイン名が格納された配列</result>
+	<result>An array containing the names of linked plugins</result>
 	<desc>
-		　プラグインのリストを取得します。返される配列は、リンクした順番でプラグイン名が列挙された物です。<r/>
+		 Gets the list of plugins. The returned array lists the plugin names in the order they were linked.<r/>
 	</desc>
 </member>
 

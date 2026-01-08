@@ -16,26 +16,26 @@
 <body>
 <h1><a id="id95" name="id95">About the Event System</a>
 </h1><div class="para"><div>
-　When writing TJS scripts in KiriKiri, it is necessary to adopt an event-driven programming model.<br />
-　Events occur when "something happens" to notify other objects or the object itself. You write processing logic in event handlers to respond to these events.<br />
-　In KiriKiri, it is not desirable for a single event handler to take an unnecessarily long time. If you want to wait for a certain amount of time, it is recommended to use the Timer class.<br />
+ When writing TJS scripts in KiriKiri, it is necessary to adopt an event-driven programming model.<br />
+ Events occur when "something happens" to notify other objects or the object itself. You write processing logic in event handlers to respond to these events.<br />
+ In KiriKiri, it is not desirable for a single event handler to take an unnecessarily long time. If you want to wait for a certain amount of time, it is recommended to use the Timer class.<br />
 </div></div>
 <h1><a id="id96" name="id96">Synchronous and Asynchronous Events</a>
 </h1><div class="para"><div>
-　Synchronous events are events that occur immediately on the spot when an object is operated, such as the onStatusChanged event occurring within the play method when starting playback in a sound buffer.<br />
-　In contrast, asynchronous events are temporarily stored in the event queue (a place where events to be triggered are temporarily kept) inside KiriKiri. These events do not occur until all other event handler processing is finished, and they do not occur within other event handlers (however, there are exceptions, so please refer to the note below). Events such as the onTimer event that occurs when a timer period arrives, and all events triggered by user input, are asynchronous events.<br />
+ Synchronous events are events that occur immediately on the spot when an object is operated, such as the onStatusChanged event occurring within the play method when starting playback in a sound buffer.<br />
+ In contrast, asynchronous events are temporarily stored in the event queue (a place where events to be triggered are temporarily kept) inside KiriKiri. These events do not occur until all other event handler processing is finished, and they do not occur within other event handlers (however, there are exceptions, so please refer to the note below). Events such as the onTimer event that occurs when a timer period arrives, and all events triggered by user input, are asynchronous events.<br />
 <br /><div class="note"><div class="notehead"><span class="noteheadspan">Note</span></div>
-　Some functions that attempt to get user input, such as Window.showModal, may cause the event queue to operate (dispatch events). This can cause another asynchronous event to occur within an event handler.</div><br />
-　The AsyncTrigger class exists to trigger asynchronous events through script operations.<br />
+ Some functions that attempt to get user input, such as Window.showModal, may cause the event queue to operate (dispatch events). This can cause another asynchronous event to occur within an event handler.</div><br />
+ The AsyncTrigger class exists to trigger asynchronous events through script operations.<br />
 </div></div>
 <h1><a id="id97" name="id97">Screen Update Timing</a>
 </h1><div class="para"><div>
-　The timing of screen updates to display layers in a window is the same as asynchronous events: after all other event handler processing has been performed. No matter how many times you draw within a single event handler, it is drawn to the internal image buffer, but it is not immediately reflected on the screen. The content is drawn and reflected in the window only when the event handler is exited and KiriKiri gets the timing for drawing.<br />
+ The timing of screen updates to display layers in a window is the same as asynchronous events: after all other event handler processing has been performed. No matter how many times you draw within a single event handler, it is drawn to the internal image buffer, but it is not immediately reflected on the screen. The content is drawn and reflected in the window only when the event handler is exited and KiriKiri gets the timing for drawing.<br />
 </div></div>
 <h1><a id="id98" name="id98">Event Handlers within Classes</a>
 </h1><div class="para"><div>
-　Events occurring within a class can be handled within that class by overriding the superclass's event handler.<br />
-　For example, you can create a subclass from the Timer class and create an event handler as follows.<br />
+ Events occurring within a class can be handled within that class by overriding the superclass's event handler.<br />
+ For example, you can create a subclass from the Timer class and create an event handler as follows.<br />
 
 <br />
 <code class="bq">class&nbsp;MyTimer&nbsp;extends&nbsp;Timer<br />
@@ -54,14 +54,14 @@
 </code>
 <br />
 
-　It is not strictly necessary to call the superclass method, but it is generally done. Also, if you do not call the superclass method, event handling via the action method described later cannot be performed.<br />
+ It is not strictly necessary to call the superclass method, but it is generally done. Also, if you do not call the superclass method, event handling via the action method described later cannot be performed.<br />
 </div></div>
 <h1><a id="id99" name="id99">action Method</a>
 </h1><div class="para"><div>
-　Classes such as the Layer class and WaveSoundBuffer class have a feature to trigger events in the action method of the owner specified in the constructor.<br />
-　A single dictionary array object argument is passed to the action method, containing event information.<br />
-　Among the members of the dictionary array, target represents the source object of the event, and type represents the event name.<br />
-　Other members vary depending on the event. For example, in the Layer.onClick event, there are members named x and y, representing the location clicked on the layer.<br />
+ Classes such as the Layer class and WaveSoundBuffer class have a feature to trigger events in the action method of the owner specified in the constructor.<br />
+ A single dictionary array object argument is passed to the action method, containing event information.<br />
+ Among the members of the dictionary array, target represents the source object of the event, and type represents the event name.<br />
+ Other members vary depending on the event. For example, in the Layer.onClick event, there are members named x and y, representing the location clicked on the layer.<br />
 
 <br />
 <code class="bq">Example:<br />

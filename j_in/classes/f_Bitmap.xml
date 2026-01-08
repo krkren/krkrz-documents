@@ -2,125 +2,125 @@
 <doc>
 <title>Bitmap</title>
 <desc>
-　Bitmap クラスは、画像情報を保持するクラスです。<r/>
+ The Bitmap class is a class that holds image information.<r/>
 </desc>
 
 <member>
 	<name>Bitmap</name>
 	<type>constructor</type>
-	<shortdesc>Bitmap オブジェクトの構築</shortdesc>
+	<shortdesc>Constructs a Bitmap object</shortdesc>
 	<arg></arg>
 	<result></result>
 	<desc>
-		　Bitmap クラスのオブジェクトを構築します。<r/>
-		　初期状態では 幅と高さは32ピクセルになっています。<r/>
+		 Constructs a Bitmap class object.<r/>
+		 In the initial state, the width and height are 32 pixels.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>Bitmap</name>
 	<type>constructor</type>
-	<shortdesc>Bitmap オブジェクトの構築</shortdesc>
+	<shortdesc>Constructs a Bitmap object</shortdesc>
 	<arg>
 		<argitem>
 			<name>width</name>
 			<default></default>
 			<desc>
-				　画像の幅を指定します。<r/>
+				 Specifies the width of the image.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>height</name>
 			<default></default>
 			<desc>
-				　画像の高さを指定します。<r/>
+				 Specifies the height of the image.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>bpp</name>
 			<default>32</default>
 			<desc>
-				　画像の各ピクセルのビット数を指定します。<r/>
-				32 か 8 のいずれかを指定してください。<r/>
+				 Specifies the number of bits per pixel for the image.<r/>
+				 Please specify either 32 or 8.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　Bitmap クラスのオブジェクトを指定の大きさで構築します。<r/>
+		 Constructs a Bitmap class object with the specified size.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>Bitmap</name>
 	<type>constructor</type>
-	<shortdesc>Bitmap オブジェクトの構築</shortdesc>
+	<shortdesc>Constructs a Bitmap object</shortdesc>
 	<arg>
 		<argitem>
 			<name>filename</name>
 			<default></default>
 			<desc>
-				　画像のファイル名を指定します。<r/>
+				 Specifies the filename of the image.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>colorkey</name>
 			<default>clNone</default>
 			<desc>
-				　カラーキーを指定します。<r/>
-				値は <ref>Layer.loadImages</ref> と同じです。<r/>
+				 Specifies the color key.<r/>
+				 The value is the same as in <ref>Layer.loadImages</ref>.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　Bitmap クラスのオブジェクトをファイルから構築します。<r/>
+		 Constructs a Bitmap class object from a file.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>onLoaded</name>
 	<type>event</type>
-	<shortdesc>非同期読込みが完了した</shortdesc>
+	<shortdesc>Asynchronous loading completed</shortdesc>
 	<arg>
 		<argitem>
 			<name>meta</name>
 			<default></default>
 			<desc>
-				　読み込んだ画像のタグ情報です。<r/>
+				 Tag information of the loaded image.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>async</name>
 			<default></default>
 			<desc>
-				　非同期で読み込まれたかどうかです。<r/>
-				　画像データがキャッシュ内にある場合、 <ref>Bitmap.loadAsync</ref> 実行中に本イベントが発生します。<r/>
+				 Whether it was loaded asynchronously.<r/>
+				 If the image data is in the cache, this event occurs during the execution of <ref>Bitmap.loadAsync</ref>.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>error</name>
 			<default></default>
 			<desc>
-				　画像読込みでエラーが発生したかどうかです。<r/>
+				 Whether an error occurred during image loading.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>message</name>
 			<default></default>
 			<desc>
-				　エラーメッセージです。<r/>
-				　エラーが発生した場合、エラーメッセージが渡されます。<r/>
+				 Error message.<r/>
+				 If an error occurs, the error message is passed.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　非同期読込みが完了した時に発生します。<r/>
-		　読み込んだ画像は <ref>Layer.copyFromBitmapToMainImage</ref> で Layer にコピーできます。<r/>
-		　読込み処理は非同期であるため、読込みが完了した時に、その画像を渡す Layer が既に無効化されている可能性があります。<r/>
-		　本イベントで他のオブジェクトへアクセスする場合は、無効化されていないか確認して下さい。<r/>
-		　もしくは、本イベントが完了するまで対象オブジェクトが無効化されないようにしてください。<r/>
+		 Occurs when asynchronous loading is completed.<r/>
+		 The loaded image can be copied to a Layer using <ref>Layer.copyFromBitmapToMainImage</ref>.<r/>
+		 Since the loading process is asynchronous, the Layer to which the image is passed may have already been invalidated by the time loading is complete.<r/>
+		 When accessing other objects in this event, please check if they have been invalidated.<r/>
+		 Alternatively, ensure that the target object is not invalidated until this event is completed.<r/>
 	</desc>
 	<ref>Bitmap.loadAsync</ref>
 	<ref>Layer.copyFromBitmapToMainImage</ref>
@@ -129,26 +129,26 @@
 <member>
 	<name>getPixel</name>
 	<type>method</type>
-	<shortdesc>ピクセル値の取得</shortdesc>
+	<shortdesc>Get pixel value</shortdesc>
 	<arg>
 		<argitem>
 			<name>x</name>
 			<default></default>
 			<desc>
-				　取得する x 座標値をピクセル単位で指定します。<r/>
+				 Specifies the x-coordinate value to get, in pixels.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>y</name>
 			<default></default>
 			<desc>
-				　取得する y 座標値をピクセル単位で指定します。<r/>
+				 Specifies the y-coordinate value to get, in pixels.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>ピクセル値</result>
+	<result>Pixel value</result>
 	<desc>
-		　画像のピクセル値を取得します。<r/>
+		 Gets the pixel value of the image.<r/>
 	</desc>
 	<ref>Bitmap.setPixel</ref>
 </member>
@@ -156,33 +156,33 @@
 <member>
 	<name>setPixel</name>
 	<type>method</type>
-	<shortdesc>ピクセル値の設定</shortdesc>
+	<shortdesc>Set pixel value</shortdesc>
 	<arg>
 		<argitem>
 			<name>x</name>
 			<default></default>
 			<desc>
-				　設定する x 座標値をピクセル単位で指定します。<r/>
+				 Specifies the x-coordinate value to set, in pixels.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>y</name>
 			<default></default>
 			<desc>
-				　設定する y 座標値をピクセル単位で指定します。<r/>
+				 Specifies the y-coordinate value to set, in pixels.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>value</name>
 			<default></default>
 			<desc>
-				　設定するピクセル値を指定します。<r/>
+				 Specifies the pixel value to set.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　画像のピクセル値を設定します。<r/>
+		 Sets the pixel value of the image.<r/>
 	</desc>
 	<ref>Bitmap.getPixel</ref>
 </member>
@@ -190,26 +190,26 @@
 <member>
 	<name>getMaskPixel</name>
 	<type>method</type>
-	<shortdesc>ピクセルのアルファ値の取得</shortdesc>
+	<shortdesc>Get pixel alpha value</shortdesc>
 	<arg>
 		<argitem>
 			<name>x</name>
 			<default></default>
 			<desc>
-				　取得する x 座標値をピクセル単位で指定します。<r/>
+				 Specifies the x-coordinate value to get, in pixels.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>y</name>
 			<default></default>
 			<desc>
-				　取得する y 座標値をピクセル単位で指定します。<r/>
+				 Specifies the y-coordinate value to get, in pixels.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>ピクセルのアルファ値</result>
+	<result>Pixel alpha value</result>
 	<desc>
-		　画像のピクセルのアルファ値を取得します。<r/>
+		 Gets the alpha value of the image pixel.<r/>
 	</desc>
 	<ref>Bitmap.setMaskPixel</ref>
 </member>
@@ -217,33 +217,33 @@
 <member>
 	<name>setMaskPixel</name>
 	<type>method</type>
-	<shortdesc>ピクセルのアルファ値の取得</shortdesc>
+	<shortdesc>Set pixel alpha value</shortdesc>
 	<arg>
 		<argitem>
 			<name>x</name>
 			<default></default>
 			<desc>
-				　設定する x 座標値をピクセル単位で指定します。<r/>
+				 Specifies the x-coordinate value to set, in pixels.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>y</name>
 			<default></default>
 			<desc>
-				　設定する y 座標値をピクセル単位で指定します。<r/>
+				 Specifies the y-coordinate value to set, in pixels.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>value</name>
 			<default></default>
 			<desc>
-				　設定するピクセルのアルファ値を指定します。<r/>
+				 Specifies the alpha value of the pixel to set.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　画像のピクセルのアルファ値を設定します。<r/>
+		 Sets the alpha value of the image pixel.<r/>
 	</desc>
 	<ref>Bitmap.getMaskPixel</ref>
 </member>
@@ -251,80 +251,73 @@
 <member>
 	<name>independ</name>
 	<type>method</type>
-	<shortdesc>画像の共有の解除</shortdesc>
+	<shortdesc>Break image sharing</shortdesc>
 	<arg>
 		<argitem>
 			<name>copy</name>
 			<default>true</default>
 			<desc>
-				　共有状態を解除する際、元の画像をコピーするかどうかを指定します。<r/>
-				　真を指定すると元の画像をコピーします。偽を指定すると元の画像はコピーされず、画像の
-				内容は不定となります。
+				 Specifies whether to copy the original image when breaking the sharing state.<r/>
+				 If true is specified, the original image is copied. If false is specified, the original image is not copied, and the content of the image becomes undefined.
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　画像の共有状態を強制的に解除します。<r/>
-		　吉里吉里は、assignImages などで画像をまるごとコピーした場合、実際には
-		画像バッファのコピーを行わず、同一の画像を共有するようになります。<r/>
-		　通常、画像に変更を加えようとする直前でこの共有状態は自動的に解除されますが、
-		このメソッドで強制的に解除することができます。<r/>
-		　copy 引数に false を指定した場合は、画像の共有は解除されますが、元の画像を
-		引き継ぐことは保証されません ( 画像の内容は不定になります ) が、共有の解除を
-		より高速に行うことができます。画像全部を書き換える場合は元の画像を
-		引き継ぐ必要はありませんので、描画を行う前にあらかじめこのメソッドに false を
-		指定して呼び出すと効率が良くなる場合があります。<r/>
-		　このメソッドは、画像が共有されていない場合は何もしません。<r/>
+		 Forcibly breaks the image sharing state.<r/>
+		 In Kirikiri, when an image is copied entirely using assignImages or similar methods, the image buffer is not actually copied; instead, the same image is shared.<r/>
+		 Normally, this sharing state is automatically broken just before an attempt is made to modify the image, but it can be forcibly broken with this method.<r/>
+		 If false is specified for the copy argument, the image sharing is broken, but it is not guaranteed that the original image will be inherited (the image content becomes undefined), however, breaking the sharing can be done faster.<r/>
+		 If you are going to overwrite the entire image, there is no need to inherit the original image, so calling this method with false before drawing may improve efficiency.<r/>
+		 This method does nothing if the image is not shared.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>setSize</name>
 	<type>method</type>
-	<shortdesc>画像サイズの設定</shortdesc>
+	<shortdesc>Set image size</shortdesc>
 	<arg>
 		<argitem>
 			<name>width</name>
 			<default></default>
 			<desc>
-				　画像の横幅をピクセル単位で指定します。<r/>
-				　この値は <ref>Bitmap.width</ref> プロパティでも取得や設定ができます。<r/>
+				 Specifies the width of the image in pixels.<r/>
+				 This value can also be retrieved or set using the <ref>Bitmap.width</ref> property.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>height</name>
 			<default></default>
 			<desc>
-				　画像の縦幅をピクセル単位で指定します。<r/>
-				　この値は <ref>Bitmap.height</ref> プロパティでも取得や設定ができます。<r/>
+				 Specifies the height of the image in pixels.<r/>
+				 This value can also be retrieved or set using the <ref>Bitmap.height</ref> property.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　画像サイズを指定します。<r/>
+		 Specifies the image size.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>copyFrom</name>
 	<type>method</type>
-	<shortdesc>画像のコピー</shortdesc>
+	<shortdesc>Copy image</shortdesc>
 	<arg>
 		<argitem>
 			<name>src</name>
 			<default></default>
 			<desc>
-				　コピー元の Bitmap オブジェクトを指定します。<r/>
+				 Specifies the source Bitmap object to copy from.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　画像のコピーを行います。<r/>
-		　コピーといっても、実際は「同じ画像を二つ以上のオブジェクトで共有している」という状態になるだけなので
-		このメソッドはほとんど実行時間がかかりません。<r/>
+		 Performs an image copy.<r/>
+		 Although it is called a copy, it actually only results in a state where "the same image is shared by two or more objects," so this method takes almost no execution time.<r/>
 	</desc>
 </member>
 
@@ -332,78 +325,75 @@
 <member>
 	<name>save</name>
 	<type>method</type>
-	<shortdesc>画像の保存</shortdesc>
+	<shortdesc>Save image</shortdesc>
 	<arg>
 		<argitem>
 			<name>name</name>
 			<default></default>
 			<desc>
-				　保存するストレージ名を指定します。<r/>
+				 Specifies the storage name to save to.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>type</name>
 			<default>"bmp"</default>
 			<desc>
-				　保存する画像形式を文字列で指定します。現バージョンでは以下の形式を指定可能です。<r/>
+				 Specifies the image format to save as a string. The following formats can be specified in the current version.<r/>
 				<r/>
 				<dl>
-				<dt>"<kw>bmp</kw>" または "<kw>bmp32</kw>"</dt>
+				<dt>"<kw>bmp</kw>" or "<kw>bmp32</kw>"</dt>
 				<dd>
-					　32bpp の BMP です。アルファチャンネル(マスク)も保存します。<r/>
+					 32bpp BMP. Also saves the alpha channel (mask).<r/>
 				</dd>
 				<r/>
 				<dt>"<kw>bmp24</kw>"</dt>
 				<dd>
-					　24bpp の BMP です。アルファチャンネル(マスク)は保存されません。<r/>
+					 24bpp BMP. The alpha channel (mask) is not saved.<r/>
 				</dd>
 				<r/>
 				<dt>"<kw>bmp8</kw>"</dt>
 				<dd>
-					　8bpp の BMP です。アルファチャンネル(マスク)は保存されません。画像は
-					252色の固定パレットによる4×4組織化ディザリングを用いて減色されます。<r/>
+					 8bpp BMP. The alpha channel (mask) is not saved. The image is reduced using 4x4 organized dithering with a fixed palette of 252 colors.<r/>
 				</dd>
 				<r/>
 				<dt>"<kw>jpg</kw>"</dt>
 				<dd>
-					　JPEG です。アルファチャンネル(マスク)は保存されません。画像は
-					クオリティー90%で保存されます。<r/>
+					 JPEG. The alpha channel (mask) is not saved. The image is saved with 90% quality.<r/>
 				</dd>
 				<r/>
 				<dt>"<kw>jpg###</kw>"</dt>
 				<dd>
-					　JPEG です。アルファチャンネル(マスク)は保存されません。画像は
-					###で指定されたクオリティーで保存されます。"jpg010" で 10%、"jpg100" で 100%、"jpg080" で 80%です。<r/>
+					 JPEG. The alpha channel (mask) is not saved. The image is saved with the quality specified by ###. "jpg010" for 10%, "jpg100" for 100%, "jpg080" for 80%.<r/>
 				</dd>
 				<r/>
 				<dt>"<kw>png</kw>"</dt>
 				<dd>
-					　32bpp の PNG です。アルファチャンネル(マスク)も保存します。<r/>
+					 32bpp PNG. Also saves the alpha channel (mask).<r/>
 				</dd>
 				<r/>
 				<dt>"<kw>png24</kw>"</dt>
 				<dd>
-					　24bpp の PNG です。アルファチャンネル(マスク)は保存されません。<r/>
+					 24bpp PNG. The alpha channel (mask) is not saved.<r/>
 				</dd>
 				<r/>
 				<dt>"<kw>tlg5</kw>"</dt>
 				<dd>
-					　32bpp の TLG5 です。アルファチャンネル(マスク)も保存します。<r/>
+					 32bpp TLG5. Also saves the alpha channel (mask).<r/>
 				</dd>
 				<r/>
 				<dt>"<kw>tlg524</kw>"</dt>
 				<dd>
-					　24bpp の TLG5 です。アルファチャンネル(マスク)は保存されません。<r/>
+					 24bpp TLG5. The alpha channel (mask) is not saved.<r/>
 				</dd>
 				<r/>
 				<dt>"<kw>tlg6</kw>"</dt>
 				<dd>
-					　32bpp の TLG6 です。アルファチャンネル(マスク)も保存します。<r/>
+					 32bpp TLG6. Also saves the alpha channel (mask).<r/>
 				</dd>
 				<r/>
 				<dt>"<kw>tlg624</kw>"</dt>
 				<dd>
-					　24bpp の TLG6 です。アルファチャンネル(マスク)は保存されません。<r/>
+					 24bpp TLG6. The alpha channel (mask) is not saved.<r/>
 				</dd>
 				<r/>
 				</dl>
@@ -413,16 +403,16 @@
 			<name>meta</name>
 			<default>null</default>
 			<desc>
-				　TLG 形式の場合、保存するタグ情報を辞書形式で指定します。<r/>
-				　その他の形式の場合は追加オプションを指定します(1.3.0以降)。<r/>
-				　指定可能なオプションはgetSaveOptionで取得可能です。<r/>
+				 For TLG format, specifies the tag information to save in dictionary format.<r/>
+				 For other formats, specifies additional options (version 1.3.0 or later).<r/>
+				 Available options can be retrieved with getSaveOption.<r/>
 			</desc>
 		</argitem>
 		
 	</arg>
 	<result></result>
 	<desc>
-		　name で指定したストレージ (ファイル) に、type で指定した画像形式でファイルを保存します。<r/>
+		 Saves the file to the storage (file) specified by name in the image format specified by type.<r/>
 	</desc>
 	<ref>Bitmap.getSaveOption</ref>
 </member>
@@ -430,68 +420,61 @@
 <member>
 	<name>load</name>
 	<type>method</type>
-	<shortdesc>画像の読み込み</shortdesc>
+	<shortdesc>Load image</shortdesc>
 	<arg>
 		<argitem>
 			<name>image</name>
 			<default></default>
 			<desc>
-				　読み込む画像ストレージを指定します。<r/>
+				 Specifies the image storage to load.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>colorkey</name>
 			<default>clNone</default>
 			<desc>
-				　読み込む画像のカラーキー ( 透明色 ) を指定します。<r/>
-				　0xRRGGBB 形式で色を指定すると、その色をカラーキーとします。<r/>
-				　<tt><kw>clPalIdx</kw></tt> に 任意のパレットインデックスを加算した数値を指定すると、
-				そのパレットインデックスが透明色になります ( 256 色以下の画像の場合 )。<r/>
-				　<tt><kw>clAdapt</kw></tt> を指定すると、画像の一番上のラインにおいて
-				もっとも多く使われている色が自動的に透明色になります。<r/>
-				　<tt><kw>clAlphaMat</kw></tt> に 0xRRGGBB
-				形式の色を表す数値を加算したものを指定すると、画像がその色の上に
-				αブレンド(ltAlphaの方式)を用いて重ね合わせられます。
-				たとえば、(clAlphaMat + 0xffffff) を指定すると、
-				読み込まれた画像が白い色の上に重ね合わせられます。
-				画像は全て不透明な画像となります
-				( 画像は全て不透明となりますが、
-				このモードではタグ情報はいっさい変更されないので
-				注意してください )。<r/>
+				 Specifies the color key (transparent color) of the image to be loaded.<r/>
+				 If a color is specified in 0xRRGGBB format, that color will be the color key.<r/>
+				 If a value obtained by adding an arbitrary palette index to <tt><kw>clPalIdx</kw></tt> is specified, that palette index will be the transparent color (for images with 256 colors or less).<r/>
+				 If <tt><kw>clAdapt</kw></tt> is specified, the most frequently used color in the top line of the image automatically becomes the transparent color.<r/>
+				 If a value obtained by adding a numerical value representing a color in 0xRRGGBB format to <tt><kw>clAlphaMat</kw></tt> is specified, the image is overlaid on that color using alpha blending (ltAlpha method).
+				 For example, if (clAlphaMat + 0xffffff) is specified, the loaded image is overlaid on white.
+				 The image will be entirely opaque
+				 (Note that while the image becomes entirely opaque, the tag information is not changed at all in this mode).<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>タグ情報の辞書配列</result>
+	<result>Dictionary array of tag information</result>
 	<desc>
-		　画像を読み込みます。<r/>
-		　戻り値としてタグ情報(その画像のレイヤタイプや表示位置など、画像そのものに対する情報)の辞書配列が返ります。<r/>
-		　画像がタグ情報を持たない場合は null が返ります。<r/>
-		　現バージョンでは、タグ情報は PNG, TLG5/6 形式のみが持つことができます。取得可能な情報については、<link href="TPC"/> を参照してください。<r/>
+		 Loads an image.<r/>
+		 Returns a dictionary array of tag information (information about the image itself, such as the layer type and display position of that image) as the return value.<r/>
+		 If the image does not have tag information, null is returned.<r/>
+		 In the current version, only PNG and TLG5/6 formats can have tag information. For information that can be retrieved, please refer to <link href="TPC"/>.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>loadAsync</name>
 	<type>method</type>
-	<shortdesc>画像の非同期読み込み</shortdesc>
+	<shortdesc>Asynchronous image loading</shortdesc>
 	<arg>
 		<argitem>
 			<name>image</name>
 			<default></default>
 			<desc>
-				　読み込む画像ストレージを指定します。<r/>
-				　ここで指定するファイル名は拡張子を含んだものになることに注意してください。<r/>
-				　拡張子がないとファイルが見つからずエラーとなります。<r/>
+				 Specifies the image storage to load.<r/>
+				 Note that the filename specified here must include the extension.<r/>
+				 If there is no extension, the file will not be found and an error will occur.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　画像を非同期で読み込みます。<r/>
-		　読込みの完了は <ref>Bitmap.onLoaded</ref> で受け取れます。<r/>
-		　非同期読込み中か否かは <ref>Bitmap.loading</ref> で確認できます。<r/>
-		　非同期読込み中は <ref>Bitmap.loading</ref> 以外のメンバへアクセスすると例外が発生します。<r/>
-		　<ref>Bitmap.onLoaded</ref> の説明も確認してください。<r/>
+		 Loads an image asynchronously.<r/>
+		 Completion of loading can be received with <ref>Bitmap.onLoaded</ref>.<r/>
+		 Whether asynchronous loading is in progress can be checked with <ref>Bitmap.loading</ref>.<r/>
+		 Accessing members other than <ref>Bitmap.loading</ref> during asynchronous loading will cause an exception.<r/>
+		 Please also check the description of <ref>Bitmap.onLoaded</ref>.<r/>
 	</desc>
 	<ref>Bitmap.onLoaded</ref>
 	<ref>Bitmap.loading</ref>
@@ -501,43 +484,43 @@
 <member>
 	<name>loadHeader</name>
 	<type>method</type>
-	<shortdesc>画像情報の読み込み(1.3.0以降)</shortdesc>
+	<shortdesc>Load image information (1.3.0 or later)</shortdesc>
 	<arg>
 		<argitem>
 			<name>image</name>
 			<default></default>
 			<desc>
-				　読み込む画像ストレージを指定します。<r/>
-				　ここで指定するファイル名は拡張子を含んだものになることに注意してください。<r/>
-				　拡張子がないとファイルが見つからずエラーとなります。<r/>
+				 Specifies the image storage to load.<r/>
+				 Note that the filename specified here must include the extension.<r/>
+				 If there is no extension, the file will not be found and an error will occur.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>情報の辞書配列</result>
+	<result>Dictionary array of information</result>
 	<desc>
-		　画像情報のみを読み込みます。<r/>
-		　画像の読み込みは行われないため、情報のみを得たい時は高速に読み込めます。<r/>
-		　返される辞書のwidth, heightは必須で、その他の情報は画像形式に依存します。<r/>
+		 Loads only the image information.<r/>
+		 Since the image itself is not loaded, it can be read quickly when you only want to get information.<r/>
+		 The width and height in the returned dictionary are mandatory, and other information depends on the image format.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>getSaveOption</name>
 	<type>method</type>
-	<shortdesc>画像保存追加情報取得(1.3.0以降)</shortdesc>
+	<shortdesc>Get additional image saving information (1.3.0 or later)</shortdesc>
 	<arg>
 		<argitem>
 			<name>type</name>
 			<default></default>
 			<desc>
-				　画像形式を指定します。<r/>
-				　指定方法はsaveメソッドと同じ形式です。<r/>
+				 Specifies the image format.<r/>
+				 The specification method is the same as the save method.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>追加情報の辞書配列</result>
+	<result>Dictionary array of additional information</result>
 	<desc>
-		　画像保存時に指定可能な追加情報を取得します。<r/>
+		 Retrieves additional information that can be specified when saving an image.<r/>
 	</desc>
 	<ref>Bitmap.save</ref>
 </member>
@@ -546,11 +529,11 @@
 <member>
 	<name>width</name>
 	<type>property</type>
-	<shortdesc>画像横幅</shortdesc>
+	<shortdesc>Image width</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　画像の横幅をピクセル単位で指定します。<r/>
-		　値を設定することもできます。<r/>
+		 Specifies the width of the image in pixels.<r/>
+		 You can also set the value.<r/>
 	</desc>
 	<ref>Bitmap.setSize</ref>
 </member>
@@ -558,11 +541,11 @@
 <member>
 	<name>height</name>
 	<type>property</type>
-	<shortdesc>画像縦幅</shortdesc>
+	<shortdesc>Image height</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　画像の縦幅をピクセル単位で指定します。<r/>
-		　値を設定することもできます。<r/>
+		 Specifies the height of the image in pixels.<r/>
+		 You can also set the value.<r/>
 	</desc>
 	<ref>Bitmap.setSize</ref>
 </member>
@@ -570,20 +553,16 @@
 <member>
 	<name>buffer</name>
 	<type>property</type>
-	<shortdesc>画像バッファポインタ</shortdesc>
+	<shortdesc>Image buffer pointer</shortdesc>
 	<access>r</access>
 	<desc>
-		　画像 ( 色とマスク(不透明度)の情報を含む 32bpp のビットマップ ) の画像バッファ左上隅へのポインタ
-		を表します。<r/>
-		　このプロパティは、プラグインなどのために画像バッファへの直接のアクセスの手段を提供する
-		ためにあります。<r/>
-		　整数型で返されますが、プラグインなどでは適切な型 ( const unsigned long * 等 ) にキャストして使って
-		ください。<r/>
-		　このプロパティで得られたポインタには値を書き込まないでください。
-		<ref>Bitmap.bufferForWrite</ref> で得られたポインタならば書き込むことができます。<r/>
-		　画像のサイズは <ref>Bitmap.width</ref> と <ref>Bitmap.height</ref> プロパティが
-		表しています。<r/>
-		　ポインタの計算方法は <ref>Bitmap.bufferPitch</ref> を参照してください。<r/>
+		 Represents a pointer to the upper-left corner of the image buffer (a 32bpp bitmap containing color and mask (opacity) information).<r/>
+		 This property exists to provide a means of direct access to the image buffer for plugins and such.<r/>
+		 It is returned as an integer type, but in plugins, please cast it to an appropriate type (such as const unsigned long *).<r/>
+		 Do not write values to the pointer obtained with this property.
+		 You can write to a pointer obtained with <ref>Bitmap.bufferForWrite</ref>.<r/>
+		 The size of the image is represented by the <ref>Bitmap.width</ref> and <ref>Bitmap.height</ref> properties.<r/>
+		 Refer to <ref>Bitmap.bufferPitch</ref> for the pointer calculation method.<r/>
 	</desc>
 	<ref>Bitmap.bufferForWrite</ref>
 	<ref>Bitmap.bufferPitch</ref>
@@ -592,21 +571,15 @@
 <member>
 	<name>bufferForWrite</name>
 	<type>property</type>
-	<shortdesc>画像バッファポインタ(書き込み用)</shortdesc>
+	<shortdesc>Image buffer pointer (for writing)</shortdesc>
 	<access>r</access>
 	<desc>
-		　画像 ( 色とマスク(不透明度)の情報を含む 32bpp のビットマップ ) の画像バッファ左上隅へのポインタ
-		を表します。<r/>
-		　このプロパティは、プラグインなどのために画像バッファへの直接のアクセスの手段を提供する
-		ためにあります。<r/>
-		　整数型で返されますが、プラグインなどでは適切な型 ( unsigned long * 等 ) にキャストして使って
-		ください。<r/>
-		　このプロパティで得られたポインタには <ref>Bitmap.buffer</ref> と異なり、
-		値を書き込むことができます。吉里吉里内部では全く同じ画像は複数のオブジェト間で共有しますが、
-		このプロパティを参照するとその共有状態を解除します。<r/>
-		　画像のサイズは <ref>Bitmap.width</ref> と <ref>Bitmap.height</ref> プロパティが
-		表しています。<r/>
-		　ポインタの計算方法は <ref>Bitmap.bufferPitch</ref> を参照してください。<r/>
+		 Represents a pointer to the upper-left corner of the image buffer (a 32bpp bitmap containing color and mask (opacity) information).<r/>
+		 This property exists to provide a means of direct access to the image buffer for plugins and such.<r/>
+		 It is returned as an integer type, but in plugins, please cast it to an appropriate type (such as unsigned long *).<r/>
+		 Unlike <ref>Bitmap.buffer</ref>, you can write values to the pointer obtained with this property. Kirikiri shares exactly the same image among multiple objects, but referencing this property will break that sharing state.<r/>
+		 The size of the image is represented by the <ref>Bitmap.width</ref> and <ref>Bitmap.height</ref> properties.<r/>
+		 Refer to <ref>Bitmap.bufferPitch</ref> for the pointer calculation method.<r/>
 	</desc>
 	<ref>Bitmap.buffer</ref>
 	<ref>Bitmap.bufferPitch</ref>
@@ -615,19 +588,15 @@
 <member>
 	<name>bufferPitch</name>
 	<type>property</type>
-	<shortdesc>画像バッファピッチ</shortdesc>
+	<shortdesc>Image buffer pitch</shortdesc>
 	<access>r</access>
 	<desc>
-		　画像 ( 色とマスク(不透明度)の情報を含む 32bpp のビットマップ ) の画像バッファのピッチ
-		( 一つ下のスキャンラインまでのバイト数 ) を表します。<r/>
-		　このプロパティは、プラグインなどのために画像バッファへの直接のアクセスの手段を提供する
-		ためにあります。<r/>
-		　tjs_uint32 が 32bit の整数型、tjs_uint8 が 8bit (1byte) の整数型として、画像位置 (x, y) への
-		ポインタは C 言語で書くと以下のように計算することができます。<r/>
+		 Represents the pitch of the image buffer (the number of bytes to the scanline immediately below) for the image (a 32bpp bitmap containing color and mask (opacity) information).<r/>
+		 This property exists to provide a means of direct access to the image buffer for plugins and such.<r/>
+		 Assuming tjs_uint32 is a 32-bit integer type and tjs_uint8 is an 8-bit (1 byte) integer type, the pointer to the image position (x, y) can be calculated as follows in C language:<r/>
 		<tt>( (tjs_uint32*)( (tjs_uint8*)buffer + y*bufferPitch )) + x</tt><r/>
-		　このプロパティは、次のスキャンラインまでのピクセル数ではなく、バイト数を返すことに
-		注意してください。この数値は画像横幅ぴったりに必要なバイト数よりも若干大きい場合があります。<r/>
-		　このプロパティは値が負になり得ますので注意してください。<r/>
+		 Note that this property returns the number of bytes, not the number of pixels, to the next scanline. This value may be slightly larger than the number of bytes exactly required for the image width.<r/>
+		 Please be aware that this property value can be negative.<r/>
 	</desc>
 	<ref>Bitmap.buffer</ref>
 	<ref>Bitmap.bufferForWrite</ref>
@@ -636,12 +605,12 @@
 <member>
 	<name>loading</name>
 	<type>property</type>
-	<shortdesc>非同期読込み中確認</shortdesc>
+	<shortdesc>Check if asynchronous loading is in progress</shortdesc>
 	<access>r</access>
 	<desc>
-		　非同期読込み中かどうかを表します。<r/>
-		　この値が真の時非同期読込み中です。<r/>
-		　非同期読込み中に他のメンバにアクセスすると例外が発生するので注意してください。<r/>
+		 Indicates whether asynchronous loading is in progress.<r/>
+		 When this value is true, asynchronous loading is in progress.<r/>
+		 Please note that accessing other members during asynchronous loading will cause an exception.<r/>
 	</desc>
 	<ref>Bitmap.buffer</ref>
 	<ref>Bitmap.bufferPitch</ref>

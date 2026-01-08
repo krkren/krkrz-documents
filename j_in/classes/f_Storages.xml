@@ -2,32 +2,32 @@
 <doc>
 <title>Storages</title>
 <desc>
-　Storages クラスは 吉里吉里本体の<kw>ストレージシステム</kw>に関するメソッドやプロパティを持ったクラスです。このクラスからオブジェクトを作成することはできません。<r/>
+ The Storages class contains methods and properties related to the Kirikiri <kw>storage system</kw>. You cannot create objects from this class.<r/>
 </desc>
 
 <member>
 	<name>addAutoPath</name>
 	<type>method</type>
-	<shortdesc>自動検索パスへの追加</shortdesc>
+	<shortdesc>Add to auto-search path</shortdesc>
 	<arg>
 		<argitem>
 			<name>path</name>
 			<default></default>
 			<desc>
-				　自動検索パスに追加するパスを指定します。<r/>
-				　パスの最後は、アーカイブ内のルートフォルダを指定するときは '&gt;'、通常のフォルダを
-				指定するときは '/' で終わる必要があります
-				( 例 : <tt>"Archive/arc.xp3&gt;"</tt> や <tt>"System/"</tt> ) 。<r/>
-				　2.19 beta 14 よりアーカイブの区切り文字が '#' から '&gt;' に変わりました。<r/>
+				 Specifies the path to add to the auto-search path.<r/>
+				 The path must end with '>' when specifying the root folder within an archive, or '/' when
+				 specifying a normal folder
+				 ( e.g. : <tt>"Archive/arc.xp3&gt;"</tt> or <tt>"System/"</tt> ) .<r/>
+				 Since 2.19 beta 14, the archive delimiter has changed from '#' to '&gt;'.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　<kw>自動検索パス</kw>に、指定したパスを追加します。吉里吉里は、利用可能なストレージを
-		検索するとき、この自動検索パスに登録されたパスを探します。<r/>
-		　自動検索パスは、後に指定したものがより優先されて検索されます。<r/>
-		　また、プロジェクトフォルダはもっとも優先されて検索されます。<r/>
+		 Adds the specified path to the <kw>auto-search path</kw>. When Kirikiri searches for available storage,
+		 it looks through the paths registered in this auto-search path.<r/>
+		 Paths added later have higher priority during the search.<r/>
+		 Additionally, the project folder always has the highest priority.<r/>
 	</desc>
 	<ref>Storages.removeAutoPath</ref>
 </member>
@@ -35,19 +35,19 @@
 <member>
 	<name>removeAutoPath</name>
 	<type>method</type>
-	<shortdesc>自動検索パスの削除</shortdesc>
+	<shortdesc>Remove from auto-search path</shortdesc>
 	<arg>
 		<argitem>
 			<name>path</name>
 			<default></default>
 			<desc>
-				　自動検索から削除するパスを指定します。<r/>
+				 Specifies the path to remove from the auto-search path.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　自動検索パスから、指定したパスを削除します。<r/>
+		 Removes the specified path from the auto-search path.<r/>
 	</desc>
 	<ref>Storages.addAutoPath</ref>
 </member>
@@ -55,21 +55,21 @@
 <member>
 	<name>getFullPath</name>
 	<type>method</type>
-	<shortdesc>完全な統一ストレージ名の取得</shortdesc>
+	<shortdesc>Get full unified storage name</shortdesc>
 	<arg>
 		<argitem>
 			<name>path</name>
 			<default></default>
 			<desc>
-				　完全な統一ストレージ名にしたいストレージ名を指定します。<r/>
+				 Specifies the storage name to convert into a full unified storage name.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>完全な統一ストレージ名</result>
+	<result>Full unified storage name</result>
 	<desc>
-		　path で指定されたストレージ名を完全な<kw>統一ストレージ名</kw>に変換します。<r/>
-		　冗長なパスアクセス ( たとえば <tt>system/flags/../data/</tt> など ) はすべて圧縮されます。<r/>
-		　カレントメディア、カレントフォルダが指定されていなければ、補完します。<r/>
+		 Converts the storage name specified by path into a full <kw>unified storage name</kw>.<r/>
+		 Redundant path access ( e.g. <tt>system/flags/../data/</tt> etc. ) is fully compressed.<r/>
+		 If the current media or current folder is not specified, they will be complemented.<r/>
 	</desc>
 	<ref>Storages.getPlacedPath</ref>
 </member>
@@ -77,19 +77,19 @@
 <member>
 	<name>getPlacedPath</name>
 	<type>method</type>
-	<shortdesc>ストレージの検索</shortdesc>
+	<shortdesc>Search for storage</shortdesc>
 	<arg>
 		<argitem>
 			<name>storage</name>
 			<default></default>
 			<desc>
-				　検索したいストレージ名を指定します。<r/>
+				 Specifies the storage name to search for.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>発見された場所が統一ストレージ名で返ります。見つからなかった場合は空文字列が返ります。</result>
+	<result>Returns the location where it was found as a unified storage name. Returns an empty string if not found.</result>
 	<desc>
-		　storage で指定されたストレージを<kw>自動検索パス</kw>から検索します。<r/>
+		 Searches for the storage specified by storage within the <kw>auto-search path</kw>.<r/>
 	</desc>
 	<ref>Storages.getFullPath</ref>
 	<ref>Storages.isExistentStorage</ref>
@@ -98,20 +98,19 @@
 <member>
 	<name>isExistentStorage</name>
 	<type>method</type>
-	<shortdesc>ストレージの存在確認</shortdesc>
+	<shortdesc>Check for storage existence</shortdesc>
 	<arg>
 		<argitem>
 			<name>storage</name>
 			<default></default>
 			<desc>
-				　存在を確認したいストレージ名を指定します。<r/>
+				 Specifies the storage name to check for existence.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>存在を確認できれば真、なければ偽が返ります。</result>
+	<result>Returns true if existence is confirmed, false otherwise.</result>
 	<desc>
-		　storage で指定したストレージが存在するかどうかを確認します。getPlacedPath を用いるよりは高速
-		です。<r/>
+		 Checks whether the storage specified by storage exists. This is faster than using getPlacedPath.<r/>
 	</desc>
 	<ref>Storages.getPlacedPath</ref>
 </member>
@@ -119,20 +118,19 @@
 <member>
 	<name>extractStorageExt</name>
 	<type>method</type>
-	<shortdesc>ストレージ名の拡張子の抽出</shortdesc>
+	<shortdesc>Extract storage name extension</shortdesc>
 	<arg>
 		<argitem>
 			<name>storage</name>
 			<default></default>
 			<desc>
-				　拡張子部分を抽出したいストレージ名を指定します。<r/>
+				 Specifies the storage name from which to extract the extension part.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>拡張子部分が返ります。拡張子部分は <tt>.</tt> (ドット)も含みます。拡張子が
-		なかった場合は空文字列が返ります。</result>
+	<result>Returns the extension part. The extension part includes the <tt>.</tt> (dot). Returns an empty string if there is no extension.</result>
 	<desc>
-		　指定されたストレージ名から拡張子の部分を抽出して返します。<r/>
+		 Extracts and returns the extension part from the specified storage name.<r/>
 	</desc>
 	<ref>Storages.extractStorageName</ref>
 	<ref>Storages.extractStoragePath</ref>
@@ -142,20 +140,20 @@
 <member>
 	<name>extractStorageName</name>
 	<type>method</type>
-	<shortdesc>ストレージ名の抽出</shortdesc>
+	<shortdesc>Extract storage name</shortdesc>
 	<arg>
 		<argitem>
 			<name>storage</name>
 			<default></default>
 			<desc>
-				　ストレージ名を抽出したいストレージ名を指定します。<r/>
+				 Specifies the storage name from which to extract the filename part.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>ストレージ名が返ります。ストレージ名がなかった場合は空文字列が返ります。</result>
+	<result>Returns the storage name. Returns an empty string if there is no storage name.</result>
 	<desc>
-		　指定されたストレージ名から、ストレージ名の部分 ( パスを除く ) を抽出して返します。<r/>
-		　たとえば <tt>"System/hoge.txt"</tt> を渡した場合、<tt>"hoge.txt"</tt> が返ります。<r/>
+		 Extracts and returns the storage name part (excluding the path) from the specified storage name.<r/>
+		 For example, if <tt>"System/hoge.txt"</tt> is passed, <tt>"hoge.txt"</tt> is returned.<r/>
 	</desc>
 	<ref>Storages.extractStorageExt</ref>
 	<ref>Storages.extractStoragePath</ref>
@@ -164,21 +162,21 @@
 <member>
 	<name>extractStoragePath</name>
 	<type>method</type>
-	<shortdesc>ストレージ名のパスの抽出</shortdesc>
+	<shortdesc>Extract storage name path</shortdesc>
 	<arg>
 		<argitem>
 			<name>storage</name>
 			<default></default>
 			<desc>
-				　パスを抽出したいストレージ名を指定します。<r/>
+				 Specifies the storage name from which to extract the path.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>パスが返ります。パスがなかった場合は空文字列が返ります。</result>
+	<result>Returns the path. Returns an empty string if there is no path.</result>
 	<desc>
-		　指定されたストレージ名から、パスの部分を抽出して返します。<r/>
-		　たとえば <tt>"file://home/dee/hoge.txt"</tt> を渡した場合、<tt>"file://home/dee/"</tt> が
-		返ります。<r/>
+		 Extracts and returns the path part from the specified storage name.<r/>
+		 For example, if <tt>"file://home/dee/hoge.txt"</tt> is passed, <tt>"file://home/dee/"</tt> is
+		returned.<r/>
 	</desc>
 	<ref>Storages.extractStorageExt</ref>
 	<ref>Storages.extractStorageName</ref>
@@ -187,21 +185,20 @@
 <member>
 	<name>chopStorageExt</name>
 	<type>method</type>
-	<shortdesc>ストレージ名の拡張子の切り落とし</shortdesc>
+	<shortdesc>Chop storage name extension</shortdesc>
 	<arg>
 		<argitem>
 			<name>storage</name>
 			<default></default>
 			<desc>
-				　拡張子部分を切り落としたいストレージ名を指定します。<r/>
+				 Specifies the storage name from which to chop the extension part.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>拡張子部分が切り落とされたストレージ名が返ります。</result>
+	<result>Returns the storage name with the extension part removed.</result>
 	<desc>
-		　指定されたストレージ名から拡張子の部分を切り落として返します。<r/>
-		　たとえば <tt>"file://home/dee/hoge.txt"</tt> を渡した場合、<tt>"file://home/dee/hoge"</tt> が返
-		ります。
+		 Chops off the extension part from the specified storage name and returns it.<r/>
+		 For example, if <tt>"file://home/dee/hoge.txt"</tt> is passed, <tt>"file://home/dee/hoge"</tt> is returned.
 	</desc>
 	<ref>Storages.extractStorageExt</ref>
 </member>
@@ -210,137 +207,132 @@
 <member>
 	<name>searchCD</name>
 	<type>method</type>
-	<shortdesc>CD の検索</shortdesc>
+	<shortdesc>Search for CD</shortdesc>
 	<arg>
 		<argitem>
 			<name>volume</name>
 			<default></default>
 			<desc>
-				　検索するCDのボリュームラベルを指定します。<r/>
+				 Specifies the volume label of the CD to search for.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>見つかった CD-ROM ドライブのドライブ文字が返ります。</result>
+	<result>Returns the drive letter of the found CD-ROM drive.</result>
 	<desc>
-		　指定されたボリュームラベルを持つ CD ドライブを探して、そのドライブ文字 ( 'H' など ) を返し
-		ます。<r/>
-		　もちろん、ドライブには該当する CD-ROM が挿入されていなければなりません。<r/>
+		 Searches for a CD drive with the specified volume label and returns its drive letter ( e.g. 'H' ).<r/>
+		 Naturally, the corresponding CD-ROM must be inserted in the drive.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>getLocalName</name>
 	<type>method</type>
-	<shortdesc>ローカルファイル名の取得</shortdesc>
+	<shortdesc>Get local filename</shortdesc>
 	<arg>
 		<argitem>
 			<name>path</name>
 			<default></default>
 			<desc>
-				　<kw>ローカルファイル名</kw> に変換したい統一ストレージ名を指定します。<r/>
+				 Specifies the unified storage name to convert into a <kw>local filename</kw>.<r/>
 			</desc>
 		</argitem>
 	</arg>
-	<result>ローカルファイル名が返ります。ローカルファイル名に変換できなかった場合は空文字が返るか、
-		例外が発生します。</result>
+	<result>Returns the local filename. If it cannot be converted to a local filename, an empty string is returned or an exception occurs.</result>
 	<desc>
-		　指定された統一ストレージ名を、OS ネイティブの形式 ( ローカルファイル名 ) に変換して返します。<r/>
+		 Converts the specified unified storage name into the OS native format ( local filename ) and returns it.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>selectFile</name>
 	<type>method</type>
-	<shortdesc>ファイル選択ダイアログボックスを表示</shortdesc>
+	<shortdesc>Display file selection dialog box</shortdesc>
 	<arg>
 		<argitem>
 			<name>params</name>
 			<default></default>
 			<desc>
-				　データの受け渡しに用いる辞書配列を指定します。<r/>
-				　このメソッドに渡すとき、以下のメンバを指定することができます。また、
-				いくつかのメンバはこのメソッドが終わると値が変更されます。<r/>
+				 Specifies a dictionary array used for data transfer.<r/>
+				 When passing to this method, the following members can be specified. Additionally,
+				 some members will have their values changed after this method finishes.<r/>
 				<r/>
 				<dl>
 				<dt><kw>filter</kw></dt>
 				<dd>
-					　フィルタ文字列を配列で渡します。<r/>
-					　フィルタ文字列は、フィルタの説明と フィルタを | (半角縦棒) で区切って指定
-					するもので、フィルタにはワイルドカードを指定します。一つのフィルタに複数の
-					拡張子が対応する場合は ; (半角セミコロン) で区切ります。<r/>
-					　複数のフィルタを指定するには配列で指定します。<r/>
-					　省略するとフィルタは用いません。<r/>
+					 Passes filter strings as an array.<r/>
+					 A filter string consists of a filter description and the filter itself separated
+					 by | (vertical bar), where the filter uses wildcards. If multiple extensions
+					 correspond to one filter, separate them with ; (semicolon).<r/>
+					 To specify multiple filters, use an array.<r/>
+					 If omitted, no filter is used.<r/>
 					<r/>
-					例 :<r/>
-					<tt><nobr>["画像ファイル(*.bmp;*.png;*.jpg;*.jpeg;*.eri;*.tlg)|*.bmp;*.png;*.jpg;*.jpeg;*.eri;*.tlg", </nobr></tt><r/>
-					<tt><nobr> "スクリプトファイル(*.tjs;*.ks)|*.tjs;*.ks"]</nobr></tt><r/>
+					Example :<r/>
+					<tt><nobr>["Image files(*.bmp;*.png;*.jpg;*.jpeg;*.eri;*.tlg)|*.bmp;*.png;*.jpg;*.jpeg;*.eri;*.tlg", </nobr></tt><r/>
+					<tt><nobr> "Script files(*.tjs;*.ks)|*.tjs;*.ks"]</nobr></tt><r/>
 				</dd>
 				<r/>
 				<dt><kw>filterIndex</kw></dt>
 				<dd>
-					　選択されているフィルタの番号 ( filter で指定したもの ) を指定します。<r/>
-					　1 を指定すると、filter で指定された最初のフィルタが初期状態において
-					選択されています。2 を指定すると2番目のフィルタが選択さている状態に
-					なります ( 0 から始まるインデックス番号ではないことに注意してください;
-					先頭は 1 です )。<r/>
-					　省略すると先頭のフィルタが選択されます。<r/>
-					　また、ユーザが OK ボタンを押した場合、最後にダイアログボックス上で
-					選ばれていたフィルタのインデックスがこのメンバに設定されます。<r/>
+					 Specifies the number of the selected filter (as specified in filter).<r/>
+					 If 1 is specified, the first filter specified in filter is selected by default.
+					 If 2 is specified, the second filter is selected (note that this is not a 0-based
+					 index; the first is 1).<r/>
+					 If omitted, the first filter is selected.<r/>
+					 Also, if the user clicks the OK button, the index of the filter last selected
+					 in the dialog box is set to this member.<r/>
 				</dd>
 				<r/>
 				<dt><kw>name</kw></dt>
 				<dd>
-					　ファイル名を指定します。省略したり、空文字列を指定すると初期状態ではなにもファイルを選択
-					されていない状態にすることができます。<r/>
-					　また、ユーザが OK ボタンを押した場合、選択されたファイルがこのメンバに
-					設定されます。<r/>
+					 Specifies the filename. If omitted or an empty string is specified, no file will
+					 be selected initially.<r/>
+					 Also, if the user clicks the OK button, the selected file is set to this member.<r/>
 				</dd>
 				<r/>
 				<dt><kw>initialDir</kw></dt>
 				<dd>
-					　初期状態で表示するフォルダを指定します。<r/>
-					　省略するとカレントディレクトリが使用されます。<r/>
+					 Specifies the folder to display initially.<r/>
+					 If omitted, the current directory is used.<r/>
 				</dd>
 				<r/>
 				<dt><kw>title</kw></dt>
 				<dd>
-					　ダイアログボックスのタイトルを表示します。<r/>
-					　省略されるとデフォルトの「開く」や「名前を付けて保存」になります
-					( save メンバの設定によります )。
+					 Displays the title of the dialog box.<r/>
+					 If omitted, it defaults to "Open" or "Save As" (depending on the save member setting).
 				</dd>
 				<r/>
 				<dt><kw>save</kw></dt>
 				<dd>
-					　ダイアログボックスの種類を指定します。<r/>
-					　false(デフォルト) の場合、「開く」のダイアログボックスが使われます。<r/>
-					　true の場合、「名前を付けて保存」のダイアログボックスが使われます。<r/>
+					 Specifies the type of dialog box.<r/>
+					 If false (default), the "Open" dialog box is used.<r/>
+					 If true, the "Save As" dialog box is used.<r/>
 				</dd>
 				<r/>
 				<dt><kw>defaultExt</kw></dt>
 				<dd>
-					　デフォルトの拡張子を指定します。ユーザが拡張子を指定しなかった場合に
-					自動的にこの拡張子を付加します。ここで指定する拡張子には . (ピリオド)を
-					指定しないでください。<r/>
-					　省略すると、拡張子が付加されることはありません。<r/>
+					 Specifies the default extension. This extension is automatically appended if the
+					 user does not specify one. Do not include the . (period) in the extension
+					 specified here.<r/>
+					 If omitted, no extension will be appended.<r/>
 				</dd>
 				</dl>
 			</desc>
 		</argitem>
 	</arg>
-	<result>ユーザがファイルを選択して OK ボタンを押せば真、キャンセルボタンを押せば偽が戻ります。</result>
+	<result>Returns true if the user selects a file and clicks the OK button, false if they click the Cancel button.</result>
 	<desc>
-		　ファイル選択ダイアログボックスを開きます。<r/>
+		 Opens a file selection dialog box.<r/>
 		<example>
 var params = %[<r/>
-filter : [ "テキストファイル(*.txt)|*.txt", "バイナリファイル(*.bin)|*.bin" ],<r/>
+filter : [ "Text files(*.txt)|*.txt", "Binary files(*.bin)|*.bin" ],<r/>
 filterIndex : 1,<r/>
 name : "",<r/>
 initialDir : System.exePath,<r/>
-title : "ファイルを開く",<r/>
+title : "Open File",<r/>
 save : false,<r/>
 ];<r/>
 if(Storages.selectFile(params))<r/>
-System.inform("選択したファイルは : " + params.name);<r/>
+System.inform("Selected file is: " + params.name);<r/>
 		</example>
 	</desc>
 </member>

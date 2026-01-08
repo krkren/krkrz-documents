@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>マウスカーソル定数一覧</title>
+<title>Mouse Cursor Constant List</title>
 
 <para>
-<ptitle>マウスカーソル定数一覧</ptitle>
+<ptitle>Mouse Cursor Constant List</ptitle>
 <r/>
-　cr で始まるマウスカーソル定数の一覧です。これらの中には、Windows の設定に従って実際のマウスカーソルが変わるものもあります。<r/>
+ This is a list of mouse cursor constants starting with "cr". Some of these may change depending on Windows settings.<r/>
 <r/>
 <hr/>
-<tt>crDefault      : crArrow と同じ</tt><r/>
+<tt>crDefault      : Same as crArrow</tt><r/>
 <hr/>
-<tt>crNone         : 透明 ( 非表示 )</tt><r/>
+<tt>crNone         : Transparent (Hidden)</tt><r/>
 <hr/>
 <tt>crArrow        : <img src="crArrow.png"/></tt><r/>
 <hr/>

@@ -1,169 +1,47 @@
-` -> `title="Bitmap class"`.
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>independ - Unsharing the image</title>
+	<meta name="author" content="W.Dee" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<link rel="index" href="index.html" />
+	<link rel="top" href="index.html" title="Top page" />
+	<link rel="up" href="Bitmap.html" title="Bitmap class" />
+	<link href="class.css" rel="stylesheet" type="text/css" title="Standard style for class reference" />
+</head>
+<body>
+<h1><a name="top" id="top">independ - Unsharing the image</a></h1>
 
-    *   One detail: `xml:lang="ja" lang="ja"`.
-    *   `xml:lang="en" lang="en"`.
+<dl>
+<dt>Function</dt>
+<dd>Method of the Bitmap class</dd>
 
-    *   One detail: `charset=UTF-8`.
-    *   The prompt says "USE ASCII ONLY". UTF-8 is fine for ASCII.
+<dt>Syntax</dt>
+<dd>independ(copy=true)</dd>
 
-    *   One detail: `independ - 画像の共有の解除`.
-    *   `independ - Unsharing the image`.
+<dt>Arguments</dt>
+<dd>
+<table border="1" cellspacing="0" cellpadding="2" summary="Arguments for independ">
+<tr><td valign="top"><tt>copy</tt></td>
+<td>Specifies whether to copy the original image when unsharing.<br />
+If true is specified, the original image is copied. If false is specified, the original image is not copied, and the image content becomes undefined.</td></tr>
+</table>
+</dd>
 
-    *   One detail: `共有状態を解除する際、元の画像をコピーするかどうかを指定します。`.
-    *   `Specifies whether to copy the original image when unsharing.`.
+<dt>Return Value</dt>
+<dd>None</dd>
 
-    *   One detail: `真を指定すると元の画像をコピーします。偽を指定すると元の画像はコピーされず、画像の内容は不定となります。`.
-    *   `If true is specified, the original image is copied. If false is specified, the original image is not copied, and the image content becomes undefined.`.
-
-    *   One detail: `画像の共有状態を強制的に解除します。`.
-    *   `Forcibly unshares the image.`.
-
-    *   One detail: `吉里吉里は、assignImages などで画像をまるごとコピーした場合、実際には画像バッファのコピーを行わず、同一の画像を共有するようになります。`.
-    *   `In KiriKiri, when an entire image is copied using assignImages or similar methods, the image buffer is not actually copied; instead, the same image is shared.`.
-
-    *   One detail: `通常、画像に変更を加えようとする直前でこの共有状態は自動的に解除されますが、このメソッドで強制的に解除することができます。`.
-    *   `Normally, this sharing is automatically released just before an attempt is made to modify the image, but it can be forcibly released using this method.`.
-
-    *   One detail: `copy 引数に false を指定した場合は、画像の共有は解除されますが、元の画像を引き継ぐことは保証されません ( 画像の内容は不定になります ) が、共有の解除をより高速に行うことができます。画像全部を書き換える場合は元の画像を引き継ぐ必要はありませんので、描画を行う前にあらかじめこのメソッドに false を指定して呼び出すと効率が良くなる場合があります。`.
-    *   `If false is specified for the copy argument, the image sharing is released, but there is no guarantee that the original image will be preserved (the image content becomes undefined), allowing for faster unsharing. If you are going to overwrite the entire image, there is no need to preserve the original image, so calling this method with false before drawing may improve efficiency.`.
-
-    *   One detail: `このメソッドは、画像が共有されていない場合は何もしません。`.
-    *   `This method does nothing if the image is not shared.`.
-
-    *   One detail: `independ - 画像の共有の解除`.
-    *   `independ - Unsharing the image`.
-
-    *   One detail: `Bitmapクラスのメソッド`.
-    *   `Method of the Bitmap class`.
-
-    *   One detail: `summary="independ の引数"`.
-    *   `summary="Arguments for independ"`.
-
-    *   One detail: `title="independ - 画像の共有の解除"`.
-    *   `title="independ - Unsharing the image"`.
-
-    *   One detail: `title="クラスリファレンス用標準スタイル"`.
-    *   `title="Standard style for class reference"`.
-
-    *   One detail: `title="トップページ"`.
-    *   `title="Top page"`.
-
-    *   One detail: `title="Bitmapクラス"`.
-    *   `title="Bitmap class"`.
-
-    *   One detail: `xml:lang="ja" lang="ja"`.
-    *   `xml:lang="en" lang="en"`.
-
-    *   One detail: `charset=UTF-8`.
-    *   The prompt says "USE ASCII ONLY". UTF-8 is fine for ASCII.
-
-    *   One detail: `independ - 画像の共有の解除`.
-    *   `independ - Unsharing the image`.
-
-    *   One detail: `共有状態を解除する際、元の画像をコピーするかどうかを指定します。`.
-    *   `Specifies whether to copy the original image when unsharing.`.
-
-    *   One detail: `真を指定すると元の画像をコピーします。偽を指定すると元の画像はコピーされず、画像の内容は不定となります。`.
-    *   `If true is specified, the original image is copied. If false is specified, the original image is not copied, and the image content becomes undefined.`.
-
-    *   One detail: `画像の共有状態を強制的に解除します。`.
-    *   `Forcibly unshares the image.`.
-
-    *   One detail: `吉里吉里は、assignImages などで画像をまるごとコピーした場合、実際には画像バッファのコピーを行わず、同一の画像を共有するようになります。`.
-    *   `In KiriKiri, when an entire image is copied using assignImages or similar methods, the image buffer is not actually copied; instead, the same image is shared.`.
-
-    *   One detail: `通常、画像に変更を加えようとする直前でこの共有状態は自動的に解除されますが、このメソッドで強制的に解除することができます。`.
-    *   `Normally, this sharing is automatically released just before an attempt is made to modify the image, but it can be forcibly released using this method.`.
-
-    *   One detail: `copy 引数に false を指定した場合は、画像の共有は解除されますが、元の画像を引き継ぐことは保証されません ( 画像の内容は不定になります ) が、共有の解除をより高速に行うことができます。画像全部を書き換える場合は元の画像を引き継ぐ必要はありませんので、描画を行う前にあらかじめこのメソッドに false を指定して呼び出すと効率が良くなる場合があります。`.
-    *   `If false is specified for the copy argument, the image sharing is released, but there is no guarantee that the original image will be preserved (the image content becomes undefined), allowing for faster unsharing. If you are going to overwrite the entire image, there is no need to preserve the original image, so calling this method with false before drawing may improve efficiency.`.
-
-    *   One detail: `このメソッドは、画像が共有されていない場合は何もしません。`.
-    *   `This method does nothing if the image is not shared.`.
-
-    *   One detail: `independ - 画像の共有の解除`.
-    *   `independ - Unsharing the image`.
-
-    *   One detail: `Bitmapクラスのメソッド`.
-    *   `Method of the Bitmap class`.
-
-    *   One detail: `summary="independ の引数"`.
-    *   `summary="Arguments for independ"`.
-
-    *   One detail: `title="independ - 画像の共有の解除"`.
-    *   `title="independ - Unsharing the image"`.
-
-    *   One detail: `title="クラスリファレンス用標準スタイル"`.
-    *   `title="Standard style for class reference"`.
-
-    *   One detail: `title="トップページ"`.
-    *   `title="Top page"`.
-
-    *   One detail: `title="Bitmapクラス"`.
-    *   `title="Bitmap class"`.
-
-    *   One detail: `xml:lang="ja" lang="ja"`.
-    *   `xml:lang="en" lang="en"`.
-
-    *   One detail: `charset=UTF-8`.
-    *   The prompt says "USE ASCII ONLY". UTF-8 is fine for ASCII.
-
-    *   One detail: `independ - 画像の共有の解除`.
-    *   `independ - Unsharing the image`.
-
-    *   One detail: `共有状態を解除する際、元の画像をコピーするかどうかを指定します。`.
-    *   `Specifies whether to copy the original image when unsharing.`.
-
-    *   One detail: `真を指定すると元の画像をコピーします。偽を指定すると元の画像はコピーされず、画像の内容は不定となります。`.
-    *   `If true is specified, the original image is copied. If false is specified, the original image is not copied, and the image content becomes undefined.`.
-
-    *   One detail: `画像の共有状態を強制的に解除します。`.
-    *   `Forcibly unshares the image.`.
-
-    *   One detail: `吉里吉里は、assignImages などで画像をまるごとコピーした場合、実際には画像バッファのコピーを行わず、同一の画像を共有するようになります。`.
-    *   `In KiriKiri, when an entire image is copied using assignImages or similar methods, the image buffer is not actually copied; instead, the same image is shared.`.
-
-    *   One detail: `通常、画像に変更を加えようとする直前でこの共有状態は自動的に解除されますが、このメソッドで強制的に解除することができます。`.
-    *   `Normally, this sharing is automatically released just before an attempt is made to modify the image, but it can be forcibly released using this method.`.
-
-    *   One detail: `copy 引数に false を指定した場合は、画像の共有は解除されますが、元の画像を引き継ぐことは保証されません ( 画像の内容は不定になります ) が、共有の解除をより高速に行うことができます。画像全部を書き換える場合は元の画像を引き継ぐ必要はありませんので、描画を行う前にあらかじめこのメソッドに false を指定して呼び出すと効率が良くなる場合があります。`.
-    *   `If false is specified for the copy argument, the image sharing is released, but there is no guarantee that the original image will be preserved (the image content becomes undefined), allowing for faster unsharing. If you are going to overwrite the entire image, there is no need to preserve the original image, so calling this method with false before drawing may improve efficiency.`.
-
-    *   One detail: `このメソッドは、画像が共有されていない場合は何もしません。`.
-    *   `This method does nothing if the image is not shared.`.
-
-    *   One detail: `independ - 画像の共有の解除`.
-    *   `independ - Unsharing the image`.
-
-    *   One detail: `Bitmapクラスのメソッド`.
-    *   `Method of the Bitmap class`.
-
-    *   One detail: `summary="independ の引数"`.
-    *   `summary="Arguments for independ"`.
-
-    *   One detail: `title="independ - 画像の共有の解除"`.
-    *   `title="independ - Unsharing the image"`.
-
-    *   One detail: `title="クラスリファレンス用標準スタイル"`.
-    *   `title="Standard style for class reference"`.
-
-    *   One detail: `title="トップページ"`.
-    *   `title="Top page"`.
-
-    *   One detail: `title="Bitmapクラス"`.
-    *   `title="Bitmap class"`.
-
-    *   One detail: `xml:lang="ja" lang="ja"`.
-    *   `xml:lang="en" lang="en"`.
-
-    *   One detail: `charset=UTF-8`.
-    *   The prompt says "USE ASCII ONLY". UTF-8 is fine for ASCII.
-
-    *   One detail: `independ - 画像の共有の解除`.
-    *   `independ - Unsharing the image`.
-
-    *   One detail: `共有状態を解除する際、元の画像をコピーするかどうかを指定します。`.
-    *   `Specifies whether to copy the original image when unsharing.`.
-
-    *   One detail: `真を指定すると元の画像をコピーします。偽を指定すると元の画像はコピーされず、画像の内容は不定となります。`.
-    *
+<dt>Description</dt>
+<dd>
+Forcibly unshares the image.<br />
+In KiriKiri, when an entire image is copied using assignImages or similar methods, the image buffer is not actually copied; instead, the same image is shared.<br />
+Normally, this sharing is automatically released just before an attempt is made to modify the image, but it can be forcibly released using this method.<br />
+If false is specified for the copy argument, the image sharing is released, but there is no guarantee that the original image will be preserved (the image content becomes undefined), allowing for faster unsharing. If you are going to overwrite the entire image, there is no need to preserve the original image, so calling this method with false before drawing may improve efficiency.<br />
+This method does nothing if the image is not shared.
+</dd>
+</dl>
+</body>
+</html>

@@ -1,86 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>起動の仕方</title>
+<title>How to Start</title>
 
 <para>
-<ptitle>吉里吉里の起動について</ptitle>
-　吉里吉里を起動し、スクリプトを指定するためには通常、<kw>プロジェクトフォルダ</kw> を決定する必要があります ( <link href="StorageSystem"/> 参照 )。<r/>
-　プロジェクトフォルダを決定する方法はいくつかありますが、下記に挙げた順に優先されます ( 上のほうに書いたものが適用できれば適用される )。<r/>
-　起動時に吉里吉里に渡すオプションについては <link href="CommandLine"/> を参照してください。<r/>
+<ptitle>About Starting KiriKiri</ptitle>
+ To start KiriKiri and specify a script, you usually need to determine the <kw>project folder</kw> (see <link href="StorageSystem"/>).<r/>
+ There are several ways to determine the project folder, prioritized in the order listed below (the first applicable method is used).<r/>
+ For options passed to KiriKiri at startup, please refer to <link href="CommandLine"/>.<r/>
 </para>
 
 <para>
-<ptitle>プロジェクトフォルダの決定順序</ptitle>
+<ptitle>Order of Project Folder Determination</ptitle>
 <dl>
-<dt>コマンドラインに指定されたフォルダやアーカイブ</dt>
+<dt>Folders or archives specified on the command line</dt>
 <dd>
-　コマンドラインの引数としてフォルダが指定された場合、それをプロジェクトフォルダと見なし、実行します。<r/>
-　コマンドラインの引数として XP3 アーカイブが指定された場合、その中にプロジェクトフォルダが入っていると見なし、実行します。<r/>
-　コマンドラインの引数として ファイルやフォルダを指定するのはコマンドプロンプトからもできますが、一番簡単なのは、エクスプローラや「開く」で、吉里吉里の実行可能ファイルのアイコンの上にプロジェクトフォルダやファイルをドロップすることです。<r/>
-　また、吉里吉里の実行可能ファイルへの引数として特定のプロジェクトフォルダを書いたショートカットをデスクトップなどにおいておくと便利でしょう。
+ If a folder is specified as a command line argument, it is treated as the project folder and executed.<r/>
+ If an XP3 archive is specified as a command line argument, it is assumed that the project folder is inside it and executed.<r/>
+ Specifying files or folders as command line arguments can be done from the command prompt, but the easiest way is to drop the project folder or file onto the KiriKiri executable icon in Explorer or an "Open" dialog.<r/>
+ It is also convenient to place a shortcut on the desktop with a specific project folder written as an argument to the KiriKiri executable.
 </dd>
 
-<dt>実行可能ファイルと同じ場所の content-data フォルダ</dt>
+<dt>content-data folder in the same location as the executable</dt>
 <dd>
-　実行可能ファイルと同じ場所に "content-data" という名のフォルダがある場合はそれをプロジェクトフォルダと見なし、実行します。
+ If there is a folder named "content-data" in the same location as the executable, it is treated as the project folder and executed.
 </dd>
 
-<dt>実行可能ファイルと同じ場所の "data.xp3" ファイル</dt>
+<dt>"data.xp3" file in the same location as the executable</dt>
 <dd>
-　実行可能ファイルと同じ場所に data.xp3 という名のアーカイブファイルがある場合は、それを XP3 アーカイブ形式としてその中にプロジェクトフォルダが入っていると見なし、実行します。
+ If there is an archive file named data.xp3 in the same location as the executable, it is treated as an XP3 archive containing the project folder and executed.
 </dd>
 
 <!--
-<dt>自分自身に XP3 アーカイブが結合されているとき</dt>
+<dt>When an XP3 archive is bound to itself</dt>
 <dd>
-　XP3 形式アーカイブは実行可能ファイルと結合することができますが、自分自身が XP3 アーカイブと結合されていた場合、自分自身にプロジェクトフォルダが入っていると見なし、実行します。
+ XP3 archives can be bound to the executable; if the executable itself is bound with an XP3 archive, it is assumed to contain the project folder and executed.
 </dd>
 -->
 
-<dt>実行可能ファイルと同じ場所の data フォルダ</dt>
+<dt>data folder in the same location as the executable</dt>
 <dd>
-　実行可能ファイルと同じ場所に "data" という名のフォルダがある場合はそれをプロジェクトフォルダと見なし、実行します。
+ If there is a folder named "data" in the same location as the executable, it is treated as the project folder and executed.
 </dd>
 </dl>
 <r/>
-　いずれの方法でも決定できなかった場合は、フォルダ/アーカイブ選択の画面が出ます。<r/>
-　ただし、リリースオプションで 「XP3アーカイブのみから実行」が指定されていた場合は、data.xp3ファイル、data.exeファイル、「自分自身に XP3 アーカイブが結合されているとき」の場合の動作しかしません ( <link href="Configure"/> 参照 )。<r/>
+ If the folder cannot be determined by any of these methods, the folder/archive selection screen will appear.<r/>
+ However, if "Execute only from XP3 archive" is specified in the release options, it will only operate with the data.xp3 file, data.exe file, or when an XP3 archive is bound to the executable (see <link href="Configure"/>).<r/>
 </para>
 
 <para>
-<ptitle>フォルダ/アーカイブ選択</ptitle>
-　フォルダ/アーカイブ選択の画面は以下のようになります。<r/>
+<ptitle>Folder/Archive Selection</ptitle>
+ The folder/archive selection screen looks like this.<r/>
 <img src="FolderSelector.png"/><r/><r/>
 <dl>
 
-<dt>「OK」ボタン</dt>
+<dt>"OK" button</dt>
 <dd>
-　現在選択中のフォルダやファイルの実行を開始します。
+ Starts execution of the currently selected folder or file.
 </dd>
 
-<dt>「キャンセル」ボタン</dt>
+<dt>"Cancel" button</dt>
 <dd>
-　何もせずに吉里吉里を終了します。
+ Exits KiriKiri without doing anything.
 </dd>
 </dl>
 </para>
 
 <para>
-<ptitle>最初に実行されるファイル</ptitle>
-　プロジェクトフォルダ決定後、最初に実行されるのは、プロジェクトフォルダ内の startup.tjs です。これがない場合はエラーになります。<r/>
-　最初に実行されるファイルは -startup で指定することも可能です。<link href="CommandLine"/> を参照してください。<r/>
+<ptitle>First Executed File</ptitle>
+ After the project folder is determined, the first file executed is startup.tjs within the project folder. If this is missing, an error occurs.<r/>
+ The first file to be executed can also be specified with -startup. Please refer to <link href="CommandLine"/>.<r/>
 </para>
 
 <para>
-<ptitle>メッセージマップファイル</ptitle>
-　吉里吉里は、起動直後に吉里吉里と同じフォルダに msgmap.tjs があるかどうかを調べ、それが存在すれば実行します。ただしリリースオプションでこれを読み込まないように指定されていた場合を除きます ( <link href="Configure"/> 参照 )。msgmap.tjs では <at href="f_System_assignMessage.html">System.assignMessage</at> を使用してメッセージの割り当てを変更することができます。msgmap.tjs は <link href="Controller" /> でも作成することができます。<r/>
+<ptitle>Message Map File</ptitle>
+ Immediately after starting, KiriKiri checks if msgmap.tjs exists in the same folder as KiriKiri and executes it if it does. This is except when the release options specify not to load it (see <link href="Configure"/>). In msgmap.tjs, you can change message assignments using <at href="f_System_assignMessage.html">System.assignMessage</at>. msgmap.tjs can also be created in the <link href="Controller" />.<r/>
 </para>
 
 <para>
-<ptitle>設定ファイル</ptitle>
-　吉里吉里は、<link href="Configure"/> で作成した設定ファイル (.cf ファイルや .cfu ファイル) を読み込み、そこに記述してある設定にしたがって動作します。<r/>
-　ファイル名やファイルの作成される場所については <link href="Configure"/> を参照してください。<r/>
+<ptitle>Configuration File</ptitle>
+ KiriKiri loads the configuration files (.cf or .cfu files) created in <link href="Configure"/> and operates according to the settings described therein.<r/>
+ Please refer to <link href="Configure"/> for file names and where files are created.<r/>
 </para>
 
 </doc>
-

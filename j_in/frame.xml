@@ -2,9 +2,9 @@
 <doc>
 <anchor target="main"/>
 <keywords/>
-<title>吉里吉里Z 目次</title>
+<title>KiriKiri Z Table of Contents</title>
 <para>
-<ptitle>概要と各機能</ptitle>
+<ptitle>Overview and Features</ptitle>
 <link href="about"/><r/>
 <link href="Copyrights"/><r/>
 <r/>
@@ -27,30 +27,30 @@
 <link href="ComputerDependentProblems"/><r/>
 </para>
 <para>
-<ptitle>クラスリファレンス</ptitle>
-<at href="f_System.html">System クラス</at><r/>
-<at href="f_Storages.html">Storages クラス</at><r/>
-<at href="f_Debug.html">Debug クラス</at><r/>
-<at href="f_Scripts.html">Scripts クラス</at><r/>
-<at href="f_Plugins.html">Plugins クラス</at><r/>
-<at href="f_Timer.html">Timer クラス</at><r/>
-<at href="f_AsyncTrigger.html">AsyncTrigger クラス</at><r/>
-<at href="f_Rect.html">Rect クラス</at><r/>
-<at href="f_Window.html">Window クラス</at><r/>
-<at href="f_Window.BasicDrawDevice.html">Window.BasicDrawDevice クラス</at><r/>
-<at href="f_Layer.html">Layer クラス</at><r/>
-<at href="f_Font.html">Font クラス</at><r/>
-<at href="f_Bitmap.html">Bitmap クラス</at><r/>
-<at href="f_BitmapLayerTreeOwner.html">BitmapLayerTreeOwner クラス</at><r/>
-<at href="f_ImageFunction.html">ImageFunction クラス</at><r/>
-<at href="f_Clipboard.html">Clipboard クラス</at><r/>
-<at href="f_WaveSoundBuffer.html">WaveSoundBuffer クラス</at><r/>
-<at href="f_WaveSoundBuffer.PhaseVocoder.html">WaveSoundBuffer.PhaseVocoder クラス</at><r/>
-<at href="f_VideoOverlay.html">VideoOverlay クラス</at><r/>
+<ptitle>Class Reference</ptitle>
+<at href="f_System.html">System Class</at><r/>
+<at href="f_Storages.html">Storages Class</at><r/>
+<at href="f_Debug.html">Debug Class</at><r/>
+<at href="f_Scripts.html">Scripts Class</at><r/>
+<at href="f_Plugins.html">Plugins Class</at><r/>
+<at href="f_Timer.html">Timer Class</at><r/>
+<at href="f_AsyncTrigger.html">AsyncTrigger Class</at><r/>
+<at href="f_Rect.html">Rect Class</at><r/>
+<at href="f_Window.html">Window Class</at><r/>
+<at href="f_Window.BasicDrawDevice.html">Window.BasicDrawDevice Class</at><r/>
+<at href="f_Layer.html">Layer Class</at><r/>
+<at href="f_Font.html">Font Class</at><r/>
+<at href="f_Bitmap.html">Bitmap Class</at><r/>
+<at href="f_BitmapLayerTreeOwner.html">BitmapLayerTreeOwner Class</at><r/>
+<at href="f_ImageFunction.html">ImageFunction Class</at><r/>
+<at href="f_Clipboard.html">Clipboard Class</at><r/>
+<at href="f_WaveSoundBuffer.html">WaveSoundBuffer Class</at><r/>
+<at href="f_WaveSoundBuffer.PhaseVocoder.html">WaveSoundBuffer.PhaseVocoder Class</at><r/>
+<at href="f_VideoOverlay.html">VideoOverlay Class</at><r/>
 </para>
 
 <para>
-<ptitle>付属ツールの使い方</ptitle>
+<ptitle>How to Use Bundled Tools</ptitle>
 <!-- <link href="Releaser"/><r/> -->
 <!-- <link href="FontMaker"/><r/> -->
 <link href="Configure"/><r/>
@@ -61,7 +61,7 @@
 </para>
 
 <para>
-<ptitle>付録</ptitle>
+<ptitle>Appendix</ptitle>
 <link href="KeyCodes"/><r/>
 <link href="ColorCodes"/><r/>
 <link href="MouseCursors"/><r/>

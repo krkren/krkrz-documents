@@ -2,31 +2,30 @@
 <doc>
 <title>VideoOverlay</title>
 <desc>
-　VideoOverlay クラスは、MPEG I や WMV、H.264、theora などを表示するため表示領域を作成するクラスです。吉里吉里のレイヤに表示を行うこともできます。<r/>
-　1.3.0以前は WMV/MPEG I を再生するときは、吉里吉里実行可能ファイルと同じ場所に、krmovie.dll が必要になります。<r/>
-　1.3.0以降は krmovie.dll が本体に統合されたため、別途添付する必要はなくなりました。theora を再生するには krdstheora.dll が必要になります。<r/>
+ The VideoOverlay class is a class for creating a display area to show MPEG I, WMV, H.264, Theora, etc. It can also display on Kirikiri layers.<r/>
+ Prior to version 1.3.0, krmovie.dll was required in the same location as the Kirikiri executable to play WMV/MPEG I.<r/>
+ From version 1.3.0 onwards, krmovie.dll was integrated into the main body, so it is no longer necessary to attach it separately. To play Theora, krdstheora.dll is required.<r/>
 <r/>
-　レイヤでの再生を除き、オーバーレイによる再生では、VideoOverlay クラスの表示領域は、すべてのレイヤよりも手前に表示され、透過することはできません。<r/>
-　レイヤでの再生は、オーバーレイでの再生に比べ、再生時のプロセッサの負荷は高くなる傾向にあります。<r/>
+ Except for playback on layers, in overlay playback, the VideoOverlay class display area is displayed in front of all layers and cannot be transparent.<r/>
+ Playback on layers tends to have a higher processor load during playback compared to overlay playback.<r/>
 </desc>
 
 <member>
 	<name>VideoOverlay</name>
 	<type>constructor</type>
-	<shortdesc>VideoOverlay オブジェクトの構築</shortdesc>
+	<shortdesc>Construction of VideoOverlay object</shortdesc>
 	<arg>
 		<argitem>
 			<name>window</name>
 			<default></default>
 			<desc>
-				　このレイヤを保有することになるウィンドウ ( <ref>Window</ref> クラスの
-				オブジェクト ) を指定します。<r/>
+				 Specifies the window (Window class object) that will own this layer.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　VideoOverlay クラスのオブジェクトを構築します。<r/>
+		 Constructs a VideoOverlay class object.<r/>
 	</desc>
 </member>
 
@@ -34,51 +33,51 @@
 <member>
 	<name>onStatusChanged</name>
 	<type>event</type>
-	<shortdesc>ステータスが変更された</shortdesc>
+	<shortdesc>Status changed</shortdesc>
 	<arg>
 		<argitem>
 			<name>status</name>
 			<default></default>
 			<desc>
-				　ステータス文字列を表します。<r/>
-				　以下のいずれかです。<r/>
-				<tt>"<kw>unload</kw>"   : </tt> メディアが開かれてない<r/>
-				<tt>"<kw>ready</kw>"    : </tt> メディアの準備が完了している<r/>
-				<tt>"<kw>play</kw>"     : </tt> メディアは再生中である<r/>
-				<tt>"<kw>stop</kw>"     : </tt> メディアは停止中である<r/>
-				<tt>"<kw>pause</kw>"    : </tt> メディアは一時停止中である<r/>
+				 Represents the status string.<r/>
+				 It is one of the following.<r/>
+				<tt>"<kw>unload</kw>"   : </tt> Media is not open<r/>
+				<tt>"<kw>ready</kw>"    : </tt> Media preparation is complete<r/>
+				<tt>"<kw>play</kw>"     : </tt> Media is playing<r/>
+				<tt>"<kw>stop</kw>"     : </tt> Media is stopped<r/>
+				<tt>"<kw>pause</kw>"    : </tt> Media is paused<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		このオブジェクトのステータスが変更されたときに発生します。<r/>
-		ready は、vomMFEVR モードの時のみ発生します。<r/>
+		Occurs when the status of this object changes.<r/>
+		"ready" only occurs in vomMFEVR mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>onPeriod</name>
 	<type>event</type>
-	<shortdesc>Periodイベントが発生した</shortdesc>
+	<shortdesc>Period event occurred</shortdesc>
 	<arg>
 		<argitem>
 			<name>type</name>
 			<default></default>
 			<desc>
-				　Periodイベントのタイプを表します。<r/>
-				　以下のいずれかです。<r/>
-				<tt><kw>perLoop</kw>    : </tt> (通常の)ループの終端に達した<r/>
-				<tt><kw>perSegLoop</kw> : </tt> セグメントループの終端に達した<r/>
-				<tt><kw>perPeriod</kw>  : </tt> setPeriodEvent メソッドで指定されたフレームに達した<r/>
-				<tt><kw>perPrepare</kw> : </tt> prepare メソッドによる再生準備が完了した<r/>
+				 Represents the type of Period event.<r/>
+				 It is one of the following.<r/>
+				<tt><kw>perLoop</kw>    : </tt> Reached the end of a (normal) loop<r/>
+				<tt><kw>perSegLoop</kw> : </tt> Reached the end of a segment loop<r/>
+				<tt><kw>perPeriod</kw>  : </tt> Reached the frame specified by the setPeriodEvent method<r/>
+				<tt><kw>perPrepare</kw> : </tt> Playback preparation by the prepare method is complete<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		ループの終端や、 setPeriodEventによって指定されたフレームに達した場合、または prepare メソッドにより再生準備が完了した場合に呼び出されるメソッドです。<r/>
-		ループの終端や、 setPeriodEvent によって指定されたフレームに達した場合にこのイベントが呼ばれる時点では、再生状況によっては、すでに再生位置が指定された位置を超えている場合があります。現在の実際の再生位置を取得するには frame プロパティを参照してください。<r/>
+		This method is called when the end of a loop or a frame specified by setPeriodEvent is reached, or when playback preparation is completed by the prepare method.<r/>
+		When this event is called upon reaching the end of a loop or a frame specified by setPeriodEvent, the playback position may have already exceeded the specified position depending on the playback situation. Refer to the frame property to get the actual current playback position.<r/>
 	</desc>
 	<ref>VideoOverlay.setPeriodEvent</ref>
 	<ref>VideoOverlay.prepare</ref>
@@ -88,21 +87,21 @@
 <member>
 	<name>onFrameUpdate</name>
 	<type>event</type>
-	<shortdesc>ビデオフレームが更新された</shortdesc>
+	<shortdesc>Video frame updated</shortdesc>
 	<arg>
 		<argitem>
 			<name>frame</name>
 			<default></default>
 			<desc>
-				ビデオのフレーム番号<r/>
+				Video frame number<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		ビデオフレームが更新された後に呼び出されるメソッドです。<r/>
-		引数であるframeは現在表示されているビデオフレームと完全に一致しているとは限りません。<r/>
-		レイヤ描画モード、ミキサーモード時のみ利用可能です。<r/>
+		Method called after a video frame is updated.<r/>
+		The frame argument does not necessarily match the currently displayed video frame exactly.<r/>
+		Available only in layer rendering mode or mixer mode.<r/>
 	</desc>
 </member>
 
@@ -110,82 +109,82 @@
 <member>
 	<name>open</name>
 	<type>method</type>
-	<shortdesc>メディアを開く</shortdesc>
+	<shortdesc>Open media</shortdesc>
 	<arg>
 		<argitem>
 			<name>storage</name>
 			<default></default>
 			<desc>
-				　指定されたメディアを開きます。<r/>
+				 Opens the specified media.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		指定されたメディアを開きます。<r/>
-		現バージョンで再生可能なのは MPEG I (拡張子 .mpeg または .mpg または .mpv)、WMVです。<r/>
-		ビデオのみの (オーディオとマルチプレクシングされていない) MPEG I ストリームの拡張子は .mpv にしてください。<r/>
+		Opens the specified media.<r/>
+		Playable formats in the current version are MPEG I (extensions .mpeg, .mpg, or .mpv) and WMV.<r/>
+		For video-only (not multiplexed with audio) MPEG I streams, please use the .mpv extension.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>play</name>
 	<type>method</type>
-	<shortdesc>再生開始</shortdesc>
+	<shortdesc>Start playback</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　メディアの再生を開始します。<r/>
+		 Starts media playback.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>stop</name>
 	<type>method</type>
-	<shortdesc>再生停止</shortdesc>
+	<shortdesc>Stop playback</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　メディアの再生を停止します。<r/>
+		 Stops media playback.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>pause</name>
 	<type>method</type>
-	<shortdesc>一時停止</shortdesc>
+	<shortdesc>Pause</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		　メディアの再生を一時停止します。<r/>
+		 Pauses media playback.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>rewind</name>
 	<type>method</type>
-	<shortdesc>巻き戻し</shortdesc>
+	<shortdesc>Rewind</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		メディアの再生位置を先頭に移動します。<r/>
+		Moves the media playback position to the beginning.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>prepare</name>
 	<type>method</type>
-	<shortdesc>再生準備</shortdesc>
+	<shortdesc>Prepare playback</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		メディアの1フレーム目を指定されているレイヤーに描画し、描画終了時にonPeriodイベントを発生させます。
-		prepareメソッド コール後の再生は、onPeriodイベントを待機してから行ってください。<r/>
+		Draws the first frame of the media to the specified layer and triggers an onPeriod event when drawing is finished.
+		After calling the prepare method, wait for the onPeriod event before starting playback.<r/>
 	</desc>
 	<ref>VideoOverlay.onPeriod</ref>
 </member>
@@ -193,30 +192,29 @@
 <member>
 	<name>setSegmentLoop</name>
 	<type>method</type>
-	<shortdesc>フレーム間ループの設定</shortdesc>
+	<shortdesc>Set inter-frame loop</shortdesc>
 	<arg>
 		<argitem>
 			<name>comeFrame</name>
 			<default></default>
 			<desc>
-				　ループ移動先フレーム(ループの始端フレーム)。再生がgoFrameに達したとき、再生ヘッドはこのフレームに移動します。<r/>
+				 Loop destination frame (loop start frame). When playback reaches goFrame, the playhead moves to this frame.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>goFrame</name>
 			<default></default>
 			<desc>
-				　ループ終点フレーム(ループの終端フレーム)。このフレームの1つ前のフレームの表示が終了した時、再生ヘッドはcomeFrameへ移動します。<r/>
+				 Loop end frame (loop terminal frame). When the display of the frame immediately preceding this frame ends, the playhead moves to comeFrame.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		指定されたフレーム間でループ処理を行います。<r/>
-		ループ終端(goFrame)では、onPeriodイベントが発生します。<r/>
-		comeFrameのフレームにはムービーファイルにキーフレームを設定しておく必要があります。<r/>
-		設定されていない場合は、
-		ループ終点から始点へ移動時に指定されたフレームに最も近いキーフレームへ再生位置が移動することになります。<r/>
+		Performs loop processing between specified frames.<r/>
+		An onPeriod event occurs at the loop end (goFrame).<r/>
+		A keyframe must be set in the movie file for the comeFrame.<r/>
+		If not set, the playback position will move to the keyframe closest to the specified frame when moving from the loop end to the start.<r/>
 	</desc>
 	<ref>VideoOverlay.cancelSegmentLoop</ref>
 	<ref>VideoOverlay.onPeriod</ref>
@@ -227,12 +225,12 @@
 <member>
 	<name>cancelSegmentLoop</name>
 	<type>method</type>
-	<shortdesc>フレーム間ループの解除</shortdesc>
+	<shortdesc>Cancel inter-frame loop</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		setSegmentLoopメソッドで指定したセグメント間ループを解除します。<r/>
+		Cancels the inter-segment loop specified by the setSegmentLoop method.<r/>
 	</desc>
 	<ref>VideoOverlay.setSegmentLoop</ref>
 </member>
@@ -240,13 +238,13 @@
 <member>
 	<name>close</name>
 	<type>method</type>
-	<shortdesc>メディアを閉じる</shortdesc>
+	<shortdesc>Close media</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		メディアを閉じます。<r/>
-		メディアを再生するために確保されていたリソースなどもすべて解放します。<r/>
+		Closes the media.<r/>
+		Also releases all resources allocated for playing the media.<r/>
 	</desc>
 	<ref>VideoOverlay.setSegmentLoop</ref>
 </member>
@@ -254,20 +252,20 @@
 <member>
 	<name>setPeriodEvent</name>
 	<type>method</type>
-	<shortdesc>指定フレームでのイベント発生の指定</shortdesc>
+	<shortdesc>Specify event occurrence at a specific frame</shortdesc>
 	<arg>
 		<argitem>
 			<name>eventFrame</name>
 			<default></default>
 			<desc>
-				onPeriodイベントを発生させるフレームを指定します。<r/>
+				Specifies the frame to trigger the onPeriod event.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		指定したフレームでonPeriodイベントを発生させます。<r/>
-		onPeriodイベントは、一度発生すると解除されます。再び発生させたい場合は再度このメソッドで設定してください。<r/>
+		Triggers an onPeriod event at the specified frame.<r/>
+		Once the onPeriod event occurs, it is cleared. To trigger it again, set it again using this method.<r/>
 	</desc>
 	<ref>VideoOverlay.cancelPeriodEvent</ref>
 	<ref>VideoOverlay.onPeriod</ref>
@@ -276,12 +274,12 @@
 <member>
 	<name>cancelPeriodEvent</name>
 	<type>method</type>
-	<shortdesc>指定フレームでのイベント発生の解除</shortdesc>
+	<shortdesc>Cancel event occurrence at a specific frame</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		setPeriodEventメソッドで設定したイベント発生を解除します。<r/>
+		Cancels the event occurrence set by the setPeriodEvent method.<r/>
 	</desc>
 	<ref>VideoOverlay.setPeriodEvent</ref>
 </member>
@@ -289,98 +287,96 @@
 <member>
 	<name>setPos</name>
 	<type>method</type>
-	<shortdesc>再生矩形の左上位置を指定</shortdesc>
+	<shortdesc>Specify the top-left position of the playback rectangle</shortdesc>
 	<arg>
 		<argitem>
 			<name>left</name>
 			<default></default>
 			<desc>
-				　メディアを再生するための矩形領域の左端位置を指定します。<r/>
+				 Specifies the left edge position of the rectangular area for media playback.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>top</name>
 			<default></default>
 			<desc>
-				　メディアを再生するための矩形領域の上端位置を指定します。<r/>
+				 Specifies the top edge position of the rectangular area for media playback.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　メディアを再生するための矩形領域の左上位置を指定します。<r/>
-		　座標は、ウィンドウのクライアント ( レイヤを表示可能な領域 ) 内での座標で、ピクセル単位で
-		指定します。<r/>
+		 Specifies the top-left position of the rectangular area for media playback.<r/>
+		 Coordinates are within the window client (the area where layers can be displayed) and are specified in pixels.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>setSize</name>
 	<type>method</type>
-	<shortdesc>再生矩形のサイズを指定</shortdesc>
+	<shortdesc>Specify the size of the playback rectangle</shortdesc>
 	<arg>
 		<argitem>
 			<name>width</name>
 			<default></default>
 			<desc>
-				　メディアを再生するための矩形領域の横幅を指定します。<r/>
+				 Specifies the width of the rectangular area for media playback.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>height</name>
 			<default></default>
 			<desc>
-				　メディアを再生するための矩形領域の縦幅を指定します。<r/>
+				 Specifies the height of the rectangular area for media playback.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　メディアを再生するための矩形領域のサイズをピクセル単位で指定します。<r/>
-		　現バージョンでは、レイヤ再生時にはこのメソッドを使用することはできません。<r/>
+		 Specifies the size of the rectangular area for media playback in pixels.<r/>
+		 In the current version, this method cannot be used during layer playback.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>setBounds</name>
 	<type>method</type>
-	<shortdesc>再生矩形の位置とサイズを指定</shortdesc>
+	<shortdesc>Specify the position and size of the playback rectangle</shortdesc>
 	<arg>
 		<argitem>
 			<name>left</name>
 			<default></default>
 			<desc>
-				　メディアを再生するための矩形領域の左端位置を指定します。<r/>
+				 Specifies the left edge position of the rectangular area for media playback.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>top</name>
 			<default></default>
 			<desc>
-				　メディアを再生するための矩形領域の上端位置を指定します。<r/>
+				 Specifies the top edge position of the rectangular area for media playback.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>width</name>
 			<default></default>
 			<desc>
-				　メディアを再生するための矩形領域の横幅を指定します。<r/>
+				 Specifies the width of the rectangular area for media playback.<r/>
 			</desc>
 		</argitem>
 		<argitem>
 			<name>height</name>
 			<default></default>
 			<desc>
-				　メディアを再生するための矩形領域の縦幅を指定します。<r/>
+				 Specifies the height of the rectangular area for media playback.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		　メディアを再生するための矩形領域の位置とサイズを指定します。<r/>
-		　座標は、ウィンドウのクライアント ( レイヤを表示可能な領域 ) 内での座標で、ピクセル単位で
-		指定します。<r/>
-		　現バージョンでは、レイヤ再生時にはこのメソッドで指定できるのは位置だけで、サイズは無視されます。<r/>
+		 Specifies the position and size of the rectangular area for media playback.<r/>
+		 Coordinates are within the window client (the area where layers can be displayed) and are specified in pixels.<r/>
+		 In the current version, only the position can be specified with this method during layer playback; the size is ignored.<r/>
 	</desc>
 </member>
 
@@ -388,20 +384,20 @@
 <member>
 	<name>selectAudioStream</name>
 	<type>method</type>
-	<shortdesc>音声ストリームの選択</shortdesc>
+	<shortdesc>Select audio stream</shortdesc>
 	<arg>
 		<argitem>
 			<name>streamNumber</name>
 			<default></default>
 			<desc>
-				音声ストリーム番号を指定します。<r/>
+				Specifies the audio stream number.<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		指定した音声ストリーム番号を有効にします。<r/>
-		音声ストリームを複数含まないビデオでは使用できません。
+		Enables the specified audio stream number.<r/>
+		Cannot be used with videos that do not contain multiple audio streams.
 	</desc>
 	<ref>VideoOverlay.numberOfAudioStream</ref>
 	<ref>VideoOverlay.enabledAudioStream</ref>
@@ -411,38 +407,37 @@
 <member>
 	<name>setMixingLayer</name>
 	<type>method</type>
-	<shortdesc>ミキシング対象レイヤの設定</shortdesc>
+	<shortdesc>Set mixing target layer</shortdesc>
 	<arg>
 		<argitem>
 			<name>layer</name>
 			<default></default>
 			<desc>
-				レイヤー<r/>
+				Layer<r/>
 			</desc>
 		</argitem>
 	</arg>
 	<result></result>
 	<desc>
-		指定したレイヤーとビデオのミキシングを行います。<r/>
-		ミキシングはこのメソッドが呼び出された時のレイヤー画像と行われます。<r/>
-		レイヤー画像の更新を反映するには、再度このメソッドを呼び出す必要があります。<r/>
-		<ref>VideOverlay.OnFrameUpdate</ref> を使用して、
-		レイヤー画像が更新されたことを調べてこのメソッドを呼び出すようにすれば、自動的に更新が反映されるようになります。
-		onFrameUpdateで毎フレームこのメソッドを呼び出した場合、かなり負荷がかかりますのでそれは避けた方が良いです。<r/>
-		ミキサーモードでのみ利用可能です。
+		Mixes the specified layer with the video.<r/>
+		Mixing is performed with the layer image at the time this method is called.<r/>
+		To reflect updates to the layer image, this method must be called again.<r/>
+		By using VideoOverlay.onFrameUpdate to check if the layer image has been updated and then calling this method, updates will be reflected automatically.
+		Calling this method every frame in onFrameUpdate will impose a significant load, so it is better to avoid doing so.<r/>
+		Available only in mixer mode.
 	</desc>
 </member>
 
 <member>
 	<name>resetMixingLayer</name>
 	<type>method</type>
-	<shortdesc>ミキシング対象レイヤの設定解除</shortdesc>
+	<shortdesc>Unset mixing target layer</shortdesc>
 	<arg>
 	</arg>
 	<result></result>
 	<desc>
-		ビデオとレイヤーのミキシングを解除します。<r/>
-		ミキサーモードでのみ利用可能です。
+		Cancels the mixing of video and layer.<r/>
+		Available only in mixer mode.
 	</desc>
 </member>
 
@@ -450,10 +445,10 @@
 <member>
 	<name>position</name>
 	<type>property</type>
-	<shortdesc>再生位置</shortdesc>
+	<shortdesc>Playback position</shortdesc>
 	<access>r/w</access>
 	<desc>
-		メディアの再生位置を ms 単位で表します。値を設定することもできます。<r/>
+		Represents the media playback position in ms. The value can also be set.<r/>
 	</desc>
 	<ref>VideoOverlay.frame</ref>
 	<ref>VideoOverlay.totalTime</ref>
@@ -462,10 +457,10 @@
 <member>
 	<name>frame</name>
 	<type>property</type>
-	<shortdesc>現在のフレーム</shortdesc>
+	<shortdesc>Current frame</shortdesc>
 	<access>r/w</access>
 	<desc>
-		メディアの再生位置をフレーム単位で表します。値を設定することもできます。<r/>
+		Represents the media playback position in frames. The value can also be set.<r/>
 	</desc>
 	<ref>VideoOverlay.position</ref>
 	<ref>VideoOverlay.numberOfFrame</ref>
@@ -474,22 +469,22 @@
 <member>
 	<name>loop</name>
 	<type>property</type>
-	<shortdesc>ループ再生をするかどうか</shortdesc>
+	<shortdesc>Whether to loop playback</shortdesc>
 	<access>r/w</access>
 	<desc>
-		ループ再生の有効無効を表します。値を設定することもできます。<r/>
-		真ならばループ、偽ならば非ループです。<r/>
+		Represents whether loop playback is enabled or disabled. The value can also be set.<r/>
+		If true, it loops; if false, it does not.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>width</name>
 	<type>property</type>
-	<shortdesc>再生矩形の横幅</shortdesc>
+	<shortdesc>Width of the playback rectangle</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　再生矩形の横幅を表します。値を設定することもできます。<r/>
-		　このプロパティは、現バージョンではレイヤ再生時は使用できません(常にサイズはビデオのサイズと同じになります)。<r/>
+		 Represents the width of the playback rectangle. The value can also be set.<r/>
+		 This property cannot be used during layer playback in the current version (the size will always be the same as the video size).<r/>
 	</desc>
 	<ref>VideoOverlay.height</ref>
 	<ref>VideoOverlay.setSize</ref>
@@ -498,11 +493,11 @@
 <member>
 	<name>height</name>
 	<type>property</type>
-	<shortdesc>再生矩形の縦幅</shortdesc>
+	<shortdesc>Height of the playback rectangle</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　再生矩形の縦幅を表します。値を設定することもできます。<r/>
-		　このプロパティは、現バージョンではレイヤ再生時は使用できません(常にサイズはビデオのサイズと同じになります)。<r/>
+		 Represents the height of the playback rectangle. The value can also be set.<r/>
+		 This property cannot be used during layer playback in the current version (the size will always be the same as the video size).<r/>
 
 	</desc>
 	<ref>VideoOverlay.width</ref>
@@ -512,10 +507,10 @@
 <member>
 	<name>left</name>
 	<type>property</type>
-	<shortdesc>再生矩形の左端位置</shortdesc>
+	<shortdesc>Left edge position of the playback rectangle</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　再生矩形の左端位置を表します。値を設定することもできます。<r/>
+		 Represents the left edge position of the playback rectangle. The value can also be set.<r/>
 	</desc>
 	<ref>VideoOverlay.top</ref>
 	<ref>VideoOverlay.setPos</ref>
@@ -524,10 +519,10 @@
 <member>
 	<name>top</name>
 	<type>property</type>
-	<shortdesc>再生矩形の上端位置</shortdesc>
+	<shortdesc>Top edge position of the playback rectangle</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　再生矩形の上端位置を表します。値を設定することもできます。<r/>
+		 Represents the top edge position of the playback rectangle. The value can also be set.<r/>
 	</desc>
 	<ref>VideoOverlay.left</ref>
 	<ref>VideoOverlay.setPos</ref>
@@ -536,41 +531,41 @@
 <member>
 	<name>visible</name>
 	<type>property</type>
-	<shortdesc>可視かどうか</shortdesc>
+	<shortdesc>Whether visible</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　再生領域が可視かどうかを指定します。値を設定することもできます。<r/>
-		　真ならば可視、偽ならば不可視です。<r/>
+		 Specifies whether the playback area is visible. The value can also be set.<r/>
+		 If true, it is visible; if false, it is invisible.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>fps</name>
 	<type>property</type>
-	<shortdesc>フレームレート</shortdesc>
+	<shortdesc>Frame rate</shortdesc>
 	<access>r</access>
 	<desc>
-		フレームレート(フレーム/秒)を表します。<r/>
+		Represents the frame rate (frames/second).<r/>
 	</desc>
 </member>
 
 <member>
 	<name>numberOfFrame</name>
 	<type>property</type>
-	<shortdesc>全フレーム数</shortdesc>
+	<shortdesc>Total number of frames</shortdesc>
 	<access>r</access>
 	<desc>
-		全フレーム数を表します。<r/>
+		Represents the total number of frames.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>totalTime</name>
 	<type>property</type>
-	<shortdesc>合計時間</shortdesc>
+	<shortdesc>Total time</shortdesc>
 	<access>r</access>
 	<desc>
-		合計時間をms単位で表します。<r/>
+		Represents the total time in ms.<r/>
 	</desc>
 </member>
 
@@ -578,11 +573,11 @@
 <member>
 	<name>layer1</name>
 	<type>property</type>
-	<shortdesc>描画レイヤ指定1</shortdesc>
+	<shortdesc>Drawing layer specification 1</shortdesc>
 	<access>r/w</access>
 	<desc>
-		　レイヤ描画モード時、描画するレイヤを表します。値を設定することもできます。<r/>
-		　layer1 プロパティと layer2 プロパティを異なるレイヤに設定することにより、同時に２つのレイヤに同じ動画を表示させることができます。<r/>
+		 Represents the layer to be drawn in layer rendering mode. The value can also be set.<r/>
+		 By setting the layer1 and layer2 properties to different layers, the same video can be displayed on two layers simultaneously.<r/>
 	</desc>
 </member>
 
@@ -590,45 +585,45 @@
 <member>
 	<name>layer2</name>
 	<type>property</type>
-	<shortdesc>描画レイヤ指定2</shortdesc>
+	<shortdesc>Drawing layer specification 2</shortdesc>
 	<access>r/w</access>
 	<desc>
-		レイヤ描画モード時、描画するレイヤを表します。値を設定することもできます。<r/>
+		Represents the layer to be drawn in layer rendering mode. The value can also be set.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>mode</name>
 	<type>property</type>
-	<shortdesc>オーバーレイorレイヤ描画の指定</shortdesc>
+	<shortdesc>Specification of overlay or layer rendering</shortdesc>
 	<access>r/w</access>
 	<desc>
-		オーバーレイモードであるか、レイヤ描画モードであるか、ミキサーモードであるかを表します。値を設定することもできます。<r/>
-		オーバーレイモードの場合は <kw>vomOverlay</kw>、レイヤ描画モードの場合は <kw>vomLayer</kw> 、ミキサーモードの場合は <kw>vomMixer</kw>、Media Foundation モードの場合は <kw>vomMFEVR</kw> となります。<r/>
-		vomMFEVR モードは 1.2.0 以降でのみ使用できます。<r/>
+		Represents whether it is in overlay mode, layer rendering mode, mixer mode, or Media Foundation mode. The value can also be set.<r/>
+		It will be <kw>vomOverlay</kw> for overlay mode, <kw>vomLayer</kw> for layer rendering mode, <kw>vomMixer</kw> for mixer mode, and <kw>vomMFEVR</kw> for Media Foundation mode.<r/>
+		vomMFEVR mode can only be used in version 1.2.0 or later.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>playRate</name>
 	<type>property</type>
-	<shortdesc>再生速度</shortdesc>
+	<shortdesc>Playback rate</shortdesc>
 	<access>r/w</access>
 	<desc>
-		メディアの再生速度を設定します。<r/>
-		1.0 を指定すると通常の再生速度、0.5 では半分の再生速度、2では2倍の再生速度となります。<r/>
-		設定可能値はDirectShowのフィルタによって決まります。<r/>
-		参考 : 音声付のMPEGファイルの場合、0.0より大きい値から2.0までの値が設定可能です。音声なしのMPEGファイルの場合、0.0より大きい値からdoubleの範囲内(たぶん)で設定可能ですが、実際の再生速度は処理速度によって上限が決まります。<r/>
+		Sets the playback rate of the media.<r/>
+		Specifying 1.0 results in normal playback speed, 0.5 is half speed, and 2 is double speed.<r/>
+		Settable values depend on the DirectShow filter.<r/>
+		Reference: For MPEG files with audio, values from greater than 0.0 up to 2.0 can be set. For MPEG files without audio, values from greater than 0.0 within the range of a double (probably) can be set, but the actual playback speed is limited by the processing speed.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>segmentLoopStartFrame</name>
 	<type>property</type>
-	<shortdesc>セグメントループの開始フレーム</shortdesc>
+	<shortdesc>Segment loop start frame</shortdesc>
 	<access>r</access>
 	<desc>
-		セグメントループの始端フレームです。<r/>
+		The start frame of the segment loop.<r/>
 	</desc>
 	<ref>VideoOverlay.setSegmentLoop</ref>
 	<ref>VideoOverlay.cancelSegmentLoop</ref>
@@ -637,10 +632,10 @@
 <member>
 	<name>segmentLoopEndFrame</name>
 	<type>property</type>
-	<shortdesc>セグメントループの開始フレーム</shortdesc>
+	<shortdesc>Segment loop start frame</shortdesc>
 	<access>r</access>
 	<desc>
-		セグメントループの始端フレームです。
+		The start frame of the segment loop.
 	</desc>
 	<ref>VideoOverlay.setSegmentLoop</ref>
 </member>
@@ -648,46 +643,46 @@
 <member>
 	<name>periodEventFrame</name>
 	<type>property</type>
-	<shortdesc>ピリオドイベントフレーム</shortdesc>
+	<shortdesc>Period event frame</shortdesc>
 	<access>r/w</access>
 	<desc>
-		periodイベントを発生させるフレームです。<r/>
-		未設定の場合は負の値となります。<r/>
+		The frame that triggers the period event.<r/>
+		If not set, it will be a negative value.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>audioBalance</name>
 	<type>property</type>
-	<shortdesc>音声バランス(パニング)</shortdesc>
+	<shortdesc>Audio balance (panning)</shortdesc>
 	<access>r/w</access>
 	<desc>
-		パン (音像位置) を表します。値を設定することもできます。<r/>
-		音の聞こえる左右の位置を指定することができます。<r/>
-		-100000 ～ 0 ～ 100000 の数値で指定し、 -100000 が 完全に左、0 が中央、100000 が完全に右になります。<r/>
-		ステレオのソースを再生する場合は、パンは、左右どちらかのチャンネルを減衰させることで実現されます(0を指定すると両チャンネルが出力され、-100000を指定すると左チャンネルのみが出力される)。<r/>
+		Represents the pan (sound image position). The value can also be set.<r/>
+		You can specify the left and right positions where the sound is heard.<r/>
+		Specify a value from -100000 to 0 to 100000, where -100000 is completely left, 0 is center, and 100000 is completely right.<r/>
+		When playing a stereo source, panning is achieved by attenuating either the left or right channel (specifying 0 outputs both channels, and specifying -100000 outputs only the left channel).<r/>
 	</desc>
 </member>
 
 <member>
 	<name>audioVolume</name>
 	<type>property</type>
-	<shortdesc>音声ボリューム</shortdesc>
+	<shortdesc>Audio volume</shortdesc>
 	<access>r/w</access>
 	<desc>
-		再生する音量を表します。値を設定することもできます。<r/>
-		0 ～ 100000 の数値で指定し、 0 が完全ミュート、100000 が 100% の音量となります。<r/>
+		Represents the playback volume. The value can also be set.<r/>
+		Specify a value from 0 to 100000, where 0 is complete mute and 100000 is 100% volume.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>numberOfAudioStream</name>
 	<type>property</type>
-	<shortdesc>音声ストリーム数</shortdesc>
+	<shortdesc>Number of audio streams</shortdesc>
 	<access>r</access>
 	<desc>
-		MPEGファイルのみで利用可能です。
-		オーディオストリーム数を取得できます。
+		Available only for MPEG files.
+		Gets the number of audio streams.
 	</desc>
 	<ref>VideoOverlay.selectAudioStream</ref>
 	<ref>VideoOverlay.enabledAudioStream</ref>
@@ -696,12 +691,12 @@
 <member>
 	<name>enabledAudioStream</name>
 	<type>property</type>
-	<shortdesc>再生対象音声ストリーム番号</shortdesc>
+	<shortdesc>Playback target audio stream number</shortdesc>
 	<access>r</access>
 	<desc>
-		MPEGファイルのみで利用可能です。
-		再生対象のオーディオストリーム番号を取得できます。
-		オーディオストリームが見付からない場合は-1を返します。
+		Available only for MPEG files.
+		Gets the audio stream number targeted for playback.
+		Returns -1 if no audio stream is found.
 	</desc>
 	<ref>VideoOverlay.selectAudioStream</ref>
 	<ref>VideoOverlay.numberOfAudioStream</ref>
@@ -710,266 +705,266 @@
 <member>
 	<name>mixingMovieAlpha</name>
 	<type>property</type>
-	<shortdesc>ビデオの透明度</shortdesc>
+	<shortdesc>Video transparency</shortdesc>
 	<access>r/w</access>
 	<desc>
-		0.0(完全に透明)～1.0(完全に不透明)の範囲でビデオの透明度を表します。<r/>
-		ミキサーモードでのみ利用可能です。
+		Represents the transparency of the video in the range of 0.0 (completely transparent) to 1.0 (completely opaque).<r/>
+		Available only in mixer mode.
 	</desc>
 </member>
 
 <member>
 	<name>mixingMovieBGColor</name>
 	<type>property</type>
-	<shortdesc>ビデオの背景色</shortdesc>
+	<shortdesc>Video background color</shortdesc>
 	<access>r/w</access>
 	<desc>
-		ビデオの背景色を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the background color of the video.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>contrastRangeMin</name>
 	<type>property</type>
-	<shortdesc>ビデオのコントラストレンジ最小値</shortdesc>
+	<shortdesc>Minimum video contrast range value</shortdesc>
 	<access>r</access>
 	<desc>
-		コントラストの幅の最小値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the minimum value of the contrast range.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>contrastRangeMax</name>
 	<type>property</type>
-	<shortdesc>ビデオのコントラストレンジ最大値</shortdesc>
+	<shortdesc>Maximum video contrast range value</shortdesc>
 	<access>r</access>
 	<desc>
-		コントラストの幅の最大値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the maximum value of the contrast range.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>contrastDefaultValue</name>
 	<type>property</type>
-	<shortdesc>ビデオのコントラスト既定値</shortdesc>
+	<shortdesc>Default video contrast value</shortdesc>
 	<access>r</access>
 	<desc>
-		コントラストの既定値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the default contrast value.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>contrastStepSize</name>
 	<type>property</type>
-	<shortdesc>ビデオのコントラスト増減ステップ値</shortdesc>
+	<shortdesc>Video contrast increment/decrement step value</shortdesc>
 	<access>r</access>
 	<desc>
-		contrastRangeMin から contrastRangeMax への有効な増分を表します。<r/>
-		この値の単位でコントラストを変更できます。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the valid increment from contrastRangeMin to contrastRangeMax.<r/>
+		Contrast can be changed in units of this value.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>contrast</name>
 	<type>property</type>
-	<shortdesc>ビデオのコントラスト</shortdesc>
+	<shortdesc>Video contrast</shortdesc>
 	<access>r/w</access>
 	<desc>
-		ビデオのコントラストを表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the video contrast.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>brightnessRangeMin</name>
 	<type>property</type>
-	<shortdesc>ビデオの輝度レンジ最小値</shortdesc>
+	<shortdesc>Minimum video brightness range value</shortdesc>
 	<access>r</access>
 	<desc>
-		輝度の幅の最小値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the minimum value of the brightness range.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>brightnessRangeMax</name>
 	<type>property</type>
-	<shortdesc>ビデオの輝度レンジ最大値</shortdesc>
+	<shortdesc>Maximum video brightness range value</shortdesc>
 	<access>r</access>
 	<desc>
-		輝度の幅の最大値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the maximum value of the brightness range.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>brightnessDefaultValue</name>
 	<type>property</type>
-	<shortdesc>ビデオの輝度既定値</shortdesc>
+	<shortdesc>Default video brightness value</shortdesc>
 	<access>r</access>
 	<desc>
-		輝度の既定値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the default brightness value.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>brightnessStepSize</name>
 	<type>property</type>
-	<shortdesc>ビデオの輝度増減ステップ値</shortdesc>
+	<shortdesc>Video brightness increment/decrement step value</shortdesc>
 	<access>r</access>
 	<desc>
-		brightnessRangeMin から brightnessRangeMax への有効な増分を表します。<r/>
-		この値の単位で輝度を変更できます。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the valid increment from brightnessRangeMin to brightnessRangeMax.<r/>
+		Brightness can be changed in units of this value.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>brightness</name>
 	<type>property</type>
-	<shortdesc>ビデオの輝度</shortdesc>
+	<shortdesc>Video brightness</shortdesc>
 	<access>r/w</access>
 	<desc>
-		ビデオの輝度を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the video brightness.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>hueRangeMin</name>
 	<type>property</type>
-	<shortdesc>ビデオの色相レンジ最小値</shortdesc>
+	<shortdesc>Minimum video hue range value</shortdesc>
 	<access>r</access>
 	<desc>
-		色相の幅の最小値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the minimum value of the hue range.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>hueRangeMax</name>
 	<type>property</type>
-	<shortdesc>ビデオの色相レンジ最大値</shortdesc>
+	<shortdesc>Maximum video hue range value</shortdesc>
 	<access>r</access>
 	<desc>
-		色相の幅の最大値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the maximum value of the hue range.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>hueDefaultValue</name>
 	<type>property</type>
-	<shortdesc>ビデオの色相既定値</shortdesc>
+	<shortdesc>Default video hue value</shortdesc>
 	<access>r</access>
 	<desc>
-		色相の既定値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the default hue value.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>hueStepSize</name>
 	<type>property</type>
-	<shortdesc>ビデオの色相増減ステップ値</shortdesc>
+	<shortdesc>Video hue increment/decrement step value</shortdesc>
 	<access>r</access>
 	<desc>
-		hueRangeMin から hueRangeMax への有効な増分を表します。<r/>
-		この値の単位で色相を変更できます。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the valid increment from hueRangeMin to hueRangeMax.<r/>
+		Hue can be changed in units of this value.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>hue</name>
 	<type>property</type>
-	<shortdesc>ビデオの色相</shortdesc>
+	<shortdesc>Video hue</shortdesc>
 	<access>r/w</access>
 	<desc>
-		ビデオの色相を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the video hue.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>saturationRangeMin</name>
 	<type>property</type>
-	<shortdesc>ビデオの彩度レンジ最小値</shortdesc>
+	<shortdesc>Minimum video saturation range value</shortdesc>
 	<access>r</access>
 	<desc>
-		彩度の幅の最小値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the minimum value of the saturation range.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>saturationRangeMax</name>
 	<type>property</type>
-	<shortdesc>ビデオの彩度レンジ最大値</shortdesc>
+	<shortdesc>Maximum video saturation range value</shortdesc>
 	<access>r</access>
 	<desc>
-		彩度の幅の最大値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the maximum value of the saturation range.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>saturationDefaultValue</name>
 	<type>property</type>
-	<shortdesc>ビデオの彩度既定値</shortdesc>
+	<shortdesc>Default video saturation value</shortdesc>
 	<access>r</access>
 	<desc>
-		彩度の既定値を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the default saturation value.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>saturationStepSize</name>
 	<type>property</type>
-	<shortdesc>ビデオの彩度増減ステップ値</shortdesc>
+	<shortdesc>Video saturation increment/decrement step value</shortdesc>
 	<access>r</access>
 	<desc>
-		saturationRangeMin から saturationRangeMax への有効な増分を表します。<r/>
-		この値の単位で彩度を変更できます。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the valid increment from saturationRangeMin to saturationRangeMax.<r/>
+		Saturation can be changed in units of this value.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>saturation</name>
 	<type>property</type>
-	<shortdesc>ビデオの彩度</shortdesc>
+	<shortdesc>Video saturation</shortdesc>
 	<access>r/w</access>
 	<desc>
-		ビデオの彩度を表します。<r/>
-		ミキサーモードでのみ利用可能です。<r/>
+		Represents the video saturation.<r/>
+		Available only in mixer mode.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>originalWidth</name>
 	<type>property</type>
-	<shortdesc>ビデオの実際の幅</shortdesc>
+	<shortdesc>Actual video width</shortdesc>
 	<access>r</access>
 	<desc>
-		格納されているビデオの幅です。<r/>
+		The width of the stored video.<r/>
 	</desc>
 </member>
 
 <member>
 	<name>originalHeight</name>
 	<type>property</type>
-	<shortdesc>ビデオの実際の高さ</shortdesc>
+	<shortdesc>Actual video height</shortdesc>
 	<access>r</access>
 	<desc>
-		格納されているビデオの高さです。<r/>
+		The height of the stored video.<r/>
 	</desc>
 </member>
 

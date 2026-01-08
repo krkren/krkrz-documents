@@ -1,106 +1,106 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doc>
-<title>ファイル/フォルダ覧</title>
+<title>File/Folder List</title>
 
 <para>
-<ptitle>ファイル/フォルダ覧</ptitle>
-ここでは、吉里吉里に関連するファイルやフォルダを説明します。<r/>
-すべてのファイルを網羅するわけではありません。特に注意が必要なファイルが中心になっています。吉里吉里Z SDK 配布アーカイブのフォルダ構造については readme.txt を参照してください。<r/>
-便宜上、KAGに関連するファイルも掲載しています。<r/>
+<ptitle>File/Folder List</ptitle>
+This section explains files and folders related to Kirikiri.<r/>
+This is not an exhaustive list of all files. It focuses on files that require special attention. Please refer to readme.txt for the folder structure of the Kirikiri Z SDK distribution archive.<r/>
+For convenience, files related to KAG are also listed.<r/>
 </para>
 
 <para>
-<ptitle>フォルダ</ptitle>
+<ptitle>Folders</ptitle>
 <dl>
-  <dt><kw>plugin</kw> と <kw>plugin64</kw></dt>
-  <dd>吉里吉里がプラグインを探すフォルダです。吉里吉里は、吉里吉里の実行可能ファイルがあるフォルダにこのフォルダがあると、その中に配置されているプラグインを参照します。→ <link href="Plugins"/></dd>
+  <dt><kw>plugin</kw> and <kw>plugin64</kw></dt>
+  <dd>Folders where Kirikiri looks for plugins. If these folders exist in the same directory as the Kirikiri executable, Kirikiri will reference the plugins placed inside them. -> <link href="Plugins"/></dd>
 
-  <dt><kw>data</kw> と <kw>content-data</kw></dt>
-  <dd>吉里吉里吉里の実行可能ファイルがあるフォルダにこのフォルダがある場合、フォルダをプロジェクトフォルダと見なして実行します。→ <link href="Startup"/></dd>
+  <dt><kw>data</kw> and <kw>content-data</kw></dt>
+  <dd>If these folders exist in the same directory as the Kirikiri executable, it will treat the folder as the project folder and execute it. -> <link href="Startup"/></dd>
 
 </dl>
 </para>
 
 <para>
-<ptitle>ファイル</ptitle>
+<ptitle>Files</ptitle>
 <dl>
   <dt>*.<kw>xp3</kw></dt>
-  <dd>吉里吉里用のアーカイブファイルです。→ <link href="Releaser"/></dd>
+  <dd>Archive files for Kirikiri. -> <link href="Releaser"/></dd>
 
-  <dt><kw>data.xp3</kw> と <kw>data.exe</kw></dt>
-  <dd>吉里吉里は、このファイルが吉里吉里の実行可能ファイルと同じフォルダにある場合、それをプロジェクトフォルダとみなして実行します。→ <link href="Startup"/></dd>
+  <dt><kw>data.xp3</kw> and <kw>data.exe</kw></dt>
+  <dd>If these files are in the same folder as the Kirikiri executable, Kirikiri treats them as the project folder and executes them. -> <link href="Startup"/></dd>
 
   <dt>*.<kw>tpm</kw></dt>
-  <dd>吉里吉里用のプラグインで、起動時に自動的に読み込まれる物です。→ <link href="Plugins"/></dd>
+  <dd>Plugins for Kirikiri that are automatically loaded at startup. -> <link href="Plugins"/></dd>
 
   <dt><kw>krdevui.dll</kw></dt>
-  <dd>吉里吉里の開発用ツールが共通で使用するDLLです。このファイルをエンドユーザ向けの配布物に同梱する必要はありません。</dd>
+  <dd>A DLL used in common by Kirikiri development tools. You do not need to include this file in distributions for end users.</dd>
 
   <dt><kw>krmovie.dll</kw></dt>
-  <dd>吉里吉里で WMV/MPG の再生を行う場合に必要になります。ビデオ再生を行わない場合はエンドユーザ向けの配布物にこれを同梱する必要はありません。→ <at href="f_VideoOverlay.html">VideoOverlayクラス</at></dd>
+  <dd>Required when playing WMV/MPG in Kirikiri. If you do not perform video playback, you do not need to include this in distributions for end users. -> <at href="f_VideoOverlay.html">VideoOverlay Class</at></dd>
 
   <dt>*.<kw>dll</kw></dt>
-  <dd>吉里吉里用のプラグインの場合は、エンドユーザ向けの配布物に同梱しなければなりません。もちろん、必要のないプラグインを同梱する必要はありません。→ <link href="Plugins"/></dd>
+  <dd>In the case of plugins for Kirikiri, they must be included in distributions for end users. Of course, you do not need to include plugins that are not required. -> <link href="Plugins"/></dd>
 
   <dt><kw>krkr.eXe</kw></dt>
-  <dd>吉里吉里本体です。エンドユーザ向けに配布する際にファイル名を変更してもかまいません。</dd>
+  <dd>The Kirikiri core. You may change the filename when distributing to end users.</dd>
 
-  <dt>*.<kw>cf</kw> と *.<kw>cfu</kw></dt>
-  <dd>吉里吉里本体に対するオプションが記述されたファイルです。「吉里吉里設定」(-userconf)で吉里吉里本体に指示したオプション(これには-datapathオプションの指定などが含まれます)を有効にするためには、エンドユーザ向けの配布物にこれも同梱する必要があります。→ <link href="Configure"/></dd>
+  <dt>*.<kw>cf</kw> and *.<kw>cfu</kw></dt>
+  <dd>Files containing options for the Kirikiri core. To enable options specified in "Kirikiri Configuration" (-userconf) (which includes -datapath option specifications, etc.), these must also be included in distributions for end users. -> <link href="Configure"/></dd>
 
-  <dt><kw>ファイル破損チェックツール.exe</kw> とその .<kw>ini</kw> ファイル</dt>
-  <dd>ファイル破損チェックツールです。エンドユーザ向けに配布する際にファイル名を変更してもかまいませんが、その場合は .exe ファイルと .ini ファイルの両方の名前を同じ物にしなければなりません。吉里吉里Z SDK 配布時は enduser-tools 内に入っていますが、エンドユーザに配布する際は、通常、吉里吉里の実行可能ファイルと同じフォルダに配置する必要があります。→ <link href="FileChkTool"/></dd>
+  <dt><kw>FileCorruptionCheckTool.exe</kw> and its .<kw>ini</kw> file</dt>
+  <dd>A file corruption check tool. You may change the filename when distributing to end users, but in that case, both the .exe and .ini files must have the same name. In the Kirikiri Z SDK distribution, it is located in enduser-tools, but when distributing to end users, it usually needs to be placed in the same folder as the Kirikiri executable. -> <link href="FileChkTool"/></dd>
 
   <dt><kw>startup.tjs</kw></dt>
-  <dd>TJSスクリプトファイルです。吉里吉里は、プロジェクトフォルダ直下のこのファイルを探し、一番最初に実行します。→ <link href="Startup"/></dd>
+  <dd>A TJS script file. Kirikiri looks for this file directly under the project folder and executes it first. -> <link href="Startup"/></dd>
 
   <dt>*.<kw>tjs</kw></dt>
-  <dd>TJSスクリプトファイルです。</dd>
+  <dd>TJS script files.</dd>
 
   <dt><kw>msgmap.tjs</kw></dt>
-  <dd>メッセージマップファイルです。作成した覚えがないならば、このファイルをエンドユーザ向けの配布物に同梱する必要はありません。→ <link href="Controller"/></dd>
+  <dd>A message map file. If you do not recall creating one, you do not need to include this file in distributions for end users. -> <link href="Controller"/></dd>
 
   <dt>*.<kw>sig</kw></dt>
-  <dd>キー・署名ツールが出力する署名ファイルです。ファイル破損チェックツールなどが参照します。→ <link href="SignTool"/></dd>
+  <dd>Signature files output by the Key/Signature Tool. These are referenced by tools like the File Corruption Check Tool. -> <link href="SignTool"/></dd>
 
   <dt>*.<kw>rpf</kw></dt>
-  <dd>Releaserのプロファイルです。Releaserの設定情報が記録されています。このファイルはエンドユーザ向けの配布物に同梱する必要はありません(Releaser ではこのファイルを自動的に除外します)。→ <link href="Releaser"/></dd>
+  <dd>Releaser profiles. These record Releaser configuration information. You do not need to include these files in distributions for end users (Releaser excludes these files automatically). -> <link href="Releaser"/></dd>
 
   <dt><kw>hwexcept.log</kw></dt>
-  <dd>吉里吉里本体がクラッシュした際に、-datapath オプションで指定された位置に作成される可能性があります。クラッシュといっても様々な状況がありますが、このファイルが作成されていた場合はかなり重症のクラッシュですので、エンドユーザから回収し、必要であれば吉里吉里の作者まで送ってください。このファイルはエンドユーザ向けの配布物に同梱する必要はありません。</dd>
+  <dd>This may be created at the location specified by the -datapath option when the Kirikiri core crashes. While there are various types of crashes, if this file is created, it indicates a severe crash; please collect it from the end user and send it to the Kirikiri author if necessary. You do not need to include this file in distributions for end users.</dd>
 
   <dt>*.<kw>console.log</kw></dt>
-  <dd>吉里吉里のコンソールのログファイルです。通常、吉里吉里がクラッシュした際などに、-datapath オプションで指定された位置に作成される可能性があります。このファイルが記録するログはほとんどの場合は、スクリプトの記述ミスに起因する物です。アプリケーションの開発中、あるいはエンドユーザに配布した後はエンドユーザから回収し、デバッグに役立ててください。このファイルをエンドユーザ向けの配布物に同梱する必要はありません。</dd>
+  <dd>Kirikiri console log files. These may be created at the location specified by the -datapath option, typically when Kirikiri crashes. In most cases, the logs recorded in these files are caused by script syntax errors. Use these to help with debugging during application development or by collecting them from end users after distribution. You do not need to include these files in distributions for end users.</dd>
 
   <dt>*.<kw>dump.txt</kw></dt>
-  <dd>TJSのダンプファイルです。このファイルをエンドユーザ向けの配布物に同梱する必要はありません。→ <link href="Controller"/></dd>
+  <dd>TJS dump files. You do not need to include these files in distributions for end users. -> <link href="Controller"/></dd>
 
   <dt>*.<kw>sli</kw></dt>
-  <dd>ループチューナが出力する、ループ定義ファイルです。→ <link href="LoopTuner"/></dd>
+  <dd>Loop definition files output by the Loop Tuner. -> <link href="LoopTuner"/></dd>
 
   <dt>*.<kw>tft</kw></dt>
-  <dd>レンダリング済みフォントデータ作成ツールが出力する、レンダリング済みフォントデータです。→ <link href="FontMaker"/></dd>
+  <dd>Rendered font data output by the Rendered Font Data Creation Tool. -> <link href="FontMaker"/></dd>
 
   <dt>*.png *.jpeg *.jpg *.tlg *.bmp *.jxr</dt>
-  <dd>画像ファイルです。→ <link href="GraphicSystem"/></dd>
+  <dd>Image files. -> <link href="GraphicSystem"/></dd>
 
   <dt>*.wav *.tcw *.ogg *.opus</dt>
-  <dd>音声ファイルです。→ <link href="SoundSystem"/></dd>
+  <dd>Audio files. -> <link href="SoundSystem"/></dd>
 
   <dt>*.wmv *.mpg *.mp4 *.ogv</dt>
-  <dd>動画ファイルです。→ <at href="f_VideoOverlay.html">VideoOverlayクラス</at></dd>
+  <dd>Video files. -> <at href="f_VideoOverlay.html">VideoOverlay Class</at></dd>
 
   <dt>*.ks</dt>
-  <dd>KAGのシナリオファイルです。</dd>
+  <dd>KAG scenario files.</dd>
 
   <dt>*.ksd *.kdt</dt>
-  <dd>KAGのセーブデータです。</dd>
+  <dd>KAG save data.</dd>
 
   <dt>*.asd</dt>
-  <dd>KAGのアニメーション定義ファイルです。</dd>
+  <dd>KAG animation definition files.</dd>
  
   <dt>*.ma</dt>
-  <dd>KAGの領域アクション定義ファイルです。</dd>
+  <dd>KAG area action definition files.</dd>
  
 
 </dl>
